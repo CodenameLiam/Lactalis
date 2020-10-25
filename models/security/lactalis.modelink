@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modelink threeWay="true" forceExeedL="true" forceExeedM="true" forceExeedR="true">
+  <model path="/r2.lactalis.models/ui/lactalis.reactbotui" position="LEFT" />
+  <model path="/r2.lactalis.models/entity/lactalis.csharpbotentity" position="MIDDLE" />
+  <model path="/r2.lactalis.models/security/lactalis.commonsecurity" position="RIGHT" />
+</modelink>
