@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<reactbotUi:UserInterfaceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:reactbotUi="http://codebots.com/emf/reactbot/ui" TargetProject="lactalis" />
+<reactbotUi:UserInterfaceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:reactbotUi="http://codebots.com/emf/reactbot/ui"  TargetProject="lactalis" Uuid="a359afd5-3b87-4ad8-ccdb-65f7550277cf"/>

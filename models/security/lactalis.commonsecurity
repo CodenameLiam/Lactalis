@@ -1,10 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <commonSecurity:Security xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:commonSecurity="http://codebots.com/emf/security">
-  <Authentication/>
-  <Authorization/>
-  <Auditing/>
-  <SecuritySchemes/>
-  <Groups>
-    <Groups Name="Visitors"/>
-  </Groups>
+	<Authentication>
+		<Authentication xsi:type="commonSecurity:LocalAuthentication" Uuid="cc94a861-de94-4b61-ddeb-3f840747104c" />
+	</Authentication>
+	<Authorization>
+		<Acl Uuid="b312b415-5822-4204-a934-4b6e1ea6ecd1" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="c8693698-a633-4241-8e0c-f25cef3f2632" Create="true" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="4aa9e966-b171-42f0-9faf-8df4b47da989" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="2d538ad9-f271-4950-9c54-b0629d46a891" Create="true" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="cc5c3d64-d4c7-412a-9779-834785ae5b19" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="0da048d8-48b5-409e-9679-a4956e69230c" Create="true" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="d54079fc-74a2-4617-b940-e9c4e5825dd6" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="04f34301-446d-4759-989d-6ae893b61695" Create="true" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="8d12a524-694a-4dbd-87dc-90a3c29ad216" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="f3d17dc4-e76b-41ec-8030-f103c89c33d9" Create="true" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="542185df-5d33-4966-abf3-ab15b9bd8b37" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="405a81c8-c22b-4ad4-b45a-2d2457992d3d" Create="true" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="3a5eaa2e-baf7-4234-88c4-cd8b3c4d08aa" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="c8693698-a633-4241-8e0c-f25cef3f2632" Create="false" Read="true" Update="false" Delete="false" />
+		<Acl Uuid="89a0baaa-9d42-475e-8d3a-95c0744c4f8d" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="2d538ad9-f271-4950-9c54-b0629d46a891" Create="false" Read="true" Update="false" Delete="false" />
+		<Acl Uuid="63e847b0-9573-49cb-93e5-abd6fd29a5c7" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="0da048d8-48b5-409e-9679-a4956e69230c" Create="false" Read="true" Update="true" Delete="false" />
+		<Acl Uuid="a62f6424-5228-4671-a3e3-6561ac6b7ea1" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="04f34301-446d-4759-989d-6ae893b61695" Create="false" Read="true" Update="true" Delete="false" />
+		<Acl Uuid="0343f8d6-2a7a-4100-bf55-d9b5ee5e0dfb" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="f3d17dc4-e76b-41ec-8030-f103c89c33d9" Create="false" Read="true" Update="true" Delete="false" />
+</Authorization>
+	<Auditing/>
+	<SecuritySchemes>
+		<SecuritySchemes Uuid="c8693698-a633-4241-8e0c-f25cef3f2632" Name="Milk Test Entity">
+			<Object href="../entity/lactalis.csharpbotentity#c8693698-a633-4241-8e0c-f25cef3f2632"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="2d538ad9-f271-4950-9c54-b0629d46a891" Name="News Article Entity">
+			<Object href="../entity/lactalis.csharpbotentity#2d538ad9-f271-4950-9c54-b0629d46a891"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="0da048d8-48b5-409e-9679-a4956e69230c" Name="Farms Entity">
+			<Object href="../entity/lactalis.csharpbotentity#0da048d8-48b5-409e-9679-a4956e69230c"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="04f34301-446d-4759-989d-6ae893b61695" Name="Farmer Entity">
+			<Object href="../entity/lactalis.csharpbotentity#04f34301-446d-4759-989d-6ae893b61695"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="f3d17dc4-e76b-41ec-8030-f103c89c33d9" Name="Farm Entity">
+			<Object href="../entity/lactalis.csharpbotentity#f3d17dc4-e76b-41ec-8030-f103c89c33d9"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="405a81c8-c22b-4ad4-b45a-2d2457992d3d" Name="Admin Entity">
+			<Object href="../entity/lactalis.csharpbotentity#405a81c8-c22b-4ad4-b45a-2d2457992d3d"/>
+		</SecuritySchemes>
+</SecuritySchemes>
+	<TwoFactorAuthenticationProviders/>
+	<Groups>
+		<Groups Uuid="f264b32c-5158-4fe0-a3f1-476ca3d32dc3" Name="Visitors" Description="Anonymous users who have not been authenticated" IsSpecialGroup="UNAUTHENTICATED"/>
+		<Groups Uuid="2f224a1b-f162-4029-90cf-7b00090a468f" Name="Admin" Description="Users who have been created as an Admin entity" IsSpecialGroup="NO">
+			<UserEntities href="../entity/lactalis.csharpbotentity#405a81c8-c22b-4ad4-b45a-2d2457992d3d"/>
+		</Groups>
+		<Groups Uuid="5339606b-64d7-47cf-95b8-a6f1908af5e2" Name="Farmer" Description="Users who have been created as a Farmer entity" IsSpecialGroup="NO">
+			<UserEntities href="../entity/lactalis.csharpbotentity#04f34301-446d-4759-989d-6ae893b61695"/>
+		</Groups>
+</Groups>
 </commonSecurity:Security>

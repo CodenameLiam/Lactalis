@@ -1,2 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<csharpbotEntity:EntityModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:csharpbotEntity="http://codebots.com/emf/csharpbot/entity" TargetProject="lactalis" />
+<csharpbotEntity:EntityModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:csharpbotEntity="http://codebots.com/emf/csharpbot/entity" DatabaseProvider="POSTGRES" TargetProject="lactalis" Uuid="4ab555b2-a145-4cc7-c542-1085ed3f1ffe">
+	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="2d538ad9-f271-4950-9c54-b0629d46a891" Name="News Article" AvailableBy="BOTH" OrderByDirection="ASCENDING">
+		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="af60415d-9084-4e54-988e-06d843ad869f" Name="Title" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="a94c0017-c1ea-43c3-9e4c-0021e4a48ec0" Name="Content" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeBoolean"  Uuid="0027d9de-1a2e-47dc-b5cc-8df902b4fe15" Name="QLD" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeBoolean"  Uuid="20beb506-315f-4f0c-8364-158f718bd63b" Name="NSW" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeBoolean"  Uuid="ce44fc59-98fe-44dc-a0ed-4bb989f34b7f" Name="VIC" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeBoolean"  Uuid="f3702d5b-517a-4c0f-8ca1-925c7e1992ca" Name="TAS" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeBoolean"  Uuid="0d8f6548-2e5b-4caf-908c-f766b6a50147" Name="WA" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeBoolean"  Uuid="44b80db4-a118-4325-b580-b1cbd337307a" Name="SA" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeBoolean"  Uuid="72e1c122-28ab-4c77-89e2-dff979c74537" Name="NT" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+	</Entities>
+	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="405a81c8-c22b-4ad4-b45a-2d2457992d3d" Name="Admin" AvailableBy="BOTH" OrderByDirection="ASCENDING">
+		<Behaviours xsi:type="csharpbotEntity:BehaviourUser"  Uuid="865a410b-89f7-49b9-a647-835ada23a3a3"/>
+	</Entities>
+	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="04f34301-446d-4759-989d-6ae893b61695" Name="Farmer" AvailableBy="BOTH" OrderByDirection="ASCENDING">
+		<Behaviours xsi:type="csharpbotEntity:BehaviourUser"  Uuid="b1bf3cae-913a-420e-9754-77715daf56af"/>
+	</Entities>
+	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="f3d17dc4-e76b-41ec-8030-f103c89c33d9" Name="Farm" AvailableBy="BOTH" OrderByDirection="ASCENDING">
+		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="42abacb4-940f-4695-9ff9-c51b25684e41" Name="Name" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeEnum"  Uuid="a0728e27-2b99-48e8-ba63-4da8516cdf8c" Name="State" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+	</Entities>
+	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="c8693698-a633-4241-8e0c-f25cef3f2632" Name="Milk Test" AvailableBy="BOTH" OrderByDirection="ASCENDING">
+		<Attributes xsi:type="csharpbotEntity:AttributeDateTime"  Uuid="e5b82530-f4cf-4b9c-af39-f1a1507265de" Name="Time" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeInteger"  Uuid="58ab4195-82b8-4810-a405-e9daf8202610" Name="Volume" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeDecimal"  Uuid="bd6d4afc-0537-419f-bda5-834b4fda8320" Name="Temperature" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeDecimal"  Uuid="4b8d133b-2fcd-456b-8b87-077fd5a93a1b" Name="Milk Fat" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeDecimal"  Uuid="49a69e53-e449-4d1e-9597-af5a2e2ad049" Name="Protein" AvailableBy="BOTH" Searchable="false" Unique="false"/>
+	</Entities>
+	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceManyToMany"  Uuid="0da048d8-48b5-409e-9679-a4956e69230c" Name="Farms" OppositeName="Farmers" TargetOptional="true" SourceOptional="true" Source="04f34301-446d-4759-989d-6ae893b61695" Target="f3d17dc4-e76b-41ec-8030-f103c89c33d9"/>
+	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceOneToMany"  Uuid="892382a0-2c5a-48f5-9a7c-12e565589fcf" Name="Pickups" OppositeName="Farm" TargetOptional="true" SourceOptional="true" Source="f3d17dc4-e76b-41ec-8030-f103c89c33d9" Target="c8693698-a633-4241-8e0c-f25cef3f2632"/>
+	<ReferenceEnums xsi:type="csharpbotEntity:ReferenceEnum"  Source="a0728e27-2b99-48e8-ba63-4da8516cdf8c" Target="04c4e84c-a315-4e32-a476-8e07abbfd72b"/>
+	<Enumerations xsi:type="csharpbotEntity:Enumeration"  Uuid="04c4e84c-a315-4e32-a476-8e07abbfd72b" Name="State">
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="a47fa55e-2b5e-47ce-bb76-9be9eaa17a88" Name="QLD"/>
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="abf3d95a-dcc3-4ecd-a6e9-44385f26f9cb" Name="NSW"/>
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="7778af2a-e198-438a-aed8-d707ea3ae048" Name="VIC"/>
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="9b83ac7f-9612-4556-b1a6-21589ca18a6e" Name="TAS"/>
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="74f04a20-1366-403a-810d-83eb86c34249" Name="WA"/>
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="e4ef3139-6ffd-4810-85dd-c7a50a849b7e" Name="SA"/>
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="e4fcc234-98b5-46b5-b4d5-e0dca69678d8" Name="NT"/>
+	</Enumerations>
+</csharpbotEntity:EntityModel>
