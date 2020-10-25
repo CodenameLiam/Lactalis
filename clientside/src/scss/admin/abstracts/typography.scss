@@ -18,17 +18,14 @@
 Typography
 https://medium.com/codyhouse/create-your-design-system-part-1-typography-7c630d9092bd
 -------------------------------- */
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400,400i,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 //Import Icon Fonts
 @import url("https://cdn.codebots.com/lampbot/lightning-icons/latest/lightning-icons.css");
 
-$admin-body-font-family: 'Lato',
-sans-serif !default;
+$admin-body-font-family: "Poppins", sans-serif !default;
 
-$admin-heading-font-family: 'Poppins',
-sans-serif !default;
+$admin-heading-font-family: "Poppins", sans-serif !default;
 
 $admin-source-font-family: monospace !default;
 
@@ -43,9 +40,22 @@ $admin-text-xs: calc(1rem / (#{$admin-text-scale-ratio} * #{$admin-text-scale-ra
 $admin-text-sm: calc(1rem / #{$admin-text-scale-ratio}) !default;
 $admin-text-md: calc(1rem * #{$admin-text-scale-ratio}) !default;
 $admin-text-lg: calc(1rem * (#{$admin-text-scale-ratio} * #{$admin-text-scale-ratio})) !default;
-$admin-text-xl: calc(1rem * (#{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio})) !default;
-$admin-text-xxl: calc(1rem * (#{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio})) !default;
-$admin-text-xxxl: calc(1rem * (#{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio})) !default;
+$admin-text-xl: calc(
+	1rem * (#{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio})
+) !default;
+$admin-text-xxl: calc(
+	1rem *
+		(
+			#{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio}
+		)
+) !default;
+$admin-text-xxxl: calc(
+	1rem *
+		(
+			#{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} *
+				#{$admin-text-scale-ratio}
+		)
+) !default;
 
 /* Line height */
 $admin-heading-line-height: 1.2 !default;
@@ -208,7 +218,7 @@ a {
 }
 
 /* Code */
-pre>code {
+pre > code {
 	display: block;
 	padding: $admin-space-xs $admin-space-sm;
 	white-space: pre;
@@ -306,9 +316,6 @@ ul li {
 	text-transform: capitalize;
 }
 
-
-
-
 /* Forms
 	 ========================================================================== */
 
@@ -317,17 +324,17 @@ ul li {
  * 2. Remove the margin in Firefox and Safari.
  */
 
- button,
- input,
- optgroup,
- select,
- textarea {
-	 font-family: $admin-body-font-family;
-	 /* 1 */
-	 font-size: 100%;
-	 /* 1 */
-	 line-height: 1.15;
-	 /* 1 */
-	 margin: 0;
-	 /* 2 */
- }
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: $admin-body-font-family;
+	/* 1 */
+	font-size: 100%;
+	/* 1 */
+	line-height: 1.15;
+	/* 1 */
+	margin: 0;
+	/* 2 */
+}

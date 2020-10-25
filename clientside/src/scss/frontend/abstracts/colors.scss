@@ -27,14 +27,24 @@ Set your target colours but do not remove variables that you do not plan to use.
 /* ----------Set your brand colours here ----------*/
 /* -------------------------------------------------*/
 
-// % protected region % [Set colours, accent colours, and greyscale colours] off begin
+// % protected region % [Set colours, accent colours, and greyscale colours] on begin
 
 //Primary and theme colour
-$color-primary: rgb(34, 34, 34); // #222222 // Black
-$color-secondary: rgb(153, 153, 153); // #999999; // Dark grey
+$color-primary: #71d2f5;
+$color-secondary: #003280;
+$colour-primary: #71d2f5;
+$colour-secondary: #003280;
 $color-brand-01: rgb(57, 57, 57); // #393939 // Charcoal
 $color-brand-02: rgb(213, 213, 213); // #D5D5D5; // Grey
 $color-brand-03: rgb(244, 244, 244); //#F4F4F4 // Light grey
+
+$colour-gradient: linear-gradient(90deg, rgba(113, 210, 245, 1) 0%, rgba(146, 243, 230, 1) 100%);
+$warning-gradient: linear-gradient(
+	90deg,
+	rgba(255, 37, 89, 1) 0%,
+	rgba(255, 63, 51, 1) 61%,
+	rgba(255, 85, 49, 1) 100%
+);
 
 // Accent Colours
 $color-support-red: rgba(232, 77, 56, 1); // #E84D38 // Support color red

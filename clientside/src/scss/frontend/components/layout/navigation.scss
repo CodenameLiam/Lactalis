@@ -1,0 +1,21 @@
+.navigation {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	position: relative;
+	// height: 100vh;
+	transition: width 0.5s;
+
+	.image-container {
+		text-align: center;
+		min-height: 168px;
+		width: 15rem;
+
+		img {
+			width: 70%;
+			margin: auto;
+			margin-top: 2rem;
+			margin-bottom: 4rem;
+		}
+	}
+}
