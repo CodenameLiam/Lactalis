@@ -41,7 +41,7 @@ function NavigationLinks(): AdminLinkInterface[] {
 		{ label: "Users", path: "/admin/User", icon: <People /> },
 		{
 			label: "News",
-			path: "/admin/NewsArticleEntity",
+			path: "/admin/parent",
 			icon: <ChromeReaderMode />,
 			popup: [
 				{

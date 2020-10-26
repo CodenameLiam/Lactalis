@@ -1,6 +1,6 @@
 /*
  * @bot-written
- * 
+ *
  * WARNING AND NOTICE
  * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
  * Full Software Licence as accepted by you before being granted access to this source code and other materials,
@@ -9,28 +9,40 @@
  * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
  * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
  * access, download, storage, and/or use of this source code.
- * 
+ *
  * BOT WARNING
  * This file is bot-written.
  * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
  */
-import * as React from 'react';
-import _ from 'lodash';
-import moment from 'moment';
-import { action, observable, runInAction } from 'mobx';
-import { IAttributeGroup, Model, IModelAttributes, attribute, entity, jsonReplacerFn } from 'Models/Model';
-import * as Validators from 'Validators';
-import * as Models from '../Entities';
-import { CRUD } from '../CRUDOptions';
+import * as React from "react";
+import _ from "lodash";
+import moment from "moment";
+import { action, observable, runInAction } from "mobx";
+import {
+	IAttributeGroup,
+	Model,
+	IModelAttributes,
+	attribute,
+	entity,
+	jsonReplacerFn,
+} from "Models/Model";
+import * as Validators from "Validators";
+import * as Models from "../Entities";
+import { CRUD } from "../CRUDOptions";
 import * as AttrUtils from "Util/AttributeUtils";
-import { IAcl } from 'Models/Security/IAcl';
-import { makeFetchManyToManyFunc, makeFetchOneToManyFunc, makeJoinEqualsFunc, makeEnumFetchFunction } from 'Util/EntityUtils';
-import { AdminFarmEntity } from 'Models/Security/Acl/AdminFarmEntity';
-import { FarmerFarmEntity } from 'Models/Security/Acl/FarmerFarmEntity';
-import * as Enums from '../Enums';
-import { IOrderByCondition } from 'Views/Components/ModelCollection/ModelQuery';
-import { EntityFormMode } from 'Views/Components/Helpers/Common';
-import { SERVER_URL } from 'Constants';
+import { IAcl } from "Models/Security/IAcl";
+import {
+	makeFetchManyToManyFunc,
+	makeFetchOneToManyFunc,
+	makeJoinEqualsFunc,
+	makeEnumFetchFunction,
+} from "Util/EntityUtils";
+import { AdminFarmEntity } from "Models/Security/Acl/AdminFarmEntity";
+import { FarmerFarmEntity } from "Models/Security/Acl/FarmerFarmEntity";
+import * as Enums from "../Enums";
+import { IOrderByCondition } from "Views/Components/ModelCollection/ModelQuery";
+import { EntityFormMode } from "Views/Components/Helpers/Common";
+import { SERVER_URL } from "Constants";
 // % protected region % [Add any further imports here] off begin
 // % protected region % [Add any further imports here] end
 
@@ -46,7 +58,7 @@ export interface IFarmEntityAttributes extends IModelAttributes {
 }
 
 // % protected region % [Customise your entity metadata here] off begin
-@entity('FarmEntity', 'Farm')
+@entity("FarmEntity", "Farm")
 // % protected region % [Customise your entity metadata here] end
 export default class FarmEntity extends Model implements IFarmEntityAttributes {
 	public static acls: IAcl[] = [
@@ -76,12 +88,12 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'Code',
-		displayType: 'textfield',
+		name: "Code",
+		displayType: "textfield",
 		order: 10,
 		headerColumn: true,
 		searchable: true,
-		searchFunction: 'like',
+		searchFunction: "like",
 		searchTransform: AttrUtils.standardiseString,
 	})
 	public code: string;
@@ -91,12 +103,12 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'Name',
-		displayType: 'textfield',
+		name: "Name",
+		displayType: "textfield",
 		order: 20,
 		headerColumn: true,
 		searchable: true,
-		searchFunction: 'like',
+		searchFunction: "like",
 		searchTransform: AttrUtils.standardiseString,
 	})
 	public name: string;
@@ -106,12 +118,12 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'State',
-		displayType: 'enum-combobox',
+		name: "State",
+		displayType: "enum-combobox",
 		order: 30,
 		headerColumn: true,
 		searchable: true,
-		searchFunction: 'equal',
+		searchFunction: "equal",
 		searchTransform: (attr: string) => {
 			return AttrUtils.standardiseEnum(attr, Enums.stateOptions);
 		},
@@ -122,15 +134,15 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 	// % protected region % [Modify props to the crud options here for attribute 'State'] end
 
 	@observable
-	@attribute({isReference: true})
+	@attribute({ isReference: true })
 	@CRUD({
 		// % protected region % [Modify props to the crud options here for reference 'Pickups'] off begin
 		name: "Pickupss",
-		displayType: 'reference-multicombobox',
+		displayType: "reference-multicombobox",
 		order: 40,
 		referenceTypeFunc: () => Models.MilkTestEntity,
 		referenceResolveFunction: makeFetchOneToManyFunc({
-			relationName: 'pickupss',
+			relationName: "pickupss",
 			oppositeEntity: () => Models.MilkTestEntity,
 		}),
 		// % protected region % [Modify props to the crud options here for reference 'Pickups'] end
@@ -138,20 +150,20 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 	public pickupss: Models.MilkTestEntity[] = [];
 
 	@observable
-	@attribute({isReference: true})
+	@attribute({ isReference: true })
 	@CRUD({
 		// % protected region % [Modify props to the crud options here for reference 'Farmers'] off begin
-		name: 'Farmers',
-		displayType: 'reference-multicombobox',
+		name: "Farmers",
+		displayType: "reference-multicombobox",
 		order: 50,
 		isJoinEntity: true,
 		referenceTypeFunc: () => Models.FarmersFarms,
-		optionEqualFunc: makeJoinEqualsFunc('farmersId'),
+		optionEqualFunc: makeJoinEqualsFunc("farmersId"),
 		referenceResolveFunction: makeFetchManyToManyFunc({
-			entityName: 'farmEntity',
-			oppositeEntityName: 'farmerEntity',
-			relationName: 'farms',
-			relationOppositeName: 'farmers',
+			entityName: "farmEntity",
+			oppositeEntityName: "farmerEntity",
+			relationName: "farms",
+			relationOppositeName: "farmers",
 			entity: () => Models.FarmEntity,
 			joinEntity: () => Models.FarmersFarms,
 			oppositeEntity: () => Models.FarmerEntity,
@@ -225,13 +237,13 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 	// % protected region % [Customize Default Expands here] off begin
 	public defaultExpands = `
 		farmerss {
-			${Models.FarmersFarms.getAttributes().join('\n')}
+			${Models.FarmersFarms.getAttributes().join("\n")}
 			farmers {
-				${Models.FarmerEntity.getAttributes().join('\n')}
+				${Models.FarmerEntity.getAttributes().join("\n")}
 			}
 		}
 		pickupss {
-			${Models.MilkTestEntity.getAttributes().join('\n')}
+			${Models.MilkTestEntity.getAttributes().join("\n")}
 		}
 	`;
 	// % protected region % [Customize Default Expands here] end
@@ -245,21 +257,15 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 			farmerss: {},
 			pickupss: {},
 		};
-		return this.save(
-			relationPath,
-			{
-				options: [
-					{
-						key: 'mergeReferences',
-						graphQlType: '[String]',
-						value: [
-							'pickupss',
-							'farmerss',
-						]
-					},
-				],
-			}
-		);
+		return this.save(relationPath, {
+			options: [
+				{
+					key: "mergeReferences",
+					graphQlType: "[String]",
+					value: ["pickupss", "farmerss"],
+				},
+			],
+		});
 	}
 	// % protected region % [Customize Save From Crud here] end
 
@@ -267,11 +273,10 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 	 * Returns the string representation of this entity to display on the UI.
 	 */
 	public getDisplayName() {
-		// % protected region % [Customise the display name for this entity] off begin
-		return this.id;
+		// % protected region % [Customise the display name for this entity] on begin
+		return this.code;
 		// % protected region % [Customise the display name for this entity] end
 	}
-
 
 	// % protected region % [Add any further custom model features here] off begin
 	// % protected region % [Add any further custom model features here] end

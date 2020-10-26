@@ -16,7 +16,7 @@ export default function Header(props: IHeader) {
 	const navigationMargin = appState.navOpen ? { marginLeft: "16rem" } : {};
 
 	return (
-		<div className="header">
+		<div className="page-header">
 			<div className="left" style={navigationMargin}>
 				<div className="title">{props.title}</div>
 			</div>

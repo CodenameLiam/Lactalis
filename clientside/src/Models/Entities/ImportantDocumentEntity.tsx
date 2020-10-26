@@ -1,6 +1,6 @@
 /*
  * @bot-written
- * 
+ *
  * WARNING AND NOTICE
  * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
  * Full Software Licence as accepted by you before being granted access to this source code and other materials,
@@ -9,29 +9,41 @@
  * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
  * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
  * access, download, storage, and/or use of this source code.
- * 
+ *
  * BOT WARNING
  * This file is bot-written.
  * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
  */
-import * as React from 'react';
-import _ from 'lodash';
-import moment from 'moment';
-import { action, observable, runInAction } from 'mobx';
-import { IAttributeGroup, Model, IModelAttributes, attribute, entity, jsonReplacerFn } from 'Models/Model';
-import * as Validators from 'Validators';
-import * as Models from '../Entities';
-import { CRUD } from '../CRUDOptions';
+import * as React from "react";
+import _ from "lodash";
+import moment from "moment";
+import { action, observable, runInAction } from "mobx";
+import {
+	IAttributeGroup,
+	Model,
+	IModelAttributes,
+	attribute,
+	entity,
+	jsonReplacerFn,
+} from "Models/Model";
+import * as Validators from "Validators";
+import * as Models from "../Entities";
+import { CRUD } from "../CRUDOptions";
 import * as AttrUtils from "Util/AttributeUtils";
-import { IAcl } from 'Models/Security/IAcl';
-import { makeFetchManyToManyFunc, makeFetchOneToManyFunc, makeJoinEqualsFunc, makeEnumFetchFunction } from 'Util/EntityUtils';
-import { AdminImportantDocumentEntity } from 'Models/Security/Acl/AdminImportantDocumentEntity';
-import { FarmerImportantDocumentEntity } from 'Models/Security/Acl/FarmerImportantDocumentEntity';
-import * as Enums from '../Enums';
-import { IOrderByCondition } from 'Views/Components/ModelCollection/ModelQuery';
-import { EntityFormMode } from 'Views/Components/Helpers/Common';
-import { SERVER_URL } from 'Constants';
-import { FileListPreview } from 'Views/Components/CRUD/Attributes/AttributeFile';
+import { IAcl } from "Models/Security/IAcl";
+import {
+	makeFetchManyToManyFunc,
+	makeFetchOneToManyFunc,
+	makeJoinEqualsFunc,
+	makeEnumFetchFunction,
+} from "Util/EntityUtils";
+import { AdminImportantDocumentEntity } from "Models/Security/Acl/AdminImportantDocumentEntity";
+import { FarmerImportantDocumentEntity } from "Models/Security/Acl/FarmerImportantDocumentEntity";
+import * as Enums from "../Enums";
+import { IOrderByCondition } from "Views/Components/ModelCollection/ModelQuery";
+import { EntityFormMode } from "Views/Components/Helpers/Common";
+import { SERVER_URL } from "Constants";
+import { FileListPreview } from "Views/Components/CRUD/Attributes/AttributeFile";
 // % protected region % [Add any further imports here] off begin
 // % protected region % [Add any further imports here] end
 
@@ -48,15 +60,19 @@ export interface IImportantDocumentEntityAttributes extends IModelAttributes {
 	nt: boolean;
 
 	documentCategoryId?: string;
-	documentCategory?: Models.ImportantDocumentCategoryEntity | Models.IImportantDocumentCategoryEntityAttributes;
+	documentCategory?:
+		| Models.ImportantDocumentCategoryEntity
+		| Models.IImportantDocumentCategoryEntityAttributes;
 	// % protected region % [Add any custom attributes to the interface here] off begin
 	// % protected region % [Add any custom attributes to the interface here] end
 }
 
 // % protected region % [Customise your entity metadata here] off begin
-@entity('ImportantDocumentEntity', 'Important Document')
+@entity("ImportantDocumentEntity", "Important Document")
 // % protected region % [Customise your entity metadata here] end
-export default class ImportantDocumentEntity extends Model implements IImportantDocumentEntityAttributes {
+export default class ImportantDocumentEntity
+	extends Model
+	implements IImportantDocumentEntityAttributes {
 	public static acls: IAcl[] = [
 		new AdminImportantDocumentEntity(),
 		new FarmerImportantDocumentEntity(),
@@ -82,19 +98,17 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 
 	// % protected region % [Modify props to the crud options here for attribute 'File'] off begin
 	@observable
-	@attribute({file: 'file'})
+	@attribute({ file: "file" })
 	@CRUD({
-		name: 'File',
-		displayType: 'file',
+		name: "File",
+		displayType: "file",
 		order: 10,
 		headerColumn: true,
 		searchable: true,
-		searchFunction: 'equal',
+		searchFunction: "equal",
 		searchTransform: AttrUtils.standardiseUuid,
-		fileAttribute: 'file',
-		displayFunction: attr => attr
-			? <FileListPreview url={attr} />
-			: 'No File Attached',
+		fileAttribute: "file",
+		displayFunction: (attr) => (attr ? <FileListPreview url={attr} /> : "No File Attached"),
 	})
 	public fileId: string;
 	@observable
@@ -105,12 +119,12 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'Name',
-		displayType: 'textfield',
+		name: "Name",
+		displayType: "textfield",
 		order: 20,
 		headerColumn: true,
 		searchable: true,
-		searchFunction: 'like',
+		searchFunction: "like",
 		searchTransform: AttrUtils.standardiseString,
 	})
 	public name: string;
@@ -120,14 +134,14 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'QLD',
-		displayType: 'checkbox',
+		name: "QLD",
+		displayType: "checkbox",
 		order: 30,
 		headerColumn: true,
 		searchable: true,
-		searchFunction: 'equal',
+		searchFunction: "equal",
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: attr => attr ? 'True' : 'False',
+		displayFunction: (attr) => (attr ? "True" : "False"),
 	})
 	public qld: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'QLD'] end
@@ -136,14 +150,14 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'NSW',
-		displayType: 'checkbox',
+		name: "NSW",
+		displayType: "checkbox",
 		order: 40,
 		headerColumn: true,
 		searchable: true,
-		searchFunction: 'equal',
+		searchFunction: "equal",
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: attr => attr ? 'True' : 'False',
+		displayFunction: (attr) => (attr ? "True" : "False"),
 	})
 	public nsw: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'NSW'] end
@@ -152,14 +166,14 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'VIC',
-		displayType: 'checkbox',
+		name: "VIC",
+		displayType: "checkbox",
 		order: 50,
 		headerColumn: true,
 		searchable: true,
-		searchFunction: 'equal',
+		searchFunction: "equal",
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: attr => attr ? 'True' : 'False',
+		displayFunction: (attr) => (attr ? "True" : "False"),
 	})
 	public vic: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'VIC'] end
@@ -168,13 +182,13 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'TAS',
-		displayType: 'checkbox',
+		name: "TAS",
+		displayType: "checkbox",
 		order: 60,
 		searchable: true,
-		searchFunction: 'equal',
+		searchFunction: "equal",
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: attr => attr ? 'True' : 'False',
+		displayFunction: (attr) => (attr ? "True" : "False"),
 	})
 	public tas: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'TAS'] end
@@ -183,13 +197,13 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'WA',
-		displayType: 'checkbox',
+		name: "WA",
+		displayType: "checkbox",
 		order: 70,
 		searchable: true,
-		searchFunction: 'equal',
+		searchFunction: "equal",
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: attr => attr ? 'True' : 'False',
+		displayFunction: (attr) => (attr ? "True" : "False"),
 	})
 	public wa: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'WA'] end
@@ -198,13 +212,13 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'SA',
-		displayType: 'checkbox',
+		name: "SA",
+		displayType: "checkbox",
 		order: 80,
 		searchable: true,
-		searchFunction: 'equal',
+		searchFunction: "equal",
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: attr => attr ? 'True' : 'False',
+		displayFunction: (attr) => (attr ? "True" : "False"),
 	})
 	public sa: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'SA'] end
@@ -213,13 +227,13 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'NT',
-		displayType: 'checkbox',
+		name: "NT",
+		displayType: "checkbox",
 		order: 90,
 		searchable: true,
-		searchFunction: 'equal',
+		searchFunction: "equal",
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: attr => attr ? 'True' : 'False',
+		displayFunction: (attr) => (attr ? "True" : "False"),
 	})
 	public nt: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'NT'] end
@@ -228,15 +242,15 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 	@attribute()
 	@CRUD({
 		// % protected region % [Modify props to the crud options here for reference 'Document Category'] off begin
-		name: 'Document Category',
-		displayType: 'reference-combobox',
+		name: "Document Category",
+		displayType: "reference-combobox",
 		order: 100,
 		referenceTypeFunc: () => Models.ImportantDocumentCategoryEntity,
 		// % protected region % [Modify props to the crud options here for reference 'Document Category'] end
 	})
 	public documentCategoryId?: string;
 	@observable
-	@attribute({isReference: true})
+	@attribute({ isReference: true })
 	public documentCategory: Models.ImportantDocumentCategoryEntity;
 
 	// % protected region % [Add any custom attributes to the model here] off begin
@@ -298,7 +312,9 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 					this.documentCategory = attributes.documentCategory;
 					this.documentCategoryId = attributes.documentCategory.id;
 				} else {
-					this.documentCategory = new Models.ImportantDocumentCategoryEntity(attributes.documentCategory);
+					this.documentCategory = new Models.ImportantDocumentCategoryEntity(
+						attributes.documentCategory
+					);
 					this.documentCategoryId = this.documentCategory.id;
 				}
 			} else if (attributes.documentCategoryId !== undefined) {
@@ -318,8 +334,10 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 	// % protected region % [Customize Default Expands here] off begin
 	public defaultExpands = `
 		documentCategory {
-			${Models.ImportantDocumentCategoryEntity.getAttributes().join('\n')}
-			${Models.ImportantDocumentCategoryEntity.getFiles().map(f => f.name).join('\n')}
+			${Models.ImportantDocumentCategoryEntity.getAttributes().join("\n")}
+			${Models.ImportantDocumentCategoryEntity.getFiles()
+				.map((f) => f.name)
+				.join("\n")}
 		}
 	`;
 	// % protected region % [Customize Default Expands here] end
@@ -329,22 +347,17 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 	 */
 	// % protected region % [Customize Save From Crud here] off begin
 	public async saveFromCrud(formMode: EntityFormMode) {
-		const relationPath = {
-		};
-		return this.save(
-			relationPath,
-			{
-				options: [
-					{
-						key: 'mergeReferences',
-						graphQlType: '[String]',
-						value: [
-						]
-					},
-				],
-				contentType: 'multipart/form-data',
-			}
-		);
+		const relationPath = {};
+		return this.save(relationPath, {
+			options: [
+				{
+					key: "mergeReferences",
+					graphQlType: "[String]",
+					value: [],
+				},
+			],
+			contentType: "multipart/form-data",
+		});
 	}
 	// % protected region % [Customize Save From Crud here] end
 
@@ -352,11 +365,10 @@ export default class ImportantDocumentEntity extends Model implements IImportant
 	 * Returns the string representation of this entity to display on the UI.
 	 */
 	public getDisplayName() {
-		// % protected region % [Customise the display name for this entity] off begin
-		return this.id;
+		// % protected region % [Customise the display name for this entity] on begin
+		return this.name;
 		// % protected region % [Customise the display name for this entity] end
 	}
-
 
 	// % protected region % [Add any further custom model features here] off begin
 	// % protected region % [Add any further custom model features here] end

@@ -5,7 +5,8 @@ export const LoginTextField = withStyles({
 	root: {
 		"& .MuiOutlinedInput-root": {
 			borderRadius: 100,
-			boxShadow: "-1px 4px 2px -2px rgba(113,210,245,0.3), -1px 2px 2px 0px rgba(113,210,245, 0.14), 0px 1px 5px 0px rgba(113,210,245,0.12)",
+			boxShadow:
+				"-1px 4px 2px -2px rgba(113,210,245,0.3), -1px 2px 2px 0px rgba(113,210,245, 0.14), 0px 1px 5px 0px rgba(113,210,245,0.12)",
 
 			"& fieldset": {
 				transition: "box-shadow 0.3s",
@@ -26,7 +27,8 @@ export const LoginTextField = withStyles({
 			"& fieldset": {
 				transition: "box-shadow 0.3s",
 				borderColor: "transparent !important",
-				boxShadow: "-1px 4px 2px -2px rgba(252,107,122,0.4), -1px 2px 2px 0px rgba(252,107,122, 0.3), 0px 1px 5px 0px rgba(252,107,122,0.2)",
+				boxShadow:
+					"-1px 4px 2px -2px rgba(252,107,122,0.4), -1px 2px 2px 0px rgba(252,107,122, 0.3), 0px 1px 5px 0px rgba(252,107,122,0.2)",
 			},
 		},
 	},
@@ -41,9 +43,11 @@ export const LoginButton = withStyles({
 		color: "white",
 		fontSize: "1rem",
 		fontFamily: "'Poppins', sans-serif",
-		boxShadow: "-2px 4px 4px -2px rgba(113,210,245,0.5), -1px 2px 2px 0px rgba(113,210,245, 0.14), 0px 1px 5px 0px rgba(113,210,245,0.12)",
+		boxShadow:
+			"-2px 4px 4px -2px rgba(113,210,245,0.5), -1px 2px 2px 0px rgba(113,210,245, 0.14), 0px 1px 5px 0px rgba(113,210,245,0.12)",
 		"&:hover": {
-			boxShadow: "-2px 5px 8px -1px rgba(113,210,245,0.5), -1px 4px 5px 0px rgba(113,210,245,0.14), 0px 1px 10px 0px rgba(113,210,245,0.12)",
+			boxShadow:
+				"-2px 5px 8px -1px rgba(113,210,245,0.5), -1px 4px 5px 0px rgba(113,210,245,0.14), 0px 1px 10px 0px rgba(113,210,245,0.12)",
 		},
 	},
 })(Button);
@@ -92,6 +96,26 @@ export const BackendButton = withStyles({
 		"&:hover": {
 			background: "#1c1e26",
 			transform: "scale(1.1)",
+		},
+	},
+})(Button);
+
+export const QuickLinkButton = withStyles({
+	root: {
+		background: "#1c1e26",
+		borderRadius: "1rem",
+		height: "10rem",
+		width: "15rem",
+		margin: "1rem",
+		color: "white",
+		fontSize: "1rem",
+		fontFamily: "'Poppins', sans-serif",
+		boxShadow: "2px 4px 4px -2px #dddddd",
+		transition: "all 0.3s",
+		"&:hover": {
+			background: "#1c1e26",
+			boxShadow: "2px 5px 8px -1px #dddddd",
+			transform: "scale(1.05)",
 		},
 	},
 })(Button);

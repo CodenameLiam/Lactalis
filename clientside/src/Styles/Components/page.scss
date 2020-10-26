@@ -18,7 +18,10 @@
 
 .admin-body {
 	background-color: #ffffff;
+	width: calc(100% - 20rem);
+
 	.body-content {
 		height: 100%;
+		// width: calc(100% - 20rem);
 	}
 }
