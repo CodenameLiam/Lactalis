@@ -56,7 +56,7 @@ namespace Lactalis.Helpers
 			// pages without there being a modelled admin group.
 			new SeedGroup {Name = "Super Administrators", HasBackendAccess = true},
 			new SeedGroup {Name = "Visitors", HasBackendAccess = false},
-			new SeedGroup {Name = "Admin", HasBackendAccess = false},
+			new SeedGroup {Name = "Admin", HasBackendAccess = true},
 			new SeedGroup {Name = "Farmer", HasBackendAccess = false},
 			// % protected region % [Configure the modelled groups here] end
 
