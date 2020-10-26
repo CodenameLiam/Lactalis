@@ -44,6 +44,16 @@ namespace Lactalis.Models
 
 			// Add entity references
 
+			// GraphQL reference to entity TradingPostListingEntity via reference TradingPostListings
+			IEnumerable<TradingPostListingEntity> TradingPostListingssResolveFunction(ResolveFieldContext<FarmerEntity> context)
+			{
+				var graphQlContext = (LactalisGraphQlContext) context.UserContext;
+				var filter = SecurityService.CreateReadSecurityFilter<TradingPostListingEntity>(graphQlContext.IdentityService, graphQlContext.UserManager, graphQlContext.DbContext, graphQlContext.ServiceProvider);
+				return context.Source.TradingPostListingss.Where(filter.Compile());
+			}
+			AddNavigationListField("TradingPostListingss", (Func<ResolveFieldContext<FarmerEntity>, IEnumerable<TradingPostListingEntity>>) TradingPostListingssResolveFunction);
+			AddNavigationConnectionField("TradingPostListingssConnection", TradingPostListingssResolveFunction);
+
 			// GraphQL many to many reference to entity FarmEntity via reference Farms
 			IEnumerable<FarmersFarms> FarmssResolveFunction(ResolveFieldContext<FarmerEntity> context)
 			{
@@ -77,6 +87,7 @@ namespace Lactalis.Models
 			// Add entity references
 
 			// Add references to foreign models to allow nested creation
+			Field<ListGraphType<TradingPostListingEntityInputType>>("TradingPostListingss");
 			Field<ListGraphType<FarmersFarmsInputType>>("Farmss");
 
 			// % protected region % [Add any extra GraphQL input fields here] off begin
@@ -108,6 +119,7 @@ namespace Lactalis.Models
 
 
 			// Add references to foreign models to allow nested creation
+			Field<ListGraphType<TradingPostListingEntityInputType>>("TradingPostListingss");
 			Field<ListGraphType<FarmersFarmsInputType>>("Farmss");
 
 			// % protected region % [Add any extra GraphQL input fields here] off begin

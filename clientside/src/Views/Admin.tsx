@@ -91,13 +91,61 @@ export default class Admin extends React.Component<RouteComponentProps> {
 							<Route exact={true} path={`${path}`} component={AdminPage} />
 							<Route path={`${path}/User`} component={AllUsersPage} />
 							<Route
+								path={`${path}/TradingPostListingEntity`}
+								component={AdminPages.TradingPostListingEntityPage}
+							/>
+							<Route
+								path={`${path}/TradingPostCategoryEntity`}
+								component={AdminPages.TradingPostCategoryEntityPage}
+							/>
+							<Route path={`${path}/AdminEntity`} component={AdminPages.AdminEntityPage} />
+							<Route path={`${path}/FarmEntity`} component={AdminPages.FarmEntityPage} />
+							<Route path={`${path}/MilkTestEntity`} component={AdminPages.MilkTestEntityPage} />
+							<Route path={`${path}/FarmerEntity`} component={AdminPages.FarmerEntityPage} />
+							<Route
+								path={`${path}/ImportantDocumentCategoryEntity`}
+								component={AdminPages.ImportantDocumentCategoryEntityPage}
+							/>
+							<Route
+								path={`${path}/QualityDocumentCategoryEntity`}
+								component={AdminPages.QualityDocumentCategoryEntityPage}
+							/>
+							<Route
+								path={`${path}/TechnicalDocumentCategoryEntity`}
+								component={AdminPages.TechnicalDocumentCategoryEntityPage}
+							/>
+							<Route
+								path={`${path}/QualityDocumentEntity`}
+								component={AdminPages.QualityDocumentEntityPage}
+							/>
+							<Route
+								path={`${path}/TechnicalDocumentEntity`}
+								component={AdminPages.TechnicalDocumentEntityPage}
+							/>
+							<Route
+								path={`${path}/ImportantDocumentEntity`}
+								component={AdminPages.ImportantDocumentEntityPage}
+							/>
+							<Route
 								path={`${path}/NewsArticleEntity`}
 								component={AdminPages.NewsArticleEntityPage}
 							/>
-							<Route path={`${path}/AdminEntity`} component={AdminPages.AdminEntityPage} />
-							<Route path={`${path}/FarmerEntity`} component={AdminPages.FarmerEntityPage} />
-							<Route path={`${path}/FarmEntity`} component={AdminPages.FarmEntityPage} />
-							<Route path={`${path}/MilkTestEntity`} component={AdminPages.MilkTestEntityPage} />
+							<Route
+								path={`${path}/PromotedArticlesEntity`}
+								component={AdminPages.PromotedArticlesEntityPage}
+							/>
+							<Route
+								path={`${path}/AgriSupplyDocumentCategoryEntity`}
+								component={AdminPages.AgriSupplyDocumentCategoryEntityPage}
+							/>
+							<Route
+								path={`${path}/SustainabilityPostEntity`}
+								component={AdminPages.SustainabilityPostEntityPage}
+							/>
+							<Route
+								path={`${path}/AgriSupplyDocumentEntity`}
+								component={AdminPages.AgriSupplyDocumentEntityPage}
+							/>
 
 							{
 								// % protected region % [Add any extra page routes here] off begin

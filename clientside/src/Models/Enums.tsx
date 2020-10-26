@@ -15,6 +15,23 @@
  * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
  */
 
+export type priceType =
+	// % protected region % [Override priceType keys here] off begin
+	'AMOUNT' |
+		'NEGOTIABLE' |
+		'FREE' |
+		'SWAPTRADE';
+	// % protected region % [Override priceType keys here] end
+
+export const priceTypeOptions: { [key in priceType]: string } = {
+	// % protected region % [Override priceType display fields here] off begin
+	AMOUNT: 'Amount',
+	NEGOTIABLE: 'Negotiable',
+	FREE: 'Free',
+	SWAPTRADE: 'SwapTrade',
+	// % protected region % [Override priceType display fields here] end
+};
+
 export type state =
 	// % protected region % [Override state keys here] off begin
 	'QLD' |

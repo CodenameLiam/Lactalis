@@ -56,6 +56,13 @@ namespace Lactalis.Models {
 		};
 
 		/// <summary>
+		/// Incoming one to many reference
+		/// </summary>
+		/// <see cref="Lactalis.Models.TradingPostListingEntity"/>
+		[EntityForeignKey("TradingPostListingss", "Farmer", false, typeof(TradingPostListingEntity))]
+		public ICollection<TradingPostListingEntity> TradingPostListingss { get; set; }
+
+		/// <summary>
 		/// Incoming many to many reference
 		/// </summary>
 		/// <see cref="Lactalis.Models.FarmersFarms"/>
@@ -94,6 +101,20 @@ namespace Lactalis.Models {
 
 			switch (reference)
 			{
+				case "TradingPostListingss":
+					var tradingPostListingsIds = modelList.SelectMany(x => x.TradingPostListingss.Select(m => m.Id)).ToList();
+					var oldtradingPostListings = await dbContext.TradingPostListingEntity
+						.Where(m => m.FarmerId.HasValue && ids.Contains(m.FarmerId.Value))
+						.Where(m => !tradingPostListingsIds.Contains(m.Id))
+						.ToListAsync(cancellation);
+
+					foreach (var tradingPostListings in oldtradingPostListings)
+					{
+						tradingPostListings.FarmerId = null;
+					}
+
+					dbContext.TradingPostListingEntity.UpdateRange(oldtradingPostListings);
+					return oldtradingPostListings.Count;
 				case "Farmss":
 					var farmsEntities = modelList
 						.SelectMany(m => m.Farmss)

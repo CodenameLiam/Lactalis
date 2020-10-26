@@ -27,6 +27,7 @@ namespace Lactalis.Models
 {
 	public class FarmEntityDto : ModelDto<FarmEntity>
 	{
+		public String Code { get; set; }
 		public String Name { get; set; }
 		[JsonProperty("state")]
 		[JsonConverter(typeof(StringEnumConverter))]
@@ -58,6 +59,7 @@ namespace Lactalis.Models
 				Id = Id,
 				Created = Created,
 				Modified = Modified,
+				Code = Code,
 				Name = Name,
 				State = State,
 				// % protected region % [Add any extra model properties here] off begin
@@ -70,6 +72,7 @@ namespace Lactalis.Models
 			Id = model.Id;
 			Created = model.Created;
 			Modified = model.Modified;
+			Code = model.Code;
 			Name = model.Name;
 			State = model.State;
 

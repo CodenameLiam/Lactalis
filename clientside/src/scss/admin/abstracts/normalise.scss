@@ -43,7 +43,6 @@ html {
 
 body {
 	margin: 0;
-	font-family: $admin-body-font-family;
 
 	.hide {
 		opacity: 0;
@@ -160,6 +159,7 @@ abbr[title] {
 /**
  * Add the correct font weight in Chrome, Edge, and Safari.
  */
+
 
 b,
 strong {

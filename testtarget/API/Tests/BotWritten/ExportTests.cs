@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using APITests.EntityObjects;
 using APITests.Setup;
 using APITests.TheoryData.BotWritten;
 using APITests.Utils;
@@ -80,6 +81,14 @@ namespace APITests.Tests.BotWritten
 					entityDict.Remove("password");
 				}
 
+				if (entity is IFileContainingEntity)
+				{
+					// file ids are generated server-side
+					foreach (var fileAttributeKey in GetFileEntityFilterKeys(entity))
+					{
+						entityDict.Remove(fileAttributeKey);
+					}
+				}
 
 				foreach (var attributeKey in entityDict.Keys.Select(x => x.ToLowerInvariant()))
 				{
@@ -94,6 +103,36 @@ namespace APITests.Tests.BotWritten
 		}
 		// % protected region % [Customize Export Entity tests here] end
 
+		private static IEnumerable<string> GetFileEntityFilterKeys(BaseEntity entity)
+		{
+			var filterKeys = new List<string>();
+			switch (entity)
+			{
+				case TradingPostListingEntity _:
+					filterKeys.Add("productimageid");
+					break;
+				case QualityDocumentEntity _:
+					filterKeys.Add("fileid");
+					break;
+				case TechnicalDocumentEntity _:
+					filterKeys.Add("fileid");
+					break;
+				case ImportantDocumentEntity _:
+					filterKeys.Add("fileid");
+					break;
+				case NewsArticleEntity _:
+					filterKeys.Add("featureimageid");
+					break;
+				case SustainabilityPostEntity _:
+					filterKeys.Add("imageid");
+					filterKeys.Add("fileid");
+					break;
+				case AgriSupplyDocumentEntity _:
+					filterKeys.Add("fileid");
+					break;
+			}
+			return filterKeys;
+		}
 
 		// % protected region % [Customize CsvToDictionary logic here] off begin
 		private static Dictionary<string, List<string>> CsvToDictionary(string csv)

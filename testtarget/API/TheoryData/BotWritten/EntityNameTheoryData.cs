@@ -25,11 +25,23 @@ namespace APITests.TheoryData.BotWritten
 		public EntityNamePluralizedTheoryData()
 		{
 			// % protected region % [Modify EntityNamePluralizedTheoryData entities here] off begin
-			Add("newsArticleEntitys");
+			Add("tradingPostListingEntitys");
+			Add("tradingPostCategoryEntitys");
 			Add("adminEntitys");
-			Add("farmerEntitys");
 			Add("farmEntitys");
 			Add("milkTestEntitys");
+			Add("farmerEntitys");
+			Add("importantDocumentCategoryEntitys");
+			Add("qualityDocumentCategoryEntitys");
+			Add("technicalDocumentCategoryEntitys");
+			Add("qualityDocumentEntitys");
+			Add("technicalDocumentEntitys");
+			Add("importantDocumentEntitys");
+			Add("newsArticleEntitys");
+			Add("promotedArticlesEntitys");
+			Add("agriSupplyDocumentCategoryEntitys");
+			Add("sustainabilityPostEntitys");
+			Add("agriSupplyDocumentEntitys");
 			// % protected region % [Modify EntityNamePluralizedTheoryData entities here] end
 		}
 
@@ -40,11 +52,23 @@ namespace APITests.TheoryData.BotWritten
 		public EntityNameTheoryData()
 		{
 			// % protected region % [Modify EntityNameTheoryData entities here] off begin
-			Add("newsArticleEntity");
+			Add("tradingPostListingEntity");
+			Add("tradingPostCategoryEntity");
 			Add("adminEntity");
-			Add("farmerEntity");
 			Add("farmEntity");
 			Add("milkTestEntity");
+			Add("farmerEntity");
+			Add("importantDocumentCategoryEntity");
+			Add("qualityDocumentCategoryEntity");
+			Add("technicalDocumentCategoryEntity");
+			Add("qualityDocumentEntity");
+			Add("technicalDocumentEntity");
+			Add("importantDocumentEntity");
+			Add("newsArticleEntity");
+			Add("promotedArticlesEntity");
+			Add("agriSupplyDocumentCategoryEntity");
+			Add("sustainabilityPostEntity");
+			Add("agriSupplyDocumentEntity");
 			// % protected region % [Modify EntityNameTheoryData entities here] end
 		}
 

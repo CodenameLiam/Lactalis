@@ -39,6 +39,8 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		private readonly ContextConfiguration _contextConfiguration;
 
 		// reference elements
+		private static By TradingPostListingssElementBy => By.XPath("//*[contains(@class, 'tradingPostListings')]//div[contains(@class, 'dropdown__container')]/a");
+		private static By TradingPostListingssInputElementBy => By.XPath("//*[contains(@class, 'tradingPostListings')]/div/input");
 		private static By FarmssElementBy => By.XPath("//*[contains(@class, 'farms')]//div[contains(@class, 'dropdown__container')]/a");
 		private static By FarmssInputElementBy => By.XPath("//*[contains(@class, 'farms')]/div/input");
 
@@ -67,7 +69,6 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 
 			InitializeSelectors();
 			// % protected region % [Add any extra construction requires] off begin
-
 			// % protected region % [Add any extra construction requires] end
 		}
 
@@ -77,6 +78,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 			// Attribute web elements
 
 			// Reference web elements
+			selectorDict.Add("TradingpostlistingsElement", (selector: ".input-group__dropdown.tradingPostListingss > .dropdown.dropdown__container", type: SelectorType.CSS));
 			selectorDict.Add("FarmsElement", (selector: ".input-group__dropdown.farmss > .dropdown.dropdown__container", type: SelectorType.CSS));
 
 			// User Entity specific web Elements
@@ -143,7 +145,10 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		public void Apply()
 		{
 			// % protected region % [Configure entity application here] off begin
-
+			if (_farmerEntity.TradingPostListingsIds != null)
+			{
+				SetTradingPostListingss(_farmerEntity.TradingPostListingsIds.Select(x => x.ToString()));
+			}
 			if (_farmerEntity.FarmsIds != null)
 			{
 				SetFarmss(_farmerEntity.FarmsIds.Select(x => x.ToString()));
@@ -160,6 +165,8 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			switch (referenceName)
 			{
+				case "tradingpostlistings":
+					return GetTradingPostListingss();
 				case "farms":
 					return GetFarmss();
 				default:
@@ -168,6 +175,19 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		}
 
 		// set associations
+		private void SetTradingPostListingss(IEnumerable<string> ids)
+		{
+			WaitUtils.elementState(_driverWait, TradingPostListingssInputElementBy, ElementState.VISIBLE);
+			var tradingPostListingssInputElement = _driver.FindElementExt(TradingPostListingssInputElementBy);
+
+			foreach(var id in ids)
+			{
+				tradingPostListingssInputElement.SendKeys(id);
+				WaitForDropdownOptions();
+				tradingPostListingssInputElement.SendKeys(Keys.Return);
+			}
+		}
+
 		private void SetFarmss(IEnumerable<string> ids)
 		{
 			WaitUtils.elementState(_driverWait, FarmssInputElementBy, ElementState.VISIBLE);
@@ -183,6 +203,18 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 
 
 		// get associations
+		private List<Guid> GetTradingPostListingss()
+		{
+			var guids = new List<Guid>();
+			WaitUtils.elementState(_driverWait, TradingPostListingssElementBy, ElementState.VISIBLE);
+			var tradingPostListingssElement = _driver.FindElements(TradingPostListingssElementBy);
+
+			foreach(var element in tradingPostListingssElement)
+			{
+				guids.Add(new Guid (element.GetAttribute("data-id")));
+			}
+			return guids;
+		}
 		private List<Guid> GetFarmss()
 		{
 			var guids = new List<Guid>();

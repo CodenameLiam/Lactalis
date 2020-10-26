@@ -41,16 +41,30 @@ namespace Lactalis.Models {
 		// % protected region % [Add any custom class variables] end
 
 		public DbSet<UploadFile> Files { get; set; }
-		public DbSet<NewsArticleEntity> NewsArticleEntity { get; set; }
+		public DbSet<TradingPostListingEntity> TradingPostListingEntity { get; set; }
+		public DbSet<TradingPostCategoryEntity> TradingPostCategoryEntity { get; set; }
 		public DbSet<AdminEntity> AdminEntity { get; set; }
-		public DbSet<FarmerEntity> FarmerEntity { get; set; }
 		public DbSet<FarmEntity> FarmEntity { get; set; }
 		public DbSet<MilkTestEntity> MilkTestEntity { get; set; }
+		public DbSet<FarmerEntity> FarmerEntity { get; set; }
+		public DbSet<ImportantDocumentCategoryEntity> ImportantDocumentCategoryEntity { get; set; }
+		public DbSet<QualityDocumentCategoryEntity> QualityDocumentCategoryEntity { get; set; }
+		public DbSet<TechnicalDocumentCategoryEntity> TechnicalDocumentCategoryEntity { get; set; }
+		public DbSet<QualityDocumentEntity> QualityDocumentEntity { get; set; }
+		public DbSet<TechnicalDocumentEntity> TechnicalDocumentEntity { get; set; }
+		public DbSet<ImportantDocumentEntity> ImportantDocumentEntity { get; set; }
+		public DbSet<NewsArticleEntity> NewsArticleEntity { get; set; }
+		public DbSet<PromotedArticlesEntity> PromotedArticlesEntity { get; set; }
+		public DbSet<AgriSupplyDocumentCategoryEntity> AgriSupplyDocumentCategoryEntity { get; set; }
+		public DbSet<SustainabilityPostEntity> SustainabilityPostEntity { get; set; }
+		public DbSet<AgriSupplyDocumentEntity> AgriSupplyDocumentEntity { get; set; }
+		public DbSet<TradingPostListingsTradingPostCategories> TradingPostListingsTradingPostCategories { get; set; }
 		public DbSet<FarmersFarms> FarmersFarms { get; set; }
 		public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
 
 		static LactalisDBContext()
 		{
+			NpgsqlConnection.GlobalTypeMapper.MapEnum<PriceType>();
 			NpgsqlConnection.GlobalTypeMapper.MapEnum<State>();
 			// % protected region % [Add extra methods to the static constructor here] off begin
 			// % protected region % [Add extra methods to the static constructor here] end
@@ -77,14 +91,28 @@ namespace Lactalis.Models {
 		{
 			base.OnModelCreating(modelBuilder);
 
+			modelBuilder.HasPostgresEnum<PriceType>();
 			modelBuilder.HasPostgresEnum<State>();
 			// Configure models from the entity diagram
 			modelBuilder.HasPostgresExtension("uuid-ossp");
-			modelBuilder.ApplyConfiguration(new NewsArticleEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new TradingPostListingEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new TradingPostCategoryEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new AdminEntityConfiguration());
-			modelBuilder.ApplyConfiguration(new FarmerEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new FarmEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new MilkTestEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new FarmerEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new ImportantDocumentCategoryEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new QualityDocumentCategoryEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new TechnicalDocumentCategoryEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new QualityDocumentEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new TechnicalDocumentEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new ImportantDocumentEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new NewsArticleEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new PromotedArticlesEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new AgriSupplyDocumentCategoryEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new SustainabilityPostEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new AgriSupplyDocumentEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new TradingPostListingsTradingPostCategoriesConfiguration());
 			modelBuilder.ApplyConfiguration(new FarmersFarmsConfiguration());
 
 			// Configure the user and group models

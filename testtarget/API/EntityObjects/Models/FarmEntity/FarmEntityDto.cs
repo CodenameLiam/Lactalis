@@ -28,6 +28,7 @@ namespace APITests.EntityObjects.Models
 		public Guid Id { get; set; }
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
+		public String Code { get; set; }
 		public String Name { get; set; }
 		public State State { get; set; }
 
@@ -39,6 +40,7 @@ namespace APITests.EntityObjects.Models
 			Id = model.Id;
 			Created = model.Created;
 			Modified = model.Modified;
+			Code = model.Code;
 			Name = model.Name;
 			State = (State)model.State;
 			Pickupss = model.Pickupss;
@@ -50,6 +52,7 @@ namespace APITests.EntityObjects.Models
 			Id = model.Id;
 			Created = model.Created;
 			Modified = model.Modified;
+			Code = model.Code;
 			Name = model.Name;
 			State = model.State;
 			Pickupss = model.Pickupss.Select(MilkTestEntityDto.Convert).ToList();
@@ -63,6 +66,7 @@ namespace APITests.EntityObjects.Models
 				Id = Id,
 				Created = Created,
 				Modified = Modified,
+				Code = Code,
 				Name = Name,
 				State = (TestEnums.State)State,
 				Pickupss = Pickupss,
@@ -77,6 +81,7 @@ namespace APITests.EntityObjects.Models
 				Id = Id,
 				Created = Created,
 				Modified = Modified,
+				Code = Code,
 				Name = Name,
 				State = State,
 				Pickupss = Pickupss?.Select(MilkTestEntityDto.Convert).ToList(),

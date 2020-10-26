@@ -59,13 +59,26 @@ namespace Lactalis.Graphql
 		public LactalisQuery(IEfGraphQLService<LactalisDBContext> efGraphQlService) : base(efGraphQlService)
 		{
 			// Add query types for each entity
-			AddModelQueryField<NewsArticleEntityType, NewsArticleEntity>("NewsArticleEntity");
+			AddModelQueryField<TradingPostListingEntityType, TradingPostListingEntity>("TradingPostListingEntity");
+			AddModelQueryField<TradingPostCategoryEntityType, TradingPostCategoryEntity>("TradingPostCategoryEntity");
 			AddModelQueryField<AdminEntityType, AdminEntity>("AdminEntity");
-			AddModelQueryField<FarmerEntityType, FarmerEntity>("FarmerEntity");
 			AddModelQueryField<FarmEntityType, FarmEntity>("FarmEntity");
 			AddModelQueryField<MilkTestEntityType, MilkTestEntity>("MilkTestEntity");
+			AddModelQueryField<FarmerEntityType, FarmerEntity>("FarmerEntity");
+			AddModelQueryField<ImportantDocumentCategoryEntityType, ImportantDocumentCategoryEntity>("ImportantDocumentCategoryEntity");
+			AddModelQueryField<QualityDocumentCategoryEntityType, QualityDocumentCategoryEntity>("QualityDocumentCategoryEntity");
+			AddModelQueryField<TechnicalDocumentCategoryEntityType, TechnicalDocumentCategoryEntity>("TechnicalDocumentCategoryEntity");
+			AddModelQueryField<QualityDocumentEntityType, QualityDocumentEntity>("QualityDocumentEntity");
+			AddModelQueryField<TechnicalDocumentEntityType, TechnicalDocumentEntity>("TechnicalDocumentEntity");
+			AddModelQueryField<ImportantDocumentEntityType, ImportantDocumentEntity>("ImportantDocumentEntity");
+			AddModelQueryField<NewsArticleEntityType, NewsArticleEntity>("NewsArticleEntity");
+			AddModelQueryField<PromotedArticlesEntityType, PromotedArticlesEntity>("PromotedArticlesEntity");
+			AddModelQueryField<AgriSupplyDocumentCategoryEntityType, AgriSupplyDocumentCategoryEntity>("AgriSupplyDocumentCategoryEntity");
+			AddModelQueryField<SustainabilityPostEntityType, SustainabilityPostEntity>("SustainabilityPostEntity");
+			AddModelQueryField<AgriSupplyDocumentEntityType, AgriSupplyDocumentEntity>("AgriSupplyDocumentEntity");
 
 			// Add query types for each many to many reference
+			AddModelQueryField<TradingPostListingsTradingPostCategoriesType, TradingPostListingsTradingPostCategories>("TradingPostListingsTradingPostCategories");
 			AddModelQueryField<FarmersFarmsType, FarmersFarms>("FarmersFarms");
 
 			// % protected region % [Add any extra query config here] off begin
@@ -175,17 +188,30 @@ namespace Lactalis.Graphql
 			Name = "Mutation";
 
 			// Add input types for each entity
-			AddMutationField<NewsArticleEntityInputType, NewsArticleEntityInputType, NewsArticleEntityType, NewsArticleEntity>("NewsArticleEntity");
+			AddMutationField<TradingPostListingEntityInputType, TradingPostListingEntityInputType, TradingPostListingEntityType, TradingPostListingEntity>("TradingPostListingEntity");
+			AddMutationField<TradingPostCategoryEntityInputType, TradingPostCategoryEntityInputType, TradingPostCategoryEntityType, TradingPostCategoryEntity>("TradingPostCategoryEntity");
 			AddMutationField<AdminEntityCreateInputType, AdminEntityInputType, AdminEntityType, AdminEntity>(
 				"AdminEntity",
 				CreateMutation.CreateUserCreateMutation<AdminEntity, AdminEntityRegistrationModel, AdminEntityGraphQlRegistrationModel>("AdminEntity"));
+			AddMutationField<FarmEntityInputType, FarmEntityInputType, FarmEntityType, FarmEntity>("FarmEntity");
+			AddMutationField<MilkTestEntityInputType, MilkTestEntityInputType, MilkTestEntityType, MilkTestEntity>("MilkTestEntity");
 			AddMutationField<FarmerEntityCreateInputType, FarmerEntityInputType, FarmerEntityType, FarmerEntity>(
 				"FarmerEntity",
 				CreateMutation.CreateUserCreateMutation<FarmerEntity, FarmerEntityRegistrationModel, FarmerEntityGraphQlRegistrationModel>("FarmerEntity"));
-			AddMutationField<FarmEntityInputType, FarmEntityInputType, FarmEntityType, FarmEntity>("FarmEntity");
-			AddMutationField<MilkTestEntityInputType, MilkTestEntityInputType, MilkTestEntityType, MilkTestEntity>("MilkTestEntity");
+			AddMutationField<ImportantDocumentCategoryEntityInputType, ImportantDocumentCategoryEntityInputType, ImportantDocumentCategoryEntityType, ImportantDocumentCategoryEntity>("ImportantDocumentCategoryEntity");
+			AddMutationField<QualityDocumentCategoryEntityInputType, QualityDocumentCategoryEntityInputType, QualityDocumentCategoryEntityType, QualityDocumentCategoryEntity>("QualityDocumentCategoryEntity");
+			AddMutationField<TechnicalDocumentCategoryEntityInputType, TechnicalDocumentCategoryEntityInputType, TechnicalDocumentCategoryEntityType, TechnicalDocumentCategoryEntity>("TechnicalDocumentCategoryEntity");
+			AddMutationField<QualityDocumentEntityInputType, QualityDocumentEntityInputType, QualityDocumentEntityType, QualityDocumentEntity>("QualityDocumentEntity");
+			AddMutationField<TechnicalDocumentEntityInputType, TechnicalDocumentEntityInputType, TechnicalDocumentEntityType, TechnicalDocumentEntity>("TechnicalDocumentEntity");
+			AddMutationField<ImportantDocumentEntityInputType, ImportantDocumentEntityInputType, ImportantDocumentEntityType, ImportantDocumentEntity>("ImportantDocumentEntity");
+			AddMutationField<NewsArticleEntityInputType, NewsArticleEntityInputType, NewsArticleEntityType, NewsArticleEntity>("NewsArticleEntity");
+			AddMutationField<PromotedArticlesEntityInputType, PromotedArticlesEntityInputType, PromotedArticlesEntityType, PromotedArticlesEntity>("PromotedArticlesEntity");
+			AddMutationField<AgriSupplyDocumentCategoryEntityInputType, AgriSupplyDocumentCategoryEntityInputType, AgriSupplyDocumentCategoryEntityType, AgriSupplyDocumentCategoryEntity>("AgriSupplyDocumentCategoryEntity");
+			AddMutationField<SustainabilityPostEntityInputType, SustainabilityPostEntityInputType, SustainabilityPostEntityType, SustainabilityPostEntity>("SustainabilityPostEntity");
+			AddMutationField<AgriSupplyDocumentEntityInputType, AgriSupplyDocumentEntityInputType, AgriSupplyDocumentEntityType, AgriSupplyDocumentEntity>("AgriSupplyDocumentEntity");
 
 			// Add input types for each many to many reference
+			AddMutationField<TradingPostListingsTradingPostCategoriesInputType, TradingPostListingsTradingPostCategoriesInputType, TradingPostListingsTradingPostCategoriesType, TradingPostListingsTradingPostCategories>("TradingPostListingsTradingPostCategories");
 			AddMutationField<FarmersFarmsInputType, FarmersFarmsInputType, FarmersFarmsType, FarmersFarms>("FarmersFarms");
 
 			// % protected region % [Add any extra mutation queries here] off begin

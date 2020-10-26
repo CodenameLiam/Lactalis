@@ -23,7 +23,6 @@ import Logout from "./Components/Logout/Logout";
 import Auth from "./Components/Auth/Auth";
 import PageNotFound from "./Pages/PageNotFound";
 import Topbar from "./Components/Topbar/Topbar";
-import { Home } from "./Pages";
 // % protected region % [Add any extra imports here] off begin
 // % protected region % [Add any extra imports here] end
 

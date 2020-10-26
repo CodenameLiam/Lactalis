@@ -26,10 +26,15 @@ using Lactalis.Utility;
 
 namespace APITests.EntityObjects.Models
 {
-	public class NewsArticleEntity : BaseEntity
+	public class NewsArticleEntity : BaseEntity, IFileContainingEntity 
 	{
+		public override bool HasFile { get; set; } = true;
+
 		// 
-		public String Title { get; set; }
+		public String Headline { get; set; }
+		// 
+		public Guid? FeatureImageId { get; set; }
+		public FileData FeatureImage { get; set; }
 		// 
 		public String Content { get; set; }
 		// 
@@ -46,6 +51,12 @@ namespace APITests.EntityObjects.Models
 		public Boolean? Sa { get; set; }
 		// 
 		public Boolean? Nt { get; set; }
+
+		/// <summary>
+		/// Incoming one to many reference
+		/// </summary>
+		/// <see cref="Lactalis.Models.PromotedArticles"/>
+		public Guid? PromotedArticlesId { get; set; }
 
 
 		public NewsArticleEntity()
@@ -91,7 +102,12 @@ namespace APITests.EntityObjects.Models
 		{
 			Attributes.Add(new Attribute
 			{
-				Name = "Title",
+				Name = "Headline",
+				IsRequired = false
+			});
+			Attributes.Add(new Attribute
+			{
+				Name = "FeatureImageId",
 				IsRequired = false
 			});
 			Attributes.Add(new Attribute
@@ -138,6 +154,15 @@ namespace APITests.EntityObjects.Models
 
 		private void InitialiseReferences()
 		{
+			References.Add(new Reference
+			{
+				EntityName = "PromotedArticlesEntity",
+				OppositeName = "PromotedArticles",
+				Name = "NewsArticles",
+				Optional = true,
+				Type = ReferenceType.ONE,
+				OppositeType = ReferenceType.MANY
+			});
 		}
 
 		public override (int min, int max) GetLengthValidatorMinMax(string attribute)
@@ -159,6 +184,16 @@ namespace APITests.EntityObjects.Models
 		}
 
 
+		private static string GetInvalidPromotedArticlesId(string validator)
+		{
+			switch (validator)
+			{
+				case "Required":
+					return "";
+				default:
+					throw new Exception($"Cannot find validator {validator} for attribute News Articles");
+			}
+		}
 
 		/// <summary>
 		/// Returns a list of invalid/mutated jsons and expected errors. The expected errors are the errors that
@@ -179,7 +214,8 @@ namespace APITests.EntityObjects.Models
 			var entityVar = new Dictionary<string, string>()
 			{
 				{"id" , Id.ToString()},
-				{"title" , Title},
+				{"headline" , Headline},
+				{"featureImageId" , FeatureImageId.ToString()},
 				{"content" , Content},
 				{"qld" , Qld.ToString()},
 				{"nsw" , Nsw.ToString()},
@@ -190,6 +226,10 @@ namespace APITests.EntityObjects.Models
 				{"nt" , Nt.ToString()},
 			};
 
+			if (PromotedArticlesId != default)
+			{
+				entityVar["promotedArticlesId"] = PromotedArticlesId.ToString();
+			}
 
 			return entityVar;
 		}
@@ -199,7 +239,8 @@ namespace APITests.EntityObjects.Models
 			var entityVar = new RestSharp.JsonObject
 			{
 				["id"] = Id,
-				["title"] = Title.ToString(),
+				["headline"] = Headline.ToString(),
+				["featureImageId"] = FeatureImageId.ToString(),
 				["content"] = Content.ToString(),
 				["qld"] = Qld.ToString(),
 				["nsw"] = Nsw.ToString(),
@@ -214,6 +255,13 @@ namespace APITests.EntityObjects.Models
 			return entityVar;
 		}
 
+		public IEnumerable<FileData> GetFiles()
+		{
+			return new List<FileData>
+			{
+				FeatureImage,
+			};
+		}
 
 		public override void SetReferences (Dictionary<string, ICollection<Guid>> entityReferences)
 		{
@@ -221,6 +269,10 @@ namespace APITests.EntityObjects.Models
 			{
 				switch (key)
 				{
+					case "PromotedArticlesId":
+						ReferenceIdDictionary.Add("PromotedArticlesId", guidCollection.FirstOrDefault());
+						SetOneReference(key, guidCollection.FirstOrDefault());
+						break;
 					default:
 						throw new Exception($"{key} not valid reference key");
 				}
@@ -231,6 +283,9 @@ namespace APITests.EntityObjects.Models
 		{
 			switch (key)
 			{
+				case "PromotedArticlesId":
+					PromotedArticlesId = guid;
+					break;
 				default:
 					throw new Exception($"{key} not valid reference key");
 			}
@@ -304,7 +359,14 @@ namespace APITests.EntityObjects.Models
 		private void SetValidEntityAttributes()
 		{
 			// % protected region % [Override generated entity attributes here] off begin
-			Title = DataUtils.RandString();
+			Headline = DataUtils.RandString();
+				FeatureImage = new FileData
+				{
+					Id = Guid.NewGuid(),
+					Data = DataUtils.GetSVGTestFile(),
+					Filename = "testfile.svg"
+				};
+				FeatureImageId = FeatureImage.Id;
 			Content = DataUtils.RandString();
 			Qld = DataUtils.RandBool();
 			Nsw = DataUtils.RandBool();
@@ -324,7 +386,14 @@ namespace APITests.EntityObjects.Models
 			var newsArticleEntity = new NewsArticleEntity
 			{
 
-				Title = (!string.IsNullOrWhiteSpace(fixedStrValue) && fixedStrValue.Length > 0 && fixedStrValue.Length <= 255) ? fixedStrValue : DataUtils.RandString(),
+				Headline = (!string.IsNullOrWhiteSpace(fixedStrValue) && fixedStrValue.Length > 0 && fixedStrValue.Length <= 255) ? fixedStrValue : DataUtils.RandString(),
+
+				FeatureImage = new FileData
+				{
+					Id = Guid.NewGuid(),
+					Data = DataUtils.GetSVGTestFile(),
+					Filename = "testfile.svg"
+				},
 
 				Content = (!string.IsNullOrWhiteSpace(fixedStrValue) && fixedStrValue.Length > 0 && fixedStrValue.Length <= 255) ? fixedStrValue : DataUtils.RandString(),
 
@@ -343,6 +412,8 @@ namespace APITests.EntityObjects.Models
 				Nt = DataUtils.RandBool(),
 			};
 
+			newsArticleEntity.FeatureImageId = newsArticleEntity.FeatureImage.Id;
+
 			// % protected region % [Customize valid entity before return here] off begin
 			// % protected region % [Customize valid entity before return here] end
 
@@ -351,7 +422,7 @@ namespace APITests.EntityObjects.Models
 
 		public override Guid Save()
 		{
-			return SaveToDB<Lactalis.Models.NewsArticleEntity>(NewsArticleEntityDto.Convert(this));
+			return SaveThroughGraphQl(this);
 		}
 	}
 }

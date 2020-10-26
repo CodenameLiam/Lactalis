@@ -29,6 +29,7 @@ Details regarding a given FarmEntity.
 ## Attributes
 | Name | Type | Example | Required | Rules | Description |
 | ---- | :----: | :--------: | :-----: | ----- | ----- |
+| Code | STRING | Sally | <i class="fa fa-times"> | <ul></ul> |  | 
 | Name | STRING | Sally | <i class="fa fa-times"> | <ul></ul> |  | 
 | State | ENUMS.STATE | Sally | <i class="fa fa-times"> | <ul></ul> |  | 
 

@@ -35,6 +35,7 @@ import { SERVER_URL } from 'Constants';
 // % protected region % [Add any further imports here] end
 
 export interface IFarmEntityAttributes extends IModelAttributes {
+	code: string;
 	name: string;
 	state: Enums.state;
 
@@ -71,13 +72,28 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 		// % protected region % [Add any custom update exclusions here] end
 	];
 
+	// % protected region % [Modify props to the crud options here for attribute 'Code'] off begin
+	@observable
+	@attribute()
+	@CRUD({
+		name: 'Code',
+		displayType: 'textfield',
+		order: 10,
+		headerColumn: true,
+		searchable: true,
+		searchFunction: 'like',
+		searchTransform: AttrUtils.standardiseString,
+	})
+	public code: string;
+	// % protected region % [Modify props to the crud options here for attribute 'Code'] end
+
 	// % protected region % [Modify props to the crud options here for attribute 'Name'] off begin
 	@observable
 	@attribute()
 	@CRUD({
 		name: 'Name',
 		displayType: 'textfield',
-		order: 10,
+		order: 20,
 		headerColumn: true,
 		searchable: true,
 		searchFunction: 'like',
@@ -92,7 +108,7 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 	@CRUD({
 		name: 'State',
 		displayType: 'enum-combobox',
-		order: 20,
+		order: 30,
 		headerColumn: true,
 		searchable: true,
 		searchFunction: 'equal',
@@ -111,7 +127,7 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 		// % protected region % [Modify props to the crud options here for reference 'Pickups'] off begin
 		name: "Pickupss",
 		displayType: 'reference-multicombobox',
-		order: 30,
+		order: 40,
 		referenceTypeFunc: () => Models.MilkTestEntity,
 		referenceResolveFunction: makeFetchOneToManyFunc({
 			relationName: 'pickupss',
@@ -127,7 +143,7 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 		// % protected region % [Modify props to the crud options here for reference 'Farmers'] off begin
 		name: 'Farmers',
 		displayType: 'reference-multicombobox',
-		order: 40,
+		order: 50,
 		isJoinEntity: true,
 		referenceTypeFunc: () => Models.FarmersFarms,
 		optionEqualFunc: makeJoinEqualsFunc('farmersId'),
@@ -168,6 +184,9 @@ export default class FarmEntity extends Model implements IFarmEntityAttributes {
 		super.assignAttributes(attributes);
 
 		if (attributes) {
+			if (attributes.code) {
+				this.code = attributes.code;
+			}
 			if (attributes.name) {
 				this.name = attributes.name;
 			}

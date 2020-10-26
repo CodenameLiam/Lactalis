@@ -39,6 +39,7 @@ namespace Lactalis.Models
 			Field(o => o.Id, type: typeof(IdGraphType));
 			Field(o => o.Created, type: typeof(DateTimeGraphType));
 			Field(o => o.Modified, type: typeof(DateTimeGraphType));
+			Field(o => o.Code, type: typeof(StringGraphType));
 			Field(o => o.Name, type: typeof(StringGraphType));
 			Field(o => o.State, type: typeof(EnumerationGraphType<State>));
 			// % protected region % [Add any extra GraphQL fields here] off begin
@@ -85,6 +86,7 @@ namespace Lactalis.Models
 			Field<IdGraphType>("Id");
 			Field<DateTimeGraphType>("Created");
 			Field<DateTimeGraphType>("Modified");
+			Field<StringGraphType>("Code");
 			Field<StringGraphType>("Name");
 			Field<EnumerationGraphType<State>>("State");
 

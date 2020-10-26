@@ -26,6 +26,12 @@ namespace Lactalis.Models {
 		{
 			AbstractModelConfiguration.Configure(builder);
 
+			// % protected region % [Override TradingPostListingss Farmer configuration here] off begin
+			builder
+				.HasMany(e => e.TradingPostListingss)
+				.WithOne(e => e.Farmer)
+				.OnDelete(DeleteBehavior.Restrict);
+			// % protected region % [Override TradingPostListingss Farmer configuration here] end
 			// % protected region % [Add any extra db model config options here] off begin
 			// % protected region % [Add any extra db model config options here] end
 		}
