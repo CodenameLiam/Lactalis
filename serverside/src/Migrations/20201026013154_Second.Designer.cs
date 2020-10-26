@@ -4,15 +4,17 @@ using Lactalis.Enums;
 using Lactalis.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Lactalis.Migrations
 {
     [DbContext(typeof(LactalisDBContext))]
-    partial class LactalisDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201026013154_Second")]
+    partial class Second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

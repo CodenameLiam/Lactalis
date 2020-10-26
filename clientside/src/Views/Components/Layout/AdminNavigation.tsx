@@ -1,15 +1,20 @@
-import { Drawer, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, Popover } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
+	AccountBalance,
 	ChromeReaderMode,
+	Eco,
 	ExitToApp,
 	Home,
 	HomeWork,
 	LocalDrink,
 	Menu,
+	MonetizationOn,
+	MonetizationOnSharp,
+	Note,
 	People,
 } from "@material-ui/icons";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 // import { logout } from "../../../Store/Actions/loginActions";
@@ -21,16 +26,154 @@ import Logo from "./../../../Media/LactalisAustraliaLogo.png";
 import { FloatingNavigation } from "../../../Styles/MaterialStyles";
 import { AppContext } from "NavigationProvider";
 import { store } from "Models/Store";
+import Popup from "reactjs-popup";
 
-function NavigationLinks(): LinkInterface[] {
+interface AdminLinkInterface {
+	path: string;
+	label: React.ReactNode;
+	icon: React.ReactNode;
+	popup?: React.ReactNode[];
+}
+
+function NavigationLinks(): AdminLinkInterface[] {
 	return [
 		{ label: "Home", path: "/admin", icon: <Home /> },
 		{ label: "Users", path: "/admin/User", icon: <People /> },
-		{ label: "News Articles", path: "/admin/NewsArticleEntity", icon: <ChromeReaderMode /> },
+		{
+			label: "News",
+			path: "/admin/NewsArticleEntity",
+			icon: <ChromeReaderMode />,
+			popup: [
+				{
+					label: "News Articles",
+					path: "/admin/NewsArticleEntity",
+					icon: <ChromeReaderMode />,
+				},
+				{
+					label: "Promoted Articles",
+					path: "/admin/PromotedArticlesEntity",
+					icon: <ChromeReaderMode />,
+				},
+			],
+		},
 		{ label: "Farms", path: "/admin/FarmEntity", icon: <HomeWork /> },
 		{ label: "Milk Tests", path: "/admin/MilkTestEntity", icon: <LocalDrink /> },
+		{ label: "Sustainability Posts", path: "/admin/SustainabilityPostEntity", icon: <Eco /> },
+		{
+			label: "Trading Post",
+			path: "/admin/parent",
+			icon: <MonetizationOn />,
+			popup: [
+				{
+					label: "Tranding Post Categories",
+					path: "/admin/TradingPostCategoryEntity",
+					icon: <MonetizationOn />,
+				},
+				{
+					label: "Tranding Post Listings",
+					path: "/admin/TradingPostListingEntity",
+					icon: <MonetizationOn />,
+				},
+			],
+		},
+		{
+			label: "Important Documents",
+			path: "/admin/parent",
+			icon: <Note />,
+			popup: [
+				{
+					label: "Important Document Categories",
+					path: "/admin/ImportantDocumentCategoryEntity",
+					icon: <Note />,
+				},
+				{
+					label: "Important Document Files",
+					path: "/admin/ImportantDocumentEntity",
+					icon: <Note />,
+				},
+			],
+		},
+		{
+			label: "Quality Documents",
+			path: "/admin/parent",
+			icon: <Note />,
+			popup: [
+				{
+					label: "Quality Document Categories",
+					path: "/admin/QualityDocumentCategoryEntity",
+					icon: <Note />,
+				},
+				{
+					label: "Quality Document Files",
+					path: "/admin/QualityDocumentEntity",
+					icon: <Note />,
+				},
+			],
+		},
+		{
+			label: "Agri-Supply Documents",
+			path: "/admin/parent",
+			icon: <Note />,
+			popup: [
+				{
+					label: "Agri-Supply Document Categories",
+					path: "/admin/AgriSupplyDocumentCategoryEntity",
+					icon: <Note />,
+				},
+				{
+					label: "Agri-Supply Document Files",
+					path: "/admin/AgriSupplyDocumentEntity",
+					icon: <Note />,
+				},
+			],
+		},
+		{
+			label: "Technical Documents",
+			path: "/admin/parent",
+			icon: <Note />,
+			popup: [
+				{
+					label: "Technical Document Categories",
+					path: "/admin/TechnicalDocumentCategoryEntity",
+					icon: <Note />,
+				},
+				{
+					label: "Technical Document Files",
+					path: "/admin/TechnicalDocumentEntity",
+					icon: <Note />,
+				},
+			],
+		},
 	];
 }
+
+// const TradingPostPopover = () => {
+
+// 	const [open, setOpen] = useState(false);
+
+// 	const handleClose = () => {
+// 		props.setAnchorEl(null);
+// 	};
+
+// 	return (
+// 		<Popover
+// 			// id={id}
+// 			open={open}
+// 			anchorEl={props.anchorEl}
+// 			onClose={handleClose}
+// 			anchorOrigin={{
+// 				vertical: "bottom",
+// 				horizontal: "center",
+// 			}}
+// 			transformOrigin={{
+// 				vertical: "top",
+// 				horizontal: "center",
+// 			}}>
+// 			<div className="test">sasadasd</div>
+// 			{/* <Typography className={classes.typography}>The content of the Popover.</Typography> */}
+// 		</Popover>
+// 	);
+// };
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -41,13 +184,13 @@ const useStyles = makeStyles((theme: Theme) =>
 			zIndex: theme.zIndex.drawer + 1,
 		},
 		drawer: {
-			width: "15rem",
+			width: "20rem",
 			flexShrink: 0,
 			whiteSpace: "nowrap",
 			overflow: "hidden",
 		},
 		drawerOpen: {
-			width: "15rem",
+			width: "20rem",
 			boxShadow:
 				"0px 4px 50px -2px rgba(200, 230, 255, 0.3), -1px 2px 10px 0px rgba(200,200,200, 0.14), 0px 1px 5px 0px rgba(200,200,200,0.12) !important",
 			borderRight: "none",
@@ -87,7 +230,13 @@ const useStyles = makeStyles((theme: Theme) =>
 		drawerNotVisible: {
 			width: "0rem",
 		},
-		list: { color: "#ffffff", margin: "0.5rem", height: "100%", overflow: "hidden" },
+		list: {
+			color: "#ffffff",
+			margin: "0.5rem",
+			height: "100%",
+			overflow: "hidden",
+			"& .popover": { zIndex: "1000" },
+		},
 		listBottom: { position: "absolute", bottom: "10px", width: "100%" },
 		menuButtom: {
 			borderRadius: "1rem",
@@ -176,13 +325,95 @@ export default function AdminNavigation() {
 				<List classes={{ root: classes.list }}>
 					{navigationLinks.map((link, index) => {
 						const active = checkActive(location.pathname, link.path);
-						return (
+						return link.popup ? (
+							<Popup
+								contentStyle={{ background: "#1c1e26", color: "#ffffff", width: "260px" }}
+								position="right top"
+								trigger={
+									<ListItem
+										key={index}
+										onClick={
+											link.popup
+												? () => {}
+												: () => {
+														setAppState({ ...appState, navVisible: checkNavVisible() });
+														history.push(link.path);
+												  }
+										}
+										button
+										className={clsx(classes.menuButtom, {
+											[classes.menuButtonActive]: active,
+											[classes.menuButtonInactive]: !active,
+										})}
+										classes={{
+											root: clsx({
+												[classes.menuButtonActive]: active,
+												[classes.menuButtonInactive]: !active,
+											}),
+										}}>
+										<ListItemIcon
+											classes={{
+												root: clsx({
+													[classes.menuIconActive]: active,
+													[classes.menuIconInactive]: !active,
+												}),
+											}}>
+											{link.icon}
+										</ListItemIcon>
+
+										<ListItemText primary={link.label} />
+									</ListItem>
+								}>
+								{link.popup.map((childlink: any, childindex) => {
+									const active = checkActive(location.pathname, link.path);
+									return (
+										<ListItem
+											key={childindex}
+											onClick={
+												childlink.popup
+													? () => {}
+													: () => {
+															setAppState({ ...appState, navVisible: checkNavVisible() });
+															history.push(childlink.path);
+													  }
+											}
+											button
+											className={clsx(classes.menuButtom, {
+												[classes.menuButtonActive]: active,
+												[classes.menuButtonInactive]: !active,
+											})}
+											classes={{
+												root: clsx({
+													[classes.menuButtonActive]: active,
+													[classes.menuButtonInactive]: !active,
+												}),
+											}}>
+											<ListItemIcon
+												classes={{
+													root: clsx({
+														[classes.menuIconActive]: active,
+														[classes.menuIconInactive]: !active,
+													}),
+												}}>
+												{childlink.icon}
+											</ListItemIcon>
+
+											<ListItemText primary={childlink.label} />
+										</ListItem>
+									);
+								})}
+							</Popup>
+						) : (
 							<ListItem
 								key={index}
-								onClick={() => {
-									setAppState({ ...appState, navVisible: checkNavVisible() });
-									history.push(link.path);
-								}}
+								onClick={
+									link.popup
+										? () => {}
+										: () => {
+												setAppState({ ...appState, navVisible: checkNavVisible() });
+												history.push(link.path);
+										  }
+								}
 								button
 								className={clsx(classes.menuButtom, {
 									[classes.menuButtonActive]: active,
@@ -203,6 +434,7 @@ export default function AdminNavigation() {
 									}}>
 									{link.icon}
 								</ListItemIcon>
+
 								<ListItemText primary={link.label} />
 							</ListItem>
 						);

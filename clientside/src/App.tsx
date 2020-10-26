@@ -32,6 +32,7 @@ import { ToastContainer } from "react-toastify";
 import GlobalModal from "./Views/Components/Modal/GlobalModal";
 // % protected region % [Add extra page imports here] off begin
 import "./Styles/main.scss";
+import "reactjs-popup/dist/index.css";
 import NavigationProvider from "NavigationProvider";
 // % protected region % [Add extra page imports here] end
 

@@ -54,13 +54,13 @@ const useStyles = makeStyles((theme: Theme) =>
 			zIndex: theme.zIndex.drawer + 1,
 		},
 		drawer: {
-			width: "15rem",
+			width: "20rem",
 			flexShrink: 0,
 			whiteSpace: "nowrap",
 			overflow: "hidden",
 		},
 		drawerOpen: {
-			width: "15rem",
+			width: "20rem",
 			boxShadow:
 				"0px 4px 50px -2px rgba(200, 230, 255, 0.3), -1px 2px 10px 0px rgba(200,200,200, 0.14), 0px 1px 5px 0px rgba(200,200,200,0.12) !important",
 			borderRight: "none",
