@@ -14,13 +14,13 @@
  * This file is bot-written.
  * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
  */
-@import "shared/harmony.scss";
+@import 'shared/harmony.scss';
 // % protected region % [Add additional imports here] off begin
 // % protected region % [Add additional imports here] end
 
 .admin {
-	@import "admin/harmony.scss";
-	@import "admin/import-custom.scss";
+	@import 'admin/harmony.scss';
+	@import 'admin/import-custom.scss';
 
 	.graphiql-content-container {
 		padding: 0;
@@ -44,7 +44,7 @@
 // % protected region % [Customise react-contextify here] off begin
 /* -------- CONTEXT MENU -------- */
 //currently sitting outside of all body-content - style is super generic
-@import "admin/react-contextify.scss";
+@import 'admin/react-contextify.scss';
 // % protected region % [Customise react-contextify here] end
 
 /* % protected region % [Add extra scss here] off begin */

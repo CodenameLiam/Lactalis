@@ -31,7 +31,7 @@ namespace Lactalis.Security.Acl
 		public bool GetCreate(User user, IEnumerable<IAbstractModel> models, SecurityContext context)
 		{
 			// % protected region % [Override create rule contents here here] off begin
-			return false;
+			return true;
 			// % protected region % [Override create rule contents here here] end
 		}
 

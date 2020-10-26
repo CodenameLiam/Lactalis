@@ -43,7 +43,7 @@ Details regarding a given ImportantDocumentEntity.
 ## Security
 | Group  | Create | Read | Update | Delete |
 | ---- | :----: | :----:  | :----:  | :----:  |
-| Admin | <i class="fa fa-times"> | <i class="fa fa-check"> | <i class="fa fa-check"> | <i class="fa fa-check"> |
+| Admin | <i class="fa fa-check"> | <i class="fa fa-check"> | <i class="fa fa-check"> | <i class="fa fa-check"> |
 | Farmer | <i class="fa fa-times"> | <i class="fa fa-check"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 
 ## List of Records

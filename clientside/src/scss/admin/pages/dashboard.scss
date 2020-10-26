@@ -15,6 +15,8 @@
  * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
  */
 
+
+
 // % protected region % [Change admin dashboard styles here] off begin
 .dashboard {
 	.option-grid {
@@ -22,6 +24,7 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		align-content: center;
+
 	}
 
 	.btn {

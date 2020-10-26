@@ -148,7 +148,6 @@ export class Store {
 	}
 
 	// % protected region % [Add any extra store methods or properties here] on begin
-
 	@observable
 	public navigationOpen = true;
 
