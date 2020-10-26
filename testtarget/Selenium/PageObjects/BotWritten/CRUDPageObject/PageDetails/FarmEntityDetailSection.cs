@@ -51,6 +51,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		private readonly FarmEntity _farmEntity;
 
 		//Attribute Header Titles
+		private IWebElement CodeHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='Code']"));
 		private IWebElement NameHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='Name']"));
 		private IWebElement StateHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='State']"));
 
@@ -68,7 +69,6 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 
 			InitializeSelectors();
 			// % protected region % [Add any extra construction requires] off begin
-
 			// % protected region % [Add any extra construction requires] end
 		}
 
@@ -76,6 +76,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		private void InitializeSelectors()
 		{
 			// Attribute web elements
+			selectorDict.Add("CodeElement", (selector: "//div[contains(@class, 'code')]//input", type: SelectorType.XPath));
 			selectorDict.Add("NameElement", (selector: "//div[contains(@class, 'name')]//input", type: SelectorType.XPath));
 			selectorDict.Add("StateElement", (selector: "//div[contains(@class, 'state')]//input", type: SelectorType.XPath));
 
@@ -91,6 +92,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		//outgoing Reference web elements
 
 		//Attribute web Elements
+		private IWebElement CodeElement => FindElementExt("CodeElement");
 		private IWebElement NameElement => FindElementExt("NameElement");
 		private IWebElement StateElement => FindElementExt("StateElement");
 
@@ -99,6 +101,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			return attribute switch
 			{
+				"Code" => CodeHeaderTitle,
 				"Name" => NameHeaderTitle,
 				"State" => StateHeaderTitle,
 				_ => throw new Exception($"Cannot find header tile {attribute}"),
@@ -110,6 +113,8 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			switch (attribute)
 			{
+				case "Code":
+					return CodeElement;
 				case "Name":
 					return NameElement;
 				case "State":
@@ -123,6 +128,9 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			switch (attribute)
 			{
+				case "Code":
+					SetCode(value);
+					break;
 				case "Name":
 					SetName(value);
 					break;
@@ -138,6 +146,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			return attribute switch
 			{
+				"Code" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.code > div > p"),
 				"Name" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.name > div > p"),
 				"State" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.state > div > p"),
 				_ => throw new Exception($"No such attribute {attribute}"),
@@ -158,6 +167,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		public void Apply()
 		{
 			// % protected region % [Configure entity application here] off begin
+			SetCode(_farmEntity.Code);
 			SetName(_farmEntity.Name);
 			SetState(_farmEntity.State);
 
@@ -246,6 +256,16 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 			var elementBy = WebElementUtils.GetElementAsBy(SelectorPathType.XPATH, xpath);
 			WaitUtils.elementState(_driverWait, elementBy,ElementState.EXISTS);
 		}
+
+		private void SetCode (String value)
+		{
+			TypingUtils.InputEntityAttributeByClass(_driver, "code", value, _isFastText);
+			CodeElement.SendKeys(Keys.Tab);
+			CodeElement.SendKeys(Keys.Escape);
+		}
+
+		private String GetCode =>
+			CodeElement.Text;
 
 		private void SetName (String value)
 		{

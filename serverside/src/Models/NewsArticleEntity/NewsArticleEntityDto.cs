@@ -24,7 +24,8 @@ namespace Lactalis.Models
 {
 	public class NewsArticleEntityDto : ModelDto<NewsArticleEntity>
 	{
-		public String Title { get; set; }
+		public String Headline { get; set; }
+		public Guid? FeatureImageId { get; set; }
 		public String Content { get; set; }
 		public Boolean? Qld { get; set; }
 		public Boolean? Nsw { get; set; }
@@ -33,6 +34,8 @@ namespace Lactalis.Models
 		public Boolean? Wa { get; set; }
 		public Boolean? Sa { get; set; }
 		public Boolean? Nt { get; set; }
+
+		public Guid? PromotedArticlesId { get; set; }
 
 		// % protected region % [Add any extra attributes here] off begin
 		// % protected region % [Add any extra attributes here] end
@@ -60,7 +63,8 @@ namespace Lactalis.Models
 				Id = Id,
 				Created = Created,
 				Modified = Modified,
-				Title = Title,
+				Headline = Headline,
+				FeatureImageId = FeatureImageId,
 				Content = Content,
 				Qld = Qld,
 				Nsw = Nsw,
@@ -69,6 +73,7 @@ namespace Lactalis.Models
 				Wa = Wa,
 				Sa = Sa,
 				Nt = Nt,
+				PromotedArticlesId  = PromotedArticlesId,
 				// % protected region % [Add any extra model properties here] off begin
 				// % protected region % [Add any extra model properties here] end
 			};
@@ -79,7 +84,8 @@ namespace Lactalis.Models
 			Id = model.Id;
 			Created = model.Created;
 			Modified = model.Modified;
-			Title = model.Title;
+			Headline = model.Headline;
+			FeatureImageId = model.FeatureImageId;
 			Content = model.Content;
 			Qld = model.Qld;
 			Nsw = model.Nsw;
@@ -88,6 +94,7 @@ namespace Lactalis.Models
 			Wa = model.Wa;
 			Sa = model.Sa;
 			Nt = model.Nt;
+			PromotedArticlesId  = model.PromotedArticlesId;
 
 			// % protected region % [Add any extra loading data logic here] off begin
 			// % protected region % [Add any extra loading data logic here] end

@@ -15,6 +15,32 @@
 		<Acl Uuid="63e847b0-9573-49cb-93e5-abd6fd29a5c7" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="0da048d8-48b5-409e-9679-a4956e69230c" Create="false" Read="true" Update="true" Delete="false" />
 		<Acl Uuid="a62f6424-5228-4671-a3e3-6561ac6b7ea1" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="04f34301-446d-4759-989d-6ae893b61695" Create="false" Read="true" Update="true" Delete="false" />
 		<Acl Uuid="0343f8d6-2a7a-4100-bf55-d9b5ee5e0dfb" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="f3d17dc4-e76b-41ec-8030-f103c89c33d9" Create="false" Read="true" Update="true" Delete="false" />
+		<Acl Uuid="503d8bb6-cf4d-4884-84a1-b511162c9198" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="44f05e8c-683b-499a-9472-ef766c2d4124" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="b7cc5213-1a6a-4227-b3be-99363e05a259" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="44f05e8c-683b-499a-9472-ef766c2d4124" Create="false" Read="true" Update="false" Delete="false" />
+		<Acl Uuid="87dc54d0-7d27-44d8-9884-97cba2f50613" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="176a8938-e49d-48dd-af19-2daa37e2ca2a" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="4400ac90-cb39-4758-ae67-51cd35977c3a" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="fb094aec-bdbf-46c4-896a-d07b261dce71" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="e06b40ca-6797-4dba-903e-65baa55103b5" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="c31b44d8-90cb-4755-ab89-926c02f7e48b" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="8da2ce0d-b4e6-4acf-bbd9-e7586ec682bd" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="8d932b00-0ede-48a2-bbd6-2fd448cf34b9" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="37e8097d-296c-4b2a-94a1-1e084b5b4dab" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="b0844c58-0f24-44ea-937c-dd30ed62700e" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="d5685961-52aa-4a0c-8949-000dc41973a1" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="4cc3f650-39c6-4116-97e9-e68b33fe85e0" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="54cf941e-5a45-4400-9705-b0fd71011fab" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="80b8b846-68cd-4799-b1cf-3c791dd063f8" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="d7bc79fd-2e66-4bc4-bffd-caa2876aa2c0" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="0e8a7a62-121a-4b35-bb30-7ac27869592a" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="91d4655c-5e7f-4627-a76c-b7c2b1499dca" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="a64cd86a-e7fa-4503-8e9a-db53433e1850" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="a3b72684-87b2-494c-928a-f7443081f2a0" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="4450dad3-52f8-413d-8ad5-a4affb83353c" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="dc25e672-62ae-4758-9440-f3bb93c9cc4a" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="29229d17-9e5f-4e29-9355-69107181fc3c" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="0387997e-b6f1-4ff0-9121-87989add35c2" Group="2f224a1b-f162-4029-90cf-7b00090a468f" SecurityScheme="acd85650-8e32-42c6-9b67-e29133da3c2a" Create="false" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="188f9ef2-a655-484e-b717-62b887cb1b2f" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="acd85650-8e32-42c6-9b67-e29133da3c2a" Create="false" Read="true" Update="false" Delete="false" />
+		<Acl Uuid="ad565cdf-38c4-4ce0-83be-5c58f8512f4d" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="29229d17-9e5f-4e29-9355-69107181fc3c" Create="false" Read="true" Update="false" Delete="false" />
+		<Acl Uuid="66e30520-4a4f-44b5-8004-b787a7501389" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="4450dad3-52f8-413d-8ad5-a4affb83353c" Create="false" Read="true" Update="false" Delete="false" />
+		<Acl Uuid="a79d6c1c-2389-457a-aede-470b345376f3" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="0e8a7a62-121a-4b35-bb30-7ac27869592a" Create="false" Read="true" Update="false" Delete="false" />
+		<Acl Uuid="29631ecd-0a7b-4417-8070-79f9783fb6d0" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="a64cd86a-e7fa-4503-8e9a-db53433e1850" Create="false" Read="true" Update="false" Delete="false" />
+		<Acl Uuid="c9a0868f-be88-4065-bc15-f538b015df2a" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="4cc3f650-39c6-4116-97e9-e68b33fe85e0" Create="false" Read="true" Update="false" Delete="false" />
+		<Acl Uuid="64aa4296-9d93-47a1-bfa1-d90d53c89ca7" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="80b8b846-68cd-4799-b1cf-3c791dd063f8" Create="false" Read="true" Update="false" Delete="false" />
+		<Acl Uuid="fd2f479f-d266-4e06-94ab-610875d06883" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="8d932b00-0ede-48a2-bbd6-2fd448cf34b9" Create="false" Read="true" Update="false" Delete="false" />
+		<Acl Uuid="b8496d83-7682-44a7-b2a6-61fccc69e399" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="b0844c58-0f24-44ea-937c-dd30ed62700e" Create="false" Read="true" Update="false" Delete="false" />
+		<Acl Uuid="73755e18-01cc-4d09-af69-a003861110db" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="c31b44d8-90cb-4755-ab89-926c02f7e48b" Create="true" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="7c94b289-d169-4b42-9b35-d5c2da4bce30" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="fb094aec-bdbf-46c4-896a-d07b261dce71" Create="true" Read="true" Update="true" Delete="true" />
+		<Acl Uuid="b90b4229-f209-44f2-98f0-c55ed7b14de6" Group="5339606b-64d7-47cf-95b8-a6f1908af5e2" SecurityScheme="176a8938-e49d-48dd-af19-2daa37e2ca2a" Create="true" Read="true" Update="true" Delete="true" />
 </Authorization>
 	<Auditing/>
 	<SecuritySchemes>
@@ -35,6 +61,45 @@
 		</SecuritySchemes>
 		<SecuritySchemes Uuid="405a81c8-c22b-4ad4-b45a-2d2457992d3d" Name="Admin Entity">
 			<Object href="../entity/lactalis.csharpbotentity#405a81c8-c22b-4ad4-b45a-2d2457992d3d"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="44f05e8c-683b-499a-9472-ef766c2d4124" Name="Important Document Entity">
+			<Object href="../entity/lactalis.csharpbotentity#44f05e8c-683b-499a-9472-ef766c2d4124"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="176a8938-e49d-48dd-af19-2daa37e2ca2a" Name="Trading Post Listing Entity">
+			<Object href="../entity/lactalis.csharpbotentity#176a8938-e49d-48dd-af19-2daa37e2ca2a"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="fb094aec-bdbf-46c4-896a-d07b261dce71" Name="Trading Post Category Entity">
+			<Object href="../entity/lactalis.csharpbotentity#fb094aec-bdbf-46c4-896a-d07b261dce71"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="c31b44d8-90cb-4755-ab89-926c02f7e48b" Name="Trading Post Categories Entity">
+			<Object href="../entity/lactalis.csharpbotentity#c31b44d8-90cb-4755-ab89-926c02f7e48b"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="8d932b00-0ede-48a2-bbd6-2fd448cf34b9" Name="Technical Document Category Entity">
+			<Object href="../entity/lactalis.csharpbotentity#8d932b00-0ede-48a2-bbd6-2fd448cf34b9"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="b0844c58-0f24-44ea-937c-dd30ed62700e" Name="Technical Document Entity">
+			<Object href="../entity/lactalis.csharpbotentity#b0844c58-0f24-44ea-937c-dd30ed62700e"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="4cc3f650-39c6-4116-97e9-e68b33fe85e0" Name="Sustainability Post Entity">
+			<Object href="../entity/lactalis.csharpbotentity#4cc3f650-39c6-4116-97e9-e68b33fe85e0"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="80b8b846-68cd-4799-b1cf-3c791dd063f8" Name="Quality Document Category Entity">
+			<Object href="../entity/lactalis.csharpbotentity#80b8b846-68cd-4799-b1cf-3c791dd063f8"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="0e8a7a62-121a-4b35-bb30-7ac27869592a" Name="Quality Document Entity">
+			<Object href="../entity/lactalis.csharpbotentity#0e8a7a62-121a-4b35-bb30-7ac27869592a"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="a64cd86a-e7fa-4503-8e9a-db53433e1850" Name="Promoted Articles Entity">
+			<Object href="../entity/lactalis.csharpbotentity#a64cd86a-e7fa-4503-8e9a-db53433e1850"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="4450dad3-52f8-413d-8ad5-a4affb83353c" Name="Important Document Category Entity">
+			<Object href="../entity/lactalis.csharpbotentity#4450dad3-52f8-413d-8ad5-a4affb83353c"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="29229d17-9e5f-4e29-9355-69107181fc3c" Name="Agri Supply Document Category Entity">
+			<Object href="../entity/lactalis.csharpbotentity#29229d17-9e5f-4e29-9355-69107181fc3c"/>
+		</SecuritySchemes>
+		<SecuritySchemes Uuid="acd85650-8e32-42c6-9b67-e29133da3c2a" Name="Agri Supply Document Entity">
+			<Object href="../entity/lactalis.csharpbotentity#acd85650-8e32-42c6-9b67-e29133da3c2a"/>
 		</SecuritySchemes>
 </SecuritySchemes>
 	<TwoFactorAuthenticationProviders/>

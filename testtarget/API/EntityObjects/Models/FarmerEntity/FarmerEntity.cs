@@ -30,6 +30,13 @@ namespace APITests.EntityObjects.Models
 	{
 
 		/// <summary>
+		/// Outgoing one to many reference
+		/// </summary>
+		/// <see cref="Lactalis.Models.TradingPostListings"/>
+		public List<Guid> TradingPostListingsIds { get; set; }
+		public ICollection<TradingPostListingEntity> TradingPostListingss { get; set; }
+
+		/// <summary>
 		/// Outgoing many to many reference
 		/// </summary>
 		/// <see cref="Lactalis.Models.Farms"/>

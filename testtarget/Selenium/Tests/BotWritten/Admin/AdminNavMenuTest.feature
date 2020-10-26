@@ -41,7 +41,7 @@ Scenario: Verify the number of Admin Submenus
 	When I click on Users Nav link on the Admin Nav section
 	Then I assert that 3 Nav links are displayed
 	When I click on Entities Nav link on the Admin Nav section
-	Then I assert that 3 Nav links are displayed
+	Then I assert that 15 Nav links are displayed
 
 Scenario: Verify the admin submenus
 	Given I login to the site as a user
@@ -57,6 +57,18 @@ Scenario: Verify the admin submenus
 	When I click on Entities Nav link on the Admin Nav section
 	Then I see the Admin Submenus like
 	| Entities |
-	| News Article |
+	| Trading Post Listing |
+	| Trading Post Category |
 	| Farm |
 	| Milk Test |
+	| Important Document Category |
+	| Quality Document Category |
+	| Technical Document Category |
+	| Quality Document |
+	| Technical Document |
+	| Important Document |
+	| News Article |
+	| Promoted Articles |
+	| Agri Supply Document Category |
+	| Sustainability Post |
+	| Agri Supply Document |

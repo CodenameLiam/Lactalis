@@ -37,12 +37,20 @@ interface AdminLink extends IIconProps {
 
 const getPageLinks = (): AdminLink[] => [
 	{
-		// % protected region % [Override navigation link for NewsArticleEntity here] off begin
-		path: '/admin/newsarticleentity',
-		label: getModelDisplayName(Models.NewsArticleEntity),
-		entity: Models.NewsArticleEntity,
+		// % protected region % [Override navigation link for TradingPostListingEntity here] off begin
+		path: '/admin/tradingpostlistingentity',
+		label: getModelDisplayName(Models.TradingPostListingEntity),
+		entity: Models.TradingPostListingEntity,
 		isMember: false
-		// % protected region % [Override navigation link for NewsArticleEntity here] end
+		// % protected region % [Override navigation link for TradingPostListingEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for TradingPostCategoryEntity here] off begin
+		path: '/admin/tradingpostcategoryentity',
+		label: getModelDisplayName(Models.TradingPostCategoryEntity),
+		entity: Models.TradingPostCategoryEntity,
+		isMember: false
+		// % protected region % [Override navigation link for TradingPostCategoryEntity here] end
 	},
 	{
 		// % protected region % [Override navigation link for AdminEntity here] off begin
@@ -51,14 +59,6 @@ const getPageLinks = (): AdminLink[] => [
 		entity: Models.AdminEntity,
 		isMember: true
 		// % protected region % [Override navigation link for AdminEntity here] end
-	},
-	{
-		// % protected region % [Override navigation link for FarmerEntity here] off begin
-		path: '/admin/farmerentity',
-		label: getModelDisplayName(Models.FarmerEntity),
-		entity: Models.FarmerEntity,
-		isMember: true
-		// % protected region % [Override navigation link for FarmerEntity here] end
 	},
 	{
 		// % protected region % [Override navigation link for FarmEntity here] off begin
@@ -75,6 +75,102 @@ const getPageLinks = (): AdminLink[] => [
 		entity: Models.MilkTestEntity,
 		isMember: false
 		// % protected region % [Override navigation link for MilkTestEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for FarmerEntity here] off begin
+		path: '/admin/farmerentity',
+		label: getModelDisplayName(Models.FarmerEntity),
+		entity: Models.FarmerEntity,
+		isMember: true
+		// % protected region % [Override navigation link for FarmerEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for ImportantDocumentCategoryEntity here] off begin
+		path: '/admin/importantdocumentcategoryentity',
+		label: getModelDisplayName(Models.ImportantDocumentCategoryEntity),
+		entity: Models.ImportantDocumentCategoryEntity,
+		isMember: false
+		// % protected region % [Override navigation link for ImportantDocumentCategoryEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for QualityDocumentCategoryEntity here] off begin
+		path: '/admin/qualitydocumentcategoryentity',
+		label: getModelDisplayName(Models.QualityDocumentCategoryEntity),
+		entity: Models.QualityDocumentCategoryEntity,
+		isMember: false
+		// % protected region % [Override navigation link for QualityDocumentCategoryEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for TechnicalDocumentCategoryEntity here] off begin
+		path: '/admin/technicaldocumentcategoryentity',
+		label: getModelDisplayName(Models.TechnicalDocumentCategoryEntity),
+		entity: Models.TechnicalDocumentCategoryEntity,
+		isMember: false
+		// % protected region % [Override navigation link for TechnicalDocumentCategoryEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for QualityDocumentEntity here] off begin
+		path: '/admin/qualitydocumententity',
+		label: getModelDisplayName(Models.QualityDocumentEntity),
+		entity: Models.QualityDocumentEntity,
+		isMember: false
+		// % protected region % [Override navigation link for QualityDocumentEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for TechnicalDocumentEntity here] off begin
+		path: '/admin/technicaldocumententity',
+		label: getModelDisplayName(Models.TechnicalDocumentEntity),
+		entity: Models.TechnicalDocumentEntity,
+		isMember: false
+		// % protected region % [Override navigation link for TechnicalDocumentEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for ImportantDocumentEntity here] off begin
+		path: '/admin/importantdocumententity',
+		label: getModelDisplayName(Models.ImportantDocumentEntity),
+		entity: Models.ImportantDocumentEntity,
+		isMember: false
+		// % protected region % [Override navigation link for ImportantDocumentEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for NewsArticleEntity here] off begin
+		path: '/admin/newsarticleentity',
+		label: getModelDisplayName(Models.NewsArticleEntity),
+		entity: Models.NewsArticleEntity,
+		isMember: false
+		// % protected region % [Override navigation link for NewsArticleEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for PromotedArticlesEntity here] off begin
+		path: '/admin/promotedarticlesentity',
+		label: getModelDisplayName(Models.PromotedArticlesEntity),
+		entity: Models.PromotedArticlesEntity,
+		isMember: false
+		// % protected region % [Override navigation link for PromotedArticlesEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for AgriSupplyDocumentCategoryEntity here] off begin
+		path: '/admin/agrisupplydocumentcategoryentity',
+		label: getModelDisplayName(Models.AgriSupplyDocumentCategoryEntity),
+		entity: Models.AgriSupplyDocumentCategoryEntity,
+		isMember: false
+		// % protected region % [Override navigation link for AgriSupplyDocumentCategoryEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for SustainabilityPostEntity here] off begin
+		path: '/admin/sustainabilitypostentity',
+		label: getModelDisplayName(Models.SustainabilityPostEntity),
+		entity: Models.SustainabilityPostEntity,
+		isMember: false
+		// % protected region % [Override navigation link for SustainabilityPostEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for AgriSupplyDocumentEntity here] off begin
+		path: '/admin/agrisupplydocumententity',
+		label: getModelDisplayName(Models.AgriSupplyDocumentEntity),
+		entity: Models.AgriSupplyDocumentEntity,
+		isMember: false
+		// % protected region % [Override navigation link for AgriSupplyDocumentEntity here] end
 	},
 	// % protected region % [Add any extra page links here] off begin
 	// % protected region % [Add any extra page links here] end

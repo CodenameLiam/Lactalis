@@ -41,11 +41,23 @@ namespace APITests.Factories
 		{
 			return _type switch
 			{
-				"NewsArticleEntity" => NewsArticleEntity.GetEntity(isValid, _fixedStrValues),
+				"TradingPostListingEntity" => TradingPostListingEntity.GetEntity(isValid, _fixedStrValues),
+				"TradingPostCategoryEntity" => TradingPostCategoryEntity.GetEntity(isValid, _fixedStrValues),
 				"AdminEntity" => AdminEntity.GetEntity(isValid, _fixedStrValues),
-				"FarmerEntity" => FarmerEntity.GetEntity(isValid, _fixedStrValues),
 				"FarmEntity" => FarmEntity.GetEntity(isValid, _fixedStrValues),
 				"MilkTestEntity" => MilkTestEntity.GetEntity(isValid, _fixedStrValues),
+				"FarmerEntity" => FarmerEntity.GetEntity(isValid, _fixedStrValues),
+				"ImportantDocumentCategoryEntity" => ImportantDocumentCategoryEntity.GetEntity(isValid, _fixedStrValues),
+				"QualityDocumentCategoryEntity" => QualityDocumentCategoryEntity.GetEntity(isValid, _fixedStrValues),
+				"TechnicalDocumentCategoryEntity" => TechnicalDocumentCategoryEntity.GetEntity(isValid, _fixedStrValues),
+				"QualityDocumentEntity" => QualityDocumentEntity.GetEntity(isValid, _fixedStrValues),
+				"TechnicalDocumentEntity" => TechnicalDocumentEntity.GetEntity(isValid, _fixedStrValues),
+				"ImportantDocumentEntity" => ImportantDocumentEntity.GetEntity(isValid, _fixedStrValues),
+				"NewsArticleEntity" => NewsArticleEntity.GetEntity(isValid, _fixedStrValues),
+				"PromotedArticlesEntity" => PromotedArticlesEntity.GetEntity(isValid, _fixedStrValues),
+				"AgriSupplyDocumentCategoryEntity" => AgriSupplyDocumentCategoryEntity.GetEntity(isValid, _fixedStrValues),
+				"SustainabilityPostEntity" => SustainabilityPostEntity.GetEntity(isValid, _fixedStrValues),
+				"AgriSupplyDocumentEntity" => AgriSupplyDocumentEntity.GetEntity(isValid, _fixedStrValues),
 				_ => throw new Exception($"Cannot find entity type {_type}"),
 			};
 		}
@@ -90,11 +102,27 @@ namespace APITests.Factories
 		{
 			switch (_type)
 			{
+				case "TradingPostListingEntity":
+					switch (enumColumnName)
+					{
+						case "Price Type":
+							return ((TradingPostListingEntity)entity).PriceType.ToString();
+						default:
+							return null;
+					}
 				case "FarmEntity":
 					switch (enumColumnName)
 					{
 						case "State":
 							return ((FarmEntity)entity).State.ToString();
+						default:
+							return null;
+					}
+				case "PromotedArticlesEntity":
+					switch (enumColumnName)
+					{
+						case "State":
+							return ((PromotedArticlesEntity)entity).State.ToString();
 						default:
 							return null;
 					}

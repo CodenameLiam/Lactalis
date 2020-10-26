@@ -26,7 +26,8 @@ namespace APITests.EntityObjects.Models
 		public Guid Id { get; set; }
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
-		public String Title { get; set; }
+		public String Headline { get; set; }
+		public Guid? FeatureImageId { get; set; }
 		public String Content { get; set; }
 		public Boolean? Qld { get; set; }
 		public Boolean? Nsw { get; set; }
@@ -36,13 +37,15 @@ namespace APITests.EntityObjects.Models
 		public Boolean? Sa { get; set; }
 		public Boolean? Nt { get; set; }
 
+		public Guid? PromotedArticlesId { get; set; }
 
 		public NewsArticleEntityDto(NewsArticleEntity model)
 		{
 			Id = model.Id;
 			Created = model.Created;
 			Modified = model.Modified;
-			Title = model.Title;
+			Headline = model.Headline;
+			FeatureImageId = model.FeatureImageId;
 			Content = model.Content;
 			Qld = model.Qld;
 			Nsw = model.Nsw;
@@ -51,6 +54,7 @@ namespace APITests.EntityObjects.Models
 			Wa = model.Wa;
 			Sa = model.Sa;
 			Nt = model.Nt;
+			PromotedArticlesId = model.PromotedArticlesId;
 		}
 
 		public NewsArticleEntityDto(ServersideNewsArticleEntity model)
@@ -58,7 +62,8 @@ namespace APITests.EntityObjects.Models
 			Id = model.Id;
 			Created = model.Created;
 			Modified = model.Modified;
-			Title = model.Title;
+			Headline = model.Headline;
+			FeatureImageId = model.FeatureImageId;
 			Content = model.Content;
 			Qld = model.Qld;
 			Nsw = model.Nsw;
@@ -67,6 +72,7 @@ namespace APITests.EntityObjects.Models
 			Wa = model.Wa;
 			Sa = model.Sa;
 			Nt = model.Nt;
+			PromotedArticlesId = model.PromotedArticlesId;
 		}
 
 		public NewsArticleEntity GetTesttargetNewsArticleEntity()
@@ -76,7 +82,8 @@ namespace APITests.EntityObjects.Models
 				Id = Id,
 				Created = Created,
 				Modified = Modified,
-				Title = Title,
+				Headline = Headline,
+				FeatureImageId = FeatureImageId,
 				Content = Content,
 				Qld = Qld,
 				Nsw = Nsw,
@@ -85,6 +92,7 @@ namespace APITests.EntityObjects.Models
 				Wa = Wa,
 				Sa = Sa,
 				Nt = Nt,
+				PromotedArticlesId = PromotedArticlesId,
 			};
 		}
 
@@ -95,7 +103,8 @@ namespace APITests.EntityObjects.Models
 				Id = Id,
 				Created = Created,
 				Modified = Modified,
-				Title = Title,
+				Headline = Headline,
+				FeatureImageId = FeatureImageId,
 				Content = Content,
 				Qld = Qld,
 				Nsw = Nsw,
@@ -104,6 +113,7 @@ namespace APITests.EntityObjects.Models
 				Wa = Wa,
 				Sa = Sa,
 				Nt = Nt,
+				PromotedArticlesId = PromotedArticlesId,
 			};
 		}
 

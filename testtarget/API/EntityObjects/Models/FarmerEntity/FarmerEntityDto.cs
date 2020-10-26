@@ -27,6 +27,7 @@ namespace APITests.EntityObjects.Models
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
 
+		public ICollection<TradingPostListingEntity> TradingPostListingss { get; set; }
 		public ICollection<FarmersFarms> Farmss { get; set; }
 
 		public FarmerEntityDto(FarmerEntity model)
@@ -34,6 +35,7 @@ namespace APITests.EntityObjects.Models
 			Id = model.Id;
 			Created = model.Created;
 			Modified = model.Modified;
+			TradingPostListingss = model.TradingPostListingss;
 			Farmss = model.Farmss;
 		}
 
@@ -42,6 +44,7 @@ namespace APITests.EntityObjects.Models
 			Id = model.Id;
 			Created = model.Created;
 			Modified = model.Modified;
+			TradingPostListingss = model.TradingPostListingss.Select(TradingPostListingEntityDto.Convert).ToList();
 			Farmss  = model.Farmss == null ? null :FarmersFarmsDto.Convert(model.Farmss);
 		}
 
@@ -52,6 +55,7 @@ namespace APITests.EntityObjects.Models
 				Id = Id,
 				Created = Created,
 				Modified = Modified,
+				TradingPostListingss = TradingPostListingss,
 				Farmss = Farmss,
 			};
 		}
@@ -63,6 +67,7 @@ namespace APITests.EntityObjects.Models
 				Id = Id,
 				Created = Created,
 				Modified = Modified,
+				TradingPostListingss = TradingPostListingss?.Select(TradingPostListingEntityDto.Convert).ToList(),
 				Farmss = Farmss == null ? null :FarmersFarmsDto.Convert(Farmss),
 			};
 		}

@@ -571,11 +571,59 @@ namespace Lactalis.Services
 
 			var file = await _dbContext
 				.Files
+				.Include(f => f.TradingPostListingProductImage)
+				.Include(f => f.QualityDocumentFile)
+				.Include(f => f.TechnicalDocumentFile)
+				.Include(f => f.ImportantDocumentFile)
+				.Include(f => f.NewsArticleFeatureImage)
+				.Include(f => f.SustainabilityPostImage)
+				.Include(f => f.SustainabilityPostFile)
+				.Include(f => f.AgriSupplyDocumentFile)
 				.FirstOrDefaultAsync(f => f.Id == id, cancellation);
 
 			if (file == null)
 			{
 				throw new FileNotFoundException("File not found");
+			}
+
+			if (file.TradingPostListingProductImage != null && !CanViewEntity(file.TradingPostListingProductImage))
+			{
+				ThrowFileError(file, "TradingPostListingProductImage");
+			}
+
+			if (file.QualityDocumentFile != null && !CanViewEntity(file.QualityDocumentFile))
+			{
+				ThrowFileError(file, "QualityDocumentFile");
+			}
+
+			if (file.TechnicalDocumentFile != null && !CanViewEntity(file.TechnicalDocumentFile))
+			{
+				ThrowFileError(file, "TechnicalDocumentFile");
+			}
+
+			if (file.ImportantDocumentFile != null && !CanViewEntity(file.ImportantDocumentFile))
+			{
+				ThrowFileError(file, "ImportantDocumentFile");
+			}
+
+			if (file.NewsArticleFeatureImage != null && !CanViewEntity(file.NewsArticleFeatureImage))
+			{
+				ThrowFileError(file, "NewsArticleFeatureImage");
+			}
+
+			if (file.SustainabilityPostImage != null && !CanViewEntity(file.SustainabilityPostImage))
+			{
+				ThrowFileError(file, "SustainabilityPostImage");
+			}
+
+			if (file.SustainabilityPostFile != null && !CanViewEntity(file.SustainabilityPostFile))
+			{
+				ThrowFileError(file, "SustainabilityPostFile");
+			}
+
+			if (file.AgriSupplyDocumentFile != null && !CanViewEntity(file.AgriSupplyDocumentFile))
+			{
+				ThrowFileError(file, "AgriSupplyDocumentFile");
 			}
 
 			return file;

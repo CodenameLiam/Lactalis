@@ -29,6 +29,8 @@ namespace APITests.EntityObjects.Models
 	public class FarmEntity : BaseEntity
 	{
 		// 
+		public String Code { get; set; }
+		// 
 		public String Name { get; set; }
 		// 
 		public State State { get; set; }
@@ -89,6 +91,11 @@ namespace APITests.EntityObjects.Models
 
 		private void InitialiseAttributes()
 		{
+			Attributes.Add(new Attribute
+			{
+				Name = "Code",
+				IsRequired = false
+			});
 			Attributes.Add(new Attribute
 			{
 				Name = "Name",
@@ -163,6 +170,7 @@ namespace APITests.EntityObjects.Models
 			var entityVar = new Dictionary<string, string>()
 			{
 				{"id" , Id.ToString()},
+				{"code" , Code},
 				{"name" , Name},
 				{"state" , State.ToString()},
 			};
@@ -176,6 +184,7 @@ namespace APITests.EntityObjects.Models
 			var entityVar = new RestSharp.JsonObject
 			{
 				["id"] = Id,
+				["code"] = Code.ToString(),
 				["name"] = Name.ToString(),
 				["state"] = State.ToString(),
 			};
@@ -295,6 +304,7 @@ namespace APITests.EntityObjects.Models
 		private void SetValidEntityAttributes()
 		{
 			// % protected region % [Override generated entity attributes here] off begin
+			Code = DataUtils.RandString();
 			Name = DataUtils.RandString();
 			State = StateEnum.GetRandomState();
 			// % protected region % [Override generated entity attributes here] end
@@ -307,6 +317,8 @@ namespace APITests.EntityObjects.Models
 		{
 			var farmEntity = new FarmEntity
 			{
+
+				Code = (!string.IsNullOrWhiteSpace(fixedStrValue) && fixedStrValue.Length > 0 && fixedStrValue.Length <= 255) ? fixedStrValue : DataUtils.RandString(),
 
 				Name = (!string.IsNullOrWhiteSpace(fixedStrValue) && fixedStrValue.Length > 0 && fixedStrValue.Length <= 255) ? fixedStrValue : DataUtils.RandString(),
 

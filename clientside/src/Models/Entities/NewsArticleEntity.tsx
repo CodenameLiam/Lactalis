@@ -35,7 +35,9 @@ import { SERVER_URL } from 'Constants';
 // % protected region % [Add any further imports here] end
 
 export interface INewsArticleEntityAttributes extends IModelAttributes {
-	title: string;
+	headline: string;
+	featureImageId: string;
+	featureImage: Blob;
 	content: string;
 	qld: boolean;
 	nsw: boolean;
@@ -45,6 +47,8 @@ export interface INewsArticleEntityAttributes extends IModelAttributes {
 	sa: boolean;
 	nt: boolean;
 
+	promotedArticlesId?: string;
+	promotedArticles?: Models.PromotedArticlesEntity | Models.IPromotedArticlesEntityAttributes;
 	// % protected region % [Add any custom attributes to the interface here] off begin
 	// % protected region % [Add any custom attributes to the interface here] end
 }
@@ -76,11 +80,11 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 		// % protected region % [Add any custom update exclusions here] end
 	];
 
-	// % protected region % [Modify props to the crud options here for attribute 'Title'] off begin
+	// % protected region % [Modify props to the crud options here for attribute 'Headline'] off begin
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'Title',
+		name: 'Headline',
 		displayType: 'textfield',
 		order: 10,
 		headerColumn: true,
@@ -88,8 +92,30 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 		searchFunction: 'like',
 		searchTransform: AttrUtils.standardiseString,
 	})
-	public title: string;
-	// % protected region % [Modify props to the crud options here for attribute 'Title'] end
+	public headline: string;
+	// % protected region % [Modify props to the crud options here for attribute 'Headline'] end
+
+	// % protected region % [Modify props to the crud options here for attribute 'Feature Image'] off begin
+	@observable
+	@attribute({file: 'featureImage'})
+	@CRUD({
+		name: 'Feature Image',
+		displayType: 'file',
+		order: 20,
+		headerColumn: true,
+		searchable: true,
+		searchFunction: 'equal',
+		searchTransform: AttrUtils.standardiseUuid,
+		inputProps: {
+			imageOnly: true,
+		},
+		fileAttribute: 'featureImage',
+		displayFunction: attr => attr ? <img src={`${SERVER_URL}/api/files/${attr}`} style={{maxWidth: '300px'}} /> : 'No File Attached',
+	})
+	public featureImageId: string;
+	@observable
+	public featureImage: Blob;
+	// % protected region % [Modify props to the crud options here for attribute 'Feature Image'] end
 
 	// % protected region % [Modify props to the crud options here for attribute 'Content'] off begin
 	@observable
@@ -97,7 +123,7 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@CRUD({
 		name: 'Content',
 		displayType: 'textfield',
-		order: 20,
+		order: 30,
 		headerColumn: true,
 		searchable: true,
 		searchFunction: 'like',
@@ -112,7 +138,7 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@CRUD({
 		name: 'QLD',
 		displayType: 'checkbox',
-		order: 30,
+		order: 40,
 		headerColumn: true,
 		searchable: true,
 		searchFunction: 'equal',
@@ -128,7 +154,7 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@CRUD({
 		name: 'NSW',
 		displayType: 'checkbox',
-		order: 40,
+		order: 50,
 		headerColumn: true,
 		searchable: true,
 		searchFunction: 'equal',
@@ -144,8 +170,7 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@CRUD({
 		name: 'VIC',
 		displayType: 'checkbox',
-		order: 50,
-		headerColumn: true,
+		order: 60,
 		searchable: true,
 		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseBoolean,
@@ -160,7 +185,7 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@CRUD({
 		name: 'TAS',
 		displayType: 'checkbox',
-		order: 60,
+		order: 70,
 		searchable: true,
 		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseBoolean,
@@ -175,7 +200,7 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@CRUD({
 		name: 'WA',
 		displayType: 'checkbox',
-		order: 70,
+		order: 80,
 		searchable: true,
 		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseBoolean,
@@ -190,7 +215,7 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@CRUD({
 		name: 'SA',
 		displayType: 'checkbox',
-		order: 80,
+		order: 90,
 		searchable: true,
 		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseBoolean,
@@ -205,7 +230,7 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@CRUD({
 		name: 'NT',
 		displayType: 'checkbox',
-		order: 90,
+		order: 100,
 		searchable: true,
 		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseBoolean,
@@ -213,6 +238,21 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	})
 	public nt: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'NT'] end
+
+	@observable
+	@attribute()
+	@CRUD({
+		// % protected region % [Modify props to the crud options here for reference 'Promoted Articles'] off begin
+		name: 'Promoted Articles',
+		displayType: 'reference-combobox',
+		order: 110,
+		referenceTypeFunc: () => Models.PromotedArticlesEntity,
+		// % protected region % [Modify props to the crud options here for reference 'Promoted Articles'] end
+	})
+	public promotedArticlesId?: string;
+	@observable
+	@attribute({isReference: true})
+	public promotedArticles: Models.PromotedArticlesEntity;
 
 	// % protected region % [Add any custom attributes to the model here] off begin
 	// % protected region % [Add any custom attributes to the model here] end
@@ -238,8 +278,14 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 		super.assignAttributes(attributes);
 
 		if (attributes) {
-			if (attributes.title) {
-				this.title = attributes.title;
+			if (attributes.headline) {
+				this.headline = attributes.headline;
+			}
+			if (attributes.featureImage) {
+				this.featureImage = attributes.featureImage;
+			}
+			if (attributes.featureImageId) {
+				this.featureImageId = attributes.featureImageId;
 			}
 			if (attributes.content) {
 				this.content = attributes.content;
@@ -265,6 +311,17 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 			if (attributes.nt) {
 				this.nt = attributes.nt;
 			}
+			if (attributes.promotedArticles) {
+				if (attributes.promotedArticles instanceof Models.PromotedArticlesEntity) {
+					this.promotedArticles = attributes.promotedArticles;
+					this.promotedArticlesId = attributes.promotedArticles.id;
+				} else {
+					this.promotedArticles = new Models.PromotedArticlesEntity(attributes.promotedArticles);
+					this.promotedArticlesId = this.promotedArticles.id;
+				}
+			} else if (attributes.promotedArticlesId !== undefined) {
+				this.promotedArticlesId = attributes.promotedArticlesId;
+			}
 			// % protected region % [Override assign attributes here] end
 
 			// % protected region % [Add any extra assign attributes logic here] off begin
@@ -278,6 +335,10 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	 */
 	// % protected region % [Customize Default Expands here] off begin
 	public defaultExpands = `
+		promotedArticles {
+			${Models.PromotedArticlesEntity.getAttributes().join('\n')}
+			${Models.PromotedArticlesEntity.getFiles().map(f => f.name).join('\n')}
+		}
 	`;
 	// % protected region % [Customize Default Expands here] end
 
@@ -299,6 +360,7 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 						]
 					},
 				],
+				contentType: 'multipart/form-data',
 			}
 		);
 	}

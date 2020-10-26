@@ -41,10 +41,17 @@ namespace Lactalis.Models {
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
 
-		// % protected region % [Customise Title here] off begin
+		// % protected region % [Customise Headline here] off begin
 		[EntityAttribute]
-		public String Title { get; set; }
-		// % protected region % [Customise Title here] end
+		public String Headline { get; set; }
+		// % protected region % [Customise Headline here] end
+
+		// % protected region % [Customise FeatureImage here] off begin
+		[FileReference]
+		public Guid? FeatureImageId { get; set; }
+		[EntityForeignKey("FeatureImage", "NewsArticleFeatureImage", false, typeof(UploadFile))]
+		public UploadFile FeatureImage { get; set; }
+		// % protected region % [Customise FeatureImage here] end
 
 		// % protected region % [Customise Content here] off begin
 		[EntityAttribute]
@@ -106,12 +113,33 @@ namespace Lactalis.Models {
 			// % protected region % [Add any further ACL entries here] end
 		};
 
+		/// <summary>
+		/// Outgoing one to many reference
+		/// </summary>
+		/// <see cref="Lactalis.Models.PromotedArticlesEntity"/>
+		public Guid? PromotedArticlesId { get; set; }
+		[EntityForeignKey("PromotedArticles", "NewsArticless", false, typeof(PromotedArticlesEntity))]
+		public PromotedArticlesEntity PromotedArticles { get; set; }
+
 		public async Task BeforeSave(
 			EntityState operation,
 			LactalisDBContext dbContext,
 			IServiceProvider serviceProvider,
 			CancellationToken cancellationToken = default)
 		{
+			if (operation == EntityState.Deleted)
+			{
+				if (FeatureImageId.HasValue)
+				{
+					var existingFile = dbContext.Files.FirstOrDefault(f => f.Id == FeatureImageId.Value);
+					if (existingFile != null)
+					{
+						dbContext.Files.Remove(existingFile);
+						await existingFile.BeforeSave(EntityState.Deleted, dbContext, serviceProvider);
+					}
+				}
+			}
+
 			// % protected region % [Add any before save logic here] off begin
 			// % protected region % [Add any before save logic here] end
 		}

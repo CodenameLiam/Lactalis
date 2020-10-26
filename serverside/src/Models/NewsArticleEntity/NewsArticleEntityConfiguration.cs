@@ -26,6 +26,18 @@ namespace Lactalis.Models {
 		{
 			AbstractModelConfiguration.Configure(builder);
 
+			// % protected region % [Override PromotedArticles NewsArticless configuration here] off begin
+			builder
+				.HasOne(e => e.PromotedArticles)
+				.WithMany(e => e.NewsArticless)
+				.OnDelete(DeleteBehavior.Restrict);
+			// % protected region % [Override PromotedArticles NewsArticless configuration here] end
+			// % protected region % [Override FeatureImage configuration here] off begin
+			builder
+				.HasOne(e => e.FeatureImage)
+				.WithOne(e => e.NewsArticleFeatureImage)
+				.OnDelete(DeleteBehavior.SetNull);
+			// % protected region % [Override FeatureImage configuration here] end
 			// % protected region % [Add any extra db model config options here] off begin
 			// % protected region % [Add any extra db model config options here] end
 		}

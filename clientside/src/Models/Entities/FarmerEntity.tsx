@@ -37,6 +37,7 @@ import { SERVER_URL } from 'Constants';
 export interface IFarmerEntityAttributes extends IModelAttributes {
 	email: string;
 
+	tradingPostListingss: Array<Models.TradingPostListingEntity | Models.ITradingPostListingEntityAttributes>;
 	farmss: Array<Models.FarmersFarms | Models.IFarmersFarmsAttributes>;
 	// % protected region % [Add any custom attributes to the interface here] off begin
 	// % protected region % [Add any custom attributes to the interface here] end
@@ -117,10 +118,26 @@ export default class FarmerEntity extends Model implements IFarmerEntityAttribut
 	@observable
 	@attribute({isReference: true})
 	@CRUD({
+		// % protected region % [Modify props to the crud options here for reference 'Trading Post Listings'] off begin
+		name: "Trading Post Listingss",
+		displayType: 'reference-multicombobox',
+		order: 40,
+		referenceTypeFunc: () => Models.TradingPostListingEntity,
+		referenceResolveFunction: makeFetchOneToManyFunc({
+			relationName: 'tradingPostListingss',
+			oppositeEntity: () => Models.TradingPostListingEntity,
+		}),
+		// % protected region % [Modify props to the crud options here for reference 'Trading Post Listings'] end
+	})
+	public tradingPostListingss: Models.TradingPostListingEntity[] = [];
+
+	@observable
+	@attribute({isReference: true})
+	@CRUD({
 		// % protected region % [Modify props to the crud options here for reference 'Farms'] off begin
 		name: 'Farms',
 		displayType: 'reference-multicombobox',
-		order: 40,
+		order: 50,
 		isJoinEntity: true,
 		referenceTypeFunc: () => Models.FarmersFarms,
 		optionEqualFunc: makeJoinEqualsFunc('farmsId'),
@@ -164,6 +181,15 @@ export default class FarmerEntity extends Model implements IFarmerEntityAttribut
 			if (attributes.email) {
 				this.email = attributes.email;
 			}
+			if (attributes.tradingPostListingss) {
+				for (const model of attributes.tradingPostListingss) {
+					if (model instanceof Models.TradingPostListingEntity) {
+						this.tradingPostListingss.push(model);
+					} else {
+						this.tradingPostListingss.push(new Models.TradingPostListingEntity(model));
+					}
+				}
+			}
 			if (attributes.farmss) {
 				for (const model of attributes.farmss) {
 					if (model instanceof Models.FarmersFarms) {
@@ -192,6 +218,10 @@ export default class FarmerEntity extends Model implements IFarmerEntityAttribut
 				${Models.FarmEntity.getAttributes().join('\n')}
 			}
 		}
+		tradingPostListingss {
+			${Models.TradingPostListingEntity.getAttributes().join('\n')}
+			${Models.TradingPostListingEntity.getFiles().map(f => f.name).join('\n')}
+		}
 	`;
 	// % protected region % [Customize Default Expands here] end
 
@@ -202,6 +232,7 @@ export default class FarmerEntity extends Model implements IFarmerEntityAttribut
 	public async saveFromCrud(formMode: EntityFormMode) {
 		const relationPath = {
 			farmss: {},
+			tradingPostListingss: {},
 		};
 
 		if (formMode === 'create') {
@@ -222,6 +253,7 @@ export default class FarmerEntity extends Model implements IFarmerEntityAttribut
 						key: 'mergeReferences',
 						graphQlType: '[String]',
 						value: [
+							'tradingPostListingss',
 							'farmss',
 						]
 					},

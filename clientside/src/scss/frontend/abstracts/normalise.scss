@@ -23,6 +23,7 @@ This makes sure that all HTML elements look the same across browsers to keep con
 Make changes if NECESSARY
 */
 
+
 // % protected region % [Make changes to elements if required] off begin
 /**
  * 1. Correct the line height in all browsers.
@@ -56,7 +57,6 @@ body {
 	* {
 		box-sizing: border-box;
 	}
-	font-family: "Poppins", sans-serif;
 }
 
 /**
@@ -155,6 +155,7 @@ abbr[title] {
 /**
  * Add the correct font weight in Chrome, Edge, and Safari.
  */
+
 
 b,
 strong {

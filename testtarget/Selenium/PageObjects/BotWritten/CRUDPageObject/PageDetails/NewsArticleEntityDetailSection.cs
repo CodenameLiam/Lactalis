@@ -16,6 +16,7 @@
  */
 using System;
 using System.Linq;
+using System.IO;
 using System.Collections.Generic;
 using APITests.EntityObjects.Models;
 using OpenQA.Selenium;
@@ -39,6 +40,8 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		private readonly ContextConfiguration _contextConfiguration;
 
 		// reference elements
+		private static By PromotedArticlesIdElementBy => By.XPath("//*[contains(@class, 'promotedArticles')]//div[contains(@class, 'dropdown__container')]");
+		private static By PromotedArticlesIdInputElementBy => By.XPath("//*[contains(@class, 'promotedArticles')]/div/input");
 
 		//FlatPickr Elements
 
@@ -46,7 +49,8 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		private readonly NewsArticleEntity _newsArticleEntity;
 
 		//Attribute Header Titles
-		private IWebElement TitleHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='Title']"));
+		private IWebElement HeadlineHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='Headline']"));
+		private IWebElement FeatureImageHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='Feature Image']"));
 		private IWebElement ContentHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='Content']"));
 		private IWebElement QldHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='QLD']"));
 		private IWebElement NswHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='NSW']"));
@@ -70,7 +74,6 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 
 			InitializeSelectors();
 			// % protected region % [Add any extra construction requires] off begin
-
 			// % protected region % [Add any extra construction requires] end
 		}
 
@@ -78,7 +81,8 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		private void InitializeSelectors()
 		{
 			// Attribute web elements
-			selectorDict.Add("TitleElement", (selector: "//div[contains(@class, 'title')]//input", type: SelectorType.XPath));
+			selectorDict.Add("HeadlineElement", (selector: "//div[contains(@class, 'headline')]//input", type: SelectorType.XPath));
+			selectorDict.Add("FeatureImageElement", (selector: "//div[contains(@class, 'featureImage')]//input", type: SelectorType.XPath));
 			selectorDict.Add("ContentElement", (selector: "//div[contains(@class, 'content')]//input", type: SelectorType.XPath));
 			selectorDict.Add("QldElement", (selector: "//div[contains(@class, 'qld')]//input", type: SelectorType.XPath));
 			selectorDict.Add("NswElement", (selector: "//div[contains(@class, 'nsw')]//input", type: SelectorType.XPath));
@@ -89,6 +93,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 			selectorDict.Add("NtElement", (selector: "//div[contains(@class, 'nt')]//input", type: SelectorType.XPath));
 
 			// Reference web elements
+			selectorDict.Add("PromotedarticlesElement", (selector: ".input-group__dropdown.promotedArticlesId > .dropdown.dropdown__container", type: SelectorType.CSS));
 
 			// Datepicker
 			selectorDict.Add("CreateAtDatepickerField", (selector: "//div[contains(@class, 'created')]/input", type: SelectorType.XPath));
@@ -96,9 +101,12 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		}
 
 		//outgoing Reference web elements
+		//get the input path as set by the selector library
+		private IWebElement PromotedArticlesElement => FindElementExt("PromotedArticlesElement");
 
 		//Attribute web Elements
-		private IWebElement TitleElement => FindElementExt("TitleElement");
+		private IWebElement HeadlineElement => FindElementExt("HeadlineElement");
+		private IWebElement FeatureImageElement => FindElementExt("FeatureImageElement");
 		private IWebElement ContentElement => FindElementExt("ContentElement");
 		private IWebElement QldElement => FindElementExt("QldElement");
 		private IWebElement NswElement => FindElementExt("NswElement");
@@ -113,7 +121,8 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			return attribute switch
 			{
-				"Title" => TitleHeaderTitle,
+				"Headline" => HeadlineHeaderTitle,
+				"Feature Image" => FeatureImageHeaderTitle,
 				"Content" => ContentHeaderTitle,
 				"QLD" => QldHeaderTitle,
 				"NSW" => NswHeaderTitle,
@@ -131,8 +140,10 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			switch (attribute)
 			{
-				case "Title":
-					return TitleElement;
+				case "Headline":
+					return HeadlineElement;
+				case "Feature Image":
+					return FeatureImageElement;
 				case "Content":
 					return ContentElement;
 				case "QLD":
@@ -158,8 +169,11 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			switch (attribute)
 			{
-				case "Title":
-					SetTitle(value);
+				case "Headline":
+					SetHeadline(value);
+					break;
+				case "Feature Image":
+					SetFeatureImage(value);
 					break;
 				case "Content":
 					SetContent(value);
@@ -194,7 +208,8 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			return attribute switch
 			{
-				"Title" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.title > div > p"),
+				"Headline" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.headline > div > p"),
+				"Feature Image" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.featureImage > div > p"),
 				"Content" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.content > div > p"),
 				"QLD" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.qld > div > p"),
 				"NSW" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.nsw > div > p"),
@@ -221,7 +236,8 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		public void Apply()
 		{
 			// % protected region % [Configure entity application here] off begin
-			SetTitle(_newsArticleEntity.Title);
+			SetHeadline(_newsArticleEntity.Headline);
+			SetFeatureImage(_newsArticleEntity.FeatureImageId.ToString());
 			SetContent(_newsArticleEntity.Content);
 			SetQld(_newsArticleEntity.Qld);
 			SetNsw(_newsArticleEntity.Nsw);
@@ -231,6 +247,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 			SetSa(_newsArticleEntity.Sa);
 			SetNt(_newsArticleEntity.Nt);
 
+			SetPromotedArticlesId(_newsArticleEntity.PromotedArticlesId?.ToString());
 			// % protected region % [Configure entity application here] end
 		}
 
@@ -238,14 +255,36 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			switch (referenceName)
 			{
+				case "promotedarticles":
+					return new List<Guid>() {GetPromotedArticlesId()};
 				default:
 					throw new Exception($"Cannot find association type {referenceName}");
 			}
 		}
 
 		// set associations
+		private void SetPromotedArticlesId(string id)
+		{
+			if (id == "") { return; }
+			WaitUtils.elementState(_driverWait, PromotedArticlesIdInputElementBy, ElementState.VISIBLE);
+			var promotedArticlesIdInputElement = _driver.FindElementExt(PromotedArticlesIdInputElementBy);
+
+			if (id != null)
+			{
+				promotedArticlesIdInputElement.SendKeys(id);
+				WaitForDropdownOptions();
+				WaitUtils.elementState(_driverWait, By.XPath($"//*/div[@role='option']/span[text()='{id}']"), ElementState.EXISTS);
+				promotedArticlesIdInputElement.SendKeys(Keys.Return);
+			}
+		}
 
 		// get associations
+		private Guid GetPromotedArticlesId()
+		{
+			WaitUtils.elementState(_driverWait, PromotedArticlesIdElementBy, ElementState.VISIBLE);
+			var promotedArticlesIdElement = _driver.FindElementExt(PromotedArticlesIdElementBy);
+			return new Guid(promotedArticlesIdElement.GetAttribute("data-id"));
+		}
 
 		// wait for dropdown to be displaying options
 		private void WaitForDropdownOptions()
@@ -255,15 +294,28 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 			WaitUtils.elementState(_driverWait, elementBy,ElementState.EXISTS);
 		}
 
-		private void SetTitle (String value)
+		private void SetHeadline (String value)
 		{
-			TypingUtils.InputEntityAttributeByClass(_driver, "title", value, _isFastText);
-			TitleElement.SendKeys(Keys.Tab);
-			TitleElement.SendKeys(Keys.Escape);
+			TypingUtils.InputEntityAttributeByClass(_driver, "headline", value, _isFastText);
+			HeadlineElement.SendKeys(Keys.Tab);
+			HeadlineElement.SendKeys(Keys.Escape);
 		}
 
-		private String GetTitle =>
-			TitleElement.Text;
+		private String GetHeadline =>
+			HeadlineElement.Text;
+
+		private void SetFeatureImage (String value)
+		{
+			const string script = "document.querySelector('.featureImageId>div>input').removeAttribute('style')";
+			var js = (IJavaScriptExecutor)driver;
+			js.ExecuteScript(script);
+			var path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "Resources/RedCircle.svg"));
+			var fileUploadElement = driver.FindElementExt(By.CssSelector(".featureImageId>div>input"));
+			fileUploadElement.SendKeys(path);
+		}
+
+		private String GetFeatureImage =>
+			FeatureImageElement.Text;
 
 		private void SetContent (String value)
 		{

@@ -28,16 +28,40 @@ namespace SeleniumTests.Utils
 		{
 			switch (entityName)
 			{
-				case "NewsArticleEntity":
-					return new NewsArticleEntityDetailSection(contextConfiguration);
+				case "TradingPostListingEntity":
+					return new TradingPostListingEntityDetailSection(contextConfiguration);
+				case "TradingPostCategoryEntity":
+					return new TradingPostCategoryEntityDetailSection(contextConfiguration);
 				case "AdminEntity":
 					return new AdminEntityDetailSection(contextConfiguration);
-				case "FarmerEntity":
-					return new FarmerEntityDetailSection(contextConfiguration);
 				case "FarmEntity":
 					return new FarmEntityDetailSection(contextConfiguration);
 				case "MilkTestEntity":
 					return new MilkTestEntityDetailSection(contextConfiguration);
+				case "FarmerEntity":
+					return new FarmerEntityDetailSection(contextConfiguration);
+				case "ImportantDocumentCategoryEntity":
+					return new ImportantDocumentCategoryEntityDetailSection(contextConfiguration);
+				case "QualityDocumentCategoryEntity":
+					return new QualityDocumentCategoryEntityDetailSection(contextConfiguration);
+				case "TechnicalDocumentCategoryEntity":
+					return new TechnicalDocumentCategoryEntityDetailSection(contextConfiguration);
+				case "QualityDocumentEntity":
+					return new QualityDocumentEntityDetailSection(contextConfiguration);
+				case "TechnicalDocumentEntity":
+					return new TechnicalDocumentEntityDetailSection(contextConfiguration);
+				case "ImportantDocumentEntity":
+					return new ImportantDocumentEntityDetailSection(contextConfiguration);
+				case "NewsArticleEntity":
+					return new NewsArticleEntityDetailSection(contextConfiguration);
+				case "PromotedArticlesEntity":
+					return new PromotedArticlesEntityDetailSection(contextConfiguration);
+				case "AgriSupplyDocumentCategoryEntity":
+					return new AgriSupplyDocumentCategoryEntityDetailSection(contextConfiguration);
+				case "SustainabilityPostEntity":
+					return new SustainabilityPostEntityDetailSection(contextConfiguration);
+				case "AgriSupplyDocumentEntity":
+					return new AgriSupplyDocumentEntityDetailSection(contextConfiguration);
 				default:
 					throw new Exception($"Cannot find detail section for type {entityName}");
 			}

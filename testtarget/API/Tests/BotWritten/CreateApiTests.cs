@@ -19,6 +19,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using APITests.Classes;
+using APITests.EntityObjects;
 using APITests.EntityObjects.Models;
 using APITests.Factories;
 using APITests.Setup;
@@ -63,7 +65,7 @@ namespace APITests.Tests.BotWritten
 			var query = QueryBuilder.CreateEntityQueryBuilder(entityList);
 			api.ConfigureAuthenticationHeaders();
 
-			var response = api.Post($"/api/graphql", query);
+			var response = PostCreateRequest(api, query, entityList);
 			
 
 			//valid ids returned and a valid response
@@ -74,6 +76,32 @@ namespace APITests.Tests.BotWritten
 		}
 		// % protected region % [Customize Create Entity tests here] end
 
+		private IRestResponse PostCreateRequest(WebApi api, RestSharp.JsonObject query, List<BaseEntity> entityList)
+		{
+			// if entity does not contain files, perform a normal post
+			if (!(entityList[0] is IFileContainingEntity))
+			{
+				return api.Post($"/api/graphql", query);
+			}
+			// otherwise, perform a multipart/form-data post
+			var headers = new Dictionary<string, string>{{"Content-Type", "multipart/form-data"}};
+			var files = new List<FileData>();
+			foreach (var entity in entityList)
+			{
+				if (entity is IFileContainingEntity fileContainingEntity)
+				{
+					files.AddRange(fileContainingEntity.GetFiles().Where(file => file != null));
+				}
+			}
+			var param = new Dictionary<string, object>
+			{
+				{"operationName", query["operationName"]},
+				{"variables", query["variables"]},
+				{"query", query["query"]}
+			};
+				
+			return api.Post($"/api/graphql", param, headers, DataFormat.None, files);
+		}
 
 		// % protected region % [Customize Create Referenced Entity tests here] off begin
 		private List<BaseEntity> CreateReferencedEntities(EntityFactory entityFactory, int numEntities)

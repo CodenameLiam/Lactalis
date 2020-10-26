@@ -38,7 +38,8 @@ namespace Lactalis.Models
 			Field(o => o.Id, type: typeof(IdGraphType));
 			Field(o => o.Created, type: typeof(DateTimeGraphType));
 			Field(o => o.Modified, type: typeof(DateTimeGraphType));
-			Field(o => o.Title, type: typeof(StringGraphType));
+			Field(o => o.Headline, type: typeof(StringGraphType));
+			Field(o => o.FeatureImageId, type: typeof(IdGraphType));
 			Field(o => o.Content, type: typeof(StringGraphType));
 			Field(o => o.Qld, type: typeof(BooleanGraphType));
 			Field(o => o.Nsw, type: typeof(BooleanGraphType));
@@ -51,6 +52,24 @@ namespace Lactalis.Models
 			// % protected region % [Add any extra GraphQL fields here] end
 
 			// Add entity references
+			Field(o => o.PromotedArticlesId, type: typeof(IdGraphType));
+
+			// GraphQL reference to entity PromotedArticlesEntity via reference PromotedArticles
+			AddNavigationField("PromotedArticles", context => {
+				var graphQlContext = (LactalisGraphQlContext) context.UserContext;
+				var filter = SecurityService.CreateReadSecurityFilter<PromotedArticlesEntity>(
+					graphQlContext.IdentityService,
+					graphQlContext.UserManager,
+					graphQlContext.DbContext,
+					graphQlContext.ServiceProvider);
+				var value = context.Source.PromotedArticles;
+
+				if (value != null)
+				{
+					return new List<PromotedArticlesEntity> {value}.All(filter.Compile()) ? value : null;
+				}
+				return null;
+			});
 
 			// % protected region % [Add any extra GraphQL references here] off begin
 			// % protected region % [Add any extra GraphQL references here] end
@@ -71,7 +90,8 @@ namespace Lactalis.Models
 			Field<IdGraphType>("Id");
 			Field<DateTimeGraphType>("Created");
 			Field<DateTimeGraphType>("Modified");
-			Field<StringGraphType>("Title");
+			Field<StringGraphType>("Headline");
+			Field(o => o.FeatureImageId, type: typeof(IdGraphType));
 			Field<StringGraphType>("Content");
 			Field<BooleanGraphType>("Qld");
 			Field<BooleanGraphType>("Nsw");
@@ -82,8 +102,10 @@ namespace Lactalis.Models
 			Field<BooleanGraphType>("Nt");
 
 			// Add entity references
+			Field<IdGraphType>("PromotedArticlesId");
 
 			// Add references to foreign models to allow nested creation
+			Field<PromotedArticlesEntityInputType>("PromotedArticles");
 
 			// % protected region % [Add any extra GraphQL input fields here] off begin
 			// % protected region % [Add any extra GraphQL input fields here] end

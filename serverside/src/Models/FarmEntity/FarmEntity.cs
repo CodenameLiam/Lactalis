@@ -41,6 +41,11 @@ namespace Lactalis.Models {
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
 
+		// % protected region % [Customise Code here] off begin
+		[EntityAttribute]
+		public String Code { get; set; }
+		// % protected region % [Customise Code here] end
+
 		// % protected region % [Customise Name here] off begin
 		[EntityAttribute]
 		public String Name { get; set; }

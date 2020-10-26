@@ -47,11 +47,23 @@ Anonymous users who have not been authenticated
 
 | Entity Name | Create | Read | Update | Delete |
 | :------: | :------: | :------: | :------: | :------: |
-| News Article Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Trading Post Listing Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Trading Post Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 | Admin Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
-| Farmer Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 | Farm Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 | Milk Test Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Farmer Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Important Document Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Quality Document Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Technical Document Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Quality Document Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Technical Document Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Important Document Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| News Article Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Promoted Articles Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Agri Supply Document Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Sustainability Post Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Agri Supply Document Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 
 ---
 
@@ -62,11 +74,23 @@ Users who belong to the admin group have access to the admin section of the appl
 
 | Entity Name | Create | Read | Update | Delete |
 | :------: | :------: | :------: | :------: | :------: |
-| News Article Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Trading Post Listing Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Trading Post Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 | Admin Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
-| Farmer Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 | Farm Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 | Milk Test Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Farmer Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Important Document Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Quality Document Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Technical Document Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Quality Document Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Technical Document Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Important Document Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| News Article Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Promoted Articles Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Agri Supply Document Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Sustainability Post Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Agri Supply Document Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 
 ---
 
@@ -76,11 +100,23 @@ Users who have been created as a Farmer entity
 
 | Entity Name | Create | Read | Update | Delete |
 | :------: | :------: | :------: | :------: | :------: |
-| News Article Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Trading Post Listing Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Trading Post Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 | Admin Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
-| Farmer Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 | Farm Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 | Milk Test Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Farmer Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Important Document Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Quality Document Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Technical Document Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Quality Document Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Technical Document Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Important Document Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| News Article Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Promoted Articles Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Agri Supply Document Category Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Sustainability Post Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| Agri Supply Document Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 
 ---
 

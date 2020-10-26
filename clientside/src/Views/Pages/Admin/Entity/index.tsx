@@ -14,10 +14,22 @@
  * This file is bot-written.
  * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
  */
-export { default as NewsArticleEntityPage } from './NewsArticleEntityPage';
+export { default as TradingPostListingEntityPage } from './TradingPostListingEntityPage';
+export { default as TradingPostCategoryEntityPage } from './TradingPostCategoryEntityPage';
 export { default as AdminEntityPage } from './AdminEntityPage';
-export { default as FarmerEntityPage } from './FarmerEntityPage';
 export { default as FarmEntityPage } from './FarmEntityPage';
 export { default as MilkTestEntityPage } from './MilkTestEntityPage';
+export { default as FarmerEntityPage } from './FarmerEntityPage';
+export { default as ImportantDocumentCategoryEntityPage } from './ImportantDocumentCategoryEntityPage';
+export { default as QualityDocumentCategoryEntityPage } from './QualityDocumentCategoryEntityPage';
+export { default as TechnicalDocumentCategoryEntityPage } from './TechnicalDocumentCategoryEntityPage';
+export { default as QualityDocumentEntityPage } from './QualityDocumentEntityPage';
+export { default as TechnicalDocumentEntityPage } from './TechnicalDocumentEntityPage';
+export { default as ImportantDocumentEntityPage } from './ImportantDocumentEntityPage';
+export { default as NewsArticleEntityPage } from './NewsArticleEntityPage';
+export { default as PromotedArticlesEntityPage } from './PromotedArticlesEntityPage';
+export { default as AgriSupplyDocumentCategoryEntityPage } from './AgriSupplyDocumentCategoryEntityPage';
+export { default as SustainabilityPostEntityPage } from './SustainabilityPostEntityPage';
+export { default as AgriSupplyDocumentEntityPage } from './AgriSupplyDocumentEntityPage';
 // % protected region % [Add any further admin page exports here] off begin
 // % protected region % [Add any further admin page exports here] end

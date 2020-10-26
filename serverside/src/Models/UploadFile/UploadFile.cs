@@ -69,6 +69,46 @@ namespace Lactalis.Models
 		[EntityAttribute]
 		public long Length { get; set; }
 
+		/// <summary>
+		/// Link to the TradingPostListing entity which contains a file on the ProductImage attribute
+		/// </summary>
+		public TradingPostListingEntity? TradingPostListingProductImage { get; set; }
+
+		/// <summary>
+		/// Link to the QualityDocument entity which contains a file on the File attribute
+		/// </summary>
+		public QualityDocumentEntity? QualityDocumentFile { get; set; }
+
+		/// <summary>
+		/// Link to the TechnicalDocument entity which contains a file on the File attribute
+		/// </summary>
+		public TechnicalDocumentEntity? TechnicalDocumentFile { get; set; }
+
+		/// <summary>
+		/// Link to the ImportantDocument entity which contains a file on the File attribute
+		/// </summary>
+		public ImportantDocumentEntity? ImportantDocumentFile { get; set; }
+
+		/// <summary>
+		/// Link to the NewsArticle entity which contains a file on the FeatureImage attribute
+		/// </summary>
+		public NewsArticleEntity? NewsArticleFeatureImage { get; set; }
+
+		/// <summary>
+		/// Link to the SustainabilityPost entity which contains a file on the Image attribute
+		/// </summary>
+		public SustainabilityPostEntity? SustainabilityPostImage { get; set; }
+
+		/// <summary>
+		/// Link to the SustainabilityPost entity which contains a file on the File attribute
+		/// </summary>
+		public SustainabilityPostEntity? SustainabilityPostFile { get; set; }
+
+		/// <summary>
+		/// Link to the AgriSupplyDocument entity which contains a file on the File attribute
+		/// </summary>
+		public AgriSupplyDocumentEntity? AgriSupplyDocumentFile { get; set; }
+
 		public async Task BeforeSave(EntityState operation, LactalisDBContext dbContext, IServiceProvider serviceProvider, CancellationToken cancellationToken = default)
 		{
 			return;

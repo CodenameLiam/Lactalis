@@ -29,12 +29,13 @@ Just like colours this is where you set the style of your target project and ass
 
 // % protected region % [Change font family here] off begin
 /* Font family */
-$heading-font-family: "Poppins", sans-serif;
-$body-font-family: "Poppins", sans-serif;
+$heading-font-family:  'Poppins',sans-serif ;
+$body-font-family: 'Lato', sans-serif;
 $source-font-family: monospace;
 
-$base-font-size: 16px;
+$base-font-size: convert-rem(16px);
 $base-font-weight: 400;
+
 
 /* Weights */
 $text-light: 300;
@@ -53,15 +54,8 @@ $text-sm: calc(1rem / #{$text-scale-ratio});
 $text-md: calc(1rem * #{$text-scale-ratio});
 $text-lg: calc(1rem * (#{$text-scale-ratio} * #{$text-scale-ratio}));
 $text-xl: calc(1rem * (#{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}));
-$text-xxl: calc(
-	1rem * (#{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio})
-);
-$text-xxxl: calc(
-	1rem *
-		(
-			#{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}
-		)
-);
+$text-xxl: calc(1rem * (#{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}));
+$text-xxxl: calc(1rem * (#{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}));
 
 /* Line height */
 $heading-line-height: 1.2;
@@ -200,7 +194,7 @@ a {
 }
 
 /* Code */
-pre > code {
+pre>code {
 	padding: $space-xs $space-sm;
 }
 

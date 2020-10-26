@@ -57,11 +57,14 @@ namespace Lactalis.Models.RegistrationModels
 
 	public class FarmerEntityGraphQlRegistrationModel : FarmerEntityRegistrationModel
 	{
+		public ICollection<TradingPostListingEntity> TradingPostListingss { get; set; }
+
 		public ICollection<FarmersFarms> Farmss { get; set; }
 
 		public override FarmerEntity ToModel()
 		{
 			var model = base.ToModel();
+			model.TradingPostListingss = TradingPostListingss;
 			model.Farmss = Farmss;
 			return model;
 		}
