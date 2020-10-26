@@ -1,50 +1,37 @@
-import React, { useContext, useEffect, useState } from "react";
-import clsx from "clsx";
-import { useHistory, useLocation } from "react-router";
 import { Drawer, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import {
-	Home,
-	ChromeReaderMode,
-	Menu,
-	ExitToApp,
-	Eco,
-	Equalizer,
-	Settings,
-	Spa,
-	Store,
-} from "@material-ui/icons";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import {
+	ChromeReaderMode,
+	ExitToApp,
+	Home,
+	HomeWork,
+	LocalDrink,
+	Menu,
+	People,
+} from "@material-ui/icons";
+import React, { useContext, useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useLocation } from "react-router";
+// import { logout } from "../../../Store/Actions/loginActions";
+// import { openNav, showNav } from "./../../../Store/Actions/navigationAction";
+import { LinkInterface } from "./Navigation";
+import clsx from "clsx";
+import If from "./../If/If";
 import Logo from "./../../../Media/LactalisAustraliaLogo.png";
-import If from "../If/If";
-import { store } from "Models/Store";
-import { FloatingNavigation } from "../MaterialComponents/MaterialStyles";
+import { FloatingNavigation } from "../../../Styles/MaterialStyles";
 import { AppContext } from "NavigationProvider";
-// import { FloatingNavigation } from "../../Styles/MaterialStyles";
+import { store } from "Models/Store";
 
-export interface LinkInterface {
-	path: string;
-	label: React.ReactNode;
-	icon: React.ReactNode;
-}
-
-// Links for the navigation drawer
 function NavigationLinks(): LinkInterface[] {
 	return [
-		{ label: "Home", path: "/", icon: <Home /> },
-		{ label: "News", path: "/news", icon: <ChromeReaderMode /> },
-		{ label: "Agri-Supplies", path: "/agri-supplies", icon: <Spa /> },
-		{ label: "Sustainability", path: "/sustainability", icon: <Eco /> },
-		{ label: "Trading Post", path: "/trading-post", icon: <Store /> },
-		{ label: "Quality", path: "/quality", icon: <Equalizer /> },
-		{ label: "Technical", path: "/technical", icon: <Settings /> },
-
-		// Pages no longer in use
-		// { label: "Our Farmers", path: "/our-farmers", icon: <Group /> },
-		// { label: "What's On", path: "/whats-on", icon: <Event /> },
+		{ label: "Home", path: "/admin", icon: <Home /> },
+		{ label: "Users", path: "/admin/User", icon: <People /> },
+		{ label: "News Articles", path: "/admin/NewsArticleEntity", icon: <ChromeReaderMode /> },
+		{ label: "Farms", path: "/admin/FarmEntity", icon: <HomeWork /> },
+		{ label: "Milk Tests", path: "/admin/MilkTestEntity", icon: <LocalDrink /> },
 	];
 }
 
-// Styles for the navigation drawer
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
@@ -69,6 +56,10 @@ const useStyles = makeStyles((theme: Theme) =>
 				duration: theme.transitions.duration.enteringScreen,
 			}),
 			overflow: "hidden",
+			background: "#1c1e26",
+			"& ul": {
+				paddingLeft: "0rem",
+			},
 			position: "relative",
 			height: "calc(100vh - 4rem)",
 		},
@@ -86,42 +77,51 @@ const useStyles = makeStyles((theme: Theme) =>
 				width: theme.spacing(9) + 1,
 			},
 			overflow: "hidden",
+			background: "#1c1e26",
+			"& ul": {
+				paddingLeft: "0rem",
+			},
 			position: "relative",
 			height: "calc(100vh - 4rem)",
 		},
 		drawerNotVisible: {
 			width: "0rem",
 		},
-		list: { margin: "0.5rem", height: "100%", overflow: "hidden" },
+		list: { color: "#ffffff", margin: "0.5rem", height: "100%", overflow: "hidden" },
 		listBottom: { position: "absolute", bottom: "10px", width: "100%" },
 		menuButtom: {
 			borderRadius: "1rem",
 			marginBottom: "0.5rem",
 			"& span": { fontFamily: "'Poppins', sans-serif" },
+			"&:hover": { backgroundColor: "rgb(152, 152, 152)" },
 		},
 		menuButtonActive: {
-			background:
-				"linear-gradient(90deg, rgba(113,210,245,1) 0%, rgba(131,228,237,1) 80%, rgba(146,243,230,1) 100%)",
-			color: "white",
+			backgroundColor: "#ffffff !important",
+			color: "#1c1e26",
+			// "&:hover": { background: "#fffff" },
 		},
 		menuButtonInactive: {
 			transition: "background-color 0.3s",
-			"&:hover": { backgroundColor: "rgb(235, 235, 235)" },
+			"&:hover": { backgroundColor: "rgb(152, 152, 152)" },
 		},
 		menuButtonExpand: { height: "48px" },
-		menuIconActive: { color: "white" },
-		menuIconInactive: {},
+		menuIconActive: { color: "#1c1e26" },
+		menuIconInactive: { color: "#ffffff" },
 	})
 );
 
 // The navigation drawer
-export default function Navigation() {
+export default function AdminNavigation() {
 	const history: any = useHistory();
 	const location: any = useLocation();
 	const { appState, setAppState } = useContext(AppContext);
 
 	const navigationLinks = NavigationLinks();
 	const classes = useStyles();
+
+	// State to track visibility and size
+	// const navigation = useSelector((state: any) => state.navigation);
+	// const dispatch = useDispatch();
 
 	// Close the drawer if open, open the drawer if closed
 	const handleDrawer = () => {
@@ -130,7 +130,7 @@ export default function Navigation() {
 
 	// Checks if the navigation link matches the current route (will be rendered as active)
 	function checkActive(locationPath: string, linkPath: string) {
-		return locationPath.split("/")[1] === linkPath.split("/")[1];
+		return locationPath.split("/")[2] === linkPath.split("/")[2];
 	}
 
 	// Event listeners to re-size/hide navbar on window change
@@ -213,7 +213,7 @@ export default function Navigation() {
 							onClick={handleLogOut}
 							classes={{ root: clsx(classes.menuButtom, classes.menuButtonExpand) }}>
 							<ListItemIcon>
-								<ExitToApp />
+								<ExitToApp classes={{ root: classes.menuIconInactive }} />
 							</ListItemIcon>
 							<ListItemText primary="Logout" />
 						</ListItem>
@@ -222,7 +222,7 @@ export default function Navigation() {
 							onClick={handleDrawer}
 							classes={{ root: clsx(classes.menuButtom, classes.menuButtonExpand) }}>
 							<ListItemIcon>
-								<Menu />
+								<Menu classes={{ root: classes.menuIconInactive }} />
 							</ListItemIcon>
 						</ListItem>
 					</List>

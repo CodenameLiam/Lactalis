@@ -22,4 +22,5 @@ export { default as ResetPasswordPage } from "./ResetPasswordPage";
 
 // % protected region % [Add any extra page exports here] on begin
 export { default as Home } from "./Home";
+export { default as Login } from "./Login";
 // % protected region % [Add any extra page exports here] end

@@ -33,25 +33,26 @@ body {
 	height: 100vh;
 
 	> .admin {
-		overflow: hidden;
-		display: grid;
-		width: 100%;
-		grid-template-areas:
-			"navhorizontal navhorizontal"
-			"navvertical body";
-		grid-template-columns: minmax(0, auto) 1fr;
-		grid-template-rows: auto 1fr;
-		grid-area: contentwrapper;
+		height: 100vh;
+		// overflow: hidden;
+		// display: grid;
+		// width: 100%;
+		// grid-template-areas:
+		// 	"navhorizontal navhorizontal"
+		// 	"navvertical body";
+		// grid-template-columns: minmax(0, auto) 1fr;
+		// grid-template-rows: auto 1fr;
+		// grid-area: contentwrapper;
 
-		//Mobile responsive
-		@media (max-width: 1000px) {
-			grid-template-areas:
-				"navvertical body"
-				"navhorizontal navhorizontal";
-			grid-template-rows: 1fr auto;
-			grid-template-columns: minmax(0, auto) 1fr;
-			position: relative;
-		}
+		// //Mobile responsive
+		// @media (max-width: 1000px) {
+		// 	grid-template-areas:
+		// 		"navvertical body"
+		// 		"navhorizontal navhorizontal";
+		// 	grid-template-rows: 1fr auto;
+		// 	grid-template-columns: minmax(0, auto) 1fr;
+		// 	position: relative;
+		// }
 	}
 
 	// % protected region % [Change project layout here] on begin

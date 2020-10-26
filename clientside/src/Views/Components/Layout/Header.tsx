@@ -1,28 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AccountCircle, LockOpen, Security } from "@material-ui/icons";
 import If from "../If/If";
 import { useHistory, useLocation } from "react-router";
 import { store } from "Models/Store";
+import { AppContext } from "NavigationProvider";
 
 interface IHeader {
 	title: string;
 }
 
 export default function Header(props: IHeader) {
-	// const history = useHistory();
+	const history = useHistory();
 	// const location = useLocation();
-	// const navigationMargin = store.navigationOpen ? { marginLeft: "16rem" } : {};
-
-	// const authentication = useSelector((state: any) => state.authentication);
-	// const backend = useSelector((state: any) => state.navigation.backendRoute);
-	// const dispatch = useDispatch();
-
-	// const hasBackendAccess =
-	// 	authentication.user.groups.find((group) => group.hasBackendAccess) !== undefined;
+	const { appState, setAppState } = useContext(AppContext);
+	const navigationMargin = appState.navOpen ? { marginLeft: "16rem" } : {};
 
 	return (
 		<div className="header">
-			<div className="left" style={{}}>
+			<div className="left" style={navigationMargin}>
 				<div className="title">{props.title}</div>
 			</div>
 			<div className="right">
@@ -32,16 +27,16 @@ export default function Header(props: IHeader) {
 				<div className="account">
 					<AccountCircle />
 				</div>
-				{/* <If condition={hasBackendAccess}>
+				<If condition={store.userGroups[0].hasBackendAccess}>
 					<div
 						className="backend"
 						onClick={() => {
-							dispatch(returnFrontend(location.pathname));
-							history.push(backend);
+							// dispatch(returnFrontend(location.pathname));
+							history.push("/admin");
 						}}>
 						<LockOpen />
 					</div>
-				</If> */}
+				</If>
 			</div>
 		</div>
 	);

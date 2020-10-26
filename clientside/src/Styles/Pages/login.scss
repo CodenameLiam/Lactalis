@@ -1,0 +1,121 @@
+$colour-primary: #71d2f5;
+$warning-gradient: linear-gradient(
+	90deg,
+	rgba(255, 37, 89, 1) 0%,
+	rgba(255, 63, 51, 1) 61%,
+	rgba(255, 85, 49, 1) 100%
+);
+
+body {
+	overflow: hidden;
+
+	.login {
+		display: flex;
+		display: -webkit-flex;
+		justify-content: space-between;
+
+		.banner {
+			// position: absolute;
+			// right: 0;
+			height: 100vh;
+
+			@media screen and (max-width: 1800px) {
+				width: 70%;
+			}
+		}
+
+		.login-form {
+			margin: auto;
+			text-align: center;
+			padding: 2rem;
+			width: 50%;
+			@media screen and (max-width: 1000px) {
+				width: 100%;
+			}
+
+			img {
+				margin-left: auto;
+				margin-right: auto;
+				margin-bottom: 5rem;
+				width: 20rem;
+			}
+
+			hr {
+				border: 1px solid $colour-primary;
+				max-width: 8rem;
+				margin-bottom: 2rem;
+			}
+
+			form {
+				max-width: 30rem;
+				margin: auto;
+
+				.username-field {
+					margin-bottom: 2rem;
+				}
+
+				.password-field {
+					margin-bottom: 2rem;
+				}
+
+				input:-webkit-autofill {
+					-webkit-box-shadow: 200px 200px 100px white inset;
+					box-shadow: 200px 200px 100px white inset;
+				}
+			}
+
+			.login-text {
+				color: $colour-primary;
+				font-size: 28px;
+				font-weight: 500;
+			}
+
+			.failed-login {
+				overflow: hidden;
+				white-space: nowrap;
+
+				padding: 0.5rem;
+				border-radius: 100px;
+
+				background: rgb(255, 37, 89);
+				background: $warning-gradient;
+				color: #ffffff;
+			}
+
+			.submit {
+				display: flex;
+				display: -webkit-flex;
+				justify-content: space-between;
+				padding: 1rem;
+				margin-top: 1rem;
+
+				.forgot-password {
+					margin-top: auto;
+					margin-bottom: auto;
+
+					border-bottom: 1px solid transparent;
+
+					&:hover {
+						cursor: pointer;
+						border-bottom: 2px solid #000000;
+					}
+				}
+
+				@media screen and (max-width: 400px) {
+					flex-direction: column-reverse;
+					button {
+						margin: auto;
+					}
+
+					.forgot-password {
+						margin-top: 2rem;
+					}
+				}
+			}
+
+			.MuiFormHelperText-root {
+				color: #fc6b7a !important;
+			}
+		}
+	}
+}

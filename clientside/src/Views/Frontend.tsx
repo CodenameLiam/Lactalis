@@ -43,9 +43,9 @@ export default class Frontend extends React.Component<RouteComponentProps> {
 			<>
 				<div className="body-container">
 					{
-						// % protected region % [Modify Topbar] off begin
+						// % protected region % [Modify Topbar] on begin
 					}
-					<Topbar currentLocation="frontend" />
+					{/* <Topbar currentLocation="frontend" /> */}
 					{
 						// % protected region % [Modify Topbar] end
 					}
@@ -60,9 +60,9 @@ export default class Frontend extends React.Component<RouteComponentProps> {
 							<Switch>
 								{/* Public routes */}
 								{
-									// % protected region % [customize the universal public routes] off begin
+									// % protected region % [customize the universal public routes] on begin
 								}
-								<Route path="/login" component={Pages.LoginPage} />
+								<Route path="/login" component={Pages.Login} />
 								<Route path="/register" component={Pages.RegistrationPage} />
 								<Route path="/confirm-email" component={Pages.RegistrationConfirmPage} />
 								<Route path="/reset-password-request" component={Pages.ResetPasswordRequestPage} />

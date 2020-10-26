@@ -24,6 +24,7 @@
     "moment": "^2.24.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
+    "react-animated-css": "^1.2.1",
     "react-apollo": "^2.5.5",
     "react-contexify": "^4.1.1",
     "react-dom": "^16.8.6",
