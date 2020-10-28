@@ -148,6 +148,11 @@ export default class Admin extends React.Component<RouteComponentProps> {
 							{
 								// % protected region % [Add any extra page routes here] off begin
 							}
+							<Route path={`${path}/graphiql`}>
+								<React.Suspense fallback={<Spinner />}>
+									<GraphiQlLazy />
+								</React.Suspense>
+							</Route>
 							{
 								// % protected region % [Add any extra page routes here] end
 							}

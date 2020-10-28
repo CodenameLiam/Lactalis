@@ -14,12 +14,12 @@ export default function AdminHeader(props: IAdminHeader) {
 	const location = useLocation();
 
 	const { appState, setAppState } = useContext(AppContext);
-	const navigationMargin = appState.navOpen ? { marginLeft: "16rem" } : {};
+	const navigationMargin = appState.navOpen ? { marginLeft: "20rem" } : {};
 
 	return (
 		<div className="page-header">
 			<div className="left" style={navigationMargin}>
-				<div className="title">{props.title}</div>
+				{/* <div className="title">{props.title}</div> */}
 			</div>
 			<div className="right">
 				<div className="name">Admin</div>

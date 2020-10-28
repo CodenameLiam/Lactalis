@@ -1,5 +1,4 @@
 import React from "react";
-import { LoginButton, LoginTextField } from "Styles/MaterialStyles";
 import { IconButton, InputAdornment } from "@material-ui/core";
 import { AccountCircle, Lock, Visibility, VisibilityOff } from "@material-ui/icons";
 import { Animated } from "react-animated-css";
@@ -12,6 +11,7 @@ import { getErrorMessages } from "Util/GraphQLUtils";
 import alert from "Util/ToastifyUtils";
 import * as queryString from "querystring";
 import { useLocation } from "react-router";
+import { LoginButton, LoginTextField } from "Views/Components/MaterialComponents/MaterialStyles";
 
 export default function Login() {
 	return (

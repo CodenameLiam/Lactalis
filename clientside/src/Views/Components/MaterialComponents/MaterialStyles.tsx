@@ -1,5 +1,5 @@
 import { withStyles } from "@material-ui/styles";
-import { TextField, Button, FormControl } from "@material-ui/core";
+import { TextField, Button, FormControl, Paper } from "@material-ui/core";
 
 export const LoginTextField = withStyles({
 	root: {
@@ -119,6 +119,40 @@ export const QuickLinkButton = withStyles({
 		},
 	},
 })(Button);
+
+export const AutoCompletePaper = withStyles({
+	root: {
+		border: "2px solid rgba(0, 0, 0, 0.12)",
+		boxShadow: "none",
+		fontFamily: "'Poppins', sans-serif",
+	},
+})(Paper);
+
+export const InputTextField = withStyles({
+	root: {
+		"& .MuiOutlinedInput-root": {
+			background: "#ffffff",
+			borderRadius: 100,
+			boxShadow:
+				"-1px 4px 2px -2px rgba(113,210,245,0.3), -1px 2px 2px 0px rgba(113,210,245, 0.14), 0px 1px 5px 0px rgba(113,210,245,0.12)",
+
+			"& fieldset": {
+				transition: "box-shadow 0.3s",
+				borderColor: "transparent",
+			},
+			"&:hover fieldset": {
+				borderColor: "transparent",
+				boxShadow:
+					"-1px 3px 6px -1px rgba(113,210,245,0.3), -1px 4px 5px 0px rgba(113,210,245,0.14), 0px 1px 10px 0px rgba(113,210,245,0.12)",
+			},
+			"&.Mui-focused fieldset": {
+				borderColor: "transparent",
+				boxShadow:
+					"-1px 3px 6px -1px rgba(113,210,245,0.3), -1px 4px 5px 0px rgba(113,210,245,0.14), 0px 1px 10px 0px rgba(113,210,245,0.12)",
+			},
+		},
+	},
+})(TextField);
 
 // export const HomeSelect = withStyles({
 // 	root: { minWidth: '20rem' },

@@ -13,6 +13,7 @@ import {
 	MonetizationOnSharp,
 	Note,
 	People,
+	QueryBuilder,
 } from "@material-ui/icons";
 import React, { useContext, useEffect, useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
@@ -23,10 +24,10 @@ import { LinkInterface } from "./Navigation";
 import clsx from "clsx";
 import If from "./../If/If";
 import Logo from "./../../../Media/LactalisAustraliaLogo.png";
-import { FloatingNavigation } from "../../../Styles/MaterialStyles";
 import { AppContext } from "NavigationProvider";
 import { store } from "Models/Store";
 import Popup from "reactjs-popup";
+import { FloatingNavigation } from "../MaterialComponents/MaterialStyles";
 
 interface AdminLinkInterface {
 	path: string;
@@ -41,7 +42,7 @@ function NavigationLinks(): AdminLinkInterface[] {
 		{ label: "Users", path: "/admin/User", icon: <People /> },
 		{
 			label: "News",
-			path: "/admin/parent",
+			path: "/admin/News",
 			icon: <ChromeReaderMode />,
 			popup: [
 				{
@@ -61,7 +62,7 @@ function NavigationLinks(): AdminLinkInterface[] {
 		{ label: "Sustainability Posts", path: "/admin/SustainabilityPostEntity", icon: <Eco /> },
 		{
 			label: "Trading Post",
-			path: "/admin/parent",
+			path: "/admin/TradingPost",
 			icon: <MonetizationOn />,
 			popup: [
 				{
@@ -78,7 +79,7 @@ function NavigationLinks(): AdminLinkInterface[] {
 		},
 		{
 			label: "Important Documents",
-			path: "/admin/parent",
+			path: "/admin/ImportantDocument",
 			icon: <Note />,
 			popup: [
 				{
@@ -95,7 +96,7 @@ function NavigationLinks(): AdminLinkInterface[] {
 		},
 		{
 			label: "Quality Documents",
-			path: "/admin/parent",
+			path: "/admin/QualityDocument",
 			icon: <Note />,
 			popup: [
 				{
@@ -112,7 +113,7 @@ function NavigationLinks(): AdminLinkInterface[] {
 		},
 		{
 			label: "Agri-Supply Documents",
-			path: "/admin/parent",
+			path: "/admin/AgriSupply",
 			icon: <Note />,
 			popup: [
 				{
@@ -129,7 +130,7 @@ function NavigationLinks(): AdminLinkInterface[] {
 		},
 		{
 			label: "Technical Documents",
-			path: "/admin/parent",
+			path: "/admin/TechnicalDocument",
 			icon: <Note />,
 			popup: [
 				{
@@ -144,36 +145,9 @@ function NavigationLinks(): AdminLinkInterface[] {
 				},
 			],
 		},
+		{ label: "Query Bulder", path: "/admin/graphiql", icon: <QueryBuilder /> },
 	];
 }
-
-// const TradingPostPopover = () => {
-
-// 	const [open, setOpen] = useState(false);
-
-// 	const handleClose = () => {
-// 		props.setAnchorEl(null);
-// 	};
-
-// 	return (
-// 		<Popover
-// 			// id={id}
-// 			open={open}
-// 			anchorEl={props.anchorEl}
-// 			onClose={handleClose}
-// 			anchorOrigin={{
-// 				vertical: "bottom",
-// 				horizontal: "center",
-// 			}}
-// 			transformOrigin={{
-// 				vertical: "top",
-// 				horizontal: "center",
-// 			}}>
-// 			<div className="test">sasadasd</div>
-// 			{/* <Typography className={classes.typography}>The content of the Popover.</Typography> */}
-// 		</Popover>
-// 	);
-// };
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -279,7 +253,13 @@ export default function AdminNavigation() {
 
 	// Checks if the navigation link matches the current route (will be rendered as active)
 	function checkActive(locationPath: string, linkPath: string) {
-		return locationPath.split("/")[2] === linkPath.split("/")[2];
+		if (!!locationPath.split("/")[2]) {
+			return locationPath.split("/")[2].includes(linkPath.split("/")[2]);
+		} else if (locationPath.split("/")[2] == undefined && linkPath == "/admin") {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// Event listeners to re-size/hide navbar on window change
@@ -365,7 +345,7 @@ export default function AdminNavigation() {
 									</ListItem>
 								}>
 								{link.popup.map((childlink: any, childindex) => {
-									const active = checkActive(location.pathname, link.path);
+									const active = false;
 									return (
 										<ListItem
 											key={childindex}

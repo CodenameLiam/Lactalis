@@ -3,9 +3,9 @@ import { useRouteMatch, useHistory, useLocation, Redirect } from "react-router";
 import Navigation from "../Components/Navigation/Navigation";
 import ReactMarkdown from "react-markdown";
 import { IArticle, Article } from "./News";
-import { BackButton } from "../../Styles/MaterialStyles";
 import { ArrowBack } from "@material-ui/icons";
 import Page from "Views/Components/Layout/Page";
+import { BackButton } from "Views/Components/MaterialComponents/MaterialStyles";
 
 export default function NewsStory() {
 	const match: any = useRouteMatch();

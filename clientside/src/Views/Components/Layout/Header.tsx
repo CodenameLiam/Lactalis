@@ -6,19 +6,19 @@ import { store } from "Models/Store";
 import { AppContext } from "NavigationProvider";
 
 interface IHeader {
-	title: string;
+	title?: string;
 }
 
 export default function Header(props: IHeader) {
 	const history = useHistory();
 	// const location = useLocation();
 	const { appState, setAppState } = useContext(AppContext);
-	const navigationMargin = appState.navOpen ? { marginLeft: "16rem" } : {};
+	const navigationMargin = appState.navOpen ? { marginLeft: "20rem" } : {};
 
 	return (
 		<div className="page-header">
 			<div className="left" style={navigationMargin}>
-				<div className="title">{props.title}</div>
+				{/* <div className="title">{props.title}</div> */}
 			</div>
 			<div className="right">
 				<div className="name">

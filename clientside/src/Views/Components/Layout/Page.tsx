@@ -4,7 +4,7 @@ import Navigation from "./Navigation";
 
 interface IPage {
 	children?: any;
-	title: string;
+	title?: string;
 }
 
 export default function Page(props: IPage) {
