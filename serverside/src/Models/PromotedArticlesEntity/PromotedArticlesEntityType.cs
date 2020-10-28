@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Lactalis.Enums;
 using Lactalis.Services;
 using GraphQL.Types;
 using GraphQL.EntityFramework;
@@ -39,7 +38,7 @@ namespace Lactalis.Models
 			Field(o => o.Id, type: typeof(IdGraphType));
 			Field(o => o.Created, type: typeof(DateTimeGraphType));
 			Field(o => o.Modified, type: typeof(DateTimeGraphType));
-			Field(o => o.State, type: typeof(EnumerationGraphType<State>));
+			Field(o => o.Name, type: typeof(StringGraphType));
 			// % protected region % [Add any extra GraphQL fields here] off begin
 			// % protected region % [Add any extra GraphQL fields here] end
 
@@ -74,7 +73,7 @@ namespace Lactalis.Models
 			Field<IdGraphType>("Id");
 			Field<DateTimeGraphType>("Created");
 			Field<DateTimeGraphType>("Modified");
-			Field<EnumerationGraphType<State>>("State");
+			Field<StringGraphType>("Name");
 
 			// Add entity references
 

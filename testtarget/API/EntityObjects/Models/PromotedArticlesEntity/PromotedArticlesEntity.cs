@@ -29,7 +29,7 @@ namespace APITests.EntityObjects.Models
 	public class PromotedArticlesEntity : BaseEntity
 	{
 		// 
-		public State State { get; set; }
+		public String Name { get; set; }
 
 		/// <summary>
 		/// Outgoing one to many reference
@@ -82,7 +82,7 @@ namespace APITests.EntityObjects.Models
 		{
 			Attributes.Add(new Attribute
 			{
-				Name = "State",
+				Name = "Name",
 				IsRequired = false
 			});
 		}
@@ -130,7 +130,7 @@ namespace APITests.EntityObjects.Models
 			var entityVar = new Dictionary<string, string>()
 			{
 				{"id" , Id.ToString()},
-				{"state" , State.ToString()},
+				{"name" , Name},
 			};
 
 
@@ -142,7 +142,7 @@ namespace APITests.EntityObjects.Models
 			var entityVar = new RestSharp.JsonObject
 			{
 				["id"] = Id,
-				["state"] = State.ToString(),
+				["name"] = Name.ToString(),
 			};
 
 
@@ -200,7 +200,6 @@ namespace APITests.EntityObjects.Models
 		// attributes don't actually have any validators to violate.
 		private void SetInvalidEntityAttributes()
 		{
-			State = StateEnum.GetRandomState();
 		}
 
 		/// <summary>
@@ -222,7 +221,6 @@ namespace APITests.EntityObjects.Models
 		{
 			var promotedArticlesEntity = new PromotedArticlesEntity
 			{
-				State = StateEnum.GetRandomState(),
 			};
 			return promotedArticlesEntity;
 		}
@@ -241,7 +239,7 @@ namespace APITests.EntityObjects.Models
 		private void SetValidEntityAttributes()
 		{
 			// % protected region % [Override generated entity attributes here] off begin
-			State = StateEnum.GetRandomState();
+			Name = DataUtils.RandString();
 			// % protected region % [Override generated entity attributes here] end
 		}
 
@@ -253,7 +251,7 @@ namespace APITests.EntityObjects.Models
 			var promotedArticlesEntity = new PromotedArticlesEntity
 			{
 
-				State = StateEnum.GetRandomState(),
+				Name = (!string.IsNullOrWhiteSpace(fixedStrValue) && fixedStrValue.Length > 0 && fixedStrValue.Length <= 255) ? fixedStrValue : DataUtils.RandString(),
 			};
 
 			// % protected region % [Customize valid entity before return here] off begin

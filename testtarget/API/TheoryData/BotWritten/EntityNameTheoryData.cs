@@ -32,16 +32,16 @@ namespace APITests.TheoryData.BotWritten
 			Add("milkTestEntitys");
 			Add("farmerEntitys");
 			Add("importantDocumentCategoryEntitys");
-			Add("qualityDocumentCategoryEntitys");
 			Add("technicalDocumentCategoryEntitys");
+			Add("qualityDocumentCategoryEntitys");
 			Add("qualityDocumentEntitys");
 			Add("technicalDocumentEntitys");
 			Add("importantDocumentEntitys");
 			Add("newsArticleEntitys");
-			Add("promotedArticlesEntitys");
 			Add("agriSupplyDocumentCategoryEntitys");
 			Add("sustainabilityPostEntitys");
 			Add("agriSupplyDocumentEntitys");
+			Add("promotedArticlesEntitys");
 			// % protected region % [Modify EntityNamePluralizedTheoryData entities here] end
 		}
 
@@ -59,16 +59,16 @@ namespace APITests.TheoryData.BotWritten
 			Add("milkTestEntity");
 			Add("farmerEntity");
 			Add("importantDocumentCategoryEntity");
-			Add("qualityDocumentCategoryEntity");
 			Add("technicalDocumentCategoryEntity");
+			Add("qualityDocumentCategoryEntity");
 			Add("qualityDocumentEntity");
 			Add("technicalDocumentEntity");
 			Add("importantDocumentEntity");
 			Add("newsArticleEntity");
-			Add("promotedArticlesEntity");
 			Add("agriSupplyDocumentCategoryEntity");
 			Add("sustainabilityPostEntity");
 			Add("agriSupplyDocumentEntity");
+			Add("promotedArticlesEntity");
 			// % protected region % [Modify EntityNameTheoryData entities here] end
 		}
 

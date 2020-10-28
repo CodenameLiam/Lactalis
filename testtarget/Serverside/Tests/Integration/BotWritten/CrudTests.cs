@@ -224,29 +224,6 @@ namespace ServersideTests.Tests.Integration.BotWritten
 		}
 		// % protected region % [Customise Important Document Category Entity crud tests here] end
 
-		// % protected region % [Customise Quality Document Category Entity crud tests here] off begin
-		[Fact]
-		public async void QualityDocumentCategoryEntityControllerGetTest()
-		{
-			// Arrange
-			using var controller = _serviceProvider.GetRequiredService<QualityDocumentCategoryEntityController>();
-			var entities = new EntityFactory<QualityDocumentCategoryEntity>(10)
-				.UseAttributes()
-				.UseReferences()
-				.UseOwner(Guid.NewGuid())
-				.Generate()
-				.ToList();
-			_database.AddRange(entities);
-			await _database.SaveChangesAsync();
-
-			// Act
-			var data = await controller.Get(null, default);
-
-			// Assert
-			data.Data.Select(d => d.Id).Should().Contain(entities.Select(d => d.Id));
-		}
-		// % protected region % [Customise Quality Document Category Entity crud tests here] end
-
 		// % protected region % [Customise Technical Document Category Entity crud tests here] off begin
 		[Fact]
 		public async void TechnicalDocumentCategoryEntityControllerGetTest()
@@ -269,6 +246,29 @@ namespace ServersideTests.Tests.Integration.BotWritten
 			data.Data.Select(d => d.Id).Should().Contain(entities.Select(d => d.Id));
 		}
 		// % protected region % [Customise Technical Document Category Entity crud tests here] end
+
+		// % protected region % [Customise Quality Document Category Entity crud tests here] off begin
+		[Fact]
+		public async void QualityDocumentCategoryEntityControllerGetTest()
+		{
+			// Arrange
+			using var controller = _serviceProvider.GetRequiredService<QualityDocumentCategoryEntityController>();
+			var entities = new EntityFactory<QualityDocumentCategoryEntity>(10)
+				.UseAttributes()
+				.UseReferences()
+				.UseOwner(Guid.NewGuid())
+				.Generate()
+				.ToList();
+			_database.AddRange(entities);
+			await _database.SaveChangesAsync();
+
+			// Act
+			var data = await controller.Get(null, default);
+
+			// Assert
+			data.Data.Select(d => d.Id).Should().Contain(entities.Select(d => d.Id));
+		}
+		// % protected region % [Customise Quality Document Category Entity crud tests here] end
 
 		// % protected region % [Customise Quality Document Entity crud tests here] off begin
 		[Fact]
@@ -362,29 +362,6 @@ namespace ServersideTests.Tests.Integration.BotWritten
 		}
 		// % protected region % [Customise News Article Entity crud tests here] end
 
-		// % protected region % [Customise Promoted Articles Entity crud tests here] off begin
-		[Fact]
-		public async void PromotedArticlesEntityControllerGetTest()
-		{
-			// Arrange
-			using var controller = _serviceProvider.GetRequiredService<PromotedArticlesEntityController>();
-			var entities = new EntityFactory<PromotedArticlesEntity>(10)
-				.UseAttributes()
-				.UseReferences()
-				.UseOwner(Guid.NewGuid())
-				.Generate()
-				.ToList();
-			_database.AddRange(entities);
-			await _database.SaveChangesAsync();
-
-			// Act
-			var data = await controller.Get(null, default);
-
-			// Assert
-			data.Data.Select(d => d.Id).Should().Contain(entities.Select(d => d.Id));
-		}
-		// % protected region % [Customise Promoted Articles Entity crud tests here] end
-
 		// % protected region % [Customise Agri Supply Document Category Entity crud tests here] off begin
 		[Fact]
 		public async void AgriSupplyDocumentCategoryEntityControllerGetTest()
@@ -453,6 +430,29 @@ namespace ServersideTests.Tests.Integration.BotWritten
 			data.Data.Select(d => d.Id).Should().Contain(entities.Select(d => d.Id));
 		}
 		// % protected region % [Customise Agri Supply Document Entity crud tests here] end
+
+		// % protected region % [Customise Promoted Articles Entity crud tests here] off begin
+		[Fact]
+		public async void PromotedArticlesEntityControllerGetTest()
+		{
+			// Arrange
+			using var controller = _serviceProvider.GetRequiredService<PromotedArticlesEntityController>();
+			var entities = new EntityFactory<PromotedArticlesEntity>(10)
+				.UseAttributes()
+				.UseReferences()
+				.UseOwner(Guid.NewGuid())
+				.Generate()
+				.ToList();
+			_database.AddRange(entities);
+			await _database.SaveChangesAsync();
+
+			// Act
+			var data = await controller.Get(null, default);
+
+			// Assert
+			data.Data.Select(d => d.Id).Should().Contain(entities.Select(d => d.Id));
+		}
+		// % protected region % [Customise Promoted Articles Entity crud tests here] end
 
 	// % protected region % [Add any additional tests here] off begin
 	// % protected region % [Add any additional tests here] end

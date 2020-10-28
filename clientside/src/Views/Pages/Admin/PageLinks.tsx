@@ -93,20 +93,20 @@ const getPageLinks = (): AdminLink[] => [
 		// % protected region % [Override navigation link for ImportantDocumentCategoryEntity here] end
 	},
 	{
-		// % protected region % [Override navigation link for QualityDocumentCategoryEntity here] off begin
-		path: '/admin/qualitydocumentcategoryentity',
-		label: getModelDisplayName(Models.QualityDocumentCategoryEntity),
-		entity: Models.QualityDocumentCategoryEntity,
-		isMember: false
-		// % protected region % [Override navigation link for QualityDocumentCategoryEntity here] end
-	},
-	{
 		// % protected region % [Override navigation link for TechnicalDocumentCategoryEntity here] off begin
 		path: '/admin/technicaldocumentcategoryentity',
 		label: getModelDisplayName(Models.TechnicalDocumentCategoryEntity),
 		entity: Models.TechnicalDocumentCategoryEntity,
 		isMember: false
 		// % protected region % [Override navigation link for TechnicalDocumentCategoryEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for QualityDocumentCategoryEntity here] off begin
+		path: '/admin/qualitydocumentcategoryentity',
+		label: getModelDisplayName(Models.QualityDocumentCategoryEntity),
+		entity: Models.QualityDocumentCategoryEntity,
+		isMember: false
+		// % protected region % [Override navigation link for QualityDocumentCategoryEntity here] end
 	},
 	{
 		// % protected region % [Override navigation link for QualityDocumentEntity here] off begin
@@ -141,14 +141,6 @@ const getPageLinks = (): AdminLink[] => [
 		// % protected region % [Override navigation link for NewsArticleEntity here] end
 	},
 	{
-		// % protected region % [Override navigation link for PromotedArticlesEntity here] off begin
-		path: '/admin/promotedarticlesentity',
-		label: getModelDisplayName(Models.PromotedArticlesEntity),
-		entity: Models.PromotedArticlesEntity,
-		isMember: false
-		// % protected region % [Override navigation link for PromotedArticlesEntity here] end
-	},
-	{
 		// % protected region % [Override navigation link for AgriSupplyDocumentCategoryEntity here] off begin
 		path: '/admin/agrisupplydocumentcategoryentity',
 		label: getModelDisplayName(Models.AgriSupplyDocumentCategoryEntity),
@@ -171,6 +163,14 @@ const getPageLinks = (): AdminLink[] => [
 		entity: Models.AgriSupplyDocumentEntity,
 		isMember: false
 		// % protected region % [Override navigation link for AgriSupplyDocumentEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for PromotedArticlesEntity here] off begin
+		path: '/admin/promotedarticlesentity',
+		label: getModelDisplayName(Models.PromotedArticlesEntity),
+		entity: Models.PromotedArticlesEntity,
+		isMember: false
+		// % protected region % [Override navigation link for PromotedArticlesEntity here] end
 	},
 	// % protected region % [Add any extra page links here] off begin
 	// % protected region % [Add any extra page links here] end

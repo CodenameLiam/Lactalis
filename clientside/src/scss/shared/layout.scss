@@ -1,3 +1,4 @@
+
 /*
  * @bot-written
  * 
@@ -16,39 +17,36 @@
  */
 
 // % protected region % [Modify the html and body scss here] off begin
-html,
-body {
+html, body {
 	overflow-y: hidden;
 }
 // % protected region % [Modify the html and body scss here] end
 
 .body-container {
-	// display: grid;
-	// grid-template-areas:
-	// 	"adminbar"
-	// 	"contentwrapper";
-	// grid-template-rows: auto 1fr;
+	display: grid;
+	grid-template-areas: "adminbar"
+		"contentwrapper";
+	grid-template-rows: auto 1fr;
 	height: 100vh;
 
-	> .admin {
-		height: 100vh;
-		// overflow: hidden;
-		// display: grid;
-		// width: 100%;
-		// grid-template-areas: "navhorizontal navhorizontal"
-		// 	"navvertical body";
-		// grid-template-columns: minmax(0, auto) 1fr;
-		// grid-template-rows: auto 1fr;
-		// grid-area: contentwrapper;
+	>.admin {
+		overflow: hidden;
+		display: grid;
+		width: 100%;
+		grid-template-areas: "navhorizontal navhorizontal"
+			"navvertical body";
+		grid-template-columns: minmax(0, auto) 1fr;
+		grid-template-rows: auto 1fr;
+		grid-area: contentwrapper;
 
-		// //Mobile responsive
-		// @media (max-width: 1000px) {
-		// 	grid-template-areas: "navvertical body"
-		// 		"navhorizontal navhorizontal";
-		// 	grid-template-rows: 1fr auto;
-		// 	grid-template-columns: minmax(0, auto) 1fr;
-		// 	position: relative;
-		// }
+		//Mobile responsive
+		@media (max-width: 1000px) {
+			grid-template-areas: "navvertical body"
+				"navhorizontal navhorizontal";
+			grid-template-rows: 1fr auto;
+			grid-template-columns: minmax(0, auto) 1fr;
+			position: relative;
+		}
 	}
 
 	// % protected region % [Change project layout here] on begin

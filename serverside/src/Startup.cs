@@ -431,10 +431,10 @@ namespace Lactalis
 			services.TryAddSingleton<FarmerEntityCreateInputType>();
 			services.TryAddSingleton<ImportantDocumentCategoryEntityType>();
 			services.TryAddSingleton<ImportantDocumentCategoryEntityInputType>();
-			services.TryAddSingleton<QualityDocumentCategoryEntityType>();
-			services.TryAddSingleton<QualityDocumentCategoryEntityInputType>();
 			services.TryAddSingleton<TechnicalDocumentCategoryEntityType>();
 			services.TryAddSingleton<TechnicalDocumentCategoryEntityInputType>();
+			services.TryAddSingleton<QualityDocumentCategoryEntityType>();
+			services.TryAddSingleton<QualityDocumentCategoryEntityInputType>();
 			services.TryAddSingleton<QualityDocumentEntityType>();
 			services.TryAddSingleton<QualityDocumentEntityInputType>();
 			services.TryAddSingleton<TechnicalDocumentEntityType>();
@@ -443,14 +443,14 @@ namespace Lactalis
 			services.TryAddSingleton<ImportantDocumentEntityInputType>();
 			services.TryAddSingleton<NewsArticleEntityType>();
 			services.TryAddSingleton<NewsArticleEntityInputType>();
-			services.TryAddSingleton<PromotedArticlesEntityType>();
-			services.TryAddSingleton<PromotedArticlesEntityInputType>();
 			services.TryAddSingleton<AgriSupplyDocumentCategoryEntityType>();
 			services.TryAddSingleton<AgriSupplyDocumentCategoryEntityInputType>();
 			services.TryAddSingleton<SustainabilityPostEntityType>();
 			services.TryAddSingleton<SustainabilityPostEntityInputType>();
 			services.TryAddSingleton<AgriSupplyDocumentEntityType>();
 			services.TryAddSingleton<AgriSupplyDocumentEntityInputType>();
+			services.TryAddSingleton<PromotedArticlesEntityType>();
+			services.TryAddSingleton<PromotedArticlesEntityInputType>();
 			services.TryAddSingleton<TradingPostListingsTradingPostCategoriesType>();
 			services.TryAddSingleton<TradingPostListingsTradingPostCategoriesInputType>();
 			services.TryAddSingleton<FarmersFarmsType>();
@@ -470,16 +470,16 @@ namespace Lactalis
 			GraphTypeTypeRegistry.Register<MilkTestEntity, MilkTestEntityType>();
 			GraphTypeTypeRegistry.Register<FarmerEntity, FarmerEntityType>();
 			GraphTypeTypeRegistry.Register<ImportantDocumentCategoryEntity, ImportantDocumentCategoryEntityType>();
-			GraphTypeTypeRegistry.Register<QualityDocumentCategoryEntity, QualityDocumentCategoryEntityType>();
 			GraphTypeTypeRegistry.Register<TechnicalDocumentCategoryEntity, TechnicalDocumentCategoryEntityType>();
+			GraphTypeTypeRegistry.Register<QualityDocumentCategoryEntity, QualityDocumentCategoryEntityType>();
 			GraphTypeTypeRegistry.Register<QualityDocumentEntity, QualityDocumentEntityType>();
 			GraphTypeTypeRegistry.Register<TechnicalDocumentEntity, TechnicalDocumentEntityType>();
 			GraphTypeTypeRegistry.Register<ImportantDocumentEntity, ImportantDocumentEntityType>();
 			GraphTypeTypeRegistry.Register<NewsArticleEntity, NewsArticleEntityType>();
-			GraphTypeTypeRegistry.Register<PromotedArticlesEntity, PromotedArticlesEntityType>();
 			GraphTypeTypeRegistry.Register<AgriSupplyDocumentCategoryEntity, AgriSupplyDocumentCategoryEntityType>();
 			GraphTypeTypeRegistry.Register<SustainabilityPostEntity, SustainabilityPostEntityType>();
 			GraphTypeTypeRegistry.Register<AgriSupplyDocumentEntity, AgriSupplyDocumentEntityType>();
+			GraphTypeTypeRegistry.Register<PromotedArticlesEntity, PromotedArticlesEntityType>();
 			GraphTypeTypeRegistry.Register<TradingPostListingsTradingPostCategories, TradingPostListingsTradingPostCategoriesType>();
 			GraphTypeTypeRegistry.Register<FarmersFarms, FarmersFarmsType>();
 			// % protected region % [Add custom GraphQL Types for custom models here] off begin

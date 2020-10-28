@@ -50,6 +50,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 
 		//Attribute Header Titles
 		private IWebElement HeadlineHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='Headline']"));
+		private IWebElement DescriptionHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='Description']"));
 		private IWebElement FeatureImageHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='Feature Image']"));
 		private IWebElement ContentHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='Content']"));
 		private IWebElement QldHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='QLD']"));
@@ -82,6 +83,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			// Attribute web elements
 			selectorDict.Add("HeadlineElement", (selector: "//div[contains(@class, 'headline')]//input", type: SelectorType.XPath));
+			selectorDict.Add("DescriptionElement", (selector: "//div[contains(@class, 'description')]//input", type: SelectorType.XPath));
 			selectorDict.Add("FeatureImageElement", (selector: "//div[contains(@class, 'featureImage')]//input", type: SelectorType.XPath));
 			selectorDict.Add("ContentElement", (selector: "//div[contains(@class, 'content')]//input", type: SelectorType.XPath));
 			selectorDict.Add("QldElement", (selector: "//div[contains(@class, 'qld')]//input", type: SelectorType.XPath));
@@ -106,6 +108,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 
 		//Attribute web Elements
 		private IWebElement HeadlineElement => FindElementExt("HeadlineElement");
+		private IWebElement DescriptionElement => FindElementExt("DescriptionElement");
 		private IWebElement FeatureImageElement => FindElementExt("FeatureImageElement");
 		private IWebElement ContentElement => FindElementExt("ContentElement");
 		private IWebElement QldElement => FindElementExt("QldElement");
@@ -122,6 +125,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 			return attribute switch
 			{
 				"Headline" => HeadlineHeaderTitle,
+				"Description" => DescriptionHeaderTitle,
 				"Feature Image" => FeatureImageHeaderTitle,
 				"Content" => ContentHeaderTitle,
 				"QLD" => QldHeaderTitle,
@@ -142,6 +146,8 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 			{
 				case "Headline":
 					return HeadlineElement;
+				case "Description":
+					return DescriptionElement;
 				case "Feature Image":
 					return FeatureImageElement;
 				case "Content":
@@ -171,6 +177,9 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 			{
 				case "Headline":
 					SetHeadline(value);
+					break;
+				case "Description":
+					SetDescription(value);
 					break;
 				case "Feature Image":
 					SetFeatureImage(value);
@@ -209,6 +218,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 			return attribute switch
 			{
 				"Headline" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.headline > div > p"),
+				"Description" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.description > div > p"),
 				"Feature Image" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.featureImage > div > p"),
 				"Content" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.content > div > p"),
 				"QLD" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.qld > div > p"),
@@ -237,6 +247,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			// % protected region % [Configure entity application here] off begin
 			SetHeadline(_newsArticleEntity.Headline);
+			SetDescription(_newsArticleEntity.Description);
 			SetFeatureImage(_newsArticleEntity.FeatureImageId.ToString());
 			SetContent(_newsArticleEntity.Content);
 			SetQld(_newsArticleEntity.Qld);
@@ -303,6 +314,16 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 
 		private String GetHeadline =>
 			HeadlineElement.Text;
+
+		private void SetDescription (String value)
+		{
+			TypingUtils.InputEntityAttributeByClass(_driver, "description", value, _isFastText);
+			DescriptionElement.SendKeys(Keys.Tab);
+			DescriptionElement.SendKeys(Keys.Escape);
+		}
+
+		private String GetDescription =>
+			DescriptionElement.Text;
 
 		private void SetFeatureImage (String value)
 		{

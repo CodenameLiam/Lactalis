@@ -30,6 +30,7 @@ Details regarding a given NewsArticleEntity.
 | Name | Type | Example | Required | Rules | Description |
 | ---- | :----: | :--------: | :-----: | ----- | ----- |
 | Headline | STRING | Sally | <i class="fa fa-times"> | <ul></ul> |  | 
+| Description | STRING | Sally | <i class="fa fa-times"> | <ul></ul> |  | 
 | FeatureImage | STRING | 7639712d-f95a-487d-9749-d7508e827d1e | <i class="fa fa-times"> | <ul></ul> |  | 
 | Content | STRING | Sally | <i class="fa fa-times"> | <ul></ul> |  | 
 | Qld | BOOLEAN | true | <i class="fa fa-times"> | <ul></ul> |  | 

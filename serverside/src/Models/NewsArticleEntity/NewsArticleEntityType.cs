@@ -39,6 +39,7 @@ namespace Lactalis.Models
 			Field(o => o.Created, type: typeof(DateTimeGraphType));
 			Field(o => o.Modified, type: typeof(DateTimeGraphType));
 			Field(o => o.Headline, type: typeof(StringGraphType));
+			Field(o => o.Description, type: typeof(StringGraphType));
 			Field(o => o.FeatureImageId, type: typeof(IdGraphType));
 			Field(o => o.Content, type: typeof(StringGraphType));
 			Field(o => o.Qld, type: typeof(BooleanGraphType));
@@ -91,6 +92,7 @@ namespace Lactalis.Models
 			Field<DateTimeGraphType>("Created");
 			Field<DateTimeGraphType>("Modified");
 			Field<StringGraphType>("Headline");
+			Field<StringGraphType>("Description");
 			Field(o => o.FeatureImageId, type: typeof(IdGraphType));
 			Field<StringGraphType>("Content");
 			Field<BooleanGraphType>("Qld");

@@ -35,7 +35,7 @@ import { SERVER_URL } from 'Constants';
 // % protected region % [Add any further imports here] end
 
 export interface IPromotedArticlesEntityAttributes extends IModelAttributes {
-	state: Enums.state;
+	name: string;
 
 	newsArticless: Array<Models.NewsArticleEntity | Models.INewsArticleEntityAttributes>;
 	// % protected region % [Add any custom attributes to the interface here] off begin
@@ -69,24 +69,20 @@ export default class PromotedArticlesEntity extends Model implements IPromotedAr
 		// % protected region % [Add any custom update exclusions here] end
 	];
 
-	// % protected region % [Modify props to the crud options here for attribute 'State'] off begin
+	// % protected region % [Modify props to the crud options here for attribute 'Name'] off begin
 	@observable
 	@attribute()
 	@CRUD({
-		name: 'State',
-		displayType: 'enum-combobox',
+		name: 'Name',
+		displayType: 'textfield',
 		order: 10,
 		headerColumn: true,
 		searchable: true,
-		searchFunction: 'equal',
-		searchTransform: (attr: string) => {
-			return AttrUtils.standardiseEnum(attr, Enums.stateOptions);
-		},
-		enumResolveFunction: makeEnumFetchFunction(Enums.stateOptions),
-		displayFunction: (attribute: Enums.state) => Enums.stateOptions[attribute],
+		searchFunction: 'like',
+		searchTransform: AttrUtils.standardiseString,
 	})
-	public state: Enums.state;
-	// % protected region % [Modify props to the crud options here for attribute 'State'] end
+	public name: string;
+	// % protected region % [Modify props to the crud options here for attribute 'Name'] end
 
 	@observable
 	@attribute({isReference: true})
@@ -128,8 +124,8 @@ export default class PromotedArticlesEntity extends Model implements IPromotedAr
 		super.assignAttributes(attributes);
 
 		if (attributes) {
-			if (attributes.state) {
-				this.state = attributes.state;
+			if (attributes.name) {
+				this.name = attributes.name;
 			}
 			if (attributes.newsArticless) {
 				for (const model of attributes.newsArticless) {

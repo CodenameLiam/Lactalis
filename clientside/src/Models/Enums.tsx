@@ -37,9 +37,9 @@ export type state =
 	'QLD' |
 		'NSW' |
 		'VIC' |
-		'TAS' |
 		'WA' |
 		'SA' |
+		'TAS' |
 		'NT';
 	// % protected region % [Override state keys here] end
 
@@ -48,9 +48,9 @@ export const stateOptions: { [key in state]: string } = {
 	QLD: 'QLD',
 	NSW: 'NSW',
 	VIC: 'VIC',
-	TAS: 'TAS',
 	WA: 'WA',
 	SA: 'SA',
+	TAS: 'TAS',
 	NT: 'NT',
 	// % protected region % [Override state display fields here] end
 };

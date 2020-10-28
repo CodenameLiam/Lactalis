@@ -33,6 +33,8 @@ namespace APITests.EntityObjects.Models
 		// 
 		public String Headline { get; set; }
 		// 
+		public String Description { get; set; }
+		// 
 		public Guid? FeatureImageId { get; set; }
 		public FileData FeatureImage { get; set; }
 		// 
@@ -103,6 +105,11 @@ namespace APITests.EntityObjects.Models
 			Attributes.Add(new Attribute
 			{
 				Name = "Headline",
+				IsRequired = false
+			});
+			Attributes.Add(new Attribute
+			{
+				Name = "Description",
 				IsRequired = false
 			});
 			Attributes.Add(new Attribute
@@ -215,6 +222,7 @@ namespace APITests.EntityObjects.Models
 			{
 				{"id" , Id.ToString()},
 				{"headline" , Headline},
+				{"description" , Description},
 				{"featureImageId" , FeatureImageId.ToString()},
 				{"content" , Content},
 				{"qld" , Qld.ToString()},
@@ -240,6 +248,7 @@ namespace APITests.EntityObjects.Models
 			{
 				["id"] = Id,
 				["headline"] = Headline.ToString(),
+				["description"] = Description.ToString(),
 				["featureImageId"] = FeatureImageId.ToString(),
 				["content"] = Content.ToString(),
 				["qld"] = Qld.ToString(),
@@ -360,6 +369,7 @@ namespace APITests.EntityObjects.Models
 		{
 			// % protected region % [Override generated entity attributes here] off begin
 			Headline = DataUtils.RandString();
+			Description = DataUtils.RandString();
 				FeatureImage = new FileData
 				{
 					Id = Guid.NewGuid(),
@@ -387,6 +397,8 @@ namespace APITests.EntityObjects.Models
 			{
 
 				Headline = (!string.IsNullOrWhiteSpace(fixedStrValue) && fixedStrValue.Length > 0 && fixedStrValue.Length <= 255) ? fixedStrValue : DataUtils.RandString(),
+
+				Description = (!string.IsNullOrWhiteSpace(fixedStrValue) && fixedStrValue.Length > 0 && fixedStrValue.Length <= 255) ? fixedStrValue : DataUtils.RandString(),
 
 				FeatureImage = new FileData
 				{

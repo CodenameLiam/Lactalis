@@ -42,10 +42,10 @@ namespace SeleniumTests.Utils
 					return new FarmerEntityDetailSection(contextConfiguration);
 				case "ImportantDocumentCategoryEntity":
 					return new ImportantDocumentCategoryEntityDetailSection(contextConfiguration);
-				case "QualityDocumentCategoryEntity":
-					return new QualityDocumentCategoryEntityDetailSection(contextConfiguration);
 				case "TechnicalDocumentCategoryEntity":
 					return new TechnicalDocumentCategoryEntityDetailSection(contextConfiguration);
+				case "QualityDocumentCategoryEntity":
+					return new QualityDocumentCategoryEntityDetailSection(contextConfiguration);
 				case "QualityDocumentEntity":
 					return new QualityDocumentEntityDetailSection(contextConfiguration);
 				case "TechnicalDocumentEntity":
@@ -54,14 +54,14 @@ namespace SeleniumTests.Utils
 					return new ImportantDocumentEntityDetailSection(contextConfiguration);
 				case "NewsArticleEntity":
 					return new NewsArticleEntityDetailSection(contextConfiguration);
-				case "PromotedArticlesEntity":
-					return new PromotedArticlesEntityDetailSection(contextConfiguration);
 				case "AgriSupplyDocumentCategoryEntity":
 					return new AgriSupplyDocumentCategoryEntityDetailSection(contextConfiguration);
 				case "SustainabilityPostEntity":
 					return new SustainabilityPostEntityDetailSection(contextConfiguration);
 				case "AgriSupplyDocumentEntity":
 					return new AgriSupplyDocumentEntityDetailSection(contextConfiguration);
+				case "PromotedArticlesEntity":
+					return new PromotedArticlesEntityDetailSection(contextConfiguration);
 				default:
 					throw new Exception($"Cannot find detail section for type {entityName}");
 			}

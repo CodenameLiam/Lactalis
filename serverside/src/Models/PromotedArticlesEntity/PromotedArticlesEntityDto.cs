@@ -17,9 +17,6 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Lactalis.Enums;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 // % protected region % [Add any extra imports here] off begin
 // % protected region % [Add any extra imports here] end
 
@@ -27,9 +24,7 @@ namespace Lactalis.Models
 {
 	public class PromotedArticlesEntityDto : ModelDto<PromotedArticlesEntity>
 	{
-		[JsonProperty("state")]
-		[JsonConverter(typeof(StringEnumConverter))]
-		public State State { get; set; }
+		public String Name { get; set; }
 
 		// % protected region % [Add any extra attributes here] off begin
 		// % protected region % [Add any extra attributes here] end
@@ -57,7 +52,7 @@ namespace Lactalis.Models
 				Id = Id,
 				Created = Created,
 				Modified = Modified,
-				State = State,
+				Name = Name,
 				// % protected region % [Add any extra model properties here] off begin
 				// % protected region % [Add any extra model properties here] end
 			};
@@ -68,7 +63,7 @@ namespace Lactalis.Models
 			Id = model.Id;
 			Created = model.Created;
 			Modified = model.Modified;
-			State = model.State;
+			Name = model.Name;
 
 			// % protected region % [Add any extra loading data logic here] off begin
 			// % protected region % [Add any extra loading data logic here] end

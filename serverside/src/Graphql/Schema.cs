@@ -66,16 +66,16 @@ namespace Lactalis.Graphql
 			AddModelQueryField<MilkTestEntityType, MilkTestEntity>("MilkTestEntity");
 			AddModelQueryField<FarmerEntityType, FarmerEntity>("FarmerEntity");
 			AddModelQueryField<ImportantDocumentCategoryEntityType, ImportantDocumentCategoryEntity>("ImportantDocumentCategoryEntity");
-			AddModelQueryField<QualityDocumentCategoryEntityType, QualityDocumentCategoryEntity>("QualityDocumentCategoryEntity");
 			AddModelQueryField<TechnicalDocumentCategoryEntityType, TechnicalDocumentCategoryEntity>("TechnicalDocumentCategoryEntity");
+			AddModelQueryField<QualityDocumentCategoryEntityType, QualityDocumentCategoryEntity>("QualityDocumentCategoryEntity");
 			AddModelQueryField<QualityDocumentEntityType, QualityDocumentEntity>("QualityDocumentEntity");
 			AddModelQueryField<TechnicalDocumentEntityType, TechnicalDocumentEntity>("TechnicalDocumentEntity");
 			AddModelQueryField<ImportantDocumentEntityType, ImportantDocumentEntity>("ImportantDocumentEntity");
 			AddModelQueryField<NewsArticleEntityType, NewsArticleEntity>("NewsArticleEntity");
-			AddModelQueryField<PromotedArticlesEntityType, PromotedArticlesEntity>("PromotedArticlesEntity");
 			AddModelQueryField<AgriSupplyDocumentCategoryEntityType, AgriSupplyDocumentCategoryEntity>("AgriSupplyDocumentCategoryEntity");
 			AddModelQueryField<SustainabilityPostEntityType, SustainabilityPostEntity>("SustainabilityPostEntity");
 			AddModelQueryField<AgriSupplyDocumentEntityType, AgriSupplyDocumentEntity>("AgriSupplyDocumentEntity");
+			AddModelQueryField<PromotedArticlesEntityType, PromotedArticlesEntity>("PromotedArticlesEntity");
 
 			// Add query types for each many to many reference
 			AddModelQueryField<TradingPostListingsTradingPostCategoriesType, TradingPostListingsTradingPostCategories>("TradingPostListingsTradingPostCategories");
@@ -199,16 +199,16 @@ namespace Lactalis.Graphql
 				"FarmerEntity",
 				CreateMutation.CreateUserCreateMutation<FarmerEntity, FarmerEntityRegistrationModel, FarmerEntityGraphQlRegistrationModel>("FarmerEntity"));
 			AddMutationField<ImportantDocumentCategoryEntityInputType, ImportantDocumentCategoryEntityInputType, ImportantDocumentCategoryEntityType, ImportantDocumentCategoryEntity>("ImportantDocumentCategoryEntity");
-			AddMutationField<QualityDocumentCategoryEntityInputType, QualityDocumentCategoryEntityInputType, QualityDocumentCategoryEntityType, QualityDocumentCategoryEntity>("QualityDocumentCategoryEntity");
 			AddMutationField<TechnicalDocumentCategoryEntityInputType, TechnicalDocumentCategoryEntityInputType, TechnicalDocumentCategoryEntityType, TechnicalDocumentCategoryEntity>("TechnicalDocumentCategoryEntity");
+			AddMutationField<QualityDocumentCategoryEntityInputType, QualityDocumentCategoryEntityInputType, QualityDocumentCategoryEntityType, QualityDocumentCategoryEntity>("QualityDocumentCategoryEntity");
 			AddMutationField<QualityDocumentEntityInputType, QualityDocumentEntityInputType, QualityDocumentEntityType, QualityDocumentEntity>("QualityDocumentEntity");
 			AddMutationField<TechnicalDocumentEntityInputType, TechnicalDocumentEntityInputType, TechnicalDocumentEntityType, TechnicalDocumentEntity>("TechnicalDocumentEntity");
 			AddMutationField<ImportantDocumentEntityInputType, ImportantDocumentEntityInputType, ImportantDocumentEntityType, ImportantDocumentEntity>("ImportantDocumentEntity");
 			AddMutationField<NewsArticleEntityInputType, NewsArticleEntityInputType, NewsArticleEntityType, NewsArticleEntity>("NewsArticleEntity");
-			AddMutationField<PromotedArticlesEntityInputType, PromotedArticlesEntityInputType, PromotedArticlesEntityType, PromotedArticlesEntity>("PromotedArticlesEntity");
 			AddMutationField<AgriSupplyDocumentCategoryEntityInputType, AgriSupplyDocumentCategoryEntityInputType, AgriSupplyDocumentCategoryEntityType, AgriSupplyDocumentCategoryEntity>("AgriSupplyDocumentCategoryEntity");
 			AddMutationField<SustainabilityPostEntityInputType, SustainabilityPostEntityInputType, SustainabilityPostEntityType, SustainabilityPostEntity>("SustainabilityPostEntity");
 			AddMutationField<AgriSupplyDocumentEntityInputType, AgriSupplyDocumentEntityInputType, AgriSupplyDocumentEntityType, AgriSupplyDocumentEntity>("AgriSupplyDocumentEntity");
+			AddMutationField<PromotedArticlesEntityInputType, PromotedArticlesEntityInputType, PromotedArticlesEntityType, PromotedArticlesEntity>("PromotedArticlesEntity");
 
 			// Add input types for each many to many reference
 			AddMutationField<TradingPostListingsTradingPostCategoriesInputType, TradingPostListingsTradingPostCategoriesInputType, TradingPostListingsTradingPostCategoriesType, TradingPostListingsTradingPostCategories>("TradingPostListingsTradingPostCategories");

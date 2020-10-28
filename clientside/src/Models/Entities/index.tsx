@@ -22,16 +22,16 @@ import { IFarmEntityAttributes as IFarmEntityAttributesImport } from './FarmEnti
 import { IMilkTestEntityAttributes as IMilkTestEntityAttributesImport } from './MilkTestEntity';
 import { IFarmerEntityAttributes as IFarmerEntityAttributesImport } from './FarmerEntity';
 import { IImportantDocumentCategoryEntityAttributes as IImportantDocumentCategoryEntityAttributesImport } from './ImportantDocumentCategoryEntity';
-import { IQualityDocumentCategoryEntityAttributes as IQualityDocumentCategoryEntityAttributesImport } from './QualityDocumentCategoryEntity';
 import { ITechnicalDocumentCategoryEntityAttributes as ITechnicalDocumentCategoryEntityAttributesImport } from './TechnicalDocumentCategoryEntity';
+import { IQualityDocumentCategoryEntityAttributes as IQualityDocumentCategoryEntityAttributesImport } from './QualityDocumentCategoryEntity';
 import { IQualityDocumentEntityAttributes as IQualityDocumentEntityAttributesImport } from './QualityDocumentEntity';
 import { ITechnicalDocumentEntityAttributes as ITechnicalDocumentEntityAttributesImport } from './TechnicalDocumentEntity';
 import { IImportantDocumentEntityAttributes as IImportantDocumentEntityAttributesImport } from './ImportantDocumentEntity';
 import { INewsArticleEntityAttributes as INewsArticleEntityAttributesImport } from './NewsArticleEntity';
-import { IPromotedArticlesEntityAttributes as IPromotedArticlesEntityAttributesImport } from './PromotedArticlesEntity';
 import { IAgriSupplyDocumentCategoryEntityAttributes as IAgriSupplyDocumentCategoryEntityAttributesImport } from './AgriSupplyDocumentCategoryEntity';
 import { ISustainabilityPostEntityAttributes as ISustainabilityPostEntityAttributesImport } from './SustainabilityPostEntity';
 import { IAgriSupplyDocumentEntityAttributes as IAgriSupplyDocumentEntityAttributesImport } from './AgriSupplyDocumentEntity';
+import { IPromotedArticlesEntityAttributes as IPromotedArticlesEntityAttributesImport } from './PromotedArticlesEntity';
 import { ITradingPostListingsTradingPostCategoriesAttributes as ITradingPostListingsTradingPostCategoriesAttributesImport } from './TradingPostListingsTradingPostCategories';
 import { IFarmersFarmsAttributes as IFarmersFarmsAttributesImport } from './FarmersFarms';
 
@@ -58,11 +58,11 @@ export type IFarmerEntityAttributes = IFarmerEntityAttributesImport;
 export { default as ImportantDocumentCategoryEntity } from './ImportantDocumentCategoryEntity';
 export type IImportantDocumentCategoryEntityAttributes = IImportantDocumentCategoryEntityAttributesImport;
 
-export { default as QualityDocumentCategoryEntity } from './QualityDocumentCategoryEntity';
-export type IQualityDocumentCategoryEntityAttributes = IQualityDocumentCategoryEntityAttributesImport;
-
 export { default as TechnicalDocumentCategoryEntity } from './TechnicalDocumentCategoryEntity';
 export type ITechnicalDocumentCategoryEntityAttributes = ITechnicalDocumentCategoryEntityAttributesImport;
+
+export { default as QualityDocumentCategoryEntity } from './QualityDocumentCategoryEntity';
+export type IQualityDocumentCategoryEntityAttributes = IQualityDocumentCategoryEntityAttributesImport;
 
 export { default as QualityDocumentEntity } from './QualityDocumentEntity';
 export type IQualityDocumentEntityAttributes = IQualityDocumentEntityAttributesImport;
@@ -76,9 +76,6 @@ export type IImportantDocumentEntityAttributes = IImportantDocumentEntityAttribu
 export { default as NewsArticleEntity } from './NewsArticleEntity';
 export type INewsArticleEntityAttributes = INewsArticleEntityAttributesImport;
 
-export { default as PromotedArticlesEntity } from './PromotedArticlesEntity';
-export type IPromotedArticlesEntityAttributes = IPromotedArticlesEntityAttributesImport;
-
 export { default as AgriSupplyDocumentCategoryEntity } from './AgriSupplyDocumentCategoryEntity';
 export type IAgriSupplyDocumentCategoryEntityAttributes = IAgriSupplyDocumentCategoryEntityAttributesImport;
 
@@ -87,6 +84,9 @@ export type ISustainabilityPostEntityAttributes = ISustainabilityPostEntityAttri
 
 export { default as AgriSupplyDocumentEntity } from './AgriSupplyDocumentEntity';
 export type IAgriSupplyDocumentEntityAttributes = IAgriSupplyDocumentEntityAttributesImport;
+
+export { default as PromotedArticlesEntity } from './PromotedArticlesEntity';
+export type IPromotedArticlesEntityAttributes = IPromotedArticlesEntityAttributesImport;
 
 export { default as TradingPostListingsTradingPostCategories } from './TradingPostListingsTradingPostCategories';
 export type ITradingPostListingsTradingPostCategoriesAttributes = ITradingPostListingsTradingPostCategoriesAttributesImport;

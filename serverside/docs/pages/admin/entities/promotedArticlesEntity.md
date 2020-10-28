@@ -29,7 +29,7 @@ Details regarding a given PromotedArticlesEntity.
 ## Attributes
 | Name | Type | Example | Required | Rules | Description |
 | ---- | :----: | :--------: | :-----: | ----- | ----- |
-| State | STRING | Sally | <i class="fa fa-times"> | <ul></ul> |  | 
+| Name | STRING | Sally | <i class="fa fa-times"> | <ul></ul> |  | 
 
 
 ## Security

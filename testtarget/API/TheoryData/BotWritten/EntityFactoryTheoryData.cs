@@ -47,16 +47,16 @@ namespace APITests.TheoryData.BotWritten
 			Add(new EntityFactory("MilkTestEntity"), 1);
 			Add(new EntityFactory("FarmerEntity"), 1);
 			Add(new EntityFactory("ImportantDocumentCategoryEntity"), 1);
-			Add(new EntityFactory("QualityDocumentCategoryEntity"), 1);
 			Add(new EntityFactory("TechnicalDocumentCategoryEntity"), 1);
+			Add(new EntityFactory("QualityDocumentCategoryEntity"), 1);
 			Add(new EntityFactory("QualityDocumentEntity"), 1);
 			Add(new EntityFactory("TechnicalDocumentEntity"), 1);
 			Add(new EntityFactory("ImportantDocumentEntity"), 1);
 			Add(new EntityFactory("NewsArticleEntity"), 1);
-			Add(new EntityFactory("PromotedArticlesEntity"), 1);
 			Add(new EntityFactory("AgriSupplyDocumentCategoryEntity"), 1);
 			Add(new EntityFactory("SustainabilityPostEntity"), 1);
 			Add(new EntityFactory("AgriSupplyDocumentEntity"), 1);
+			Add(new EntityFactory("PromotedArticlesEntity"), 1);
 			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}
@@ -73,16 +73,16 @@ namespace APITests.TheoryData.BotWritten
 			Add(new EntityFactory("MilkTestEntity"), 1);
 			Add(new EntityFactory("FarmerEntity"), 1);
 			Add(new EntityFactory("ImportantDocumentCategoryEntity"), 1);
-			Add(new EntityFactory("QualityDocumentCategoryEntity"), 1);
 			Add(new EntityFactory("TechnicalDocumentCategoryEntity"), 1);
+			Add(new EntityFactory("QualityDocumentCategoryEntity"), 1);
 			Add(new EntityFactory("QualityDocumentEntity"), 1);
 			Add(new EntityFactory("TechnicalDocumentEntity"), 1);
 			Add(new EntityFactory("ImportantDocumentEntity"), 1);
 			Add(new EntityFactory("NewsArticleEntity"), 1);
-			Add(new EntityFactory("PromotedArticlesEntity"), 1);
 			Add(new EntityFactory("AgriSupplyDocumentCategoryEntity"), 1);
 			Add(new EntityFactory("SustainabilityPostEntity"), 1);
 			Add(new EntityFactory("AgriSupplyDocumentEntity"), 1);
+			Add(new EntityFactory("PromotedArticlesEntity"), 1);
 			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}
@@ -99,16 +99,16 @@ namespace APITests.TheoryData.BotWritten
 			Add(new EntityFactory("MilkTestEntity"));
 			Add(new EntityFactory("FarmerEntity"));
 			Add(new EntityFactory("ImportantDocumentCategoryEntity"));
-			Add(new EntityFactory("QualityDocumentCategoryEntity"));
 			Add(new EntityFactory("TechnicalDocumentCategoryEntity"));
+			Add(new EntityFactory("QualityDocumentCategoryEntity"));
 			Add(new EntityFactory("QualityDocumentEntity"));
 			Add(new EntityFactory("TechnicalDocumentEntity"));
 			Add(new EntityFactory("ImportantDocumentEntity"));
 			Add(new EntityFactory("NewsArticleEntity"));
-			Add(new EntityFactory("PromotedArticlesEntity"));
 			Add(new EntityFactory("AgriSupplyDocumentCategoryEntity"));
 			Add(new EntityFactory("SustainabilityPostEntity"));
 			Add(new EntityFactory("AgriSupplyDocumentEntity"));
+			Add(new EntityFactory("PromotedArticlesEntity"));
 			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}
@@ -124,16 +124,16 @@ namespace APITests.TheoryData.BotWritten
 			Add(new EntityFactory("FarmEntity"), numEntities);
 			Add(new EntityFactory("MilkTestEntity"), numEntities);
 			Add(new EntityFactory("ImportantDocumentCategoryEntity"), numEntities);
-			Add(new EntityFactory("QualityDocumentCategoryEntity"), numEntities);
 			Add(new EntityFactory("TechnicalDocumentCategoryEntity"), numEntities);
+			Add(new EntityFactory("QualityDocumentCategoryEntity"), numEntities);
 			Add(new EntityFactory("QualityDocumentEntity"), numEntities);
 			Add(new EntityFactory("TechnicalDocumentEntity"), numEntities);
 			Add(new EntityFactory("ImportantDocumentEntity"), numEntities);
 			Add(new EntityFactory("NewsArticleEntity"), numEntities);
-			Add(new EntityFactory("PromotedArticlesEntity"), numEntities);
 			Add(new EntityFactory("AgriSupplyDocumentCategoryEntity"), numEntities);
 			Add(new EntityFactory("SustainabilityPostEntity"), numEntities);
 			Add(new EntityFactory("AgriSupplyDocumentEntity"), numEntities);
+			Add(new EntityFactory("PromotedArticlesEntity"), numEntities);
 			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}

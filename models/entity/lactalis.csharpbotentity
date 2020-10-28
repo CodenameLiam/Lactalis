@@ -12,15 +12,15 @@
 		<Attributes xsi:type="csharpbotEntity:AttributeInteger"  Uuid="2a89fa54-8a60-4467-993d-c8aca85d7c31" Name="Price" AvailableBy="BOTH" Searchable="false" Unique="false"/>
 		<Attributes xsi:type="csharpbotEntity:AttributeEnum"  Uuid="0aead2fa-4fe2-4e15-abed-04419a9447cf" Name="Price Type" AvailableBy="BOTH" Searchable="false" Unique="false"/>
 	</Entities>
-	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="fb094aec-bdbf-46c4-896a-d07b261dce71" Name="Trading Post Category" AvailableBy="BOTH" OrderByDirection="ASCENDING">
-		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="bdaed864-1c96-4157-8cd4-926b8daac38b" Name="Name" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
-	</Entities>
 	<Enumerations xsi:type="csharpbotEntity:Enumeration"  Uuid="a5fcf6bc-90b3-42ab-8de2-2f107b002ea4" Name="Price Type">
 		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="116b3004-15fc-4ceb-9832-bb46c00536fd" Name="Amount"/>
 		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="c2bc8bd0-f923-4838-ba78-9e22e876742b" Name="Negotiable"/>
 		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="299a976d-97dd-46d5-b095-b3f50ea2704d" Name="Free"/>
 		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="5e74d04a-4a1e-4bd4-96f3-2ddbc5d11c94" Name="SwapTrade"/>
 	</Enumerations>
+	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="fb094aec-bdbf-46c4-896a-d07b261dce71" Name="Trading Post Category" AvailableBy="BOTH" OrderByDirection="ASCENDING">
+		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="bdaed864-1c96-4157-8cd4-926b8daac38b" Name="Name" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
+	</Entities>
 	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="405a81c8-c22b-4ad4-b45a-2d2457992d3d" Name="Admin" AvailableBy="BOTH" OrderByDirection="ASCENDING">
 		<Behaviours xsi:type="csharpbotEntity:BehaviourUser"  Uuid="865a410b-89f7-49b9-a647-835ada23a3a3"/>
 	</Entities>
@@ -42,24 +42,23 @@
 	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="4450dad3-52f8-413d-8ad5-a4affb83353c" Name="Important Document Category" AvailableBy="BOTH" OrderByDirection="ASCENDING">
 		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="f01a9244-f647-431f-9852-f3d1298b6837" Name="Name" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
 	</Entities>
-	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="80b8b846-68cd-4799-b1cf-3c791dd063f8" Name="Quality Document Category" AvailableBy="BOTH" OrderByDirection="ASCENDING">
-		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="dafbd37a-cc9f-44fc-abf1-a9cce4fa5642" Name="Name" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
-	</Entities>
 	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="8d932b00-0ede-48a2-bbd6-2fd448cf34b9" Name="Technical Document Category" AvailableBy="BOTH" OrderByDirection="ASCENDING">
 		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="5675e217-2d57-43f9-b28b-058a57e3c32c" Name="Name" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
 	</Entities>
-	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceOneToMany"  Uuid="5be6f1ba-5213-4b0c-ac00-69d5ce371281" Name="Agri Supply Documents" OppositeName="Agri Supply Document Category" TargetOptional="true" SourceOptional="true" Source="29229d17-9e5f-4e29-9355-69107181fc3c" Target="acd85650-8e32-42c6-9b67-e29133da3c2a"/>
+	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="80b8b846-68cd-4799-b1cf-3c791dd063f8" Name="Quality Document Category" AvailableBy="BOTH" OrderByDirection="ASCENDING">
+		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="dafbd37a-cc9f-44fc-abf1-a9cce4fa5642" Name="Name" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
+	</Entities>
 	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceOneToMany"  Uuid="4102b774-9beb-4230-b738-c5e05688543f" Name="News Articles" OppositeName="Promoted Articles" TargetOptional="true" SourceOptional="true" Source="a64cd86a-e7fa-4503-8e9a-db53433e1850" Target="2d538ad9-f271-4950-9c54-b0629d46a891"/>
 	<ReferenceEnums xsi:type="csharpbotEntity:ReferenceEnum"  Source="0aead2fa-4fe2-4e15-abed-04419a9447cf" Target="a5fcf6bc-90b3-42ab-8de2-2f107b002ea4"/>
 	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceManyToMany"  Uuid="c31b44d8-90cb-4755-ab89-926c02f7e48b" Name="Trading Post Categories" OppositeName="Trading Post Listings" TargetOptional="true" SourceOptional="true" Source="176a8938-e49d-48dd-af19-2daa37e2ca2a" Target="fb094aec-bdbf-46c4-896a-d07b261dce71"/>
 	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceOneToMany"  Uuid="666cb546-0de7-40f5-a446-d4b034d37f4c" Name="Trading Post Listings" OppositeName="Farmer" TargetOptional="true" SourceOptional="true" Source="04f34301-446d-4759-989d-6ae893b61695" Target="176a8938-e49d-48dd-af19-2daa37e2ca2a"/>
 	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceOneToMany"  Uuid="4f20594e-ea0d-4f34-a850-91d6dfcb8c6a" Name="Quality Documents" OppositeName="Quality Document Category" TargetOptional="true" SourceOptional="true" Source="80b8b846-68cd-4799-b1cf-3c791dd063f8" Target="0e8a7a62-121a-4b35-bb30-7ac27869592a"/>
-	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceOneToMany"  Uuid="4e712991-1d09-4c0d-9bff-c06fed88e8ad" Name="Technical Documents" OppositeName="Technical Document Category" TargetOptional="true" SourceOptional="true" Source="8d932b00-0ede-48a2-bbd6-2fd448cf34b9" Target="b0844c58-0f24-44ea-937c-dd30ed62700e"/>
-	<ReferenceEnums xsi:type="csharpbotEntity:ReferenceEnum"  Source="a0728e27-2b99-48e8-ba63-4da8516cdf8c" Target="04c4e84c-a315-4e32-a476-8e07abbfd72b"/>
+	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceOneToMany"  Uuid="5be6f1ba-5213-4b0c-ac00-69d5ce371281" Name="Agri Supply Documents" OppositeName="Agri Supply Document Category" TargetOptional="true" SourceOptional="true" Source="29229d17-9e5f-4e29-9355-69107181fc3c" Target="acd85650-8e32-42c6-9b67-e29133da3c2a"/>
 	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceOneToMany"  Uuid="b8a8eb9c-0942-41dd-ae15-f443fd5a2dc8" Name="Important Documents" OppositeName="Document Category" TargetOptional="true" SourceOptional="true" Source="4450dad3-52f8-413d-8ad5-a4affb83353c" Target="44f05e8c-683b-499a-9472-ef766c2d4124"/>
+	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceOneToMany"  Uuid="4e712991-1d09-4c0d-9bff-c06fed88e8ad" Name="Technical Documents" OppositeName="Technical Document Category" TargetOptional="true" SourceOptional="true" Source="8d932b00-0ede-48a2-bbd6-2fd448cf34b9" Target="b0844c58-0f24-44ea-937c-dd30ed62700e"/>
 	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceOneToMany"  Uuid="892382a0-2c5a-48f5-9a7c-12e565589fcf" Name="Pickups" OppositeName="Farm" TargetOptional="true" SourceOptional="true" Source="f3d17dc4-e76b-41ec-8030-f103c89c33d9" Target="c8693698-a633-4241-8e0c-f25cef3f2632"/>
 	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceManyToMany"  Uuid="0da048d8-48b5-409e-9679-a4956e69230c" Name="Farms" OppositeName="Farmers" TargetOptional="true" SourceOptional="true" Source="04f34301-446d-4759-989d-6ae893b61695" Target="f3d17dc4-e76b-41ec-8030-f103c89c33d9"/>
-	<ReferenceEnums xsi:type="csharpbotEntity:ReferenceEnum"  Source="a9a062df-ef33-46de-8a3b-b97af9f3627d" Target="04c4e84c-a315-4e32-a476-8e07abbfd72b"/>
+	<ReferenceEnums xsi:type="csharpbotEntity:ReferenceEnum"  Source="a0728e27-2b99-48e8-ba63-4da8516cdf8c" Target="6c4a8ddd-853b-4a73-b796-c18cfe657918"/>
 	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="0e8a7a62-121a-4b35-bb30-7ac27869592a" Name="Quality Document" AvailableBy="BOTH" OrderByDirection="ASCENDING">
 		<Attributes xsi:type="csharpbotEntity:AttributeFile"  Uuid="34ac1e13-32fb-47be-844d-b7c0c748e9b5" Name="File" AvailableBy="BOTH"/>
 		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="d67a943b-849a-41c7-8d7a-9cad58a01f60" Name="Name" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
@@ -81,6 +80,7 @@
 	</Entities>
 	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="2d538ad9-f271-4950-9c54-b0629d46a891" Name="News Article" AvailableBy="BOTH" OrderByDirection="ASCENDING">
 		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="af60415d-9084-4e54-988e-06d843ad869f" Name="Headline" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
+		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="e820ca97-bad3-4a92-a41e-983ad8c2740e" Name="Description" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
 		<Attributes xsi:type="csharpbotEntity:AttributeImage"  Uuid="1f7582a0-3708-416a-8578-1aa01037fecd" Name="Feature Image" AvailableBy="BOTH"/>
 		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="a94c0017-c1ea-43c3-9e4c-0021e4a48ec0" Name="Content" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
 		<Attributes xsi:type="csharpbotEntity:AttributeBoolean"  Uuid="0027d9de-1a2e-47dc-b5cc-8df902b4fe15" Name="QLD" AvailableBy="BOTH" Searchable="false" Unique="false"/>
@@ -91,9 +91,15 @@
 		<Attributes xsi:type="csharpbotEntity:AttributeBoolean"  Uuid="44b80db4-a118-4325-b580-b1cbd337307a" Name="SA" AvailableBy="BOTH" Searchable="false" Unique="false"/>
 		<Attributes xsi:type="csharpbotEntity:AttributeBoolean"  Uuid="72e1c122-28ab-4c77-89e2-dff979c74537" Name="NT" AvailableBy="BOTH" Searchable="false" Unique="false"/>
 	</Entities>
-	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="a64cd86a-e7fa-4503-8e9a-db53433e1850" Name="Promoted Articles" AvailableBy="BOTH" OrderByDirection="ASCENDING">
-		<Attributes xsi:type="csharpbotEntity:AttributeEnum"  Uuid="a9a062df-ef33-46de-8a3b-b97af9f3627d" Name="State" AvailableBy="BOTH" Searchable="false" Unique="false"/>
-	</Entities>
+	<Enumerations xsi:type="csharpbotEntity:Enumeration"  Uuid="6c4a8ddd-853b-4a73-b796-c18cfe657918" Name="State">
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="ae3fa38b-d717-4b63-a579-c88bc10e2f06" Name="QLD"/>
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="b467c60f-1107-4967-83ab-6f43e912a5f9" Name="NSW"/>
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="84811637-58d8-4539-92cf-79507a29257f" Name="VIC"/>
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="bf12f274-f170-4a92-97b3-1c42a6069bd3" Name="WA"/>
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="464bef7a-aed9-4ec9-a3eb-24aba9585aec" Name="SA"/>
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="1ae4fb6f-73ec-4048-9da0-c194044d644e" Name="TAS"/>
+		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="8d422232-f01f-4a5d-b498-88d78a221d23" Name="NT"/>
+	</Enumerations>
 	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="29229d17-9e5f-4e29-9355-69107181fc3c" Name="Agri Supply Document Category" AvailableBy="BOTH" OrderByDirection="ASCENDING">
 		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="d54dd32d-5f5d-419e-a45d-ae8d5b9a5bfa" Name="Name" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
 	</Entities>
@@ -103,17 +109,11 @@
 		<Attributes xsi:type="csharpbotEntity:AttributeFile"  Uuid="8357c695-e362-44e6-bbde-b24b96cd64b3" Name="File" AvailableBy="BOTH"/>
 		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="dd0f503b-ca80-4aed-9ccd-3426d31171cf" Name="Content" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
 	</Entities>
-	<Enumerations xsi:type="csharpbotEntity:Enumeration"  Uuid="04c4e84c-a315-4e32-a476-8e07abbfd72b" Name="State">
-		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="a47fa55e-2b5e-47ce-bb76-9be9eaa17a88" Name="QLD"/>
-		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="abf3d95a-dcc3-4ecd-a6e9-44385f26f9cb" Name="NSW"/>
-		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="7778af2a-e198-438a-aed8-d707ea3ae048" Name="VIC"/>
-		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="9b83ac7f-9612-4556-b1a6-21589ca18a6e" Name="TAS"/>
-		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="74f04a20-1366-403a-810d-83eb86c34249" Name="WA"/>
-		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="e4ef3139-6ffd-4810-85dd-c7a50a849b7e" Name="SA"/>
-		<EnumLiterals xsi:type="csharpbotEntity:EnumLiteral"  Uuid="e4fcc234-98b5-46b5-b4d5-e0dca69678d8" Name="NT"/>
-	</Enumerations>
 	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="acd85650-8e32-42c6-9b67-e29133da3c2a" Name="Agri Supply Document" AvailableBy="BOTH" OrderByDirection="ASCENDING">
 		<Attributes xsi:type="csharpbotEntity:AttributeFile"  Uuid="c0671552-5206-4133-a302-0415696d63dc" Name="File" AvailableBy="BOTH"/>
 		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="ccf23fb9-ca81-4d32-b7f5-849e001f7ecb" Name="Name" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
+	</Entities>
+	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="a64cd86a-e7fa-4503-8e9a-db53433e1850" Name="Promoted Articles" AvailableBy="BOTH" OrderByDirection="ASCENDING">
+		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="0caf8604-8e4b-42d8-a794-fb2e2fce9e2c" Name="Name" AvailableBy="BOTH" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
 	</Entities>
 </csharpbotEntity:EntityModel>

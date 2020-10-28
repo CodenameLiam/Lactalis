@@ -27,6 +27,7 @@ namespace APITests.EntityObjects.Models
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
 		public String Headline { get; set; }
+		public String Description { get; set; }
 		public Guid? FeatureImageId { get; set; }
 		public String Content { get; set; }
 		public Boolean? Qld { get; set; }
@@ -45,6 +46,7 @@ namespace APITests.EntityObjects.Models
 			Created = model.Created;
 			Modified = model.Modified;
 			Headline = model.Headline;
+			Description = model.Description;
 			FeatureImageId = model.FeatureImageId;
 			Content = model.Content;
 			Qld = model.Qld;
@@ -63,6 +65,7 @@ namespace APITests.EntityObjects.Models
 			Created = model.Created;
 			Modified = model.Modified;
 			Headline = model.Headline;
+			Description = model.Description;
 			FeatureImageId = model.FeatureImageId;
 			Content = model.Content;
 			Qld = model.Qld;
@@ -83,6 +86,7 @@ namespace APITests.EntityObjects.Models
 				Created = Created,
 				Modified = Modified,
 				Headline = Headline,
+				Description = Description,
 				FeatureImageId = FeatureImageId,
 				Content = Content,
 				Qld = Qld,
@@ -104,6 +108,7 @@ namespace APITests.EntityObjects.Models
 				Created = Created,
 				Modified = Modified,
 				Headline = Headline,
+				Description = Description,
 				FeatureImageId = FeatureImageId,
 				Content = Content,
 				Qld = Qld,

@@ -17,7 +17,6 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using EntityObject.Enums;
 using APITests.EntityObjects.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -49,7 +48,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		private readonly PromotedArticlesEntity _promotedArticlesEntity;
 
 		//Attribute Header Titles
-		private IWebElement StateHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='State']"));
+		private IWebElement NameHeaderTitle => _driver.FindElementExt(By.XPath("//th[text()='Name']"));
 
 		// Datepickers
 		public IWebElement CreateAtDatepickerField => _driver.FindElementExt(By.CssSelector("div.created > input[type='date']"));
@@ -72,7 +71,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		private void InitializeSelectors()
 		{
 			// Attribute web elements
-			selectorDict.Add("StateElement", (selector: "//div[contains(@class, 'state')]//input", type: SelectorType.XPath));
+			selectorDict.Add("NameElement", (selector: "//div[contains(@class, 'name')]//input", type: SelectorType.XPath));
 
 			// Reference web elements
 			selectorDict.Add("NewsarticlesElement", (selector: ".input-group__dropdown.newsArticless > .dropdown.dropdown__container", type: SelectorType.CSS));
@@ -85,14 +84,14 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		//outgoing Reference web elements
 
 		//Attribute web Elements
-		private IWebElement StateElement => FindElementExt("StateElement");
+		private IWebElement NameElement => FindElementExt("NameElement");
 
 		// Return an IWebElement that can be used to sort an attribute.
 		public IWebElement GetHeaderTile(string attribute)
 		{
 			return attribute switch
 			{
-				"State" => StateHeaderTitle,
+				"Name" => NameHeaderTitle,
 				_ => throw new Exception($"Cannot find header tile {attribute}"),
 			};
 		}
@@ -102,8 +101,8 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			switch (attribute)
 			{
-				case "State":
-					return StateElement;
+				case "Name":
+					return NameElement;
 				default:
 					throw new Exception($"Cannot find input element {attribute}");
 			}
@@ -113,8 +112,8 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			switch (attribute)
 			{
-				case "State":
-					SetState((State)Enum.Parse(typeof(State), value));
+				case "Name":
+					SetName(value);
 					break;
 				default:
 					throw new Exception($"Cannot find input element {attribute}");
@@ -125,7 +124,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		{
 			return attribute switch
 			{
-				"State" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.state > div > p"),
+				"Name" => WebElementUtils.GetElementAsBy(SelectorPathType.CSS, "div.name > div > p"),
 				_ => throw new Exception($"No such attribute {attribute}"),
 			};
 		}
@@ -144,7 +143,7 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		public void Apply()
 		{
 			// % protected region % [Configure entity application here] off begin
-			SetState(_promotedArticlesEntity.State);
+			SetName(_promotedArticlesEntity.Name);
 
 			if (_promotedArticlesEntity.NewsArticlesIds != null)
 			{
@@ -201,14 +200,16 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 			WaitUtils.elementState(_driverWait, elementBy,ElementState.EXISTS);
 		}
 
-		private void SetState (State value)
+		private void SetName (String value)
 		{
-			TypingUtils.InputEntityAttributeByClass(_driver, "state", value.ToString(), _isFastText);
+			TypingUtils.InputEntityAttributeByClass(_driver, "name", value, _isFastText);
+			NameElement.SendKeys(Keys.Tab);
+			NameElement.SendKeys(Keys.Escape);
 		}
 
-		private State GetState =>
-			(State)Enum.Parse(typeof(State), StateElement.Text);
-			
+		private String GetName =>
+			NameElement.Text;
+
 
 		// % protected region % [Add any additional getters and setters of web elements] off begin
 		// % protected region % [Add any additional getters and setters of web elements] end

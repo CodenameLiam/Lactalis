@@ -1,6 +1,6 @@
 /*
  * @bot-written
- *
+ * 
  * WARNING AND NOTICE
  * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
  * Full Software Licence as accepted by you before being granted access to this source code and other materials,
@@ -9,45 +9,34 @@
  * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
  * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
  * access, download, storage, and/or use of this source code.
- *
+ * 
  * BOT WARNING
  * This file is bot-written.
  * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
  */
-import * as React from "react";
-import _ from "lodash";
-import moment from "moment";
-import { action, observable, runInAction } from "mobx";
-import {
-	IAttributeGroup,
-	Model,
-	IModelAttributes,
-	attribute,
-	entity,
-	jsonReplacerFn,
-} from "Models/Model";
-import * as Validators from "Validators";
-import * as Models from "../Entities";
-import { CRUD } from "../CRUDOptions";
+import * as React from 'react';
+import _ from 'lodash';
+import moment from 'moment';
+import { action, observable, runInAction } from 'mobx';
+import { IAttributeGroup, Model, IModelAttributes, attribute, entity, jsonReplacerFn } from 'Models/Model';
+import * as Validators from 'Validators';
+import * as Models from '../Entities';
+import { CRUD } from '../CRUDOptions';
 import * as AttrUtils from "Util/AttributeUtils";
-import { IAcl } from "Models/Security/IAcl";
-import {
-	makeFetchManyToManyFunc,
-	makeFetchOneToManyFunc,
-	makeJoinEqualsFunc,
-	makeEnumFetchFunction,
-} from "Util/EntityUtils";
-import { AdminNewsArticleEntity } from "Models/Security/Acl/AdminNewsArticleEntity";
-import { FarmerNewsArticleEntity } from "Models/Security/Acl/FarmerNewsArticleEntity";
-import * as Enums from "../Enums";
-import { IOrderByCondition } from "Views/Components/ModelCollection/ModelQuery";
-import { EntityFormMode } from "Views/Components/Helpers/Common";
-import { SERVER_URL } from "Constants";
+import { IAcl } from 'Models/Security/IAcl';
+import { makeFetchManyToManyFunc, makeFetchOneToManyFunc, makeJoinEqualsFunc, makeEnumFetchFunction } from 'Util/EntityUtils';
+import { AdminNewsArticleEntity } from 'Models/Security/Acl/AdminNewsArticleEntity';
+import { FarmerNewsArticleEntity } from 'Models/Security/Acl/FarmerNewsArticleEntity';
+import * as Enums from '../Enums';
+import { IOrderByCondition } from 'Views/Components/ModelCollection/ModelQuery';
+import { EntityFormMode } from 'Views/Components/Helpers/Common';
+import { SERVER_URL } from 'Constants';
 // % protected region % [Add any further imports here] off begin
 // % protected region % [Add any further imports here] end
 
 export interface INewsArticleEntityAttributes extends IModelAttributes {
 	headline: string;
+	description: string;
 	featureImageId: string;
 	featureImage: Blob;
 	content: string;
@@ -66,7 +55,7 @@ export interface INewsArticleEntityAttributes extends IModelAttributes {
 }
 
 // % protected region % [Customise your entity metadata here] off begin
-@entity("NewsArticleEntity", "News Article")
+@entity('NewsArticleEntity', 'News Article')
 // % protected region % [Customise your entity metadata here] end
 export default class NewsArticleEntity extends Model implements INewsArticleEntityAttributes {
 	public static acls: IAcl[] = [
@@ -96,38 +85,48 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@observable
 	@attribute()
 	@CRUD({
-		name: "Headline",
-		displayType: "textfield",
+		name: 'Headline',
+		displayType: 'textfield',
 		order: 10,
 		headerColumn: true,
 		searchable: true,
-		searchFunction: "like",
+		searchFunction: 'like',
 		searchTransform: AttrUtils.standardiseString,
 	})
 	public headline: string;
 	// % protected region % [Modify props to the crud options here for attribute 'Headline'] end
 
-	// % protected region % [Modify props to the crud options here for attribute 'Feature Image'] off begin
+	// % protected region % [Modify props to the crud options here for attribute 'Description'] off begin
 	@observable
-	@attribute({ file: "featureImage" })
+	@attribute()
 	@CRUD({
-		name: "Feature Image",
-		displayType: "file",
+		name: 'Description',
+		displayType: 'textfield',
 		order: 20,
 		headerColumn: true,
 		searchable: true,
-		searchFunction: "equal",
+		searchFunction: 'like',
+		searchTransform: AttrUtils.standardiseString,
+	})
+	public description: string;
+	// % protected region % [Modify props to the crud options here for attribute 'Description'] end
+
+	// % protected region % [Modify props to the crud options here for attribute 'Feature Image'] off begin
+	@observable
+	@attribute({file: 'featureImage'})
+	@CRUD({
+		name: 'Feature Image',
+		displayType: 'file',
+		order: 30,
+		headerColumn: true,
+		searchable: true,
+		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseUuid,
 		inputProps: {
 			imageOnly: true,
 		},
-		fileAttribute: "featureImage",
-		displayFunction: (attr) =>
-			attr ? (
-				<img src={`${SERVER_URL}/api/files/${attr}`} style={{ maxWidth: "300px" }} />
-			) : (
-				"No File Attached"
-			),
+		fileAttribute: 'featureImage',
+		displayFunction: attr => attr ? <img src={`${SERVER_URL}/api/files/${attr}`} style={{maxWidth: '300px'}} /> : 'No File Attached',
 	})
 	public featureImageId: string;
 	@observable
@@ -153,14 +152,14 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@observable
 	@attribute()
 	@CRUD({
-		name: "QLD",
-		displayType: "checkbox",
-		order: 40,
+		name: 'QLD',
+		displayType: 'checkbox',
+		order: 50,
 		headerColumn: true,
 		searchable: true,
-		searchFunction: "equal",
+		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: (attr) => (attr ? "True" : "False"),
+		displayFunction: attr => attr ? 'True' : 'False',
 	})
 	public qld: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'QLD'] end
@@ -169,14 +168,13 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@observable
 	@attribute()
 	@CRUD({
-		name: "NSW",
-		displayType: "checkbox",
-		order: 50,
-		headerColumn: true,
+		name: 'NSW',
+		displayType: 'checkbox',
+		order: 60,
 		searchable: true,
-		searchFunction: "equal",
+		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: (attr) => (attr ? "True" : "False"),
+		displayFunction: attr => attr ? 'True' : 'False',
 	})
 	public nsw: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'NSW'] end
@@ -185,13 +183,13 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@observable
 	@attribute()
 	@CRUD({
-		name: "VIC",
-		displayType: "checkbox",
-		order: 60,
+		name: 'VIC',
+		displayType: 'checkbox',
+		order: 70,
 		searchable: true,
-		searchFunction: "equal",
+		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: (attr) => (attr ? "True" : "False"),
+		displayFunction: attr => attr ? 'True' : 'False',
 	})
 	public vic: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'VIC'] end
@@ -200,13 +198,13 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@observable
 	@attribute()
 	@CRUD({
-		name: "TAS",
-		displayType: "checkbox",
-		order: 70,
+		name: 'TAS',
+		displayType: 'checkbox',
+		order: 80,
 		searchable: true,
-		searchFunction: "equal",
+		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: (attr) => (attr ? "True" : "False"),
+		displayFunction: attr => attr ? 'True' : 'False',
 	})
 	public tas: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'TAS'] end
@@ -215,13 +213,13 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@observable
 	@attribute()
 	@CRUD({
-		name: "WA",
-		displayType: "checkbox",
-		order: 80,
+		name: 'WA',
+		displayType: 'checkbox',
+		order: 90,
 		searchable: true,
-		searchFunction: "equal",
+		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: (attr) => (attr ? "True" : "False"),
+		displayFunction: attr => attr ? 'True' : 'False',
 	})
 	public wa: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'WA'] end
@@ -230,13 +228,13 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@observable
 	@attribute()
 	@CRUD({
-		name: "SA",
-		displayType: "checkbox",
-		order: 90,
+		name: 'SA',
+		displayType: 'checkbox',
+		order: 100,
 		searchable: true,
-		searchFunction: "equal",
+		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: (attr) => (attr ? "True" : "False"),
+		displayFunction: attr => attr ? 'True' : 'False',
 	})
 	public sa: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'SA'] end
@@ -245,13 +243,13 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@observable
 	@attribute()
 	@CRUD({
-		name: "NT",
-		displayType: "checkbox",
-		order: 100,
+		name: 'NT',
+		displayType: 'checkbox',
+		order: 110,
 		searchable: true,
-		searchFunction: "equal",
+		searchFunction: 'equal',
 		searchTransform: AttrUtils.standardiseBoolean,
-		displayFunction: (attr) => (attr ? "True" : "False"),
+		displayFunction: attr => attr ? 'True' : 'False',
 	})
 	public nt: boolean;
 	// % protected region % [Modify props to the crud options here for attribute 'NT'] end
@@ -260,15 +258,15 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	@attribute()
 	@CRUD({
 		// % protected region % [Modify props to the crud options here for reference 'Promoted Articles'] off begin
-		name: "Promoted Articles",
-		displayType: "reference-combobox",
-		order: 110,
+		name: 'Promoted Articles',
+		displayType: 'reference-combobox',
+		order: 120,
 		referenceTypeFunc: () => Models.PromotedArticlesEntity,
 		// % protected region % [Modify props to the crud options here for reference 'Promoted Articles'] end
 	})
 	public promotedArticlesId?: string;
 	@observable
-	@attribute({ isReference: true })
+	@attribute({isReference: true})
 	public promotedArticles: Models.PromotedArticlesEntity;
 
 	// % protected region % [Add any custom attributes to the model here] off begin
@@ -297,6 +295,9 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 		if (attributes) {
 			if (attributes.headline) {
 				this.headline = attributes.headline;
+			}
+			if (attributes.description) {
+				this.description = attributes.description;
 			}
 			if (attributes.featureImage) {
 				this.featureImage = attributes.featureImage;
@@ -353,10 +354,8 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	// % protected region % [Customize Default Expands here] off begin
 	public defaultExpands = `
 		promotedArticles {
-			${Models.PromotedArticlesEntity.getAttributes().join("\n")}
-			${Models.PromotedArticlesEntity.getFiles()
-				.map((f) => f.name)
-				.join("\n")}
+			${Models.PromotedArticlesEntity.getAttributes().join('\n')}
+			${Models.PromotedArticlesEntity.getFiles().map(f => f.name).join('\n')}
 		}
 	`;
 	// % protected region % [Customize Default Expands here] end
@@ -366,17 +365,22 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 	 */
 	// % protected region % [Customize Save From Crud here] off begin
 	public async saveFromCrud(formMode: EntityFormMode) {
-		const relationPath = {};
-		return this.save(relationPath, {
-			options: [
-				{
-					key: "mergeReferences",
-					graphQlType: "[String]",
-					value: [],
-				},
-			],
-			contentType: "multipart/form-data",
-		});
+		const relationPath = {
+		};
+		return this.save(
+			relationPath,
+			{
+				options: [
+					{
+						key: 'mergeReferences',
+						graphQlType: '[String]',
+						value: [
+						]
+					},
+				],
+				contentType: 'multipart/form-data',
+			}
+		);
 	}
 	// % protected region % [Customize Save From Crud here] end
 
@@ -388,6 +392,7 @@ export default class NewsArticleEntity extends Model implements INewsArticleEnti
 		return this.id;
 		// % protected region % [Customise the display name for this entity] end
 	}
+
 
 	// % protected region % [Add any further custom model features here] off begin
 	// % protected region % [Add any further custom model features here] end

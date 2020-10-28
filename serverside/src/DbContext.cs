@@ -48,16 +48,16 @@ namespace Lactalis.Models {
 		public DbSet<MilkTestEntity> MilkTestEntity { get; set; }
 		public DbSet<FarmerEntity> FarmerEntity { get; set; }
 		public DbSet<ImportantDocumentCategoryEntity> ImportantDocumentCategoryEntity { get; set; }
-		public DbSet<QualityDocumentCategoryEntity> QualityDocumentCategoryEntity { get; set; }
 		public DbSet<TechnicalDocumentCategoryEntity> TechnicalDocumentCategoryEntity { get; set; }
+		public DbSet<QualityDocumentCategoryEntity> QualityDocumentCategoryEntity { get; set; }
 		public DbSet<QualityDocumentEntity> QualityDocumentEntity { get; set; }
 		public DbSet<TechnicalDocumentEntity> TechnicalDocumentEntity { get; set; }
 		public DbSet<ImportantDocumentEntity> ImportantDocumentEntity { get; set; }
 		public DbSet<NewsArticleEntity> NewsArticleEntity { get; set; }
-		public DbSet<PromotedArticlesEntity> PromotedArticlesEntity { get; set; }
 		public DbSet<AgriSupplyDocumentCategoryEntity> AgriSupplyDocumentCategoryEntity { get; set; }
 		public DbSet<SustainabilityPostEntity> SustainabilityPostEntity { get; set; }
 		public DbSet<AgriSupplyDocumentEntity> AgriSupplyDocumentEntity { get; set; }
+		public DbSet<PromotedArticlesEntity> PromotedArticlesEntity { get; set; }
 		public DbSet<TradingPostListingsTradingPostCategories> TradingPostListingsTradingPostCategories { get; set; }
 		public DbSet<FarmersFarms> FarmersFarms { get; set; }
 		public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
@@ -102,16 +102,16 @@ namespace Lactalis.Models {
 			modelBuilder.ApplyConfiguration(new MilkTestEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new FarmerEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new ImportantDocumentCategoryEntityConfiguration());
-			modelBuilder.ApplyConfiguration(new QualityDocumentCategoryEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new TechnicalDocumentCategoryEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new QualityDocumentCategoryEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new QualityDocumentEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new TechnicalDocumentEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new ImportantDocumentEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new NewsArticleEntityConfiguration());
-			modelBuilder.ApplyConfiguration(new PromotedArticlesEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new AgriSupplyDocumentCategoryEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new SustainabilityPostEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new AgriSupplyDocumentEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new PromotedArticlesEntityConfiguration());
 			modelBuilder.ApplyConfiguration(new TradingPostListingsTradingPostCategoriesConfiguration());
 			modelBuilder.ApplyConfiguration(new FarmersFarmsConfiguration());
 

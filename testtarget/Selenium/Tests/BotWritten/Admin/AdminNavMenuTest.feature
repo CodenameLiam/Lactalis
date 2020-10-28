@@ -62,13 +62,13 @@ Scenario: Verify the admin submenus
 	| Farm |
 	| Milk Test |
 	| Important Document Category |
-	| Quality Document Category |
 	| Technical Document Category |
+	| Quality Document Category |
 	| Quality Document |
 	| Technical Document |
 	| Important Document |
 	| News Article |
-	| Promoted Articles |
 	| Agri Supply Document Category |
 	| Sustainability Post |
 	| Agri Supply Document |
+	| Promoted Articles |

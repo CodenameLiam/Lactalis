@@ -23,8 +23,8 @@ Feature: Sort PromotedArticlesEntity
 	Scenario: Sort PromotedArticlesEntity
 	Given I login to the site as a user
 	And I navigate to the PromotedArticlesEntity backend page
-	When I sort PromotedArticlesEntity by State
-	Then I assert that State in PromotedArticlesEntity of type String is properly sorted in descending
-	When I sort PromotedArticlesEntity by State
-	Then I assert that State in PromotedArticlesEntity of type String is properly sorted in ascending
+	When I sort PromotedArticlesEntity by Name
+	Then I assert that Name in PromotedArticlesEntity of type String is properly sorted in descending
+	When I sort PromotedArticlesEntity by Name
+	Then I assert that Name in PromotedArticlesEntity of type String is properly sorted in ascending
 

@@ -27,6 +27,10 @@ Feature: Sort NewsArticleEntity
 	Then I assert that Headline in NewsArticleEntity of type String is properly sorted in descending
 	When I sort NewsArticleEntity by Headline
 	Then I assert that Headline in NewsArticleEntity of type String is properly sorted in ascending
+	When I sort NewsArticleEntity by Description
+	Then I assert that Description in NewsArticleEntity of type String is properly sorted in descending
+	When I sort NewsArticleEntity by Description
+	Then I assert that Description in NewsArticleEntity of type String is properly sorted in ascending
 	When I sort NewsArticleEntity by Feature Image
 	Then I assert that Feature Image in NewsArticleEntity of type String is properly sorted in descending
 	When I sort NewsArticleEntity by Feature Image

@@ -16,15 +16,18 @@
 ###
 
 @BotWritten @Filter
-Feature: PromotedArticlesEntity filtered by enum values
+Feature: PromotedArticlesEntity filtered by future's created and modifed and search Feature
 
 @PromotedArticlesEntity
-Scenario: PromotedArticlesEntity filtered by enum values
+Scenario: PromotedArticlesEntity filtered by future's created and modifed and search
 Given I login to the site as a user
 Given I have 10 valid PromotedArticlesEntity entities
 And I have 1 valid PromotedArticlesEntity entities with fixed string values BlaBla_StringToSearch_BlaBla
 And I navigate to the PromotedArticlesEntity backend page
 When I click the filter Button on the PromotedArticlesEntity page
 Then The filter panel shows up with correct information
-When I enter the enum filter state with the same value in the entity just created and click
-Then The enum value created for State is in each row of the the collection content
+When I enter the string StringToSearch to search and click filter button
+Then The string StringToSearch is in each row of the the collection content
+When I enter the created date filter starting in 7 days
+And I apply the current filter
+Then No row is within the applied current date range filters

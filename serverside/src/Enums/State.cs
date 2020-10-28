@@ -22,9 +22,9 @@ namespace Lactalis.Enums
 		QLD,
 		NSW,
 		VIC,
-		TAS,
 		WA,
 		SA,
+		TAS,
 		NT,
 	}
 }

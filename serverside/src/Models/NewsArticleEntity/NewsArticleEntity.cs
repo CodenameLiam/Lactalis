@@ -46,6 +46,11 @@ namespace Lactalis.Models {
 		public String Headline { get; set; }
 		// % protected region % [Customise Headline here] end
 
+		// % protected region % [Customise Description here] off begin
+		[EntityAttribute]
+		public String Description { get; set; }
+		// % protected region % [Customise Description here] end
+
 		// % protected region % [Customise FeatureImage here] off begin
 		[FileReference]
 		public Guid? FeatureImageId { get; set; }

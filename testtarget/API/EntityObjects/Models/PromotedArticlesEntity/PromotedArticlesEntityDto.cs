@@ -17,8 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Lactalis.Enums;
-using TestEnums = EntityObject.Enums;
 using ServersidePromotedArticlesEntity = Lactalis.Models.PromotedArticlesEntity;
 
 namespace APITests.EntityObjects.Models
@@ -28,7 +26,7 @@ namespace APITests.EntityObjects.Models
 		public Guid Id { get; set; }
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
-		public State State { get; set; }
+		public String Name { get; set; }
 
 		public ICollection<NewsArticleEntity> NewsArticless { get; set; }
 
@@ -37,7 +35,7 @@ namespace APITests.EntityObjects.Models
 			Id = model.Id;
 			Created = model.Created;
 			Modified = model.Modified;
-			State = (State)model.State;
+			Name = model.Name;
 			NewsArticless = model.NewsArticless;
 		}
 
@@ -46,7 +44,7 @@ namespace APITests.EntityObjects.Models
 			Id = model.Id;
 			Created = model.Created;
 			Modified = model.Modified;
-			State = model.State;
+			Name = model.Name;
 			NewsArticless = model.NewsArticless.Select(NewsArticleEntityDto.Convert).ToList();
 		}
 
@@ -57,7 +55,7 @@ namespace APITests.EntityObjects.Models
 				Id = Id,
 				Created = Created,
 				Modified = Modified,
-				State = (TestEnums.State)State,
+				Name = Name,
 				NewsArticless = NewsArticless,
 			};
 		}
@@ -69,7 +67,7 @@ namespace APITests.EntityObjects.Models
 				Id = Id,
 				Created = Created,
 				Modified = Modified,
-				State = State,
+				Name = Name,
 				NewsArticless = NewsArticless?.Select(NewsArticleEntityDto.Convert).ToList(),
 			};
 		}
