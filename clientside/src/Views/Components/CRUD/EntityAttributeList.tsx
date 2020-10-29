@@ -22,7 +22,6 @@ import { AttributeFormMode, EntityFormMode } from "../Helpers/Common";
 import { EntityFormLayout } from "../EntityFormLayout/EntityFormLayout";
 import { AttributeCRUDOptions } from "Models/CRUDOptions";
 
-
 const VALIDATION_ERROR = "Some of the fields are missing or invalid, please check your form.";
 
 export interface IEntityAttributeBehaviour {
@@ -40,7 +39,6 @@ interface IEntityCreateProps<T extends Model> extends RouteComponentProps {
 	customRelationPath?: any;
 	attributeBehaviours?: Array<IEntityAttributeBehaviour>;
 }
-
 
 @observer
 class EntityAttributeList<T extends Model> extends React.Component<IEntityCreateProps<T>, any> {
@@ -96,7 +94,7 @@ class EntityAttributeList<T extends Model> extends React.Component<IEntityCreate
 		);
 	}
 
-	ed renderEntityFormLayout = (): React.ReactNode => {
+	protected renderEntityFormLayout = (): React.ReactNode => {
 		const { model, formMode, attributeBehaviours } = this.props;
 		return (
 			<EntityFormLayout
@@ -111,7 +109,7 @@ class EntityAttributeList<T extends Model> extends React.Component<IEntityCreate
 		);
 	};
 
-	ed onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	protected onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		const { model } = this.props;
@@ -235,7 +233,6 @@ class EntityAttributeList<T extends Model> extends React.Component<IEntityCreate
 				}
 			});
 	};
-
 }
 
 export default EntityAttributeList;

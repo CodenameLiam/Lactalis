@@ -34,7 +34,7 @@ export interface PreviewProps {
 @observer
 export class UploadPreview extends React.Component<PreviewProps> {
 	@computed
-	ed get className() {
+	protected get className() {
 		return classNames(this.props.imagePreview ? "upload__image" : "upload__file", "preview");
 	}
 
@@ -64,17 +64,17 @@ export interface FilePreviewProps extends Omit<PreviewProps, "fileUrl"> {
 @observer
 export class FileUploadPreview extends React.Component<FilePreviewProps> {
 	@observable
-	ed base64File?: string = undefined;
+	protected base64File?: string = undefined;
 
 	@action
-	ed onImageLoaded = (event: ProgressEvent<FileReader>) => {
+	protected onImageLoaded = (event: ProgressEvent<FileReader>) => {
 		const result = event.target?.result;
 		if (typeof result === "string") {
 			this.base64File = result;
 		}
 	};
 
-	ed loadFile = (file: Blob) => {
+	protected loadFile = (file: Blob) => {
 		const reader = new FileReader();
 		reader.onload = this.onImageLoaded;
 		reader.readAsDataURL(file);

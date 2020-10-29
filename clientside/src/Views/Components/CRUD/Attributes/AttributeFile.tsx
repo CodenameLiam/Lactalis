@@ -24,18 +24,18 @@ interface FileMetadata {
 
 @observer
 export default class AttributeFile<T extends Model> extends React.Component<AttributeFileProps<T>> {
-	ed readonly initialFileId?: string;
+	protected readonly initialFileId?: string;
 
 	@observable
-	ed fileMetadata?: FileMetadata;
+	protected fileMetadata?: FileMetadata;
 
 	@action
-	ed onFetchSucceeded = (metadata: FileMetadata) => {
+	protected onFetchSucceeded = (metadata: FileMetadata) => {
 		this.fileMetadata = metadata;
 	};
 
 	@action
-	ed onAfterDelete = () => {
+	protected onAfterDelete = () => {
 		this.props.model[this.props.options.attributeName] = undefined;
 	};
 
@@ -47,7 +47,7 @@ export default class AttributeFile<T extends Model> extends React.Component<Attr
 		}
 	}
 
-	ed loadFile = () => {
+	protected loadFile = () => {
 		const fileId = this.props.model[this.props.options.attributeName];
 		if (fileId) {
 			fetch(`${SERVER_URL}/api/files/metadata/${fileId}`)

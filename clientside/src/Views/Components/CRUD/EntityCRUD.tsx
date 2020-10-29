@@ -150,7 +150,7 @@ class EntityCRUD<T extends Model> extends React.Component<IEntityCRUDProps<T>> {
 		);
 	}
 
-	ed renderEntityCollection = (routeProps: RouteComponentProps) => {
+	protected renderEntityCollection = (routeProps: RouteComponentProps) => {
 		const {
 			modelType,
 			expandList,
@@ -196,7 +196,7 @@ class EntityCRUD<T extends Model> extends React.Component<IEntityCRUDProps<T>> {
 		);
 	};
 
-	ed renderEntityCreate = (routeProps: RouteComponentProps) => {
+	protected renderEntityCreate = (routeProps: RouteComponentProps) => {
 		const { modelType } = this.props;
 		const modelDisplayName = getModelDisplayName(modelType);
 		return (
@@ -211,16 +211,15 @@ class EntityCRUD<T extends Model> extends React.Component<IEntityCRUDProps<T>> {
 		);
 	};
 
-	ed renderEntityEdit = (routeProps: RouteComponentProps) => {
+	protected renderEntityEdit = (routeProps: RouteComponentProps) => {
 		const { modelType } = this.props;
 		return <EntityEdit {...routeProps} modelType={modelType} formMode={EntityFormMode.EDIT} />;
 	};
 
-	ed renderEntityView = (routeProps: RouteComponentProps) => {
+	protected renderEntityView = (routeProps: RouteComponentProps) => {
 		const { modelType } = this.props;
 		return <EntityEdit {...routeProps} modelType={modelType} formMode={EntityFormMode.VIEW} />;
 	};
-
 }
 
 export default EntityCRUD;

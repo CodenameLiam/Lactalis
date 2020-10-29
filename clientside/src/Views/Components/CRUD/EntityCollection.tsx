@@ -213,7 +213,7 @@ class EntityCollection<T extends Model> extends React.Component<IEntityCollectio
 		);
 	}
 
-	ed renderCollection = (result: QueryResult<any, OperationVariables>): JSX.Element => {
+	protected renderCollection = (result: QueryResult<any, OperationVariables>): JSX.Element => {
 		const { loading, error, data, refetch } = result;
 		if (error) {
 			return (
@@ -698,7 +698,6 @@ class EntityCollection<T extends Model> extends React.Component<IEntityCollectio
 	public getSearchConditions() {
 		return new this.props.modelType().getSearchConditions(this.search.searchTerm);
 	}
-
 }
 
 export default EntityCollection;

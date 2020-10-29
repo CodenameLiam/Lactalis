@@ -126,7 +126,7 @@ export default class UserList extends React.Component<RouteComponentProps<IEntit
 
 	// Gets the actions (Read - Update - Delete) that can be performed on each row in the
 	// all user list, depending on security.
-	ed getTableActions = (entity: IUser) => {
+	protected getTableActions = (entity: IUser) => {
 		const tableActions: Array<ICollectionItemActionProps<IUser>> = [];
 
 		if (userTypes[entity.discriminator] !== undefined) {
@@ -192,7 +192,7 @@ export default class UserList extends React.Component<RouteComponentProps<IEntit
 		return tableActions;
 	};
 
-	ed renderCreateButton(): React.ReactNode {
+	protected renderCreateButton(): React.ReactNode {
 		return (
 			<Button
 				key="create"
@@ -211,7 +211,7 @@ export default class UserList extends React.Component<RouteComponentProps<IEntit
 	};
 
 	// The modal shown when the user clicks on the 'create' button.
-	ed renderCreateModal = () => {
+	protected renderCreateModal = () => {
 		return (
 			<Modal
 				isOpen={this.modalState.open}
@@ -233,11 +233,11 @@ export default class UserList extends React.Component<RouteComponentProps<IEntit
 	};
 
 	@action
-	ed onCancelModal = () => {
+	protected onCancelModal = () => {
 		this.modalState.open = false;
 	};
 
-	ed userSelected = () => {
+	protected userSelected = () => {
 		if (this.userTypeSelected.selectedUser != null) {
 			this.props.history.push({ pathname: `/admin/${this.userTypeSelected.selectedUser}/create` });
 		} else {
@@ -249,7 +249,7 @@ export default class UserList extends React.Component<RouteComponentProps<IEntit
 		selectedUser: null,
 	};
 
-	ed renderModalCombobox = () => {
+	protected renderModalCombobox = () => {
 		return (
 			<Combobox
 				model={this.userTypeSelected}
@@ -262,7 +262,7 @@ export default class UserList extends React.Component<RouteComponentProps<IEntit
 		);
 	};
 
-	ed getModalUserOptions = () => {
+	protected getModalUserOptions = () => {
 		const userOptions: ModalOptions[] = [];
 		Object.keys(userTypes).forEach((u) => {
 			if (SecurityService.canCreate(userTypes[u])) {
@@ -328,7 +328,7 @@ export default class UserList extends React.Component<RouteComponentProps<IEntit
 	}
 
 	@action
-	ed onSort = (attribute: string) => {
+	protected onSort = (attribute: string) => {
 		if (!this.sortParams.descending && this.sortParams.path === attribute) {
 			this.sortParams = {
 				path: "id",
@@ -347,7 +347,7 @@ export default class UserList extends React.Component<RouteComponentProps<IEntit
 	};
 
 	@action
-	ed setActivateUserModalState = (user: IUser | undefined, open: boolean) => {
+	protected setActivateUserModalState = (user: IUser | undefined, open: boolean) => {
 		this.activateModalState.user = user;
 		this.activateModalState.open = open;
 		if (user !== undefined && !user.emailConfirmed) {
@@ -359,7 +359,7 @@ export default class UserList extends React.Component<RouteComponentProps<IEntit
 
 	// The modal shown when a user selects 'deactivate user' on an entry
 	// in the all user list.
-	ed renderDeactivateUserModal = () => {
+	protected renderDeactivateUserModal = () => {
 		const user = this.activateModalState.user;
 		if (user === undefined) {
 			return;
@@ -399,7 +399,7 @@ export default class UserList extends React.Component<RouteComponentProps<IEntit
 		}
 	};
 
-	ed deactivateUser = (entity: IUser) => {
+	protected deactivateUser = (entity: IUser) => {
 		this.setActivateUserModalState(undefined, false);
 		if (entity.emailConfirmed) {
 			axios
@@ -414,7 +414,7 @@ export default class UserList extends React.Component<RouteComponentProps<IEntit
 		}
 	};
 
-	ed activateUser = (entity: IUser) => {
+	protected activateUser = (entity: IUser) => {
 		this.setActivateUserModalState(undefined, false);
 		if (!entity.emailConfirmed) {
 			axios
@@ -437,18 +437,18 @@ export default class UserList extends React.Component<RouteComponentProps<IEntit
 		entity.emailConfirmed = status;
 	};
 
-	ed resetPassword = (entity: IUser) =>
+	protected resetPassword = (entity: IUser) =>
 		axios
 			.post(`${SERVER_URL}/api/account/reset-password-request`, { Username: entity.email })
 			.then((data) => this.onResetPasswordSuccess(entity))
 			.catch((data) => alert(`${data}`, "error"));
 
-	ed onResetPasswordSuccess = (entity: IUser) => {
+	protected onResetPasswordSuccess = (entity: IUser) => {
 		alert(`Successfully reset password for ${entity.email}`, "success");
 	};
 
 	@action
-	ed onSearchTriggered = (searchTerm: string) => {
+	protected onSearchTriggered = (searchTerm: string) => {
 		this.paginationQueryOptions.page = 0;
 		this.search.searchTerm = searchTerm.trim();
 		this.fetchData();

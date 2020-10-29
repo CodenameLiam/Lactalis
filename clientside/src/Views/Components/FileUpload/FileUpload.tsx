@@ -117,14 +117,14 @@ export interface FileUploadProps<T> {
  */
 @observer
 export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
-	ed uuid = uuid.v4();
-	ed inputRef: HTMLInputElement | null = null;
+	protected uuid = uuid.v4();
+	protected inputRef: HTMLInputElement | null = null;
 
 	@observable
 	public isBeingHovered = false;
 
 	@observable
-	ed internalErrors: string[] = [];
+	protected internalErrors: string[] = [];
 
 	@computed
 	public get file() {
@@ -137,13 +137,13 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 	}
 
 	@computed
-	ed get acceptType() {
+	protected get acceptType() {
 		const { contentType, imageUpload } = this.props;
 		return contentType ?? (imageUpload ? "image/*" : undefined);
 	}
 
 	@computed
-	ed get errors() {
+	protected get errors() {
 		const errorsProp = this.props.errors;
 		if (typeof errorsProp === "string") {
 			return [...this.internalErrors, errorsProp];
@@ -219,7 +219,7 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 		return false;
 	};
 
-	ed onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+	protected onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
 		const { files } = event.target;
 		if (files) {
 			for (let i = 0; i < files.length; i++) {
@@ -228,16 +228,16 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 		}
 	};
 
-	ed onDragOver = (event: React.DragEvent) => event.preventDefault();
+	protected onDragOver = (event: React.DragEvent) => event.preventDefault();
 
 	@action
-	ed onDragEnter = () => (this.isBeingHovered = true);
+	protected onDragEnter = () => (this.isBeingHovered = true);
 
 	@action
-	ed onDragLeave = () => (this.isBeingHovered = false);
+	protected onDragLeave = () => (this.isBeingHovered = false);
 
 	@action
-	ed onDrop = (event: React.DragEvent) => {
+	protected onDrop = (event: React.DragEvent) => {
 		event.preventDefault();
 		this.isBeingHovered = false;
 		const file = event.dataTransfer.files[0];
@@ -246,12 +246,12 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 		}
 	};
 
-	ed onClick = () => {
+	protected onClick = () => {
 		this.inputRef?.focus();
 		this.inputRef?.click();
 	};
 
-	ed preview = () => {
+	protected preview = () => {
 		if (typeof this.props.preview === "function") {
 			return this.props.preview(this.file, this.disableDelete ? undefined : this.clearFile);
 		}
