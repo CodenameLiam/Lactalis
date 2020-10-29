@@ -3,30 +3,21 @@
 <configuration>
 	<Serilog>
 		<MinimumLevel>
-			<!-- %  ion % [Configure log levels] off begin -->
 			<Default>Information</Default>
-			<!-- %  ion % [Configure log levels] end -->
 		</MinimumLevel>
-		<!-- %  ion % [Configure extra logging here] off begin -->
-		<!-- %  ion % [Configure extra logging here] end -->
 	</Serilog>
 	<ServerSettings>
-		<!-- %  ion % [Configure server settings here] off begin -->
 		<!--
 		This url is the url that is provided in the forgot password email.
 		Changing this url will not alter the URL the application is served on.
 		To change that alter Properties/launchSettings.json instead.
 		-->
 		<ServerUrl>http://localhost:5000</ServerUrl>
-		<!-- %  ion % [Configure server settings here] end -->
 	</ServerSettings>
 	<ConnectionStrings>
-		<!-- %  ion % [Configure ConnectionStrings] off begin -->
 		<DbConnectionString>Server=localhost;Database=Lactalis;Username=postgres;Password=pass;</DbConnectionString>
-		<!-- %  ion % [Configure ConnectionStrings] end -->
 	</ConnectionStrings>
 	<EmailAccount>
-		<!-- %  ion % [Configure Email Account] off begin -->
 		<Host>HOST@EXAMPLE.COM</Host>
 		<Username>EMAIL_SERVER_USERNAME</Username>
 		<Password>EMAIL_SERVER_PASSWORD</Password>
@@ -37,23 +28,16 @@
 		<RedirectToAddress></RedirectToAddress>
 		<BypassCertificateValidation>false</BypassCertificateValidation>
 		<SaveToLocalFile>false</SaveToLocalFile>
-		<!-- %  ion % [Configure Email Account] end -->
 	</EmailAccount>
 	<CertificateSetting>
-		<!-- %  ion % [Configure Certificate] off begin -->
 		<CertFileName>CARoot.pfx</CertFileName>
 		<PrivateKeyPWD>Test123</PrivateKeyPWD>
 		<JwtBearerAuthority>http://localhost:5000</JwtBearerAuthority>
 		<JwtBearerAudience>resource-server</JwtBearerAudience>
-		<!-- %  ion % [Configure Certificate] end -->
 	</CertificateSetting>
 	<ClientServerSettings>
-		<!-- %  ion % [Configure development settings for the clientside] off begin -->
 		<UseProxyServer>false</UseProxyServer>
 		<ProxyServerAddress>http://localhost:3000</ProxyServerAddress>
 		<ClientSourcePath>../../clientside</ClientSourcePath>
-		<!-- %  ion % [Configure development settings for the clientside] end -->
 	</ClientServerSettings>
-	<!-- %  ion % [Add any extra app configurations here] off begin -->
-	<!-- %  ion % [Add any extra app configurations here] end -->
 </configuration>

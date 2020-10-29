@@ -12,8 +12,6 @@
 		<None Include="Resources/RedCircle.svg" CopyToOutputDirectory="Always" />
 		<PackageReference Include="AutoFixture.Xunit2" Version="4.11.0" />
 		<PackageReference Include="AutoFixture.SeedExtensions" Version="4.11.0" />
-		<!-- %  ion % [Add any further imports here] off begin -->
-		<!-- %  ion % [Add any further imports here] end -->
 	</ItemGroup>
 
 </Project>

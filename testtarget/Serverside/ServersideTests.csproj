@@ -35,9 +35,5 @@
 		</PackageReference>
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
 		<PackageReference Include="XunitXml.TestLogger" Version="2.1.26" />
-		<!-- %  ion % [Add any further imports here] off begin -->
-		<!-- %  ion % [Add any further imports here] end -->
 	</ItemGroup>
-	<!-- %  ion % [Add any extra ItemGroups here] off begin -->
-	<!-- %  ion % [Add any extra ItemGroups here] end -->
 </Project>

@@ -118,10 +118,6 @@ export interface IAttributeOptions {
 	file?: string;
 }
 
-/**
- * The attribute decorator for all bot written model properties.
- * This will append to the attribute array and decorate with a mobx observer
- */
 export function attribute(options?: IAttributeOptions) {
 	return (target: object, key: string) => {
 		// Init attributes array

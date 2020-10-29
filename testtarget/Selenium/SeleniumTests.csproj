@@ -18,8 +18,6 @@
 		<None Include="../../Serverside/src/appsettings.Test.xml" CopyToOutputDirectory="Always" />
 		<None Include="SeleniumConfig.ini" CopyToOutputDirectory="Always" />
 		<None Include="xunit.runner.json" CopyToOutputDirectory="Always" />
-		<!-- %  ion % [Add any further items here] off begin -->
-		<!-- %  ion % [Add any further items here] end -->
 	</ItemGroup>
 
 	<ItemGroup>
@@ -30,10 +28,8 @@
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
 		<PackageReference Include="RestSharp" Version="106.6.10" />
 		<PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
-		<!-- %  ion % [The default web driver versions, change to suit needs] off begin -->
 		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="84.0.4147.3001" />
 		<PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.26.0.1" />
-		<!-- %  ion % [The default web driver versions, change to suit needs] end -->
 		<PackageReference Include="Selenium.Support" Version="3.141.0" />
 		<PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
 		<PackageReference Include="SpecFlow" Version="3.3.57" />
@@ -46,15 +42,11 @@
 		</PackageReference>
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
 		<PackageReference Include="XunitXml.TestLogger" Version="2.1.26" />
-		<!-- %  ion % [Add any further imports here] off begin -->
-		<!-- %  ion % [Add any further imports here] end -->
 	</ItemGroup>
 
-	<!-- %  ion % [Customize ItemGroup for ProjectReference here] off begin -->
 	<ItemGroup>
 		<ProjectReference Include="../API/APITests.csproj" />
 	</ItemGroup>
-	<!-- %  ion % [Customize ItemGroup for ProjectReference here] end -->
 
 	<ItemGroup>
 		<Reference Include="System.Configuration" />
@@ -68,8 +60,6 @@
 		<ApplicationIcon />
 		<OutputType>Exe</OutputType>
 		<StartupObject />
-		<!-- %  ion % [Add any further output settings here] off begin -->
-		<!-- %  ion % [Add any further output settings here] end -->
 	</PropertyGroup>
 
 	<Import Project="../packages/SpecFlow.2.2.0/tools/TechTalk.SpecFlow.tasks" Condition="Exists('..\packages\SpecFlow.2.2.0\tools\TechTalk.SpecFlow.tasks')" />
@@ -80,10 +70,6 @@
 		<ItemGroup>
 			<Compile Include="**\*.feature.cs" Exclude="@(Compile)" />
 		</ItemGroup>
-		<!-- %  ion % [Add any further AfterUpdateFeatureFilesInProject settings here] off begin -->
-		<!-- %  ion % [Add any further AfterUpdateFeatureFilesInProject settings here] end -->
 	</Target>
 
-	<!-- %  ion % [Add any further settings here] off begin -->
-	<!-- %  ion % [Add any further settings here] end -->
 </Project>

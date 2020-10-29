@@ -25,7 +25,7 @@ namespace TestDataLib
 
 		private const string _chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-		// get the words, we need to filter out the bot written warning and comments
+		
 		private static bool FilterPlainTextFile(string x)
 		{
 			return !x.StartsWith("#");
