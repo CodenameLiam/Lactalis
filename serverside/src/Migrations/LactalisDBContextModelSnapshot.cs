@@ -12,12 +12,12 @@ namespace Lactalis.Migrations
     [DbContext(typeof(LactalisDBContext))]
     partial class LactalisDBContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        ed override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:Enum:price_type", "amount,negotiable,free,swaptrade")
-                .HasAnnotation("Npgsql:Enum:state", "qld,nsw,vic,tas,wa,sa,nt")
+                .HasAnnotation("Npgsql:Enum:state", "qld,nsw,vic,wa,sa,tas,nt")
                 .HasAnnotation("Npgsql:PostgresExtension:uuid-ossp", ",,")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.2")
@@ -338,6 +338,9 @@ namespace Lactalis.Migrations
                         .HasColumnType("timestamp without time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
                     b.Property<Guid?>("FeatureImageId")
                         .HasColumnType("uuid");
 
@@ -403,11 +406,11 @@ namespace Lactalis.Migrations
                         .HasColumnType("timestamp without time zone")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
                     b.Property<Guid>("Owner")
                         .HasColumnType("uuid");
-
-                    b.Property<State>("State")
-                        .HasColumnType("state");
 
                     b.HasKey("Id");
 
@@ -845,7 +848,7 @@ namespace Lactalis.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("User");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Dataion.EntityFrameworkCore.DataionKey", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -860,7 +863,7 @@ namespace Lactalis.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DataProtectionKeys");
+                    b.ToTable("DataionKeys");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

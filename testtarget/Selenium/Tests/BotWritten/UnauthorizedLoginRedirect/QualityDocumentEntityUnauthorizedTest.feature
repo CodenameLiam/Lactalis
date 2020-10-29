@@ -12,7 +12,7 @@
 # 
 # BOT WARNING
 # This file is bot-written.
-# Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+# Any changes out side of " ions" will be lost next time the bot makes any changes.
 ###
 @BotWritten @loginredirect
 Feature: Unauthorized QualityDocumentEntity Redirect
@@ -23,5 +23,5 @@ Given I am logged out of the site
 And I navigate to the QualityDocumentEntity backend page
 Then I assert that I am redirected from QualityDocumentEntity to login page
 
-# % protected region % [Add any additional tests here] off begin
-# % protected region % [Add any additional tests here] end
+# %  ion % [Add any additional tests here] off begin
+# %  ion % [Add any additional tests here] end

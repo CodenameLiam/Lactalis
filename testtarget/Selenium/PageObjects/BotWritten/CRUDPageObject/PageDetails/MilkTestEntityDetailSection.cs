@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -25,8 +10,6 @@ using SeleniumTests.Setup;
 using SeleniumTests.Utils;
 using SeleniumTests.Enums;
 using SeleniumTests.PageObjects.BotWritten;
-// % protected region % [Custom imports] off begin
-// % protected region % [Custom imports] end
 
 namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 {
@@ -68,8 +51,6 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 			_milkTestEntity = milkTestEntity;
 
 			InitializeSelectors();
-			// % protected region % [Add any extra construction requires] off begin
-			// % protected region % [Add any extra construction requires] end
 		}
 
 		// initialise all selectors and grouping them with the selector type which is used
@@ -188,7 +169,6 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 
 		public void Apply()
 		{
-			// % protected region % [Configure entity application here] off begin
 			SetTime(_milkTestEntity.Time);
 			SetVolume(_milkTestEntity.Volume);
 			SetTemperature(_milkTestEntity.Temperature);
@@ -196,7 +176,6 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 			SetProtein(_milkTestEntity.Protein);
 
 			SetFarmId(_milkTestEntity.FarmId?.ToString());
-			// % protected region % [Configure entity application here] end
 		}
 
 		public List<Guid> GetAssociation(string referenceName)
@@ -294,7 +273,5 @@ namespace SeleniumTests.PageObjects.CRUDPageObject.PageDetails
 		private Double? GetProtein =>
 			Convert.ToDouble(ProteinElement.Text);
 
-		// % protected region % [Add any additional getters and setters of web elements] off begin
-		// % protected region % [Add any additional getters and setters of web elements] end
 	}
 }

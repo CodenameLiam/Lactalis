@@ -1,19 +1,3 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
 /* --------------------------------
 Inputs
 -------------------------------- */
@@ -22,7 +6,6 @@ Styling for all types of inputs - checkboxes, radios, selects, textareas and too
 */
 
 /******* INPUT VARIABLES *******/
-// % protected region % [Change input variables here] off begin
 $input-font-size: $base-font-size;
 $input-radius: $radius;
 
@@ -35,20 +18,16 @@ $input-md-width: calc(100% - #{$space-xs});
 // z-index fix for checkboxes
 $z-index-back: 1;
 $z-index-front: 2;
-// % protected region % [Change input variables here] end
 
-// % protected region % [Change input fieldset here] off begin
 //Reset the fieldset
 fieldset {
 	padding: 0rem;
 	border: none;
 }
-// % protected region % [Change input fieldset here] end
 
 /*******STANDARD INPUTS*******/
 /*Standard styles for general inputs such as text, number and password. These styles will control aspects such as width, font-size and line-height but can be combined
 with other modular classes for positioning and other overrides*/
-// % protected region % [Change standard input styles here] off begin
 input[type="text"],
 input[type="number"],
 input[type="password"],
@@ -90,13 +69,10 @@ select {
 		@include transform-timing($animation-time);
 	}
 }
-// % protected region % [Change standard input styles here] end
-
 
 /*******INPUT GROUP*******/
 /*This is an input group. It collects multiple components - labels, tooltips, text areas and other types of inputs and structures them within a grid area. Multiple
 items can be placed within a single grid area, as long as they are contained within a wrapper div (to prevent items floating above each other).*/
-// % protected region % [Change input group styles here] off begin
 .input-group {
 	position: relative;
 	display: grid;
@@ -106,8 +82,7 @@ items can be placed within a single grid area, as long as they are contained wit
 		"label tooltip"
 		"input input"
 		"pwdstrength pwdstrength"
-		"validation validation"
-	;
+		"validation validation";
 	margin: $space-sm auto;
 	width: auto;
 	max-width: 100%;
@@ -171,7 +146,8 @@ items can be placed within a single grid area, as long as they are contained wit
 
 	/*This will re-arrange the elements within the input-group so that inputs and labels can be placed side-by-side to maximise space*/
 	&.input-group-inline {
-		grid-template-areas: "label input tooltip"
+		grid-template-areas:
+			"label input tooltip"
 			"pwdstrength pwdstrength pwdstrength"
 			"validation validation validation";
 		grid-template-columns: max-content 1fr min-content;
@@ -233,20 +209,18 @@ items can be placed within a single grid area, as long as they are contained wit
 	}
 
 	//TEXT AREA
-	@import 'textarea.scss';
+	@import "textarea.scss";
 
 	//TOOLTIPS
-	@import 'tooltip.scss';
+	@import "tooltip.scss";
 
 	//SELECTS
-	@import 'select.scss';
+	@import "select.scss";
 }
-// % protected region % [Change input group styles here] end
 
 /*******INPUT BUTTONS*******/
 /*This is a button which clears the content within an input*/
 
-// % protected region % [Change input buttons here] off begin
 .input-group {
 	.icon-x,
 	.icon-cross {
@@ -270,16 +244,12 @@ items can be placed within a single grid area, as long as they are contained wit
 		}
 	}
 }
-// % protected region % [Change input buttons here] end
-
 
 /*******Date & Time Picker*******/
 //If styling required create the file and import here//
 
-
 /*This will organise a series of inputs into a row as oppsed to a column. Inputs will wrap, whereas header and tooltip occupy half of the
 top row*/
-// % protected region % [Change input group wrapper styles here] off begin
 .input-group-wrapper__radio,
 .input-group-wrapper__checkbox {
 	position: relative;
@@ -299,11 +269,9 @@ top row*/
 		display: flex;
 		flex-wrap: wrap;
 
-
 		p {
 			width: 100%;
 		}
-
 
 		.tooltip {
 			width: 50%;
@@ -315,24 +283,21 @@ top row*/
 	}
 
 	//TOOLTIPS
-	@import 'tooltip.scss';
+	@import "tooltip.scss";
 
-	>.tooltip {
+	> .tooltip {
 		right: -4rem;
 		left: unset;
 		top: 1.5rem;
 	}
 }
-// % protected region % [Change input group wrapper styles here] end
 
 /*******Checkboxes*******/
-@import 'checkbox.scss';
-
+@import "checkbox.scss";
 
 /*******Radio*******/
-@import 'radio.scss';
+@import "radio.scss";
 
-// % protected region % [Change alignment for checkboxes and radios styles here] off begin
 .input-group__radio,
 .input-group__checkbox {
 	input {
@@ -341,13 +306,11 @@ top row*/
 		align-items: center;
 	}
 }
-// % protected region % [Change alignment for checkboxes and radios styles here] end
 
 /*******DISABLED AND READONLY INPUTS*******/
 //Imports are after all input styles to override all styling on disabled and static
-// % protected region % [Change disabled input styles here] off begin
 input[disabled],
-input[disabled]+label,
+input[disabled] + label,
 textarea[disabled],
 input.disabled {
 	cursor: not-allowed;
@@ -361,13 +324,10 @@ input.disabled {
 		background-color: $grey-2;
 		color: $grey-6;
 	}
-
 }
-// % protected region % [Change disabled input styles here] end
 
-// % protected region % [Change readonly input styles here] off begin
 input[readonly],
-input[readonly]+label,
+input[readonly] + label,
 textarea[readonly] {
 	cursor: text;
 	background-color: $grey-0;
@@ -381,9 +341,7 @@ textarea[readonly] {
 		color: $grey-8;
 	}
 }
-// % protected region % [Change readonly input styles here] end
 
-// % protected region % [Change static input styles here] off begin
 .input-group--static {
 	pointer-events: none;
 
@@ -410,7 +368,7 @@ textarea[readonly] {
 	&.input-group--empty {
 		label {
 			&:after {
-				content: '- No Value -';
+				content: "- No Value -";
 				font-style: italic;
 				display: block;
 				color: $grey-4;
@@ -436,7 +394,3 @@ textarea[readonly] {
 		}
 	}
 }
-// % protected region % [Change static input styles here] end
-
-// % protected region % [Add additional input styles here] off begin
-// % protected region % [Add additional input styles here] end

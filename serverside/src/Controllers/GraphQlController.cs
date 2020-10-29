@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.IO;
 using System.Linq;
@@ -29,19 +14,16 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Npgsql;
-// % protected region % [Add any extra imports here] off begin
-// % protected region % [Add any extra imports here] end
+ 
 
 namespace Lactalis.Controllers
 {
 	/// <summary>
 	/// The controller that manages all GraphQL operations
 	/// </summary>
-	// % protected region % [Change controller attributes here here] off begin
 	[Route("/api/graphql")]
 	[ApiController]
 	[Authorize(Policy = "AllowVisitorPolicy")]
-	// % protected region % [Change controller attributes here here] end
 	public class GraphQlController : Controller
 	{
 		private class PostBody
@@ -49,27 +31,19 @@ namespace Lactalis.Controllers
 			public string OperationName { get; set; }
 			public string Query { get; set; }
 			public JObject Variables { get; set; }
-			// % protected region % [Add any extra PostBody fields here] off begin
-			// % protected region % [Add any extra PostBody fields here] end
 		}
 
 		private class FormBody
 		{
 			public PostBody Body { get; set; }
 			public IFormFileCollection Files { get; set; }
-			// % protected region % [Add any FormBody fields here] off begin
-			// % protected region % [Add any FormBody fields here] end
 		}
 
 		private readonly IGraphQlService _graphQlService;
 		private readonly IIdentityService _identityService;
 		private readonly ILogger<GraphQlController> _logger;
-		// % protected region % [Add any extra class variables here] off begin
-		// % protected region % [Add any extra class variables here] end
 
 		public GraphQlController(
-			// % protected region % [Add any extra constructor arguments here] off begin
-			// % protected region % [Add any extra constructor arguments here] end
 			IGraphQlService graphQlService,
 			IIdentityService identityService,
 			ILogger<GraphQlController> logger)
@@ -77,8 +51,6 @@ namespace Lactalis.Controllers
 			_graphQlService = graphQlService;
 			_identityService = identityService;
 			_logger = logger;
-			// % protected region % [Add any extra constructor logic here] off begin
-			// % protected region % [Add any extra constructor logic here] end
 		}
 
 		/// <summary>
@@ -86,14 +58,11 @@ namespace Lactalis.Controllers
 		/// </summary>
 		/// <param name="cancellation">Cancellation token for the operation</param>
 		/// <returns>The results for the GraphQL query</returns>
-		// % protected region % [Change post method attributes here] off begin
 		[HttpPost]
 		[RequestSizeLimit(100000000)]
 		[Authorize(Policy = "AllowVisitorPolicy")]
-		// % protected region % [Change post method attributes here] end
 		public async Task<ExecutionResult> Post(CancellationToken cancellation)
 		{
-			// % protected region % [Change post method here] off begin
 			await _identityService.RetrieveUserAsync();
 
 			var parsedRequest = await ParsePostBody(cancellation);
@@ -107,7 +76,6 @@ namespace Lactalis.Controllers
 				cancellation);
 
 			return RenderResult(result);
-			// % protected region % [Change post method here] end
 		}
 
 		/// <summary>
@@ -118,17 +86,14 @@ namespace Lactalis.Controllers
 		/// <param name="operationName">The name of the graphql operation to run</param>
 		/// <param name="cancellation">Cancellation token for the operation</param>
 		/// <returns>The results for the GraphQL query</returns>
-		// % protected region % [Change get method attributes here] off begin
 		[HttpGet]
 		[Authorize(Policy = "AllowVisitorPolicy")]
-		// % protected region % [Change get method attributes here] end
 		public async Task<ExecutionResult> Get(
 			[FromQuery]string query,
 			[FromQuery]string variables,
 			[FromQuery]string operationName,
 			CancellationToken cancellation)
 		{
-			// % protected region % [Change get method here] off begin
 			await _identityService.RetrieveUserAsync();
 
 			var jObject = ParseVariables(variables);
@@ -141,7 +106,6 @@ namespace Lactalis.Controllers
 				cancellation);
 
 			return RenderResult(result);
-			// % protected region % [Change get method here] end
 		}
 
 		/// <summary>
@@ -151,7 +115,6 @@ namespace Lactalis.Controllers
 		/// <returns>The graphql execution result with better formatting</returns>
 		private ExecutionResult RenderResult(ExecutionResult result)
 		{
-			// % protected region % [Change RenderResult here] off begin
 			if (result.Errors?.Count > 0)
 			{
 				var newEx = new ExecutionErrors();
@@ -183,7 +146,6 @@ namespace Lactalis.Controllers
 				Response.StatusCode = (int)HttpStatusCode.BadRequest;
 			}
 			return result;
-			// % protected region % [Change RenderResult here] end
 		}
 
 		/// <summary>
@@ -193,7 +155,6 @@ namespace Lactalis.Controllers
 		/// <returns>A parsed result for the form</returns>
 		private async Task<FormBody> ParsePostBody(CancellationToken cancellation)
 		{
-			// % protected region % [Change ParsePostBody here] off begin
 			// We are using JSON content type
 			if (!Request.HasFormContentType)
 			{
@@ -226,7 +187,6 @@ namespace Lactalis.Controllers
 				},
 				Files = form.Files,
 			};
-			// % protected region % [Change ParsePostBody here] end
 		}
 
 		/// <summary>
@@ -237,7 +197,6 @@ namespace Lactalis.Controllers
 		/// <exception cref="Exception">On failing to parse the string</exception>
 		private static JObject ParseVariables(string variables)
 		{
-			// % protected region % [Change ParseVariables here] off begin
 			if (variables == null)
 			{
 				return null;
@@ -251,10 +210,7 @@ namespace Lactalis.Controllers
 			{
 				throw new Exception("Could not parse variables.", exception);
 			}
-			// % protected region % [Change ParseVariables here] end
 		}
 
-		// % protected region % [Add any further methods here] off begin
-		// % protected region % [Add any further methods here] end
 	}
 }

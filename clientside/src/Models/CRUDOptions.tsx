@@ -1,45 +1,26 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
-import * as React from 'react';
-import { crudOptions as crudOptions } from 'Symbols';
-import { Model } from './Model';
+import * as React from "react";
+import { crudOptions } from "Symbols";
+import { Model } from "./Model";
 import { Comparators } from "Views/Components/ModelCollection/ModelQuery";
-import { transformFunction } from 'Util/AttributeUtils';
+import { transformFunction } from "Util/AttributeUtils";
 
 export type displayType =
-	'hidden' |
-	'textfield' |
-	'textarea' |
-	'password' |
-	'checkbox' |
-	'form-data'|
-	'workflow-data'|
-	'datepicker' |
-	'timepicker' |
-	'datetimepicker' |
-	'displayfield' |
-	'enum-combobox'|
-	'reference-combobox' |
-	'reference-multicombobox' |
-	'form-tile' |
-	'file'
-	// % protected region % [Add more display types here] off begin
-	// % protected region % [Add more display types here] end
-	;
+	| "hidden"
+	| "textfield"
+	| "textarea"
+	| "password"
+	| "checkbox"
+	| "form-data"
+	| "workflow-data"
+	| "datepicker"
+	| "timepicker"
+	| "datetimepicker"
+	| "displayfield"
+	| "enum-combobox"
+	| "reference-combobox"
+	| "reference-multicombobox"
+	| "form-tile"
+	| "file";
 
 export interface ICRUDOptions {
 	name: string;
@@ -60,7 +41,7 @@ export interface ICRUDOptions {
 	 */
 	searchTransform?: transformFunction;
 	/** Anonymous props for the attribute that is being used */
-	inputProps?: {[key: string]: any};
+	inputProps?: { [key: string]: any };
 	/** A function that can change the display of the element on the crud list */
 	displayFunction?: (attribute: any, that: Model) => React.ReactNode;
 	onAfterChange?: (model: Model) => void;
@@ -68,9 +49,12 @@ export interface ICRUDOptions {
 	fileAttribute?: string;
 
 	// Reference Dropdown specific
-	referenceTypeFunc?: () => {new (json?: {}):  Model};
-	referenceResolveFunction?: (search: string | string[], options: {model: Model}) => Promise<Array<{display: string, value: any}>>;
-	enumResolveFunction?: Array<{display: string, value: string}>;
+	referenceTypeFunc?: () => { new (json?: {}): Model };
+	referenceResolveFunction?: (
+		search: string | string[],
+		options: { model: Model }
+	) => Promise<Array<{ display: string; value: any }>>;
+	enumResolveFunction?: Array<{ display: string; value: string }>;
 	optionEqualFunc?: (modelProperty: Model, option: string) => boolean;
 	/**
 	 * Weather the reference to assign to the attribute is on a join field or is the entity
@@ -87,8 +71,6 @@ export interface ICRUDOptions {
 	groupId?: number;
 	/** The order of the attribute with the group which this attribute belongs to */
 	order?: number;
-	// % protected region % [Add more CRUD Option interface props here] off begin
-	// % protected region % [Add more CRUD Option interface props here] end
 }
 
 export class AttributeCRUDOptions implements ICRUDOptions {
@@ -99,10 +81,13 @@ export class AttributeCRUDOptions implements ICRUDOptions {
 	public headerColumn: boolean;
 	public searchable: boolean;
 	public searchFunction: Comparators;
-	public searchTransform: transformFunction = (attr: string) => ({query: attr});
-	public inputProps?: {[key: string]: any};
-	public referenceResolveFunction?: (search: string | string[], options: {model: Model}) => Promise<Array<{display: string, value: string}>>;
-	public enumResolveFunction?: Array<{display: string, value: string}>;
+	public searchTransform: transformFunction = (attr: string) => ({ query: attr });
+	public inputProps?: { [key: string]: any };
+	public referenceResolveFunction?: (
+		search: string | string[],
+		options: { model: Model }
+	) => Promise<Array<{ display: string; value: string }>>;
+	public enumResolveFunction?: Array<{ display: string; value: string }>;
 	public optionEqualFunc?: (modelProperty: any, option: any) => boolean;
 	public isJoinEntity?: boolean = false;
 	public displayFunction?: (attribute: any, that: Model) => React.ReactNode;
@@ -115,16 +100,13 @@ export class AttributeCRUDOptions implements ICRUDOptions {
 	public updateFieldType?: displayType;
 	public disableDefaultOptionRemoval?: boolean;
 
-
 	// Reference Dropdown specific
-	public referenceTypeFunc?: () => {new (json?: {}):  Model};
+	public referenceTypeFunc?: () => { new (json?: {}): Model };
 	public isReadonly?: boolean = false;
 	/** The id of the attribute group which this attribute belongs to */
 	public groupId?: number;
 	/** The order of the attribute with the group which this attribute belongs to */
 	public order?: number;
-	// % protected region % [Add more Attribute CRUD Option properties here] off begin
-	// % protected region % [Add more Attribute CRUD Option properties here] end
 
 	constructor(attributeName: string, options: ICRUDOptions) {
 		this.attributeName = attributeName;
@@ -134,7 +116,7 @@ export class AttributeCRUDOptions implements ICRUDOptions {
 		this.headerColumn = !!options.headerColumn;
 		this.searchable = !!options.searchable;
 		this.referenceTypeFunc = options.referenceTypeFunc;
-		this.searchFunction = options.searchFunction || 'contains';
+		this.searchFunction = options.searchFunction || "contains";
 		this.referenceResolveFunction = options.referenceResolveFunction;
 		this.enumResolveFunction = options.enumResolveFunction;
 		this.optionEqualFunc = options.optionEqualFunc;
@@ -153,17 +135,11 @@ export class AttributeCRUDOptions implements ICRUDOptions {
 		this.groupId = options.groupId;
 		this.order = options.order;
 		this.fileAttribute = options.fileAttribute;
-		// % protected region % [Add more Attribute CRUD Option constructor operations here] off begin
-		// % protected region % [Add more Attribute CRUD Option constructor operations here] end
 	}
 
 	public get displayName() {
 		return this.name;
 	}
-
-	// % protected region % [Add more CRUD Option member functions here] off begin
-	// % protected region % [Add more CRUD Option member functions here] end
-
 }
 
 export function CRUD(options: ICRUDOptions) {
@@ -174,6 +150,3 @@ export function CRUD(options: ICRUDOptions) {
 		target[crudOptions][key] = options;
 	};
 }
-
-// % protected region % [Add more CRUD Option related functions here] off begin
-// % protected region % [Add more CRUD Option related functions here] end

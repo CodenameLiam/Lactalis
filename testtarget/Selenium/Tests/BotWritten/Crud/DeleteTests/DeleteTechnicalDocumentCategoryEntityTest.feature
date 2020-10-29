@@ -12,7 +12,7 @@
 # 
 # BOT WARNING
 # This file is bot-written.
-# Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+# Any changes out side of " ions" will be lost next time the bot makes any changes.
 ###
 @BotWritten @delete
 Feature: Delete TechnicalDocumentCategoryEntity Feature

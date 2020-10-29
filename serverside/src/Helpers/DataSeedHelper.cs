@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -26,8 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-// % protected region % [Add any extra imports here] off begin
-// % protected region % [Add any extra imports here] end
+ 
 
 namespace Lactalis.Helpers
 {
@@ -46,53 +30,37 @@ namespace Lactalis.Helpers
 		private readonly IUserService _userService;
 		private readonly ILogger<DataSeedHelper> _logger;
 		private readonly IWebHostEnvironment _environment;
-		// % protected region % [Add any extra properties here] off begin
-		// % protected region % [Add any extra properties here] end
 
 		private static readonly List<SeedGroup> Roles = new List<SeedGroup>
 		{
-			// % protected region % [Configure the modelled groups here] off begin
 			// Super administrators has no special access but just allows the super dev account to open to the admin
 			// pages without there being a modelled admin group.
 			new SeedGroup {Name = "Super Administrators", HasBackendAccess = true},
 			new SeedGroup {Name = "Visitors", HasBackendAccess = false},
 			new SeedGroup {Name = "Admin", HasBackendAccess = false},
 			new SeedGroup {Name = "Farmer", HasBackendAccess = false},
-			// % protected region % [Configure the modelled groups here] end
 
-			// % protected region % [Add any extra seeded groups here] off begin
-			// % protected region % [Add any extra seeded groups here] end
 		};
 
-		// % protected region % [Add any extra core seed data here] off begin
-		// % protected region % [Add any extra core seed data here] end
 
 		public DataSeedHelper(
 			RoleManager<Group> roleManager,
 			IUserService userService,
 			ILogger<DataSeedHelper> logger,
 			IWebHostEnvironment environment
-			// % protected region % [Add any extra dependencies here] off begin
-			// % protected region % [Add any extra dependencies here] end
 			)
 		{
 			_roleManager = roleManager;
 			_userService = userService;
 			_logger = logger;
 			_environment = environment;
-			// % protected region % [Add any extra dependency assignments here] off begin
-			// % protected region % [Add any extra dependency assignments here] end
 		}
 
 		public void Initialize()
 		{
-			// % protected region % [Do tasks before initialisation here] off begin
-			// % protected region % [Do tasks before initialisation here] end
 
 			Task.WaitAll(CreateObjects());
 
-			// % protected region % [Add any extra initialisation methods here] off begin
-			// % protected region % [Add any extra initialisation methods here] end
 		}
 
 		private async Task CreateObjects()
@@ -103,7 +71,6 @@ namespace Lactalis.Helpers
 				await CreateRole(role);
 			}
 
-			// % protected region % [Configure development seeding here] off begin
 			if (_environment.IsDevelopment())
 			{
 				// Create users for testing in development environments
@@ -120,10 +87,7 @@ namespace Lactalis.Helpers
 					"password",
 					new [] {"Farmer"});
 			}
-			// % protected region % [Configure development seeding here] end
 
-			// % protected region % [Add any extra seeding here] off begin
-			// % protected region % [Add any extra seeding here] end
 		}
 
 		private async Task CreateRole(SeedGroup seedGroup)
@@ -146,8 +110,6 @@ namespace Lactalis.Helpers
 					await _roleManager.UpdateAsync(group);
 				}
 
-				// % protected region % [Configure any extra user updates here] off begin
-				// % protected region % [Configure any extra user updates here] end
 
 				_logger.LogInformation("Not creating group {GroupName} since this group already exists", seedGroup.Name, seedGroup);
 			}
@@ -186,7 +148,5 @@ namespace Lactalis.Helpers
 			}
 		}
 
-		// % protected region % [Add any extra data seeding functions here] off begin
-		// % protected region % [Add any extra data seeding functions here] end
 	}
 }

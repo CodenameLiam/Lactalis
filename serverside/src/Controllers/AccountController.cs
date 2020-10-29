@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -33,8 +18,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-// % protected region % [Add any extra imports here] off begin
-// % protected region % [Add any extra imports here] end
+
 
 namespace Lactalis.Controllers
 {
@@ -53,23 +37,17 @@ namespace Lactalis.Controllers
 		private readonly IServiceProvider _serviceProvider;
 		private readonly ILogger<AccountController> _logger;
 
-		// % protected region % [Add extra account controller fields] off begin
-		// % protected region % [Add extra account controller fields] end
-
 		public class UsernameModel
 		{
-			// % protected region % [Override UsernameModel fields here] off begin
 			/// <summary>
 			/// The username to reset the password of
 			/// </summary>
 			[Required]
 			public string Username { get; set; }
-			// % protected region % [Override UsernameModel fields here] end
 		}
 
 		public class ResetPasswordModel
 		{
-			// % protected region % [Override ResetPasswordModel fields here] off begin
 			/// <summary>
 			/// The username to reset the password for
 			/// </summary>
@@ -87,12 +65,10 @@ namespace Lactalis.Controllers
 			/// </summary>
 			[Required]
 			public string Token { get; set; }
-			// % protected region % [Override ResetPasswordModel fields here] end
 		}
 
 		public class AllUserRequestModel
 		{
-			// % protected region % [Override AllUserRequestModel fields here] off begin
 			/// <summary>
 			/// The conditions for sorting user entities
 			/// </summary>
@@ -105,12 +81,10 @@ namespace Lactalis.Controllers
 			/// The search conditions
 			/// </summary>
 			public IEnumerable<IEnumerable<WhereExpression>> SearchConditions { get; set; }
-			// % protected region % [Override AllUserRequestModel fields here] end
 		}
 
 		public class UserListModel
 		{
-			// % protected region % [Override UserListModel fields here] off begin
 			/// <summary>
 			/// The total number of users
 			/// </summary>
@@ -121,12 +95,9 @@ namespace Lactalis.Controllers
 			/// </summary>
 			[Required]
 			public IEnumerable<UserDto> Users { get; set; }
-			// % protected region % [Override UserListModel fields here] end
 		}
 
 		public AccountController(
-			// % protected region % [Add extra account controller arguments] off begin
-			// % protected region % [Add extra account controller arguments] end
 			UserManager<User> userManager,
 			IUserService userService,
 			RoleManager<Group> roleManager,
@@ -134,8 +105,6 @@ namespace Lactalis.Controllers
 			IServiceProvider serviceProvider,
 			ILogger<AccountController> logger)
 		{
-			// % protected region % [Add extra account controller constructor logic] off begin
-			// % protected region % [Add extra account controller constructor logic] end
 			_userManager = userManager;
 			_userService = userService;
 			_roleManager = roleManager;
@@ -155,13 +124,11 @@ namespace Lactalis.Controllers
 		[Authorize]
 		public async Task<UserResult> Get()
 		{
-			// % protected region % [Override Get here] off begin
+			
 			var user = await _userService.GetUser(User);
 			return user;
-			// % protected region % [Override Get here] end
 		}
 
-		// % protected region % [adjust the register user endpoint] off begin
 		/// <summary>
 		/// Registers a new user
 		/// </summary>
@@ -202,7 +169,6 @@ namespace Lactalis.Controllers
 				return StatusCode(StatusCodes.Status409Conflict, new ApiErrorResponse(e.Message));
 			}
 		}
-		// % protected region % [adjust the register user endpoint] end
 
 		/// <summary>
 		/// Gets all the user groups in the system
@@ -217,9 +183,7 @@ namespace Lactalis.Controllers
 		[ProducesResponseType(401)]
 		public async Task<IEnumerable<string>> GetRoles()
 		{
-			// % protected region % [Override GetRoles here] off begin
 			return await _roleManager.Roles.Select(group => group.Name).ToListAsync();
-			// % protected region % [Override GetRoles here] end
 		}
 
 		/// <summary>
@@ -235,7 +199,6 @@ namespace Lactalis.Controllers
 		[ProducesResponseType(401)]
 		public async Task<UserListModel> GetUsers([FromBody] AllUserRequestModel options)
 		{
-			// % protected region % [Override GetUsers here] off begin
 			_identityService.RetrieveUserAsync().Wait();
 
 			var userQuery = _userManager.Users
@@ -251,7 +214,6 @@ namespace Lactalis.Controllers
 					.ToList()
 					.Select(u => new UserDto(u))
 			};
-			// % protected region % [Override GetUsers here] end
 		}
 
 		/// <summary>
@@ -267,7 +229,6 @@ namespace Lactalis.Controllers
 		[ProducesResponseType(401)]
 		public async Task<IActionResult> DeactivateUser([FromBody] UsernameModel deactivateUser)
 		{
-			// % protected region % [Override DeactivateUser here] off begin
 			_identityService.RetrieveUserAsync().Wait();
 			
 			var user = _userManager.Users
@@ -282,7 +243,6 @@ namespace Lactalis.Controllers
 			user.EmailConfirmed = false;
 			await _userManager.UpdateAsync(user);
 			return Ok();
-			// % protected region % [Override DeactivateUser here] end
 		}
 
 		/// <summary>
@@ -298,7 +258,6 @@ namespace Lactalis.Controllers
 		[ProducesResponseType(401)]
 		public async Task<IActionResult> ActivateUser([FromBody] UsernameModel userModel)
 		{
-			// % protected region % [Override ActivateUser here] off begin
 			_identityService.RetrieveUserAsync().Wait();
 			
 			var user = _userManager
@@ -314,10 +273,8 @@ namespace Lactalis.Controllers
 			user.EmailConfirmed = true;
 			await _userManager.UpdateAsync(user);
 			return Ok();
-			// % protected region % [Override ActivateUser here] end
 		}
 
-		// % protected region % [adjust the reset password endpoint] off begin
 		/// <summary>
 		/// Sends a reset password email to a specified user
 		/// </summary>
@@ -339,9 +296,8 @@ namespace Lactalis.Controllers
 			}
 			return Ok();
 		}
-		// % protected region % [adjust the reset password endpoint] end
+		
 
-		// % protected region % [Customize reset password endpoint here] off begin
 		/// <summary>
 		/// Resets a users password for the forgot password workflow
 		/// </summary>
@@ -385,20 +341,15 @@ namespace Lactalis.Controllers
 				return Unauthorized(new ApiErrorResponse("Could not update user"));
 			}
 		}
-		// % protected region % [Customize reset password endpoint here] end
 
 		private void AddErrors(IEnumerable<IdentityError> errors)
 		{
-			// % protected region % [Override AddErrors here] off begin
 			foreach (var error in errors)
 			{
 				ModelState.AddModelError(string.Empty, error.Description);
 			}
-			// % protected region % [Override AddErrors here] end
 		}
 
-		// % protected region % [Add any account controller methods here] off begin
-		// % protected region % [Add any account controller methods here] end
 	}
 }
 

@@ -1,20 +1,3 @@
-
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
 /* --------------------------------
 Buttons
 https://medium.com/codyhouse/create-your-design-system-part-5-icons-594f39cfb1b
@@ -37,7 +20,6 @@ $btn-lg: calc(#{$btn-font-size} + 0.4rem) !default;
 $btn-xlg: calc(#{$btn-font-size} + 0.6rem) !default;
 
 $btn-radius: $radius !default;
-
 
 /*Standard button styles*/
 a {
@@ -63,7 +45,7 @@ a {
 	border-radius: $btn-radius;
 	font-size: $btn-font-size;
 	cursor: pointer;
-	transition: .2s;
+	transition: 0.2s;
 	@include appearance-none;
 	@include fontSmooth;
 
@@ -97,7 +79,6 @@ a {
 	}
 }
 
-
 /*BUTTON COLORS
 Each loop goes through the map $btn-colors and assigns the right colours to the right button type. 
 An example to use classnames in your buttons: `btn btn--solid btn--primary`, `btn btn--outline btn--secondary`
@@ -113,19 +94,37 @@ If you have more colours in your application, append to the map such as: `btn--b
 	&:active {
 		background-color: transparent;
 		color: $admin-color-primary;
-		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $admin-color-primary);
+		@include inner-box-shadow(
+			convert-rem(0px),
+			convert-rem(0px),
+			convert-rem(0px),
+			convert-rem(3px),
+			$admin-color-primary
+		);
 	}
 }
 .btn--outline {
 	color: $admin-color-primary;
 	background-color: transparent;
-	@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $admin-color-primary);
+	@include inner-box-shadow(
+		convert-rem(0px),
+		convert-rem(0px),
+		convert-rem(0px),
+		convert-rem(3px),
+		$admin-color-primary
+	);
 
 	&:hover,
 	&:active {
 		background-color: $admin-color-primary;
 		color: get-contrasting-text-color($admin-color-primary);
-		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $admin-color-primary);
+		@include inner-box-shadow(
+			convert-rem(0px),
+			convert-rem(0px),
+			convert-rem(0px),
+			convert-rem(3px),
+			$admin-color-primary
+		);
 	}
 }
 .btn--text {
@@ -138,11 +137,22 @@ If you have more colours in your application, append to the map such as: `btn--b
 	}
 }
 
-$btn-colors: (btn--primary : $admin-color-primary, btn--secondary : $admin-color-secondary, btn--brand-01 : $admin-color-brand-01, btn--brand-02: $admin-color-brand-02, btn--brand-03 : $admin-color-brand-03, btn--support-blue : $admin-color-support-blue, btn--support-yellow : $admin-color-support-yellow, btn--support-red : $admin-color-support-red, btn--support-green : $admin-color-support-green, btn--support-orange : $admin-color-support-orange, btn--support-purple : $admin-color-support-purple);
+$btn-colors: (
+	btn--primary: $admin-color-primary,
+	btn--secondary: $admin-color-secondary,
+	btn--brand-01: $admin-color-brand-01,
+	btn--brand-02: $admin-color-brand-02,
+	btn--brand-03: $admin-color-brand-03,
+	btn--support-blue: $admin-color-support-blue,
+	btn--support-yellow: $admin-color-support-yellow,
+	btn--support-red: $admin-color-support-red,
+	btn--support-green: $admin-color-support-green,
+	btn--support-orange: $admin-color-support-orange,
+	btn--support-purple: $admin-color-support-purple,
+);
 
-@each $btn-name,
-$color in $btn-colors {
-	.btn--solid.#{$btn-name}{
+@each $btn-name, $color in $btn-colors {
+	.btn--solid.#{$btn-name} {
 		background-color: $color;
 		color: get-contrasting-text-color($color);
 
@@ -150,20 +160,38 @@ $color in $btn-colors {
 		&:active {
 			background-color: transparent;
 			color: $color;
-			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+			@include inner-box-shadow(
+				convert-rem(0px),
+				convert-rem(0px),
+				convert-rem(0px),
+				convert-rem(3px),
+				$color
+			);
 		}
 	}
 
 	.btn--outline.#{$btn-name} {
 		color: $color;
 		background-color: transparent;
-		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+		@include inner-box-shadow(
+			convert-rem(0px),
+			convert-rem(0px),
+			convert-rem(0px),
+			convert-rem(3px),
+			$color
+		);
 
 		&:hover,
 		&:active {
 			background-color: $color;
 			color: get-contrasting-text-color($color);
-			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+			@include inner-box-shadow(
+				convert-rem(0px),
+				convert-rem(0px),
+				convert-rem(0px),
+				convert-rem(3px),
+				$color
+			);
 		}
 	}
 
@@ -181,37 +209,57 @@ $color in $btn-colors {
 
 /*END BUTTON COLORS*/
 
-
 /*FEEDBACK/UTILITY BUTTONS
 Like above, each loop goes through the map $utility-btn-colors and assigns the right colours to the right button type. 
 An example to use utility classnames in your buttons: `btn btn--solid btn--success`;
 */
 
-$utility-btn-colors: (btn--error : $admin-color-support-red, btn--success : $admin-color-support-green, btn--warning : $admin-color-support-orange);
+$utility-btn-colors: (
+	btn--error: $admin-color-support-red,
+	btn--success: $admin-color-support-green,
+	btn--warning: $admin-color-support-orange,
+);
 
-@each $btn-name,
-$color in $utility-btn-colors {
-	.btn--solid.#{$btn-name}{
+@each $btn-name, $color in $utility-btn-colors {
+	.btn--solid.#{$btn-name} {
 		background-color: $color;
 		color: get-contrasting-text-color($color);
 
 		&:hover,
 		&:active {
 			background-color: darken($color, $admin-color-shades);
-			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), darken($color, $admin-color-shades));
+			@include inner-box-shadow(
+				convert-rem(0px),
+				convert-rem(0px),
+				convert-rem(0px),
+				convert-rem(3px),
+				darken($color, $admin-color-shades)
+			);
 		}
 	}
 
 	.btn--outline.#{$btn-name} {
 		color: $color;
 		background-color: transparent;
-		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+		@include inner-box-shadow(
+			convert-rem(0px),
+			convert-rem(0px),
+			convert-rem(0px),
+			convert-rem(3px),
+			$color
+		);
 
 		&:hover,
 		&:active {
 			background-color: $color;
 			color: get-contrasting-text-color($color);
-			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+			@include inner-box-shadow(
+				convert-rem(0px),
+				convert-rem(0px),
+				convert-rem(0px),
+				convert-rem(3px),
+				$color
+			);
 		}
 	}
 
@@ -229,7 +277,6 @@ $color in $utility-btn-colors {
 
 /*END UTILITY BUTTON COLORS*/
 
-
 /*Disabled button*/
 .btn[disabled] {
 	cursor: not-allowed;
@@ -237,7 +284,13 @@ $color in $utility-btn-colors {
 	color: $admin-black;
 	box-shadow: none;
 	opacity: 0.5;
-	@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $admin-grey-2);
+	@include inner-box-shadow(
+		convert-rem(0px),
+		convert-rem(0px),
+		convert-rem(0px),
+		convert-rem(3px),
+		$admin-grey-2
+	);
 
 	&.btn--solid {
 		&:hover {
@@ -339,5 +392,6 @@ $color in $utility-btn-colors {
 		}
 	}
 
-	&.btn-group--static-elements {}
+	&.btn-group--static-elements {
+	}
 }

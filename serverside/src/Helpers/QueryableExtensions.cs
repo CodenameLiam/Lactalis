@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +11,7 @@ using Lactalis.Utility;
 using GraphQL.EntityFramework;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-// % protected region % [Add any further imports here] off begin
-// % protected region % [Add any further imports here] end
+
 
 namespace Lactalis.Helpers
 {
@@ -53,9 +37,7 @@ namespace Lactalis.Helpers
 			IServiceProvider serviceProvider)
 			where T : IOwnerAbstractModel, new()
 		{
-			// % protected region % [Change AddReadSecurityFiltering here] off begin
 			return queryable.Where(SecurityService.CreateReadSecurityFilter<T>(identityService, userManager, dbContext, serviceProvider));
-			// % protected region % [Change AddReadSecurityFiltering here] end
 		}
 
 		public static IQueryable<T> AddUpdateSecurityFiltering<T>(
@@ -66,9 +48,7 @@ namespace Lactalis.Helpers
 			IServiceProvider serviceProvider)
 			where T : IOwnerAbstractModel, new()
 		{
-			// % protected region % [Change AddUpdateSecurityFiltering here] off begin
 			return queryable.Where(SecurityService.CreateUpdateSecurityFilter<T>(identityService, userManager, dbContext, serviceProvider));
-			// % protected region % [Change AddUpdateSecurityFiltering here] end
 		}
 
 		public static IQueryable<T> AddDeleteSecurityFiltering<T>(
@@ -79,14 +59,11 @@ namespace Lactalis.Helpers
 			IServiceProvider serviceProvider)
 			where T : IOwnerAbstractModel, new()
 		{
-			// % protected region % [Change AddDeleteSecurityFiltering here] off begin
 			return queryable.Where(SecurityService.CreateDeleteSecurityFilter<T>(identityService, userManager, dbContext, serviceProvider));
-			// % protected region % [Change AddDeleteSecurityFiltering here] end
 		}
 
 		public static IQueryable<T> AddPagination<T>(this IQueryable<T> queryable, Pagination pagination)
 		{
-			// % protected region % [Change AddPagination here] off begin
 			if (pagination != null && pagination.PageSize.HasValue && pagination.SkipAmount.HasValue)
 			{
 				return queryable
@@ -95,7 +72,6 @@ namespace Lactalis.Helpers
 			}
 
 			return queryable;
-			// % protected region % [Change AddPagination here] end
 		}
 
 		/// <summary>
@@ -134,7 +110,6 @@ namespace Lactalis.Helpers
 			this IQueryable<T> models,
 			IEnumerable<IEnumerable<WhereExpression>> wheres)
 		{
-			// % protected region % [Change AddConditionalWhereFilter here] off begin
 			if (wheres == null)
 			{
 				return models;
@@ -179,7 +154,6 @@ namespace Lactalis.Helpers
 			}
 
 			return models;
-			// % protected region % [Change AddConditionalWhereFilter here] end
 		}
 
 		/// <summary>
@@ -192,7 +166,6 @@ namespace Lactalis.Helpers
 		public static IQueryable<T> AddWhereFilter<T>(this IQueryable<T> models, IEnumerable<WhereExpression> wheres)
 			where T : IOwnerAbstractModel
 		{
-			// % protected region % [Change AddWhereFilter here] off begin
 			foreach (var where in wheres)
 			{
 				var predicate = ExpressionBuilder<T>.BuildPredicate(where);
@@ -200,7 +173,6 @@ namespace Lactalis.Helpers
 			}
 
 			return models;
-			// % protected region % [Change AddWhereFilter here] end
 		}
 
 		/// <summary>
@@ -212,7 +184,6 @@ namespace Lactalis.Helpers
 		/// <returns>A new queryable that is ordered by the given conditions</returns>
 		public static IQueryable<T> AddOrderBys<T>(this IQueryable<T> models, List<OrderBy> orderBys)
 		{
-			// % protected region % [Change AddOrderBys here] off begin
 			IOrderedQueryable<T> orderedQueryable = null;
 
 			for (var i = 0; i < orderBys.Count; i++)
@@ -238,10 +209,7 @@ namespace Lactalis.Helpers
 			}
 
 			return orderedQueryable ?? models;
-			// % protected region % [Change AddOrderBys here] end
 		}
 
-		// % protected region % [Add any further methods here] off begin
-		// % protected region % [Add any further methods here] end
 	}
 }

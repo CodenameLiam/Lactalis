@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,8 +15,7 @@ using Lactalis.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-// % protected region % [Add any extra imports here] off begin
-// % protected region % [Add any extra imports here] end
+
 
 namespace Lactalis.Services.Files.Providers
 {
@@ -63,16 +47,11 @@ namespace Lactalis.Services.Files.Providers
 		/// </summary>
 		private readonly List<IDisposable> _disposables = new List<IDisposable>();
 
-		// % protected region % [Add any extra properties here] off begin
-		// % protected region % [Add any extra properties here] end
 
 		public S3StorageProvider(
-			// % protected region % [Add any extra constructor arguments here] off begin
-			// % protected region % [Add any extra constructor arguments here] end
 			IOptions<S3StorageProviderConfiguration> configuration,
 			ILogger<S3StorageProvider> logger)
 		{
-			// % protected region % [Override constructor here] off begin
 			if (configuration.Value.AccessKey == null && configuration.Value.SecretKey == null)
 			{
 				// If there is no credentials provided do not pass them through.
@@ -93,13 +72,11 @@ namespace Lactalis.Services.Files.Providers
 				"Connecting to AWS instance with access key {Key} and bucket {Bucket}", 
 				configuration.Value.AccessKey,
 				configuration.Value.BucketName);
-			// % protected region % [Override constructor here] end
 		}
 
 		/// <inheritdoc />
 		public async Task<Stream> GetAsync(StorageGetOptions options, CancellationToken cancellationToken = default)
 		{
-			// % protected region % [Override GetAsync here] off begin
 			ValidateFileName(options.Container);
 			ValidateFileName(options.FileName);
 
@@ -114,13 +91,11 @@ namespace Lactalis.Services.Files.Providers
 			_disposables.Add(response);
 
 			return response.ResponseStream;
-			// % protected region % [Override GetAsync here] end
 		}
 
 		/// <inheritdoc />
 		public async Task<IEnumerable<string>> ListAsync(StorageListOptions options, CancellationToken cancellationToken = default)
 		{
-			// % protected region % [Override ListAsync here] off begin
 			ValidateFileName(options.Container);
 
 			_logger.LogDebug("Listing contents of container {Container}", options.Container);
@@ -142,13 +117,11 @@ namespace Lactalis.Services.Files.Providers
 			} while (response.IsTruncated);
 
 			return results;
-			// % protected region % [Override ListAsync here] end
 		}
 
 		/// <inheritdoc />
 		public async Task<bool> ExistsAsync(StorageExistsOptions options, CancellationToken cancellationToken = default)
 		{
-			// % protected region % [Override ExistsAsync here] off begin
 			ValidateFileName(options.Container);
 			ValidateFileName(options.FileName);
 
@@ -176,13 +149,11 @@ namespace Lactalis.Services.Files.Providers
 			}
 
 			return true;
-			// % protected region % [Override ExistsAsync here] end
 		}
 
 		/// <inheritdoc />
 		public async Task PutAsync(StoragePutOptions options, CancellationToken cancellationToken = default)
 		{
-			// % protected region % [Override PutAsync here] off begin
 			ValidateFileName(options.Container);
 			ValidateFileName(options.FileName);
 
@@ -216,13 +187,11 @@ namespace Lactalis.Services.Files.Providers
 
 			};
 			await transferClient.UploadAsync(request, cancellationToken);
-			// % protected region % [Override PutAsync here] end
 		}
 
 		/// <inheritdoc />
 		public async Task DeleteAsync(StorageDeleteOptions options, CancellationToken cancellationToken = default)
 		{
-			// % protected region % [Override DeleteAsync here] off begin
 			ValidateFileName(options.Container);
 			ValidateFileName(options.FileName);
 
@@ -234,13 +203,11 @@ namespace Lactalis.Services.Files.Providers
 				Key = GetFileKey(options.Container, options.FileName),
 			};
 			await _client.DeleteObjectAsync(request, cancellationToken);
-			// % protected region % [Override DeleteAsync here] end
 		}
 
 		/// <inheritdoc />
 		public async Task<bool> ContainerExistsAsync(StorageContainerExistsOptions options, CancellationToken cancellationToken = default)
 		{
-			// % protected region % [Override ContainerExistsAsync here] off begin
 			ValidateFileName(options.Container);
 
 			_logger.LogDebug("Checking if container {Container} exists", options.Container);
@@ -254,22 +221,18 @@ namespace Lactalis.Services.Files.Providers
 			var response = await _client.ListObjectsV2Async(request, cancellationToken);
 
 			return response.S3Objects.Any();
-			// % protected region % [Override ContainerExistsAsync here] end
 		}
 
 		/// <inheritdoc />
 		public Task CreateContainerAsync(StorageCreateContainerOptions options, CancellationToken cancellationToken = default)
 		{
-			// % protected region % [Override CreateContainerAsync here] off begin
 			_logger.LogDebug("Call to create container {Container}, however the S3 provider can't create containers", options.Container);
 			return Task.CompletedTask;
-			// % protected region % [Override CreateContainerAsync here] end
 		}
 
 		/// <inheritdoc />
 		public async Task DeleteContainerAsync(StorageDeleteContainerOptions options, CancellationToken cancellationToken = default)
 		{
-			// % protected region % [Override DeleteContainerAsync here] off begin
 			ValidateFileName(options.Container);
 
 			_logger.LogDebug("Deleting container {Container}", options.Container);
@@ -299,13 +262,11 @@ namespace Lactalis.Services.Files.Providers
 				};
 				await _client.DeleteObjectsAsync(deleteObjectsRequest, cancellationToken);
 			} while (response.IsTruncated);
-			// % protected region % [Override DeleteContainerAsync here] end
 		}
 
 		/// <inheritdoc />
 		public Func<CancellationToken, Task<IActionResult>> OnFetch(StorageOnFetchOptions options)
 		{
-			// % protected region % [Override OnFetch here] off begin
 			return cancellationToken =>
 			{
 				var request = new GetPreSignedUrlRequest
@@ -326,7 +287,6 @@ namespace Lactalis.Services.Files.Providers
 				var s3Url = _client.GetPreSignedURL(request);
 				return Task.FromResult(new RedirectResult(s3Url) as IActionResult);
 			};
-			// % protected region % [Override OnFetch here] end
 		}
 
 		/// <summary>
@@ -336,13 +296,11 @@ namespace Lactalis.Services.Files.Providers
 		/// <exception cref="IOException">If the filename is invalid</exception>
 		private void ValidateFileName(string fileName)
 		{
-			// % protected region % [Override ValidateFileName here] off begin
 			if (fileName.IndexOfAny(Path.GetInvalidFileNameChars()) != -1)
 			{
 				_logger.LogInformation("The name {fileName} is an invalid file name", fileName);
 				throw new IOException("Invalid path name");
 			}
-			// % protected region % [Override ValidateFileName here] end
 		}
 
 		/// <summary>
@@ -353,23 +311,17 @@ namespace Lactalis.Services.Files.Providers
 		/// <returns></returns>
 		private static string GetFileKey(string container, string fileName)
 		{
-			// % protected region % [Override GetFileKey here] off begin
 			return $"{container}/{fileName}";
-			// % protected region % [Override GetFileKey here] end
 		}
 
 		public void Dispose()
 		{
-			// % protected region % [Override Dispose here] off begin
 			_client?.Dispose();
 			foreach (var disposable in _disposables)
 			{
 				disposable.Dispose();
 			}
-			// % protected region % [Override Dispose here] end
 		}
 
-		// % protected region % [Add any extra methods here] off begin
-		// % protected region % [Add any extra methods here] end
 	}
 }

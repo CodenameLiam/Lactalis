@@ -12,7 +12,7 @@
 # 
 # BOT WARNING
 # This file is bot-written.
-# Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+# Any changes out side of " ions" will be lost next time the bot makes any changes.
 ###
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 # docs not used in this manor for tests
@@ -30,5 +30,5 @@
 **/bin/
 **/obj/
 
-# % protected region % [Add any further ignores here] off begin
-# % protected region % [Add any further ignores here] end
+# %  ion % [Add any further ignores here] off begin
+# %  ion % [Add any further ignores here] end

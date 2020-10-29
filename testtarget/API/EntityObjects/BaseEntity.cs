@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +8,6 @@ using EntityObject.Enums;
 using Microsoft.EntityFrameworkCore;
 using LactalisDBContext = Lactalis.Models.LactalisDBContext;
 using RestSharp;
-// % protected region % [Custom imports] off begin
-// % protected region % [Custom imports] end
 
 namespace APITests.EntityObjects.Models
 {
@@ -93,9 +76,7 @@ namespace APITests.EntityObjects.Models
 		internal Guid SaveToDB<T>(T model) where T : class, Lactalis.Models.IOwnerAbstractModel
 		{
 			var configure = new StartupTestFixture();
-			// % protected region % [Adjust the db context if required] off begin
 			var context = new LactalisDBContext(configure.DbContextOptions, null, null);
-			// % protected region % [Adjust the db context if required] end
 			model.Owner = configure.SuperOwnerId;
 			var dbSet = context.GetDbSet<T>(typeof(T).Name);
 			dbSet.Update(model);

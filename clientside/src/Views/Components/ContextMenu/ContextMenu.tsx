@@ -1,26 +1,10 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
 import * as React from "react";
-import classNames from 'classnames';
-import { observer } from 'mobx-react';
-import { contextMenu, Menu, Item, Submenu } from 'react-contexify';
-import { Button } from '../Button/Button';
-import { IconPositions } from '../Helpers/Common';
-import { MenuItemEventHandler } from 'react-contexify/lib/types';
+import classNames from "classnames";
+import { observer } from "mobx-react";
+import { contextMenu, Menu, Item, Submenu } from "react-contexify";
+import { Button } from "../Button/Button";
+import { IconPositions } from "../Helpers/Common";
+import { MenuItemEventHandler } from "react-contexify/lib/types";
 
 export interface IContextMenuItemProps {
 	/** A label for the action button */
@@ -57,13 +41,14 @@ export interface IContextMenuProps {
 	menuId: string;
 }
 
-export function isItemGroup(item: IContextMenuItemProps | IContextMenuItemGroup): item is IContextMenuItemGroup {
-	return item['groupName'] !== undefined;
+export function isItemGroup(
+	item: IContextMenuItemProps | IContextMenuItemGroup
+): item is IContextMenuItemGroup {
+	return item["groupName"] !== undefined;
 }
 
 @observer
 export class ContextMenu extends React.Component<IContextMenuProps> {
-	
 	public render() {
 		const menuItems = this.getSubMenu(this.props.actions, this.props.menuId);
 
@@ -74,19 +59,26 @@ export class ContextMenu extends React.Component<IContextMenuProps> {
 		);
 	}
 
-	private getSubMenu = (subActions: Array<IContextMenuItemProps | IContextMenuItemGroup>, parentItemKey: string): React.ReactNode => {
+	private getSubMenu = (
+		subActions: Array<IContextMenuItemProps | IContextMenuItemGroup>,
+		parentItemKey: string
+	): React.ReactNode => {
 		return subActions.map((menuItem, index) => {
 			const itemKey = `${parentItemKey}-${index}`;
 			let menuItemNode = undefined;
 			if (!isItemGroup(menuItem)) {
 				if (!!menuItem.label) {
-					const icon = menuItem.showIcon && menuItem.icon && menuItem.iconPos ? { icon: menuItem.icon, iconPos: menuItem.iconPos } : undefined;
-					menuItemNode =
+					const icon =
+						menuItem.showIcon && menuItem.icon && menuItem.iconPos
+							? { icon: menuItem.icon, iconPos: menuItem.iconPos }
+							: undefined;
+					menuItemNode = (
 						<Button className={menuItem.buttonClass} icon={icon}>
 							{menuItem.label}
-						</Button>;
+						</Button>
+					);
 				} else {
-					menuItemNode = menuItem.customItem || 'undefined';
+					menuItemNode = menuItem.customItem || "undefined";
 				}
 
 				return (
@@ -96,24 +88,19 @@ export class ContextMenu extends React.Component<IContextMenuProps> {
 								menuItem.onClick(args);
 							}
 						}}
-						key={itemKey}
-					>
+						key={itemKey}>
 						{menuItemNode}
 					</Item>
-				)
+				);
 			} else {
 				return (
-					<Submenu
-						label={menuItem.groupName}
-						arrow=">"
-						key={itemKey}
-					>
+					<Submenu label={menuItem.groupName} arrow=">" key={itemKey}>
 						{this.getSubMenu(menuItem.actions, itemKey)}
 					</Submenu>
-				)
+				);
 			}
 		});
-	}
+	};
 
 	// Here come the magic
 	public handleContextMenu = (e: React.MouseEvent<Element, MouseEvent>) => {
@@ -124,5 +111,5 @@ export class ContextMenu extends React.Component<IContextMenuProps> {
 			id: this.props.menuId,
 			event: e,
 		});
-	}
+	};
 }

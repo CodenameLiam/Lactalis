@@ -1,31 +1,15 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
-import * as React from 'react';
-import { ChangeEventHandler } from 'react';
-import * as uuid from 'uuid';
-import classNames from 'classnames';
-import InputWrapper from '../Inputs/InputWrapper';
-import InputsHelper from '../Helpers/InputsHelper';
-import { DisplayType } from '../Models/Enums';
-import { action, computed, observable } from 'mobx';
-import { observer } from 'mobx-react';
-import { Button, Display } from 'Views/Components/Button/Button';
-import { FileUploadPreview } from 'Views/Components/FileUpload/UploadPreview';
-import If from 'Views/Components/If/If';
+import * as React from "react";
+import { ChangeEventHandler } from "react";
+import * as uuid from "uuid";
+import classNames from "classnames";
+import InputWrapper from "../Inputs/InputWrapper";
+import InputsHelper from "../Helpers/InputsHelper";
+import { DisplayType } from "../Models/Enums";
+import { action, computed, observable } from "mobx";
+import { observer } from "mobx-react";
+import { Button, Display } from "Views/Components/Button/Button";
+import { FileUploadPreview } from "Views/Components/FileUpload/UploadPreview";
+import If from "Views/Components/If/If";
 
 export interface FileUploadProps<T> {
 	/**
@@ -133,19 +117,19 @@ export interface FileUploadProps<T> {
  */
 @observer
 export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
-	protected uuid = uuid.v4();
-	protected inputRef: HTMLInputElement | null = null;
+	ed uuid = uuid.v4();
+	ed inputRef: HTMLInputElement | null = null;
 
 	@observable
 	public isBeingHovered = false;
 
 	@observable
-	protected internalErrors: string[] = [];
+	ed internalErrors: string[] = [];
 
 	@computed
 	public get file() {
 		return this.props.model[this.props.modelProperty] as File;
-	};
+	}
 
 	@computed
 	public get disableDelete() {
@@ -153,15 +137,15 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 	}
 
 	@computed
-	protected get acceptType() {
+	ed get acceptType() {
 		const { contentType, imageUpload } = this.props;
-		return contentType ?? (imageUpload ? 'image/*' : undefined);
+		return contentType ?? (imageUpload ? "image/*" : undefined);
 	}
 
 	@computed
-	protected get errors() {
+	ed get errors() {
 		const errorsProp = this.props.errors;
-		if (typeof errorsProp === 'string') {
+		if (typeof errorsProp === "string") {
 			return [...this.internalErrors, errorsProp];
 		} else if (Array.isArray(errorsProp)) {
 			return [...this.internalErrors, ...errorsProp];
@@ -177,7 +161,7 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 
 		this.internalErrors = [];
 		if (!this.validateContentType(file)) {
-			const message =  `Content type ${file.type} is not valid for ${this.acceptType}`;
+			const message = `Content type ${file.type} is not valid for ${this.acceptType}`;
 			this.internalErrors.push(message);
 			console.warn(message);
 			return false;
@@ -196,15 +180,15 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 			return this.props.onDelete();
 		}
 		if (this.inputRef) {
-			this.inputRef.value = '';
+			this.inputRef.value = "";
 		}
 
 		this.props.model[this.props.modelProperty] = undefined;
-		this.props.onAfterDelete?.()
+		this.props.onAfterDelete?.();
 	};
 
 	public validateContentType = (file: File) => {
-		const types = this.acceptType?.split(',').map(x => x.trim());
+		const types = this.acceptType?.split(",").map((x) => x.trim());
 
 		// If this is null then there is no validation
 		if (!types) {
@@ -219,13 +203,13 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 			}
 
 			// File extension match
-			if (type.startsWith('.') && file.name.endsWith(type)) {
+			if (type.startsWith(".") && file.name.endsWith(type)) {
 				return true;
 			}
 
 			// Check special content types
-			if (type === 'audio/*' || type === 'video/*' || type === 'image/*') {
-				const specialType = type.replace('/*', '');
+			if (type === "audio/*" || type === "video/*" || type === "image/*") {
+				const specialType = type.replace("/*", "");
 				if (file.type.startsWith(specialType)) {
 					return true;
 				}
@@ -235,7 +219,7 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 		return false;
 	};
 
-	protected onChange: ChangeEventHandler<HTMLInputElement> = event => {
+	ed onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
 		const { files } = event.target;
 		if (files) {
 			for (let i = 0; i < files.length; i++) {
@@ -244,16 +228,16 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 		}
 	};
 
-	protected onDragOver = (event: React.DragEvent) => event.preventDefault();
+	ed onDragOver = (event: React.DragEvent) => event.preventDefault();
 
 	@action
-	protected onDragEnter = () => this.isBeingHovered = true;
+	ed onDragEnter = () => (this.isBeingHovered = true);
 
 	@action
-	protected onDragLeave = () => this.isBeingHovered = false;
+	ed onDragLeave = () => (this.isBeingHovered = false);
 
 	@action
-	protected onDrop = (event: React.DragEvent) => {
+	ed onDrop = (event: React.DragEvent) => {
 		event.preventDefault();
 		this.isBeingHovered = false;
 		const file = event.dataTransfer.files[0];
@@ -262,22 +246,25 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 		}
 	};
 
-	protected onClick = () => {
+	ed onClick = () => {
 		this.inputRef?.focus();
 		this.inputRef?.click();
 	};
 
-	protected preview = () => {
-		if (typeof this.props.preview === 'function') {
+	ed preview = () => {
+		if (typeof this.props.preview === "function") {
 			return this.props.preview(this.file, this.disableDelete ? undefined : this.clearFile);
 		}
 
 		if (this.props.preview && this.file) {
-			return <FileUploadPreview
-				fileName={this.file.name}
-				imagePreview={this.props.imageUpload}
-				fileBlob={this.file}
-				onDelete={this.disableDelete ? undefined : this.clearFile} />
+			return (
+				<FileUploadPreview
+					fileName={this.file.name}
+					imagePreview={this.props.imageUpload}
+					fileBlob={this.file}
+					onDelete={this.disableDelete ? undefined : this.clearFile}
+				/>
+			);
 		}
 		return null;
 	};
@@ -299,17 +286,18 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 		const wrapperId = this.uuid.toString();
 		const fieldId = `${wrapperId}-field`;
 
-		const labelVisible = (this.props.labelVisible === undefined) ? true : this.props.labelVisible;
+		const labelVisible = this.props.labelVisible === undefined ? true : this.props.labelVisible;
 		const ariaLabel = !labelVisible ? label : undefined;
 		const ariaDescribedby = InputsHelper.getAriaDescribedBy(wrapperId, tooltip, subDescription);
 
 		return (
 			<div
 				className={classNames(
-					'upload',
-					'upload__file',
-					isReadOnly ? 'readonly' : undefined,
-					className)}
+					"upload",
+					"upload__file",
+					isReadOnly ? "readonly" : undefined,
+					className
+				)}
 				id={this.props.id}>
 				<InputWrapper
 					id={wrapperId}
@@ -324,8 +312,8 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 					labelVisible={labelVisible}
 					errors={this.errors}>
 					<input
-						ref={instance => this.inputRef = instance}
-						style={{display: 'none'}}
+						ref={(instance) => (this.inputRef = instance)}
+						style={{ display: "none" }}
 						aria-hidden="true"
 						type="file"
 						name={name}
@@ -336,10 +324,11 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 						readOnly={staticInput}
 						aria-label={ariaLabel}
 						aria-describedby={ariaDescribedby}
-						{...this.props.inputProps}/>
+						{...this.props.inputProps}
+					/>
 					<If condition={isReadOnly !== true}>
 						<Button
-							icon={{iconPos: 'icon-left', 'icon': 'upload'}}
+							icon={{ iconPos: "icon-left", icon: "upload" }}
 							display={Display.Solid}
 							disabled={isDisabled}
 							onClick={this.onClick}>
@@ -347,19 +336,17 @@ export default class FileUpload<T> extends React.Component<FileUploadProps<T>> {
 						</Button>
 						<div
 							className={classNames(
-								'upload__drag-area',
-								this.isBeingHovered ? 'active' : undefined,
-								isDisabled ? 'disabled' : undefined)}
+								"upload__drag-area",
+								this.isBeingHovered ? "active" : undefined,
+								isDisabled ? "disabled" : undefined
+							)}
 							onDragOver={this.onDragOver}
 							onDragEnter={this.onDragEnter}
 							onDragLeave={this.onDragLeave}
-							onDrop={this.onDrop}>
-						</div>
+							onDrop={this.onDrop}></div>
 					</If>
 				</InputWrapper>
-				<div className="file-preview">
-					{this.preview()}
-				</div>
+				<div className="file-preview">{this.preview()}</div>
 			</div>
 		);
 	}

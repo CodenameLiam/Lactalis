@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +31,7 @@ namespace Lactalis.Services
 			_parameter = parameter;
 		}
 
-		protected override Expression VisitParameter
+		ed override Expression VisitParameter
 			(ParameterExpression node)
 		{
 			return _parameter;
@@ -63,19 +48,13 @@ namespace Lactalis.Services
 		private readonly UserManager<User> _userManager;
 		private readonly IServiceProvider _serviceProvider;
 
-		// % protected region % [Add any additional fields here] off begin
-		// % protected region % [Add any additional fields here] end
 
 		public SecurityService(
-			// % protected region % [Add any constructor arguments here] off begin
-			// % protected region % [Add any constructor arguments here] end
 			UserManager<User> userManager,
 			IServiceProvider serviceProvider)
 		{
 			_userManager = userManager;
 			_serviceProvider = serviceProvider;
-			// % protected region % [Add any constructor logic here] off begin
-			// % protected region % [Add any constructor logic here] end
 		}
 
 		/// <summary>
@@ -97,7 +76,6 @@ namespace Lactalis.Services
 			where TModel : IOwnerAbstractModel, new()
 		{
 
-			// % protected region % [Customise CreateSecurityFilter logic here] off begin
 			identityService.RetrieveUserAsync().Wait();
 			var model = new TModel();
 			var userGroups = identityService.Groups;
@@ -146,7 +124,6 @@ namespace Lactalis.Services
 			var replacer = new ParameterReplacer(param);
 
 			return Expression.Lambda<Func<TModel, bool>>(replacer.Visit(filter), param);
-			// % protected region % [Customise CreateSecurityFilter logic here] end
 		}
 
 		/// <summary>
@@ -208,7 +185,6 @@ namespace Lactalis.Services
 
 		public async Task<List<string>> CheckDbSecurityChanges(IIdentityService identityService, LactalisDBContext dbContext)
 		{
-			// % protected region % [Customise CheckDbSecurityChanges logic here] off begin
 			await identityService.RetrieveUserAsync();
 
 			var securityContext = new SecurityContext
@@ -305,7 +281,6 @@ namespace Lactalis.Services
 					list.AddRange(pair.Value);
 					return list;
 				});
-			// % protected region % [Customise CheckDbSecurityChanges logic here] end
 		}
 
 		/// <summary>

@@ -12,12 +12,12 @@
 # 
 # BOT WARNING
 # This file is bot-written.
-# Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+# Any changes out side of " ions" will be lost next time the bot makes any changes.
 ###
 ###############
 #  temp file  #
 ###############
 *.yml
 .manifest
-# % protected region % [Add any further ignores here] off begin
-# % protected region % [Add any further ignores here] end
+# %  ion % [Add any further ignores here] off begin
+# %  ion % [Add any further ignores here] end

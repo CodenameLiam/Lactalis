@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
@@ -39,7 +24,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Dataion;
 
 using GraphQL;
 using GraphQL.Server;
@@ -69,8 +54,7 @@ using Lactalis.Services.Files;
 using Lactalis.Services.Files.Providers;
 using Serilog;
 using Serilog.Events;
-// % protected region % [Add any extra imports here] off begin
-// % protected region % [Add any extra imports here] end
+ 
 
 namespace Lactalis
 {
@@ -89,60 +73,38 @@ namespace Lactalis
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public IServiceProvider ConfigureServices(IServiceCollection services)
 		{
-			// % protected region % [Configure logging here] off begin
 			Log.Logger = new LoggerConfiguration()
 				.ReadFrom.Configuration(Configuration)
 				.Enrich.FromLogContext()
 				.Enrich.WithProperty("Application", "Lactalis")
 				.WriteTo.Console()
 				.CreateLogger();
-			// % protected region % [Configure logging here] end
 
-			// % protected region % [Configure MVC here] off begin
 			AddMvc(services);
-			// % protected region % [Configure MVC here] end
 
-			// % protected region % [Configure database connection here] off begin
 			ConfigureDatabaseConnection(services);
-			// % protected region % [Configure database connection here] end
 
-			// % protected region % [Configure Auth services here] off begin
 			ConfigureAuthServices(services);
-			// % protected region % [Configure Auth services here] end
 
-			// % protected region % [Configure scoped services here] off begin
 			ConfigureScopedServices(services);
-			// % protected region % [Configure scoped services here] end
 
-			// % protected region % [Configure graphql services here] off begin
 			ConfigureGraphql(services);
-			// % protected region % [Configure graphql services here] end
 
-			// % protected region % [Configure swagger services here] off begin
 			AddSwaggerService(services);
-			// % protected region % [Configure swagger services here] end
 
-			// % protected region % [Configure configuration services here] off begin
 			AddApplicationConfigurations(services);
-			// % protected region % [Configure configuration services here] end
 
-			// % protected region % [Add extra startup methods here] off begin
-			// % protected region % [Add extra startup methods here] end
 
-			// % protected region % [Configure ApiBehaviorOptions service here] off begin
 			services.Configure<ApiBehaviorOptions>(options =>
 			{
 				options.InvalidModelStateResponseFactory = ctx => new LactalisActionResult();
 			});
-			// % protected region % [Configure ApiBehaviorOptions service here] end
 
-			// % protected region % [Configure SPA files here] off begin
 			// In production, the React files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
 			{
 				configuration.RootPath = "Client";
 			});
-			// % protected region % [Configure SPA files here] end
 
 			// Add scheduled tasks & scheduler
 			LoadScheduledTasks(services);
@@ -158,29 +120,22 @@ namespace Lactalis
 		{
 			services.AddMvc(options =>
 				{
-					// % protected region % [Configure MVC options here] off begin
 					options.Filters.Add(new XsrfActionFilterAttribute());
 					options.Filters.Add(new AntiforgeryFilterAttribute());
-					// % protected region % [Configure MVC options here] end
 				})
 				.AddControllersAsServices()
 				.SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
 				.AddNewtonsoftJson(options =>
 				{
-					// % protected region % [Configure JSON options here] off begin
 					options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-					// % protected region % [Configure JSON options here] end
 				})
 				.AddMvcOptions(options =>
 				{
 					// Add extra output formatters after JSON to ensure JSON is the default
-					// % protected region % [Configure output formatters here] off begin
 					options.OutputFormatters.Add(new CsvOutputFormatter());
-					// % protected region % [Configure output formatters here] end
 				});
 		}
 
-		// % protected region % [Customise ConfigureDatabaseConnection method here] off begin
 		/// <summary>
 		/// Set up the database connection
 		/// </summary>
@@ -194,11 +149,9 @@ namespace Lactalis
 				options.UseOpenIddict<Guid>();
 			});
 		}
-		// % protected region % [Customise ConfigureDatabaseConnection method here] end
 
 		private void AddSwaggerService(IServiceCollection services)
 		{
-			// % protected region % [Customise Swagger configuration here] off begin
 			services.AddSwaggerGen(options =>
 			{
 				options.SwaggerDoc("json", new OpenApiInfo {Title = "Lactalis", Version = "v1"});
@@ -209,21 +162,15 @@ namespace Lactalis
 				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 				options.IncludeXmlComments(xmlPath);
 			});
-			// % protected region % [Customise Swagger configuration here] end
 		}
 
 		private void ConfigureAuthServices(IServiceCollection services)
 		{
-			// % protected region % [Configure XSRF here] off begin
 			services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
-			// % protected region % [Configure XSRF here] end
 
-			// % protected region % [Configure data protection here] off begin
-			services.AddDataProtection()
+			services.AddDataion()
 				.PersistKeysToDbContext<LactalisDBContext>();
-			// % protected region % [Configure data protection here] end
 
-			// % protected region % [Configure password requirements here] off begin
 			// Register Identity Services
 			services.AddIdentity<User, Group>(options =>
 				{
@@ -255,15 +202,10 @@ namespace Lactalis
 				})
 				.AddEntityFrameworkStores<LactalisDBContext>()
 				.AddDefaultTokenProviders();
-			// % protected region % [Configure password requirements here] end
 
-			// % protected region % [Customize your OIDC/oAuth2 library] off begin
 			ConfigureAuthorizationLibrary(services);
-			// % protected region % [Customize your OIDC/oAuth2 library] end
 
 			var certSetting = Configuration.GetSection("CertificateSetting").Get<CertificateSetting>();
-			// % protected region % [add any configuration after the cretificate] off begin
-			// % protected region % [add any configuration after the cretificate] end
 
 			JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 			JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
@@ -271,7 +213,6 @@ namespace Lactalis
 			services.AddAuthentication("Identity.Application")
 				.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
 				{
-					// % protected region % [Change AddCookie logic here] off begin
 					options.LoginPath = "/api/authorization/login";
 					options.LogoutPath = "/api/authorization/logout";
 					options.SlidingExpiration = true;
@@ -281,10 +222,8 @@ namespace Lactalis
 						redirectOptions.Response.StatusCode = StatusCodes.Status401Unauthorized;
 						return Task.CompletedTask;
 					};
-					// % protected region % [Change AddCookie logic here] end
 				})
 				.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => {
-					// % protected region % [Change AddJwtBearer logic here] off begin
 					options.Authority = certSetting.JwtBearerAuthority;
 					options.Audience = certSetting.JwtBearerAudience;
 					options.RequireHttpsMetadata = false;
@@ -294,24 +233,17 @@ namespace Lactalis
 						NameClaimType = OpenIdConnectConstants.Claims.Name,
 						RoleClaimType = OpenIdConnectConstants.Claims.Role
 					};
-					// % protected region % [Change AddJwtBearer logic here] end
 				})
-				// % protected region % [Add additional authentication chain methods here] off begin
-				// % protected region % [Add additional authentication chain methods here] end
 				;
 
-			// % protected region % [Add additional authentication types here] off begin
-			// % protected region % [Add additional authentication types here] end
 
 			services.AddAuthorization(options =>
 			{
-				// % protected region % [Change authorization logic here] off begin
 				options.DefaultPolicy = new AuthorizationPolicyBuilder(
 						JwtBearerDefaults.AuthenticationScheme,
 						CookieAuthenticationDefaults.AuthenticationScheme)
 					.RequireAuthenticatedUser()
 					.Build();
-				// % protected region % [Change authorization logic here] end
 
 				options.AddPolicy(
 					"AllowVisitorPolicy",
@@ -325,7 +257,6 @@ namespace Lactalis
 
 		private void ConfigureAuthorizationLibrary(IServiceCollection services)
 		{
-			// % protected region % [Configure authorization library here] off begin
 			var certSetting = Configuration.GetSection("CertificateSetting").Get<CertificateSetting>();
 
 			services.AddOpenIddict()
@@ -370,7 +301,6 @@ namespace Lactalis
 					options.AcceptAnonymousClients();
 					options.DisableHttpsRequirement();
 				});
-			// % protected region % [Configure authorization library here] end
 		}
 
 		private void ConfigureScopedServices(IServiceCollection services) {
@@ -391,7 +321,6 @@ namespace Lactalis
 			services.TryAddScoped<AntiforgeryFilter>();
 			services.TryAddScoped<XsrfActionFilter>();
 
-			// % protected region % [Configure storage provider services here] off begin
 			// Configure the file system provider to use
 			var storageOptions = new StorageProviderConfiguration();
 			Configuration.GetSection("StorageProvider").Bind(storageOptions);
@@ -405,10 +334,7 @@ namespace Lactalis
 					services.TryAddScoped<IUploadStorageProvider, FileSystemStorageProvider>();
 					break;
 			}
-			// % protected region % [Configure storage provider services here] end
 
-			// % protected region % [Add extra core scoped services here] off begin
-			// % protected region % [Add extra core scoped services here] end
 		}
 
 		private void ConfigureGraphql(IServiceCollection services)
@@ -455,8 +381,6 @@ namespace Lactalis
 			services.TryAddSingleton<TradingPostListingsTradingPostCategoriesInputType>();
 			services.TryAddSingleton<FarmersFarmsType>();
 			services.TryAddSingleton<FarmersFarmsInputType>();
-			// % protected region % [Register additional graphql types here] off begin
-			// % protected region % [Register additional graphql types here] end
 
 			// Register enum GraphQl types
 			services.TryAddSingleton<EnumerationGraphType<PriceType>>();
@@ -482,8 +406,6 @@ namespace Lactalis
 			GraphTypeTypeRegistry.Register<PromotedArticlesEntity, PromotedArticlesEntityType>();
 			GraphTypeTypeRegistry.Register<TradingPostListingsTradingPostCategories, TradingPostListingsTradingPostCategoriesType>();
 			GraphTypeTypeRegistry.Register<FarmersFarms, FarmersFarmsType>();
-			// % protected region % [Add custom GraphQL Types for custom models here] off begin
-			// % protected region % [Add custom GraphQL Types for custom models here] end
 
 			// Add GraphQL core services and executors
 			services.TryAddSingleton<IDocumentExecuter, EfDocumentExecuter>();
@@ -501,8 +423,6 @@ namespace Lactalis
 			services.TryAddSingleton<NumberObjectType>();
 			services.TryAddSingleton<OrderGraph>();
 			services.TryAddSingleton<BooleanObjectType>();
-			// % protected region % [Add extra GraphQL types here] off begin
-			// % protected region % [Add extra GraphQL types here] end
 
 			// Send our db context to graphql to use
 			EfGraphQLConventions.RegisterInContainer<LactalisDBContext>(services);
@@ -519,8 +439,6 @@ namespace Lactalis
 			services.Configure<StorageProviderConfiguration>(Configuration.GetSection("StorageProvider"));
 			services.Configure<FileSystemStorageProviderConfiguration>(Configuration.GetSection("FileSystemStorageProvider"));
 			services.Configure<S3StorageProviderConfiguration>(Configuration.GetSection("S3StorageProvider"));
-			// % protected region % [Add more configuration sections here] off begin
-			// % protected region % [Add more configuration sections here] end
 		}
 
 		private IContainer RegisterAutofacTypes(IServiceCollection services)
@@ -528,15 +446,11 @@ namespace Lactalis
 			var builder = new ContainerBuilder();
 
 			builder.Populate(services);
-			// % protected region % [Register more Autofac Types here] off begin
-			// % protected region % [Register more Autofac Types here] end
 			return builder.Build();
 		}
 
 		private void LoadScheduledTasks(IServiceCollection services)
 		{
-			// % protected region % [Add more scheduled task here] off begin
-			// % protected region % [Add more scheduled task here] end
 
 			services.AddScheduler((sender, args) =>
 			{
@@ -547,15 +461,11 @@ namespace Lactalis
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(
-			// % protected region % [Add Configure arguments here] off begin
-			// % protected region % [Add Configure arguments here] end
 			IApplicationBuilder app,
 			IWebHostEnvironment env,
 			DataSeedHelper dataSeed,
 			ILogger<AuditLog> logger)
 		{
-			// % protected region % [Add methods before audit config here] off begin
-			// % protected region % [Add methods before audit config here] end
 
 			Audit.Core.Configuration.Setup()
 				.UseDynamicProvider(configurator =>
@@ -564,29 +474,21 @@ namespace Lactalis
 					configurator.OnReplace((obj, audit) => AuditUtilities.LogAuditEvent(audit, logger));
 				});
 
-			// % protected region % [Add methods before data seeding here] off begin
-			// % protected region % [Add methods before data seeding here] end
 
 			dataSeed.Initialize();
 
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
-				// % protected region % [Add dev environment settings here] off begin
-				// % protected region % [Add dev environment settings here] end
 			}
 			else
 			{
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseExceptionHandler("/Error");
 				app.UseHsts();
-				// % protected region % [Add prod environment settings here] off begin
-				// % protected region % [Add prod environment settings here] end
 
 			}
 
-			// % protected region % [Add methods before logging config here] off begin
-			// % protected region % [Add methods before logging config here] end
 
 			app.UseSerilogRequestLogging(options =>
 			{
@@ -595,11 +497,7 @@ namespace Lactalis
 				{
 					context.Set("User", httpContext.User?.Identity.Name);
 					context.Set("UserId", httpContext.User?.FindFirst("UserId")?.Value);
-					// % protected region % [Add extra log enrichment here] off begin
-					// % protected region % [Add extra log enrichment here] end
 				};
-				// % protected region % [Add log configuration here] off begin
-				// % protected region % [Add log configuration here] end
 			});
 
 			app.UseStaticFiles();
@@ -607,7 +505,6 @@ namespace Lactalis
 
 			app.UseMiddleware<AuditMiddleware>();
 
-			// % protected region % [Alter swagger configuration here] off begin
 			// Add Swagger json and ui
 			var swaggerUrl = "api/swagger/{documentName}/openapi.json";
 			app.UseSwagger(options =>
@@ -619,28 +516,18 @@ namespace Lactalis
 				options.SwaggerEndpoint("/api/swagger/json/openapi.json", "Lactalis");
 				options.RoutePrefix = "api/swagger";
 			});
-			// % protected region % [Alter swagger configuration here] end
 
 			app.UseRouting();
-			// % protected region % [add configuration after routing] off begin
-			// % protected region % [add configuration after routing] end
 
 			app.UseAuthentication();
 			app.UseAuthorization();
-			// % protected region % [Add cors settings here] off begin
-			// % protected region % [Add cors settings here] end
 
-			// % protected region % [Configure endpoints here] off begin
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");
 			});
-			// % protected region % [Configure endpoints here] end
 
-			// % protected region % [add extra configuration settings here] off begin
-			// % protected region % [add extra configuration settings here] end
 
-			// % protected region % [Alter SPA configuration here] off begin
 			app.UseSpa(spa =>
 			{
 				spa.Options.SourcePath = "Client";
@@ -661,9 +548,6 @@ namespace Lactalis
 					}
 				}
 			});
-			// % protected region % [Alter SPA configuration here] end
 		}
-		// % protected region % [Add any custom startup methods here] off begin
-		// % protected region % [Add any custom startup methods here] end
 	}
 }

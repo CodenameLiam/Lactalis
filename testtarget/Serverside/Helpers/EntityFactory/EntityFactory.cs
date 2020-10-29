@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -252,7 +237,7 @@ namespace ServersideTests.Helpers.EntityFactory
 		/// Generates the individual entities
 		/// </summary>
 		/// <returns>A new entity</returns>
-		protected T GenerateEntity()
+		ed T GenerateEntity()
 		{
 			var entity = new T();
 
@@ -286,7 +271,7 @@ namespace ServersideTests.Helpers.EntityFactory
 		/// <param name="created">The created date to add</param>
 		/// <param name="modified">The modified date to add</param>
 		/// <param name="basePropertiesOnly">Should only common model properties be added</param>
-		protected void AddAttribute(
+		ed void AddAttribute(
 			IAbstractModel entity,
 			DateTime? created = null,
 			DateTime? modified = null,
@@ -347,7 +332,7 @@ namespace ServersideTests.Helpers.EntityFactory
 		/// Adds an owner to a model
 		/// </summary>
 		/// <param name="entity">The entity to add the owner id to</param>
-		protected void AddOwnerToModel(IAbstractModel entity)
+		ed void AddOwnerToModel(IAbstractModel entity)
 		{
 			if (entity is IOwnerAbstractModel ownerEntity && _ownerId.HasValue)
 			{
@@ -363,7 +348,7 @@ namespace ServersideTests.Helpers.EntityFactory
 		/// A list of already visited entities. This is used for recursive reference generation and not needed for the
 		/// initial call of the function.
 		/// </param>
-		protected void CreateAndAddReferences(
+		ed void CreateAndAddReferences(
 			IAbstractModel entity,
 			List<(Type, string)> visited = null)
 		{

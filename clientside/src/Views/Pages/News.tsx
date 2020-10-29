@@ -7,6 +7,9 @@ import Page from "Views/Components/Layout/Page";
 import { NewsArticleEntity } from "Models/Entities";
 import { store } from "Models/Store";
 import { getFetchAllQuery } from "Util/EntityUtils";
+import { gql } from "apollo-boost";
+import ComponentSpinner from "Views/Components/Spinner/ComponentSpinner";
+import moment from "moment";
 
 export default function News() {
 	const history = useHistory();
@@ -23,52 +26,171 @@ export default function News() {
 	return (
 		<Page title="News">
 			<div className="news-page">
-				<div className="articles-container">{renderArticles(history, location)}</div>
+				<PromotedStories />
+				<RecentStories />
 			</div>
 		</Page>
 	);
 }
 
-function renderArticles(history: any, location: any) {
-	// const { open, visible } = getNavigationState(location);
+function RecentStories() {
+	const [articles, setArticles] = useState<NewsArticleEntity[] | undefined>(undefined);
 
-	return articles.map((article: IArticle, index: number) => {
-		return <Article key={index} history={history} location={location} article={article} />;
-	});
-}
+	useEffect(() => {
+		store.apolloClient.query({ query: queryRecentArticles() }).then((d) => {
+			setArticles(d.data.newsArticleEntitys);
+		});
+	}, []);
 
-export function Article(props: { history: any; location: any; article: IArticle }) {
-	const { history, location, article } = props;
-	// const { open, visible } = getNavigationState(location);
 	return (
-		<div
-			className="article"
-			onClick={() =>
-				history.push(article.path, {
-					title: article.title,
-					content: article.content.toString(),
-					articles: articles,
-				})
-			}>
-			<div className="article-image">
-				<img src={article.featureImage} />
-			</div>
-			<div className="article-content">
-				<div className="article-information">
-					<div className="article-title">{article.title}</div>
-					<div className="article-description">{article.description}</div>
+		<div className="recent-stories">
+			<div className="info-card">
+				<div className="info-head info-head-no-margin">
+					<div className="info-title">Recent Stories</div>
 				</div>
-
-				<div className="article-date">
-					<div className="calendar-icon">
-						<Today />
-					</div>
-					<div className="publish-date">{article.published}</div>
-				</div>
+				<div className="recent">{renderArticles()}</div>
 			</div>
 		</div>
 	);
+
+	function renderArticles() {
+		if (articles) {
+			return articles.map((article, index) => {
+				return (
+					<div
+						className="recent-story"
+						onClick={() => store.routerHistory.push(`/news/${article.id}`)}>
+						<img className="article-image" src={`/api/files/${article.featureImageId}`} />
+						<div className="article-text">
+							<div className="article-title">{article.headline}</div>
+							<div className="article-description">{article.description}</div>
+							<div className="article-date">
+								<div className="calendar-icon">
+									<Today />
+								</div>
+								<div className="publish-date">
+									{moment(article.created).format("h:mma Do MMMM YYYY")}
+								</div>
+							</div>
+						</div>
+					</div>
+				);
+			});
+		}
+		return <ComponentSpinner />;
+	}
 }
+
+function queryRecentArticles() {
+	return gql`
+		query RecentNews {
+			newsArticleEntitys(orderBy: { path: "created", descending: true }, take: 6) {
+				id
+				featureImageId
+				headline
+				description
+				created
+			}
+		}
+	`;
+}
+
+function PromotedStories() {
+	const [articles, setArticles] = useState<NewsArticleEntity[] | undefined>(undefined);
+
+	useEffect(() => {
+		store.apolloClient.query({ query: queryPromotedArticles() }).then((d) => {
+			setArticles(d.data.promotedArticlesEntity.newsArticless);
+		});
+	}, []);
+
+	return (
+		<div className="promoted-stories">
+			<div className="info-card">
+				<div className="info-head info-head-no-margin">
+					<div className="info-title">Featured Story</div>
+				</div>
+				<div className="featured">{renderFeaturedArticle()}</div>
+			</div>
+			<div className="info-card">
+				<div className="info-head info-head-no-margin">
+					<div className="info-title">Promoted Stories</div>
+				</div>
+				<div className="promoted">{renderArticles()}</div>
+			</div>
+		</div>
+	);
+
+	function renderFeaturedArticle() {
+		if (articles) {
+			const article = articles[0];
+			return (
+				<div
+					className="featured-story"
+					onClick={() => store.routerHistory.push(`/news/${article.id}`)}>
+					<img className="article-image" src={`/api/files/${article.featureImageId}`} />
+					<div className="article-text">
+						<div className="article-title">{article.headline}</div>
+						<div className="article-description">{article.description}</div>
+						<div className="article-date">
+							<div className="calendar-icon">
+								<Today />
+							</div>
+							<div className="publish-date">{moment(article.created).format("Do MMMM YYYY")}</div>
+						</div>
+					</div>
+				</div>
+			);
+		}
+		return <ComponentSpinner />;
+	}
+
+	function renderArticles() {
+		if (articles) {
+			return articles.map((article, index) => {
+				if (index != 0) {
+					return (
+						<div
+							className="promoted-story"
+							onClick={() => store.routerHistory.push(`/news/${article.id}`)}>
+							<img className="article-image" src={`/api/files/${article.featureImageId}`} />
+							<div className="article-text">
+								<div className="article-title">{article.headline}</div>
+								<div className="article-description">{article.description}</div>
+							</div>
+						</div>
+					);
+				}
+				return;
+			});
+		}
+		return <ComponentSpinner />;
+	}
+}
+
+function queryPromotedArticles() {
+	return gql`
+		query FeaturedNews {
+			promotedArticlesEntity(take: 1) {
+				newsArticless(take: 4) {
+					id
+					description
+					headline
+					featureImageId
+					created
+				}
+			}
+		}
+	`;
+}
+
+// function renderArticles(history: any, location: any) {
+// 	// const { open, visible } = getNavigationState(location);
+
+// 	return articles.map((article: IArticle, index: number) => {
+// 		return <Article key={index} history={history} location={location} article={article} />;
+// 	});
+// }
 
 // Temporary Filler Objects
 export interface IArticle {

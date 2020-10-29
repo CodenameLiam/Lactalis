@@ -12,19 +12,19 @@
 # 
 # BOT WARNING
 # This file is bot-written.
-# Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+# Any changes out side of " ions" will be lost next time the bot makes any changes.
 ###
 
 @logout @BotWritten
 Feature: Logout via url
 
-	# % protected region % [Customize Logout via url scenario here] off begin
+	# %  ion % [Customize Logout via url scenario here] off begin
 	Scenario: Logout via url
 	Given I login to the site as a user
 		And I assert that the admin bar is on the Admin
 	When I am logged out of the site
 	Then I am redirected to the login page
-	# % protected region % [Customize Logout via url scenario here] end
+	# %  ion % [Customize Logout via url scenario here] end
 
-# % protected region % [Add any additional tests here] off begin
-# % protected region % [Add any additional tests here] end
+# %  ion % [Add any additional tests here] off begin
+# %  ion % [Add any additional tests here] end

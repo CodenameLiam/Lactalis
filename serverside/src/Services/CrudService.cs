@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -93,8 +78,6 @@ namespace Lactalis.Services
 				typeof(T).Name,
 				auditFields);
 
-			// % protected region % [Do extra things after get] off begin
-			// % protected region % [Do extra things after get] end
 
 			return dbSet
 				.AddReadSecurityFiltering(_identityService, _userManager, _dbContext, _serviceProvider)
@@ -166,8 +149,6 @@ namespace Lactalis.Services
 						.Where(e => e.State == EntityState.Added || e.State == EntityState.Modified)
 						.Select(e => e.Entity));
 
-					// % protected region % [Do extra things after create] off begin
-					// % protected region % [Do extra things after create] end
 
 					var errors = await _securityService.CheckDbSecurityChanges(_identityService, _dbContext);
 					if (errors.Any())
@@ -258,8 +239,6 @@ namespace Lactalis.Services
 						.Where(e => e.State == EntityState.Added || e.State == EntityState.Modified)
 						.Select(e => e.Entity));
 
-					// % protected region % [Do extra things after update] off begin
-					// % protected region % [Do extra things after update] end
 
 					var errors = await _securityService.CheckDbSecurityChanges(_identityService, _dbContext);
 					if (errors.Any())
@@ -310,8 +289,6 @@ namespace Lactalis.Services
 			var updateFactory = Expression.Lambda<Func<T, T>>(replacer.Visit(updateMemberInitExpression), param);
 			await models.AddUpdateSecurityFiltering(_identityService, _userManager, _dbContext, _serviceProvider).UpdateAsync(updateFactory, cancellation);
 
-			// % protected region % [Do extra things after delete] off begin
-			// % protected region % [Do extra things after delete] end
 
 			var errors = await _securityService.CheckDbSecurityChanges(_identityService, _dbContext);
 			if (errors.Any())
@@ -342,8 +319,6 @@ namespace Lactalis.Services
 
 			dbSet.RemoveRange(models);
 
-			// % protected region % [Do extra things after delete] off begin
-			// % protected region % [Do extra things after delete] end
 
 			var errors = await _securityService.CheckDbSecurityChanges(_identityService, _dbContext);
 			if (errors.Any())
@@ -405,8 +380,6 @@ namespace Lactalis.Services
 				throw new AggregateException(new InvalidOperationException(e.Message));
 			}
 
-			// % protected region % [Do extra things after delete] off begin
-			// % protected region % [Do extra things after delete] end
 
 			var errors = await _securityService.CheckDbSecurityChanges(_identityService, _dbContext);
 			if (errors.Any())
@@ -425,8 +398,6 @@ namespace Lactalis.Services
 			where TModel : User, IOwnerAbstractModel, new()
 			where TRegisterModel : IRegistrationModel<TModel>
 		{
-			// % protected region % [Customise the registration before any action] off begin
-			// % protected region % [Customise the registration before any action] end
 			await _identityService.RetrieveUserAsync();
 
 			var dbModels = models.Select(m => m.ToModel()).ToList();
@@ -434,8 +405,6 @@ namespace Lactalis.Services
 
 			var roles = models.SelectMany(m => m.Groups).ToList();
 			var dbRoles = await _dbContext.Roles.Where(r => roles.Contains(r.Name)).ToListAsync(cancellation);
-			// % protected region % [Customise the registration after initial lookups] off begin
-			// % protected region % [Customise the registration after initial lookups] end
 
 
 			using (var transaction = _dbContext.Database.BeginTransaction())
@@ -450,8 +419,6 @@ namespace Lactalis.Services
 					var createdUsers = new List<User>();
 					foreach (var (registrationModel, model) in modelPairs)
 					{
-						// % protected region % [Customise for each registration model] off begin
-						// % protected region % [Customise for each registration model] end
 
 						if (model.Id == Guid.Empty)
 						{
@@ -477,8 +444,6 @@ namespace Lactalis.Services
 								.Select(s => new InvalidOperationException(s)));
 						}
 
-						// % protected region % [Customise user model here] off begin
-						// % protected region % [Customise user model here] end
 
 						model.UserName = model.Email;
 						model.PasswordHash = _userManager.PasswordHasher.HashPassword(model, registrationModel.Password);
@@ -523,8 +488,6 @@ namespace Lactalis.Services
 
 					foreach (var user in createdUsers)
 					{
-						// % protected region % [Add in any custom creates for each created user] off begin
-						// % protected region % [Add in any custom creates for each created user] end
 						user.Owner = user.Id;
 					}
 
@@ -777,7 +740,6 @@ namespace Lactalis.Services
 						entry.Entity.Owner = entry.Entity.Id;
 						break;
 					case EntityState.Modified:
-						// % protected region % [Adjust modification of user models here] off begin
 						var databaseProperties = await entry.GetDatabaseValuesAsync(cancellation);
 						var proposedProperties = entry.CurrentValues;
 
@@ -788,13 +750,11 @@ namespace Lactalis.Services
 
 						entry.OriginalValues.SetValues(databaseProperties);
 						entry.Property("Discriminator").IsModified = false;
-						// % protected region % [Adjust modification of user models here] end
 						break;
 				}
 			}
 		}
 
-		// % protected region % [Configure the modelled groups here] off begin
 		/// <summary>
 		/// Return the list of fields that should not be modified on the User.cs Entity.
 		/// </summary>
@@ -807,7 +767,6 @@ namespace Lactalis.Services
 				.Where(n => n != "Acls")
 				.ToList();
 		}
-		// % protected region % [Configure the modelled groups here] end
 
 		private static void ValidateModels<T>(IEnumerable<T> models)
 		{
@@ -865,8 +824,6 @@ namespace Lactalis.Services
 			}
 		}
 
-		// % protected region % [Add extra functions in crudService] off begin
-		// % protected region % [Add extra functions in crudService] end
 
 		private static string ObjectAsString(object obj, IEnumerable<string> properties, string openDelimiter, string closeDelimiter, string separator)
 		{

@@ -1,35 +1,21 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
-import * as React from 'react';
-import { observer } from 'mobx-react';
-import { Route, RouteComponentProps, Switch } from 'react-router';
-import { IModelType, Model } from 'Models/Model';
-import EntityCollection, { AdditionalBulkActions, IEntityCollectionProps, viewActionOptions } from './EntityCollection';
-import EntityAttributeList from './EntityAttributeList';
-import EntityEdit from './EntityEdit';
-import { getModelDisplayName } from 'Util/EntityUtils';
-import SecuredAdminPage from '../Security/SecuredAdminPage';
-import { SecurityService } from 'Services/SecurityService';
-import { expandFn, ICollectionItemActionProps } from '../Collection/Collection';
-import { IEntityContextMenuActions } from '../EntityContextMenu/EntityContextMenu';
-import { EntityFormMode } from '../Helpers/Common';
-import { IFilter } from '../Collection/CollectionFilterPanel';
-// % protected region % [Add any further imports here] off begin
-// % protected region % [Add any further imports here] end
+import * as React from "react";
+import { observer } from "mobx-react";
+import { Route, RouteComponentProps, Switch } from "react-router";
+import { IModelType, Model } from "Models/Model";
+import EntityCollection, {
+	AdditionalBulkActions,
+	IEntityCollectionProps,
+	viewActionOptions,
+} from "./EntityCollection";
+import EntityAttributeList from "./EntityAttributeList";
+import EntityEdit from "./EntityEdit";
+import { getModelDisplayName } from "Util/EntityUtils";
+import SecuredAdminPage from "../Security/SecuredAdminPage";
+import { SecurityService } from "Services/SecurityService";
+import { expandFn, ICollectionItemActionProps } from "../Collection/Collection";
+import { IEntityContextMenuActions } from "../EntityContextMenu/EntityContextMenu";
+import { EntityFormMode } from "../Helpers/Common";
+import { IFilter } from "../Collection/CollectionFilterPanel";
 
 interface IEntityCRUDProps<T extends Model> extends RouteComponentProps {
 	/** The type of model to render */
@@ -65,21 +51,25 @@ interface IEntityCRUDProps<T extends Model> extends RouteComponentProps {
 	/** Override for the edit component */
 	editComponent?: (routeProps: RouteComponentProps) => React.ReactNode;
 	/** Custom action for view on the collection. If this function returns undefined then it will disable view */
-	collectionViewAction?: (options: viewActionOptions<T>) => ICollectionItemActionProps<T> | undefined;
+	collectionViewAction?: (
+		options: viewActionOptions<T>
+	) => ICollectionItemActionProps<T> | undefined;
 	/** Custom action for create on the collection. If this function returns undefined then it will disable create */
 	collectionCreateAction?: (options: viewActionOptions<T>) => React.ReactNode;
 	/** Custom action for delete on the collection. If this function returns undefined then it will disable delete */
-	collectionDeleteAction?: (options: viewActionOptions<T>) => ICollectionItemActionProps<T> | undefined;
+	collectionDeleteAction?: (
+		options: viewActionOptions<T>
+	) => ICollectionItemActionProps<T> | undefined;
 	/** Custom action for update on the collection. If this function returns undefined then it will disable update */
-	collectionUpdateAction?: (options: viewActionOptions<T>) => ICollectionItemActionProps<T> | undefined;
+	collectionUpdateAction?: (
+		options: viewActionOptions<T>
+	) => ICollectionItemActionProps<T> | undefined;
 	/** Custom props to be passed to the entity collection for when it is being rendered. */
 	entityCollectionProps?: Partial<IEntityCollectionProps<T>>;
 	/** Override for disabling bulk export on the bulk select all */
 	disableBulkExport?: boolean;
 	/** Override for disabling bulk delete on the bulk select all */
 	disableBulkDelete?: boolean;
-	// % protected region % [Add any extra props here] off begin
-	// % protected region % [Add any extra props here] end
 }
 
 /**
@@ -88,7 +78,6 @@ interface IEntityCRUDProps<T extends Model> extends RouteComponentProps {
 @observer
 class EntityCRUD<T extends Model> extends React.Component<IEntityCRUDProps<T>> {
 	private url = () => {
-		// % protected region % [Override url function here] off begin
 		const { URLExtension, match } = this.props;
 
 		if (URLExtension) {
@@ -96,14 +85,19 @@ class EntityCRUD<T extends Model> extends React.Component<IEntityCRUDProps<T>> {
 		}
 
 		return match.url;
-		// % protected region % [Override url function here] end
 	};
 
 	public render() {
-		const { match, modelType, collectionComponent, createComponent, editComponent, viewComponent } = this.props;
+		const {
+			match,
+			modelType,
+			collectionComponent,
+			createComponent,
+			editComponent,
+			viewComponent,
+		} = this.props;
 
 		// Wrap the pages with secured page component
-		// % protected region % [Override read list view here] off begin
 		const entityCollectionPage = (pageProps: RouteComponentProps) => {
 			return (
 				<SecuredAdminPage canDo={SecurityService.canRead(modelType)}>
@@ -111,9 +105,7 @@ class EntityCRUD<T extends Model> extends React.Component<IEntityCRUDProps<T>> {
 				</SecuredAdminPage>
 			);
 		};
-		// % protected region % [Override read list view here] end
 
-		// % protected region % [Override create view here] off begin
 		const entityCreatePage = (pageProps: RouteComponentProps) => {
 			return (
 				<SecuredAdminPage canDo={SecurityService.canCreate(modelType)}>
@@ -121,9 +113,7 @@ class EntityCRUD<T extends Model> extends React.Component<IEntityCRUDProps<T>> {
 				</SecuredAdminPage>
 			);
 		};
-		// % protected region % [Override create view here] end
 
-		// % protected region % [Override read view here] off begin
 		const entityViewPage = (pageProps: RouteComponentProps) => {
 			return (
 				<SecuredAdminPage canDo={SecurityService.canRead(modelType)}>
@@ -131,9 +121,7 @@ class EntityCRUD<T extends Model> extends React.Component<IEntityCRUDProps<T>> {
 				</SecuredAdminPage>
 			);
 		};
-		// % protected region % [Override read view here] end
 
-		// % protected region % [Override edit view here] off begin
 		const entityEditPage = (pageProps: RouteComponentProps) => {
 			return (
 				<SecuredAdminPage canDo={SecurityService.canUpdate(modelType)}>
@@ -141,24 +129,28 @@ class EntityCRUD<T extends Model> extends React.Component<IEntityCRUDProps<T>> {
 				</SecuredAdminPage>
 			);
 		};
-		// % protected region % [Override edit view here] end
 
-		// % protected region % [Override return value here] off begin
 		return (
 			<div>
 				<Switch>
-					<Route exact={true} path={`${match.url}`} render={collectionComponent ?? entityCollectionPage} />
+					<Route
+						exact={true}
+						path={`${match.url}`}
+						render={collectionComponent ?? entityCollectionPage}
+					/>
 					<Route path={`${this.url()}/view/:id`} render={viewComponent ?? entityViewPage} />
-					<Route exact={true} path={`${this.url()}/create`} render={createComponent ?? entityCreatePage} />
+					<Route
+						exact={true}
+						path={`${this.url()}/create`}
+						render={createComponent ?? entityCreatePage}
+					/>
 					<Route path={`${this.url()}/edit/:id`} render={editComponent ?? entityEditPage} />
 				</Switch>
 			</div>
 		);
-		// % protected region % [Override return value here] end
-	};
-	
-	// % protected region % [Customize renderEntityCollection here] off begin
-	protected renderEntityCollection = (routeProps: RouteComponentProps) => {
+	}
+
+	ed renderEntityCollection = (routeProps: RouteComponentProps) => {
 		const {
 			modelType,
 			expandList,
@@ -176,7 +168,7 @@ class EntityCRUD<T extends Model> extends React.Component<IEntityCRUDProps<T>> {
 			disableBulkDelete,
 			disableBulkExport,
 			removeCreatedFilter,
-			removeModifiedFilter
+			removeModifiedFilter,
 		} = this.props;
 
 		return (
@@ -203,10 +195,8 @@ class EntityCRUD<T extends Model> extends React.Component<IEntityCRUDProps<T>> {
 			/>
 		);
 	};
-	// % protected region % [Customize renderEntityCollection here] end
 
-	protected renderEntityCreate = (routeProps: RouteComponentProps) => {
-		// % protected region % [Override create component render here] off begin
+	ed renderEntityCreate = (routeProps: RouteComponentProps) => {
 		const { modelType } = this.props;
 		const modelDisplayName = getModelDisplayName(modelType);
 		return (
@@ -219,27 +209,18 @@ class EntityCRUD<T extends Model> extends React.Component<IEntityCRUDProps<T>> {
 				modelType={modelType}
 			/>
 		);
-		// % protected region % [Override create component render here] end
 	};
 
-	protected renderEntityEdit = (routeProps: RouteComponentProps) => {
-		// % protected region % [Override edit component render here] off begin
+	ed renderEntityEdit = (routeProps: RouteComponentProps) => {
 		const { modelType } = this.props;
 		return <EntityEdit {...routeProps} modelType={modelType} formMode={EntityFormMode.EDIT} />;
-		// % protected region % [Override edit component render here] end
 	};
 
-	protected renderEntityView = (routeProps: RouteComponentProps) => {
-		// % protected region % [Override read component render here] off begin
+	ed renderEntityView = (routeProps: RouteComponentProps) => {
 		const { modelType } = this.props;
 		return <EntityEdit {...routeProps} modelType={modelType} formMode={EntityFormMode.VIEW} />;
-		// % protected region % [Override read component render here] end
 	};
 
-	// % protected region % [Add any extra fields here] off begin
-	// % protected region % [Add any extra fields here] end
 }
 
-// % protected region % [Override default export here] off begin
 export default EntityCRUD;
-// % protected region % [Override default export here] end

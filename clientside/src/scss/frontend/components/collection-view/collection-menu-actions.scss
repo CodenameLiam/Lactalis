@@ -1,19 +1,3 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
 /* --------------------------------
 Collection - Menu Actions
 -------------------------------- */
@@ -21,7 +5,6 @@ Collection - Menu Actions
 Top section of collection - Search bar, filter buttons, grid buttons
 */
 
-// % protected region % [Change collection menu action styles here] off begin
 .collection__menu {
 	display: flex;
 	margin: $space-xs auto;
@@ -47,7 +30,7 @@ Top section of collection - Search bar, filter buttons, grid buttons
 			align-items: center;
 
 			&:before {
-				margin: .5rem auto;
+				margin: 0.5rem auto;
 			}
 
 			&.icon-create {
@@ -57,11 +40,8 @@ Top section of collection - Search bar, filter buttons, grid buttons
 				padding: $space-xs $space-lg;
 				min-height: $space-xxl;
 			}
-
 		}
-
 	}
-
 }
 
 /******* Collection filter ********/
@@ -72,18 +52,18 @@ Top section of collection - Search bar, filter buttons, grid buttons
 	max-height: convert-rem(3000px);
 	height: 100%;
 	opacity: 1;
-	@include cubic-bezier-ease-in (min-height, $animation-time);
+	@include cubic-bezier-ease-in(min-height, $animation-time);
 
 	&.hide {
-		@include cubic-bezier-ease-in (min-height, $animation-time);
+		@include cubic-bezier-ease-in(min-height, $animation-time);
 		opacity: 0;
 		height: 0;
 		min-height: 0;
 		max-height: 0;
 		padding: 0;
 	}
-	
-	.collection-filter-form__container{
+
+	.collection-filter-form__container {
 		display: flex;
 		flex-wrap: wrap;
 
@@ -159,17 +139,13 @@ Top section of collection - Search bar, filter buttons, grid buttons
 	}
 
 	min-height: convert-rem(50px);
-	@include cubic-bezier-ease-in ($animation-time);
+	@include cubic-bezier-ease-in($animation-time);
 
 	&.hide {
 		min-height: 0;
 		margin-bottom: 0;
-		@include cubic-bezier-ease-in ($animation-time);
+		@include cubic-bezier-ease-in($animation-time);
 		padding: 0;
 		opacity: 0;
 	}
 }
-// % protected region % [Change collection menu action styles here] end
-
-// % protected region % [Add additional collection menu action styles here] off begin
-// % protected region % [Add additional collection menu action styles here] end

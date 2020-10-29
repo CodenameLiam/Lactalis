@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System.Threading.Tasks;
 using Lactalis.Exceptions;
 using Lactalis.Services;
@@ -26,13 +11,10 @@ using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 
-// % protected region % [Customise Authorization Library imports here] off begin
 using AspNet.Security.OpenIdConnect.Primitives;
 using OpenIddict.Mvc.Internal;
-// % protected region % [Customise Authorization Library imports here] end
 
-// % protected region % [Add any extra imports here] off begin
-// % protected region % [Add any extra imports here] end
+ 
 
 namespace Lactalis.Controllers
 {
@@ -43,36 +25,23 @@ namespace Lactalis.Controllers
 	[ApiController]
 	public class AuthorizationController : Controller
 	{
-		// % protected region % [Customise AuthorizationController fields here] off begin
 		private readonly IUserService _userService;
 		private readonly IXsrfService _xsrfService;
 		private readonly ILogger<AuthorizationController> _logger;
-		// % protected region % [Customise AuthorizationController fields here] end
 
-		// % protected region % [Add any additional fields here] off begin
-		// % protected region % [Add any additional fields here] end
 
 		public AuthorizationController(
-			// % protected region % [Add any constructor arguments here] off begin
-			// % protected region % [Add any constructor arguments here] end
 			IUserService userService, 
 			IXsrfService xsrfService,
 			ILogger<AuthorizationController> logger)
 		{
-			// % protected region % [Add any constructor initial logic here] off begin
-			// % protected region % [Add any constructor initial logic here] end
 		
-			// % protected region % [Customise AuthorizationController middle logic here] off begin
 			_userService = userService;
 			_xsrfService = xsrfService;
 			_logger = logger;
-			// % protected region % [Customise AuthorizationController middle logic here] end
 
-			// % protected region % [Add any constructor end logic here] off begin
-			// % protected region % [Add any constructor end logic here] end
 		}
 
-		// % protected region % [Customise Exchange method implementation here] off begin
 		/// <summary>
 		/// Grants a token to authenticate a user for a session. Tokens should be used by clients that don't support
 		/// cookies such as mobile apps and api consumers.
@@ -112,9 +81,7 @@ namespace Lactalis.Controllers
 				return Unauthorized();
 			}
 		}
-		// % protected region % [Customise Exchange method implementation here] end
 
-		// % protected region % [Configure authorization login logic here] off begin
 		/// <summary>
 		/// Logs into the site providing an auth cookie and a xsrf token
 		/// </summary>
@@ -155,7 +122,6 @@ namespace Lactalis.Controllers
 				return Unauthorized();
 			}
 		}
-		// % protected region % [Configure authorization login logic here] end
 
 		/// <summary>
 		/// Removes the authentication cookie that can be used to authenticate against the site
@@ -168,7 +134,6 @@ namespace Lactalis.Controllers
 		[HttpPost("logout")]
 		public async Task<IActionResult> Logout([FromQuery] string redirect)
 		{
-			// % protected region % [Configure logout login logic here] off begin
 			// Sign out of the session
 			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
@@ -185,21 +150,16 @@ namespace Lactalis.Controllers
 			}
 
 			return Redirect(redirect);
-			// % protected region % [Configure logout login logic here] end
 		}
 
 		private void AddErrors(IEnumerable<IdentityError> errors)
 		{
-			// % protected region % [Override AddErrors here] off begin
 			foreach (var error in errors)
 			{
 				ModelState.AddModelError(string.Empty, error.Description);
 			}
-			// % protected region % [Override AddErrors here] end
 		}
 
-		// % protected region % [Add any authorization controller methods here] off begin
-		// % protected region % [Add any authorization controller methods here] end
 	}
 
 	/// <summary>
@@ -207,7 +167,6 @@ namespace Lactalis.Controllers
 	/// </summary>
 	public class LoginDetails
 	{
-		// % protected region % [Customise login details] off begin
 		/// <summary>
 		/// The username of the user that is logging in
 		/// </summary>
@@ -222,9 +181,6 @@ namespace Lactalis.Controllers
 		/// Should the user be sent a persistent token instead of a session token
 		/// </summary>
 		public bool RememberMe { get; set; }
-		// % protected region % [Customise login details] end
 	}
 
-	// % protected region % [Add any additional methods here] off begin
-	// % protected region % [Add any additional methods here] end
 }

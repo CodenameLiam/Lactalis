@@ -12,9 +12,9 @@
 # 
 # BOT WARNING
 # This file is bot-written.
-# Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+# Any changes out side of " ions" will be lost next time the bot makes any changes.
 ###
-# % protected region % [The default words list, update as needed] off begin
+# %  ion % [The default words list, update as needed] off begin
 csharpbot
 writes
 code
@@ -28,4 +28,4 @@ lorem
 ipsum
 wordy
 strings
-# % protected region % [The default words list, update as needed] end
+# %  ion % [The default words list, update as needed] end

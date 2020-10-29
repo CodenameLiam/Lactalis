@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.IO;
 using System.Threading;
@@ -25,8 +10,7 @@ using Lactalis.Services.Files;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-// % protected region % [Add any extra imports here] off begin
-// % protected region % [Add any extra imports here] end
+ 
 
 namespace Lactalis.Controllers
 {
@@ -38,8 +22,6 @@ namespace Lactalis.Controllers
 		public string FileName { get; set; }
 		public string ContentType { get; set; }
 		public double Length { get; set; }
-		// % protected region % [Add any extra MetadataResponse fields here] off begin
-		// % protected region % [Add any extra MetadataResponse fields here] end
 	}
 
 	[ApiController]
@@ -49,22 +31,16 @@ namespace Lactalis.Controllers
 		private readonly IUploadStorageProvider _storageProvider;
 		private readonly ICrudService _crudService;
 		private readonly ILogger<FileController> _logger;
-		// % protected region % [Add any extra class fields here] off begin
-		// % protected region % [Add any extra class fields here] end
 
 		public FileController(
 			IUploadStorageProvider storageProvider,
 			ICrudService crudService,
 			ILogger<FileController> logger
-			// % protected region % [Add any extra constructor arguments here] off begin
-			// % protected region % [Add any extra constructor arguments here] end
 			)
 		{
 			_storageProvider = storageProvider;
 			_crudService = crudService;
 			_logger = logger;
-			// % protected region % [Add any extra constructor calls here] off begin
-			// % protected region % [Add any extra constructor calls here] end
 		}
 
 		/// <summary>
@@ -74,20 +50,15 @@ namespace Lactalis.Controllers
 		/// <param name="cancellationToken">The cancellation token for this operation</param>
 		/// <param name="download">Should the file be downloaded</param>
 		/// <returns>The requested file</returns>
-		// % protected region % [Alter the Get attributes here] off begin
 		[HttpGet]
 		[Route("{id}")]
 		[AllowAnonymous]
-		// % protected region % [Alter the Get attributes here] end
 		public async Task<IActionResult> Get(
 			Guid id,
 			CancellationToken cancellationToken,
 			[FromQuery]bool download = false
-			// % protected region % [Add any extra get arguments here] off begin
-			// % protected region % [Add any extra get arguments here] end
 			)
 		{
-			// % protected region % [Alter the Get endpoint here] off begin
 			UploadFile file;
 			try
 			{
@@ -134,7 +105,6 @@ namespace Lactalis.Controllers
 			});
 
 			return new FileStreamResult(fileStream, file.ContentType ?? "application/octet-stream");
-			// % protected region % [Alter the Get endpoint here] end
 		}
 
 		/// <summary>
@@ -143,20 +113,15 @@ namespace Lactalis.Controllers
 		/// <param name="id">The id of the file</param>
 		/// <param name="cancellationToken">Cancellation token for the operation</param>
 		/// <returns>The file metadata</returns>
-		// % protected region % [Alter the metadata attributes here] off begin
 		[HttpGet]
 		[Route("metadata/{id}")]
 		[Produces(typeof(MetadataResponse))]
 		[AllowAnonymous]
-		// % protected region % [Alter the metadata attributes here] end
 		public async Task<IActionResult> Metadata(
 			Guid id, 
 			CancellationToken cancellationToken
-			// % protected region % [Add any extra get arguments here] off begin
-			// % protected region % [Add any extra get arguments here] end
 			)
 		{
-			// % protected region % [Alter the metadata endpoint here] off begin
 			UploadFile file;
 			try
 			{
@@ -185,10 +150,7 @@ namespace Lactalis.Controllers
 				ContentType = file.ContentType,
 				Length = file.Length,
 			});
-			// % protected region % [Alter the metadata endpoint here] end
 		}
 
-		// % protected region % [Add any extra endpoints here] off begin
-		// % protected region % [Add any extra endpoints here] end
 	}
 }

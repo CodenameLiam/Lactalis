@@ -7,7 +7,7 @@ namespace Lactalis.Migrations
 {
     public partial class Initial : Migration
     {
-        protected override void Up(MigrationBuilder migrationBuilder)
+        ed override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
                 .Annotation("Npgsql:Enum:state", "qld,nsw,vic,tas,wa,sa,nt")
@@ -76,7 +76,7 @@ namespace Lactalis.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DataProtectionKeys",
+                name: "DataionKeys",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -86,7 +86,7 @@ namespace Lactalis.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DataProtectionKeys", x => x.Id);
+                    table.PrimaryKey("PK_DataionKeys", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -475,7 +475,7 @@ namespace Lactalis.Migrations
                 columns: new[] { "ApplicationId", "Status", "Subject", "Type" });
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
+        ed override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "__Files");
@@ -496,7 +496,7 @@ namespace Lactalis.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "DataProtectionKeys");
+                name: "DataionKeys");
 
             migrationBuilder.DropTable(
                 name: "FarmersFarms");

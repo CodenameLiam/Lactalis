@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,24 +17,19 @@ namespace ServersideTests.Tests.Integration.BotWritten
 	[Trait("Category", "Unit")]
 	public class DeactivatedUserTests
 	{
-		// % protected region % [Customize CreateAndValidateUser Test for AdminEntity] off begin
 		[Fact]
 		public async void AdminEntityDeactivatedLoginTest()
 		{
 			await CreateAndValidateUser<AdminEntity>();
 		}
-		// % protected region % [Customize CreateAndValidateUser Test for AdminEntity] end
 
-		// % protected region % [Customize CreateAndValidateUser Test for FarmerEntity] off begin
 		[Fact]
 		public async void FarmerEntityDeactivatedLoginTest()
 		{
 			await CreateAndValidateUser<FarmerEntity>();
 		}
-		// % protected region % [Customize CreateAndValidateUser Test for FarmerEntity] end
 
 
-		// % protected region % [Customize CreateAndValidateUser method here] off begin
 		private static async Task CreateAndValidateUser<T>()
 			where T : User, new()
 		{
@@ -82,6 +62,5 @@ namespace ServersideTests.Tests.Integration.BotWritten
 
 			Assert.Equal(typeof(UnauthorizedObjectResult), result.GetType());
 		}
-		// % protected region % [Customize CreateAndValidateUser method here] end
 	}
 }

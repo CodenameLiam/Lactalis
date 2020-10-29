@@ -1,28 +1,12 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
-import * as moment from 'moment'
-import { CaseComparison } from '../Views/Components/ModelCollection/ModelQuery';
-import _ from 'lodash';
-import * as Enums from '../Models/Enums';
+import * as moment from "moment";
+import { CaseComparison } from "../Views/Components/ModelCollection/ModelQuery";
+import _ from "lodash";
+import * as Enums from "../Models/Enums";
 
 export type transformFunction = (attr: any) => IStandardisedOption | null;
 export interface IStandardisedOption {
 	query: string;
-	extraOptions?: {[option: string]: any};
+	extraOptions?: { [option: string]: any };
 }
 
 /**
@@ -49,18 +33,17 @@ export function standardiseDate(attr: string): IStandardisedOption | null {
 
 	// Some invalid dates won't be marked invalid but just exist in year 0
 	if (momentDate.isValid() && momentDate.year() !== 0) {
-		const dateOnly = momentDate.hours() === 0
-			&& momentDate.minutes() === 0
-			&& momentDate.seconds() === 0;
+		const dateOnly =
+			momentDate.hours() === 0 && momentDate.minutes() === 0 && momentDate.seconds() === 0;
 
 		if (dateOnly) {
 			return {
-				query: momentDate.format('YYYY-MM-DD'),
-			}
+				query: momentDate.format("YYYY-MM-DD"),
+			};
 		}
 		return {
-			query: momentDate.format('YYYY-MM-DD HH:mm:ss'),
-		}
+			query: momentDate.format("YYYY-MM-DD HH:mm:ss"),
+		};
 	}
 	return null;
 }
@@ -82,7 +65,7 @@ export function standardiseInteger(attr: string): IStandardisedOption | null {
 		return null;
 	}
 
-	return {query: attr};
+	return { query: attr };
 }
 
 /**
@@ -93,7 +76,7 @@ export function standardiseFloat(attr: string): IStandardisedOption | null {
 	if (isNaN(Number(attr))) {
 		return null;
 	}
-	return {query: attr};
+	return { query: attr };
 }
 
 /**
@@ -101,8 +84,8 @@ export function standardiseFloat(attr: string): IStandardisedOption | null {
  * @param attr The query string to check if it is a bool
  */
 export function standardiseBoolean(attr: string): IStandardisedOption | null {
-	if (['true', 'false'].indexOf(attr) >= 0) {
-		return {query: attr};
+	if (["true", "false"].indexOf(attr) >= 0) {
+		return { query: attr };
 	}
 	return null;
 }
@@ -115,9 +98,9 @@ export function standardiseString(attr: string): IStandardisedOption | null {
 	return {
 		query: `%${attr}%`,
 		extraOptions: {
-			case: 'INVARIANT_CULTURE_IGNORE_CASE'
-		}
-	}
+			case: "INVARIANT_CULTURE_IGNORE_CASE",
+		},
+	};
 }
 
 /**
@@ -130,20 +113,20 @@ export function standardiseUuid(attr: string): IStandardisedOption | null {
 		return null;
 	}
 
-	return {query: attr}
+	return { query: attr };
 }
 
 /**
  * Returns a search query for a string that is case insensitive
  * @param attr The string to search for
  */
-export function standardiseEnum(attr: string, enumOptions: {} ): IStandardisedOption | null {
+export function standardiseEnum(attr: string, enumOptions: {}): IStandardisedOption | null {
 	const enumKey = _.invert(enumOptions)[attr];
 	if (!enumKey) {
 		return null;
 	} else {
 		return {
-			query: enumKey
-		}
+			query: enumKey,
+		};
 	}
 }

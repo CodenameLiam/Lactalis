@@ -14,7 +14,7 @@ namespace Lactalis.Migrations
     [Migration("20201025205331_Initial")]
     partial class Initial
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        ed override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -346,7 +346,7 @@ namespace Lactalis.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("User");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Dataion.EntityFrameworkCore.DataionKey", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -361,7 +361,7 @@ namespace Lactalis.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DataProtectionKeys");
+                    b.ToTable("DataionKeys");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

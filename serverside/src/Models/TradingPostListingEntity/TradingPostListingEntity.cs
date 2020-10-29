@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -27,13 +12,10 @@ using Lactalis.Security.Acl;
 using Lactalis.Validators;
 using Microsoft.EntityFrameworkCore;
 using Z.EntityFramework.Plus;
-// % protected region % [Add any further imports here] off begin
-// % protected region % [Add any further imports here] end
+
 
 namespace Lactalis.Models {
-	// % protected region % [Configure entity attributes here] off begin
 	[Table("TradingPostListing")]
-	// % protected region % [Configure entity attributes here] end
 	public class TradingPostListingEntity : IOwnerAbstractModel	{
 		[Key]
 		public Guid Id { get; set; }
@@ -41,76 +23,48 @@ namespace Lactalis.Models {
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
 
-		// % protected region % [Customise Title here] off begin
 		[EntityAttribute]
 		public String Title { get; set; }
-		// % protected region % [Customise Title here] end
 
-		// % protected region % [Customise Email here] off begin
 		[EntityAttribute]
 		public String Email { get; set; }
-		// % protected region % [Customise Email here] end
 
-		// % protected region % [Customise Phone here] off begin
 		[EntityAttribute]
 		public String Phone { get; set; }
-		// % protected region % [Customise Phone here] end
 
-		// % protected region % [Customise AdditionalInfo here] off begin
 		[EntityAttribute]
 		public String AdditionalInfo { get; set; }
-		// % protected region % [Customise AdditionalInfo here] end
 
-		// % protected region % [Customise AddressLine1 here] off begin
 		[EntityAttribute]
 		public String AddressLine1 { get; set; }
-		// % protected region % [Customise AddressLine1 here] end
 
-		// % protected region % [Customise AddressLine2 here] off begin
 		[EntityAttribute]
 		public String AddressLine2 { get; set; }
-		// % protected region % [Customise AddressLine2 here] end
 
-		// % protected region % [Customise PostalCode here] off begin
 		[EntityAttribute]
 		public String PostalCode { get; set; }
-		// % protected region % [Customise PostalCode here] end
 
-		// % protected region % [Customise ProductImage here] off begin
 		[FileReference]
 		public Guid? ProductImageId { get; set; }
 		[EntityForeignKey("ProductImage", "TradingPostListingProductImage", false, typeof(UploadFile))]
 		public UploadFile ProductImage { get; set; }
-		// % protected region % [Customise ProductImage here] end
 
-		// % protected region % [Customise Price here] off begin
 		[EntityAttribute]
 		public int? Price { get; set; }
-		// % protected region % [Customise Price here] end
 
-		// % protected region % [Customise PriceType here] off begin
 		[EntityAttribute]
 		public PriceType PriceType { get; set; }
-		// % protected region % [Customise PriceType here] end
 
-		// % protected region % [Add any further attributes here] off begin
-		// % protected region % [Add any further attributes here] end
 
 		public TradingPostListingEntity()
 		{
-			// % protected region % [Add any constructor logic here] off begin
-			// % protected region % [Add any constructor logic here] end
 		}
 
 		[NotMapped]
 		public IEnumerable<IAcl> Acls => new List<IAcl>
 		{
-			// % protected region % [Override ACLs here] off begin
 			new AdminTradingPostListingEntity(),
 			new FarmerTradingPostListingEntity(),
-			// % protected region % [Override ACLs here] end
-			// % protected region % [Add any further ACL entries here] off begin
-			// % protected region % [Add any further ACL entries here] end
 		};
 
 		/// <summary>
@@ -147,8 +101,6 @@ namespace Lactalis.Models {
 				}
 			}
 
-			// % protected region % [Add any before save logic here] off begin
-			// % protected region % [Add any before save logic here] end
 		}
 
 		public async Task AfterSave(
@@ -158,8 +110,6 @@ namespace Lactalis.Models {
 			ICollection<ChangeState> changes,
 			CancellationToken cancellationToken = default)
 		{
-			// % protected region % [Add any after save logic here] off begin
-			// % protected region % [Add any after save logic here] end
 		}
 
 		public async Task<int> CleanReference<T>(
@@ -184,13 +134,9 @@ namespace Lactalis.Models {
 					dbContext.TradingPostListingsTradingPostCategories.RemoveRange(oldTradingPostCategories);
 
 					return oldTradingPostCategories.Count;
-				// % protected region % [Add any extra clean reference logic here] off begin
-				// % protected region % [Add any extra clean reference logic here] end
 				default:
 					return 0;
 			}
 		}
-		// % protected region % [Add any further references here] off begin
-		// % protected region % [Add any further references here] end
 	}
 }

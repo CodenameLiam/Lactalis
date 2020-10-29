@@ -220,17 +220,12 @@ function Form() {
 				);
 			});
 	}
-	// % protected region % [Override onLoginClicked here] end
-
-	// % protected region % [Override onStartRegisterClicked here] off begin
 
 	function onStartRegisterClicked(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		const { redirect } = queryString.parse(location.search.substring(1));
 		store.routerHistory.push(`/register?${!!redirect ? `redirect=${redirect}` : ""}`);
 	}
-	// % protected region % [Override onStartRegisterClicked here] end
 
-	// % protected region % [Override login success logic here] off begin
 	function onLoginSuccess(userResult: IUserResult) {
 		store.setLoggedInUser(userResult);
 
@@ -242,9 +237,7 @@ function Form() {
 			store.routerHistory.push("/");
 		}
 	}
-	// % protected region % [Override login success logic here] end
 
-	// % protected region % [Override onForgottenPasswordClick here] off begin
 	function onForgottenPasswordClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
 		store.routerHistory.push(`/reset-password-request`);
 	}

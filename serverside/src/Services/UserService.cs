@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -33,15 +18,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
-// % protected region % [Customise Authorization Library imports here] off begin
 using OpenIddict.Abstractions;
 using OpenIddict.Server;
 using AspNet.Security.OpenIdConnect.Extensions;
 using AspNet.Security.OpenIdConnect.Primitives;
-// % protected region % [Customise Authorization Library imports here] end
 
-// % protected region % [Add any extra user service imports here] off begin
-// % protected region % [Add any extra user service imports here] end
 
 namespace Lactalis.Services
 {
@@ -51,7 +32,6 @@ namespace Lactalis.Services
 	public class RegisterModel
 	{
 
-		// % protected region % [Customise RegisterModel fields] off begin
 		[Required]
 		public string Email { get; set; }
 
@@ -59,10 +39,7 @@ namespace Lactalis.Services
 		public string Password { get; set; }
 
 		public ICollection<string> Groups { get; set; }
-		// % protected region % [Customise RegisterModel fields] end
 
-		// % protected region % [Add extra properties to the register model here] off begin
-		// % protected region % [Add extra properties to the register model here] end
 	}
 
 	public class RegisterResult
@@ -71,18 +48,14 @@ namespace Lactalis.Services
 
 		public IdentityResult Result { get; set; }
 
-		// % protected region % [Add extra properties to the register result model here] off begin
-		// % protected region % [Add extra properties to the register result model here] end
 	}
 
-	// % protected region % [Customise UpdateUserModel here] off begin
 	public class UserUpdateModel : RegisterModel
 	{
 		public Guid Id { get; set; }
 
 		public new string Password { get; set; }
 	}
-	// % protected region % [Customise UpdateUserModel here] end
 
 	public class UserResult
 	{
@@ -92,8 +65,6 @@ namespace Lactalis.Services
 
 		public List<GroupResult> Groups { get; set; } = new List<GroupResult>();
 
-		// % protected region % [Add extra properties to the user result here] off begin
-		// % protected region % [Add extra properties to the user result here] end
 
 		public UserResult(User user, IEnumerable<Group> groups) {
 			Id = user.Id;
@@ -102,8 +73,6 @@ namespace Lactalis.Services
 			{
 				Groups.AddRange(groups.Select(group => new GroupResult(group)));
 			}
-			// % protected region % [Add extra properties to the user result constructor here] off begin
-			// % protected region % [Add extra properties to the user result constructor here] end
 		}
 	}
 
@@ -113,15 +82,11 @@ namespace Lactalis.Services
 
 		public bool HasBackendAccess { get; set; }
 
-		// % protected region % [Add extra properties to the group result here] off begin
-		// % protected region % [Add extra properties to the group result here] end
 
 		public GroupResult(Group group)
 		{
 			Name = group.Name;
 			HasBackendAccess = group.HasBackendAccess ?? false;
-			// % protected region % [Add extra properties to the group result constructor here] off begin
-			// % protected region % [Add extra properties to the group result constructor here] end
 		}
 	}
 
@@ -138,12 +103,8 @@ namespace Lactalis.Services
 		private readonly RoleManager<Group> _roleManager;
 		private readonly IEmailService _emailService;
 		private readonly IConfiguration _configuration;
-		// % protected region % [Add any extra readonly fields here] off begin
-		// % protected region % [Add any extra readonly fields here] end
 
 		public UserService(
-			// % protected region % [Add any extra params here] off begin
-			// % protected region % [Add any extra params here] end
 			IOptions<IdentityOptions> identityOptions,
 			SignInManager<User> signInManager,
 			UserManager<User> userManager,
@@ -151,12 +112,8 @@ namespace Lactalis.Services
 			RoleManager<Group> roleManager,
 			IEmailService emailService,
 			IConfiguration configuration
-			// % protected region % [Add any extra params here] off begin
-			// % protected region % [Add any extra params here] end
 			)
 		{
-			// % protected region % [Add initialisations here] off begin
-			// % protected region % [Add initialisations here] end
 			_identityOptions = identityOptions;
 			_signInManager = signInManager;
 			_userManager = userManager;
@@ -164,19 +121,14 @@ namespace Lactalis.Services
 			_roleManager = roleManager;
 			_emailService = emailService;
 			_configuration = configuration;
-			// % protected region % [Add initialisations here] off begin
-			// % protected region % [Add initialisations here] end
 		}
 
 		public async Task<List<UserResult>> GetUsers() {
-			// % protected region % [Change get users here] off begin
 			return await _userManager.Users.Select(user => new UserResult(user, null)).ToListAsync();
-			// % protected region % [Change get users here] end
 		}
 
 		public async Task<UserResult> GetUser(ClaimsPrincipal principal)
 		{
-			// % protected region % [Change get user claims principal overload here] off begin
 			try
 			{
 				var user = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == principal.Identity.Name);
@@ -186,26 +138,21 @@ namespace Lactalis.Services
 			{
 				throw new InvalidIdException();
 			}
-			// % protected region % [Change get user claims principal overload here] end
 		}
 
 		public async Task<UserResult> GetUser(User user)
 		{
-			// % protected region % [Change get user method here] off begin
 			var roleNames = (await _userManager.GetRolesAsync(user)).ToList();
 			var roles = await _roleManager.Roles.Where(role => roleNames.Contains(role.Name)).ToListAsync();
 			return new UserResult(user, roles);
-			// % protected region % [Change get user method here] end
 		}
 
 		public async Task<User> GetUserFromClaim(ClaimsPrincipal principal)
 		{
-			// % protected region % [Change get user from claim method here] off begin
 			return await _userManager
 				.Users
 				.AsNoTracking()
 				.FirstOrDefaultAsync(u => u.UserName == principal.Identity.Name);
-			// % protected region % [Change get user from claim method here] end
 		}
 
 		public async Task<RegisterResult> RegisterUser(
@@ -213,7 +160,6 @@ namespace Lactalis.Services
 			IEnumerable<string> groups,
 			bool sendRegisterEmail = false)
 		{
-			// % protected region % [Change register user method here] off begin
 			var user = await _userManager.FindByEmailAsync(model.Email);
 			if (user != null)
 			{
@@ -227,7 +173,6 @@ namespace Lactalis.Services
 			};
 
 			return await RegisterUser(user, model.Password, groups, sendRegisterEmail);
-			// % protected region % [Change register user method here] end
 		}
 
 		public async Task<RegisterResult> RegisterUser(
@@ -236,7 +181,6 @@ namespace Lactalis.Services
 			IEnumerable<string> groups,
 			bool sendRegisterEmail = false)
 		{
-			// % protected region % [Change register user here] off begin
 			// A user should own their own entity
 			if(user.Id == default(Guid))
 			{
@@ -285,19 +229,15 @@ namespace Lactalis.Services
 			}
 
 			return new RegisterResult { Result = result, User = newUser};
-			// % protected region % [Change register user here] end
 		}
 
 		public async Task<IdentityResult> ConfirmEmail(string email, string token)
 		{
-			// % protected region % [Change confirm email method here] off begin
 			var user = await _userManager.Users.FirstAsync(u => u.Email == email);
 			return await _userManager.ConfirmEmailAsync(user, token);
-			// % protected region % [Change confirm email method here] end
 		}
 
 
-		// % protected region % [Customise UpdateUser here.] off begin
 		public async Task<IdentityResult> UpdateUser(UserUpdateModel model)
 		{
 			var user = await _userManager.FindByNameAsync(model.Email);
@@ -325,9 +265,7 @@ namespace Lactalis.Services
 
 			return result;
 		}
-		// % protected region % [Customise UpdateUser here.] end
 
-		// % protected region % [Customise SendPasswordResetEmail method implementation here] off begin
 		public async Task<bool> SendPasswordResetEmail(User user)
 		{
 			var token = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -345,11 +283,9 @@ namespace Lactalis.Services
 				Subject = "Reset Password",
 			});
 		}
-		// % protected region % [Customise SendPasswordResetEmail method implementation here] end
 
 		public async Task<bool> DeleteUser(Guid id)
 		{
-			// % protected region % [Change delete user method here] off begin
 			var user = await _userManager.FindByIdAsync(id.ToString());
 
 			if (user == null)
@@ -359,10 +295,8 @@ namespace Lactalis.Services
 
 			var result = await _userManager.DeleteAsync(user);
 			return result.Succeeded;
-			// % protected region % [Change delete user method here] end
 		}
 
-		// % protected region % [Customise CheckCredentials method implementation here] off begin
 		public async Task<User> CheckCredentials(
 			string username,
 			string password,
@@ -387,13 +321,11 @@ namespace Lactalis.Services
 
 			return user;
 		}
-		// % protected region % [Customise CheckCredentials method implementation here] end
 
 		public async Task<ClaimsPrincipal> CreateUserPrincipal(
 			User user,
 			string authenticationScheme = CookieAuthenticationDefaults.AuthenticationScheme)
 		{
-			// % protected region % [Adjust the claims if required] off begin
 			// You may need to adjust subject and the like if you are interacting with an AD server
 			var identity = new ClaimsIdentity(
 				authenticationScheme,
@@ -405,10 +337,8 @@ namespace Lactalis.Services
 			identity.AddClaims((await _userManager.GetRolesAsync(user)).Select(r => new Claim(OpenIdConnectConstants.Claims.Role, r)));
 
 			return new ClaimsPrincipal(identity);
-			// % protected region % [Adjust the claims if required] end
 		}
 
-		// % protected region % [Customise Exchange method implementation here] off begin
 		public async Task<AuthenticationTicket> Exchange(OpenIdConnectRequest request)
 		{
 			if (request.IsPasswordGrantType())
@@ -441,9 +371,7 @@ namespace Lactalis.Services
 
 			throw new InvalidGrantTypeException();
 		}
-		// % protected region % [Customise Exchange method implementation here] end
 
-		// % protected region % [Customise CreateTicketAsync method implementation here] off begin
 		/// <summary>
 		/// Creates a ticket for an OpenId connect request
 		/// </summary>
@@ -511,9 +439,6 @@ namespace Lactalis.Services
 
 			return ticket;
 		}
-		// % protected region % [Customise CreateTicketAsync method implementation here] end
 
-		// % protected region % [Add any extra user service methods here] off begin
-		// % protected region % [Add any extra user service methods here] end
 	}
 }

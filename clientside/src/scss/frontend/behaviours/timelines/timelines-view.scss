@@ -1,19 +1,3 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
 /* --------------------------------
 Timelines - graph view
 -------------------------------- */
@@ -24,15 +8,17 @@ Timelines - graph view
 *Note that changing the colour automatically changes in the graph and the sidebar. 
 */
 
-
 //create array to loop through - to change colour of shape just change `color-suppot-{color}` to colour preference
 //IE: change $color-support-green to $color-support-orange and it changes the all diamond shapes in the graph and the sidebar to orange
 
 //To add more shapes you have to discuss with your dev with by adding more classnames and append to the map and the mixins.
 
-// % protected region % [Add shape definitions here] off begin
-$color-shapes: ("diamond" : $color-support-green, "circle" : $color-support-red, "square" : $color-support-purple, "default" : $color-primary);
-// % protected region % [Add shape definitions here] end
+$color-shapes: (
+	"diamond": $color-support-green,
+	"circle": $color-support-red,
+	"square": $color-support-purple,
+	"default": $color-primary,
+);
 
 //This mixin applies the shapes to the graph
 @mixin apply-graph-shape($shape) {
@@ -42,28 +28,19 @@ $color-shapes: ("diamond" : $color-support-green, "circle" : $color-support-red,
 				transform: rotate(45deg);
 			}
 		}
-	}
-
-	@else if $shape==circle {
+	} @else if $shape==circle {
 		.item__amount {
 			&:after {
 				border-radius: 50%;
 			}
 		}
-	}
-
-	@else if $shape==square {
+	} @else if $shape==square {
 		.item__amount {
 			&:after {
 				border-radius: unset;
 			}
 		}
-	}
-
-	// % protected region % [Add additional graph-shape styling here] off begin
-	// % protected region % [Add additional graph-shape styling here] end
-
-	@else if $shape==default {
+	} @else if $shape==default {
 		.item__amount {
 			&:after {
 				border-radius: unset;
@@ -84,30 +61,19 @@ $color-shapes: ("diamond" : $color-support-green, "circle" : $color-support-red,
 		&:before {
 			transform: rotate(45deg);
 		}
-	}
-
-	@else if $shape==circle {
+	} @else if $shape==circle {
 		&:before {
 			border-radius: 50%;
 		}
-	}
-
-	@else if $shape==square {
+	} @else if $shape==square {
 		&:before {
 			border-radius: unset;
 		}
-	}
-
-	// % protected region % [Add additional sidebar-shape styling here] off begin
-	// % protected region % [Add additional sidebar-shape styling here] end
-
-	@else if $shape==default {
+	} @else if $shape==default {
 		&:before {
 			border-radius: unset;
 		}
-	}
-
-	@else {
+	} @else {
 		@error "This mixin supports sizes you used "+$size;
 	}
 }
@@ -116,49 +82,35 @@ $color-shapes: ("diamond" : $color-support-green, "circle" : $color-support-red,
 $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view-reset;
 
 @mixin apply-view-animation($view) {
-	@if $view=="view-left" {
+	@if $view== "view-left" {
 		.date__item {
 			@include slideInLeft($slow-animation-time);
 		}
-	}
-
-	@else if $view=="left-view" {
+	} @else if $view== "left-view" {
 		.date__item {
 			@include slideInLeft2($slow-animation-time);
 		}
-	}
-
-	@else if $view=="view-right" {
+	} @else if $view== "view-right" {
 		.date__item {
 			@include slideInRight($slow-animation-time);
 		}
-	}
-
-	@else if $view=="right-view" {
+	} @else if $view== "right-view" {
 		.date__item {
 			@include slideInRight2($slow-animation-time);
 		}
-	}
-
-	@else if $view=="zoom-view" {
+	} @else if $view== "zoom-view" {
 		.date__item {
 			@include zoomIn($slow-animation-time);
 		}
-	}
-
-	@else if $view=="view-zoom" {
+	} @else if $view== "view-zoom" {
 		.date__item {
 			@include zoomIn2($slow-animation-time);
 		}
-	}
-
-	@else if $view=="view-reset" {
+	} @else if $view== "view-reset" {
 		.date__item {
 			@include zoomIn3($slow-animation-time);
 		}
-	}
-
-	@else {
+	} @else {
 		@error "This mixin supports view classes you used "+$view;
 	}
 }
@@ -169,11 +121,12 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 .timelines__view {
 	display: flex;
 	align-items: center;
-	height:85%;
+	height: 85%;
 	min-height: 35rem;
 
 	//chevron butons left and right
-	.icon-chevron-left, .icon-chevron-right {
+	.icon-chevron-left,
+	.icon-chevron-right {
 		max-width: $space-lg;
 		height: 100%;
 		align-items: center;
@@ -207,7 +160,7 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 		.timelines__dates {
 			display: flex;
 			justify-content: space-between;
-			
+
 			//Animation calls in mixins and class names - refer to mixins above
 			@each $view in $views {
 				&.#{$view} {
@@ -227,7 +180,7 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 
 				//grey lines in the middle
 				&:after {
-					content: '';
+					content: "";
 					height: convert-rem(400px);
 					width: 1px;
 					background-color: $grey-1;
@@ -240,8 +193,9 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 				.date {
 					min-width: convert-rem(100px);
 				}
-				
-				.timelines__item, .timelines__items {
+
+				.timelines__item,
+				.timelines__items {
 					position: absolute;
 					bottom: calc(100% - 3px);
 					display: flex;
@@ -266,7 +220,7 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 						}
 						//actual shape
 						&:after {
-							content: '';
+							content: "";
 							display: block;
 							background-color: $black;
 							display: inline-block;
@@ -295,8 +249,7 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 					}
 
 					//Each loop that calls in mixins above to apply the correct shape to the item and then apply the right colour to the shape
-					@each $shape,
-					$color in $color-shapes {
+					@each $shape, $color in $color-shapes {
 						&.#{$shape} {
 							@include apply-graph-shape(#{$shape});
 
@@ -304,7 +257,8 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 								&:after {
 									background-color: $color;
 								}
-								&:hover, &:active {
+								&:hover,
+								&:active {
 									color: $black;
 									@include transform-timing($animation-time);
 								}
@@ -347,7 +301,6 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 }
 /* end styling of timelines graph view */
 
-
 /* timelines graph sidebar view */
 .sidebar__graph-view {
 	padding: $space-xs $space-md;
@@ -356,12 +309,13 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 	//apply shape styles to both list of recent activity and legend
 	ul {
 		list-style: none;
-		padding-left: .2rem;
-		
+		padding-left: 0.2rem;
+
 		//layout for the shapes and info
 		li {
 			display: grid;
-			grid-template-areas: "shape date"
+			grid-template-areas:
+				"shape date"
 				"shape info";
 			grid-template-columns: auto 1fr;
 			margin-bottom: $space-xs;
@@ -375,7 +329,7 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 
 			//Generic styling for the shape
 			&:before {
-				content: '';
+				content: "";
 				width: 1rem;
 				height: 1rem;
 				text-align: center;
@@ -389,8 +343,7 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 			}
 
 			//Each loop that calls in mixins above to apply the correct shape to the item and then apply the right colour to the shape
-			@each $shape,
-			$color in $color-shapes {
+			@each $shape, $color in $color-shapes {
 				&.#{$shape} {
 					@include apply-sidebar-shape(#{$shape});
 
@@ -409,7 +362,7 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 				align-items: flex-start;
 
 				&:before {
-					margin-top: .3rem;
+					margin-top: 0.3rem;
 				}
 			}
 		}
@@ -427,7 +380,8 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 
 /*ITEM INFO STYLING - this is the box when you click on an item (shape) */
 
-.timelines__item, .timelines__items {
+.timelines__item,
+.timelines__items {
 	.item__info {
 		position: absolute;
 		right: $space-xs;
@@ -491,7 +445,7 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 
 				p {
 					margin-bottom: 0;
-					font-size: .9rem;
+					font-size: 0.9rem;
 				}
 			}
 		}
@@ -504,8 +458,5 @@ $views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view
 		}
 	}
 }
-
-// % protected region % [Add additional timelines-view styles here] off begin
-// % protected region % [Add additional timelines-view styles here] end
 
 /*END ITEM INFO STYLING*/

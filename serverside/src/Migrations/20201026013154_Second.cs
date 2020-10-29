@@ -6,7 +6,7 @@ namespace Lactalis.Migrations
 {
     public partial class Second : Migration
     {
-        protected override void Up(MigrationBuilder migrationBuilder)
+        ed override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
                 name: "Title",
@@ -452,7 +452,7 @@ namespace Lactalis.Migrations
                 onDelete: ReferentialAction.Restrict);
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
+        ed override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_NewsArticle___Files_FeatureImageId",

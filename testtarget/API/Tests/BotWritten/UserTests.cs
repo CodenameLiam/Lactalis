@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 
 using System;
 using System.Linq;
@@ -31,8 +16,7 @@ using RestSharp;
 using Xunit;
 using Xunit.Abstractions;
 
-// % protected region % [Add any further imports here] off begin
-// % protected region % [Add any further imports here] end
+
 
 namespace APITests.Tests.BotWritten
 {
@@ -40,10 +24,8 @@ namespace APITests.Tests.BotWritten
 	[Trait("Category", "Integration")]
 	public class UserTests : IClassFixture<StartupTestFixture>
 	{
-		// % protected region % [Customise UserTests fields here] off begin
 		private readonly StartupTestFixture _configure;
 		private readonly ITestOutputHelper _output;
-		// % protected region % [Customise UserTests fields here] end
 
 		private const string UnregisteredAccountError = "This account is not yet activated";
 		private const string SuperUsername = "super@example.com";
@@ -76,7 +58,6 @@ namespace APITests.Tests.BotWritten
 			_output = output;
 		}
 
-		// % protected region % [Customize CreateValidRegisteredUserTests here] off begin
 		[Theory]
 		[ClassData(typeof(UserEntityFactorySingleTheoryData))]
 		public void CreateValidRegisteredUserTests(UserEntityFactory entityFactory)
@@ -87,9 +68,7 @@ namespace APITests.Tests.BotWritten
 			var loginResponse = AttemptLogin(userEntity.EmailAddress, userEntity.Password);
 			Assert.Equal(HttpStatusCode.OK, loginResponse.StatusCode);
 		}
-		// % protected region % [Customize CreateValidRegisteredUserTests here] end
 
-		// % protected region % [Customize AttemptLogin here] off begin
 		private IRestResponse AttemptLogin(string username, string password)
 		{
 			var client = new RestClient { BaseUrl = new Uri(_configure.BaseUrl + "/api/authorization/login") };
@@ -100,9 +79,7 @@ namespace APITests.Tests.BotWritten
 			ApiOutputHelper.WriteRequestResponseOutput(request, response, _output);
 			return response;
 		}
-		// % protected region % [Customize AttemptLogin here] end
 
-		// % protected region % [Customize RegistrationInvalidPasswordTests here] off begin
 		[Theory]
 		[ClassData(typeof(PasswordInvalidTheoryData))]
 		public void RegistrationInvalidPasswordTests(UserEntityFactory userEntityFactory, string password, string expectedException)
@@ -123,9 +100,7 @@ namespace APITests.Tests.BotWritten
 
 			throw new Exception("User creation succeeded when it was expected to fail");
 		}
-		// % protected region % [Customize RegistrationInvalidPasswordTests here] end
 
-		// % protected region % [Customize RegistrationUserInvalidTests here] off begin
 		[Theory]
 		[ClassData(typeof(UsernameInvalidTheoryData))]
 		public void RegistrationUserInvalidTests(UserEntityFactory userEntityFactory, string username, string expectedException)
@@ -146,9 +121,7 @@ namespace APITests.Tests.BotWritten
 
 			throw new Exception("User creation succeeded when it was expected to fail");
 		}
-		// % protected region % [Customize RegistrationUserInvalidTests here] end
 
-		// % protected region % [Customize ValidLoginUserTests here] off begin
 		[Theory]
 		[MemberData(nameof(ValidTokenResponse))]
 		public void ValidLoginUserTests(string username, string password, string expectedResponse)
@@ -159,9 +132,7 @@ namespace APITests.Tests.BotWritten
 				var tokenType = loginTokenObject.TokenType;
 				Assert.True(accessToken != null && tokenType == expectedResponse);
 		}
-		// % protected region % [Customize ValidLoginUserTests here] end
 
-		// % protected region % [Customise InvalidLoginUserTests here] off begin
 		[Theory]
 		[MemberData(nameof(GetExpectedInvalidLoginResponses))]
 		public void InvalidLoginUserTests(string username, string password, string expectedResponse)
@@ -169,9 +140,7 @@ namespace APITests.Tests.BotWritten
 			Action act = () => new LoginToken(_configure.BaseUrl, username, password);
 			act.Should().Throw<Exception>().WithMessage(expectedResponse);
 		}
-		// % protected region % [Customise InvalidLoginUserTests here] end
 
-		// % protected region % [Customise GetAllUsersEndpointTests here] off begin
 		[Theory]
 		[ClassData(typeof(UserEntityFactorySingleTheoryData))]
 		public void GetAllUsersEndpointTests(UserEntityFactory entityFactory)
@@ -207,9 +176,7 @@ namespace APITests.Tests.BotWritten
 			// Assert
 			Assert.Equal(userEntity.Id, returnedObject.Users.First().Id);
 		}
-		// % protected region % [Customise GetAllUsersEndpointTests here] end
 
-		// % protected region % [Customise DeactivateUserEndpointTests here] off begin
 		[Theory]
 		[ClassData(typeof(UserEntityFactorySingleTheoryData))]
 		public void DeactivateUserEndpointTests(UserEntityFactory entityFactory)
@@ -239,10 +206,7 @@ namespace APITests.Tests.BotWritten
 			var activatedInDatabase = UserHelper.GetUserFromDB(userEntity.Id).EmailConfirmed;
 			Assert.False(activatedInDatabase);
 		}
-		// % protected region % [Customise DeactivateUserEndpointTests here] end
 
 
-		// % protected region % [Add any additional tests here] off begin
-		// % protected region % [Add any additional tests here] end
 	}
 }

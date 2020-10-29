@@ -1,26 +1,9 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using APITests.Factories;
 using Xunit;
-// % protected region % [Add any extra imports here] off begin
-// % protected region % [Add any extra imports here] end
 
-// % protected region % [Add any further imports here] off begin
-// % protected region % [Add any further imports here] end
+
+
 
 namespace APITests.TheoryData.BotWritten
 {
@@ -28,10 +11,8 @@ namespace APITests.TheoryData.BotWritten
 	{
 		public UserEntityFactorySingleTheoryData()
 		{
-			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] off begin
 			Add(new UserEntityFactory("FarmerEntity"));
 			Add(new UserEntityFactory("AdminEntity"));
-			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}
 
@@ -39,7 +20,6 @@ namespace APITests.TheoryData.BotWritten
 	{
 		public EntityFactorySingleTheoryData()
 		{
-			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] off begin
 			Add(new EntityFactory("TradingPostListingEntity"), 1);
 			Add(new EntityFactory("TradingPostCategoryEntity"), 1);
 			Add(new EntityFactory("AdminEntity"), 1);
@@ -57,7 +37,6 @@ namespace APITests.TheoryData.BotWritten
 			Add(new EntityFactory("SustainabilityPostEntity"), 1);
 			Add(new EntityFactory("AgriSupplyDocumentEntity"), 1);
 			Add(new EntityFactory("PromotedArticlesEntity"), 1);
-			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}
 
@@ -65,7 +44,6 @@ namespace APITests.TheoryData.BotWritten
 	{
 		public NonUserEntityFactorySingleTheoryData()
 		{
-			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] off begin
 			Add(new EntityFactory("TradingPostListingEntity"), 1);
 			Add(new EntityFactory("TradingPostCategoryEntity"), 1);
 			Add(new EntityFactory("AdminEntity"), 1);
@@ -83,7 +61,6 @@ namespace APITests.TheoryData.BotWritten
 			Add(new EntityFactory("SustainabilityPostEntity"), 1);
 			Add(new EntityFactory("AgriSupplyDocumentEntity"), 1);
 			Add(new EntityFactory("PromotedArticlesEntity"), 1);
-			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}
 
@@ -91,7 +68,6 @@ namespace APITests.TheoryData.BotWritten
 	{
 		public EntityFactoryTheoryData()
 		{
-			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] off begin
 			Add(new EntityFactory("TradingPostListingEntity"));
 			Add(new EntityFactory("TradingPostCategoryEntity"));
 			Add(new EntityFactory("AdminEntity"));
@@ -109,7 +85,6 @@ namespace APITests.TheoryData.BotWritten
 			Add(new EntityFactory("SustainabilityPostEntity"));
 			Add(new EntityFactory("AgriSupplyDocumentEntity"));
 			Add(new EntityFactory("PromotedArticlesEntity"));
-			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}
 
@@ -117,7 +92,6 @@ namespace APITests.TheoryData.BotWritten
 	{
 		public EntityFactoryMultipleTheoryData()
 		{
-			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] off begin
 			var numEntities = 3;
 			Add(new EntityFactory("TradingPostListingEntity"), numEntities);
 			Add(new EntityFactory("TradingPostCategoryEntity"), numEntities);
@@ -134,11 +108,8 @@ namespace APITests.TheoryData.BotWritten
 			Add(new EntityFactory("SustainabilityPostEntity"), numEntities);
 			Add(new EntityFactory("AgriSupplyDocumentEntity"), numEntities);
 			Add(new EntityFactory("PromotedArticlesEntity"), numEntities);
-			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}
 
-	// % protected region % [Add any further custom EntityFactoryTheoryData here] off begin
-	// % protected region % [Add any further custom EntityFactoryTheoryData here] end
 
 }

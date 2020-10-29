@@ -1,36 +1,23 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
-import * as React from 'react';
-import { IconPositions } from '../Helpers/Common';
-import { observer } from 'mobx-react';
-import {action, computed, observable, runInAction} from 'mobx';
-import If from '../If/If';
-import CollectionMenu from './CollectionMenu';
-import Pagination from '../Pagination/Pagination';
-import { ReactNode } from 'react';
-import CollectionRow from './CollectionRow';
-import CollectionHeaders, { ICollectionHeaderProps, ICollectionHeaderPropsPrivate } from './CollectionHeaders';
-import IPaginationData from 'Models/PaginationData';
-import * as uuid from 'uuid';
-import classNames from 'classnames';
-import { union, intersectionWith, isEqual, pullAllWith } from 'lodash';
-import { IEntityContextMenuActions } from '../EntityContextMenu/EntityContextMenu';
-import { ICollectionFilterPanelProps } from './CollectionFilterPanel';
-import { IOrderByCondition } from '../ModelCollection/ModelQuery';
+import * as React from "react";
+import { IconPositions } from "../Helpers/Common";
+import { observer } from "mobx-react";
+import { action, computed, observable, runInAction } from "mobx";
+import If from "../If/If";
+import CollectionMenu from "./CollectionMenu";
+import Pagination from "../Pagination/Pagination";
+import { ReactNode } from "react";
+import CollectionRow from "./CollectionRow";
+import CollectionHeaders, {
+	ICollectionHeaderProps,
+	ICollectionHeaderPropsPrivate,
+} from "./CollectionHeaders";
+import IPaginationData from "Models/PaginationData";
+import * as uuid from "uuid";
+import classNames from "classnames";
+import { union, intersectionWith, isEqual, pullAllWith } from "lodash";
+import { IEntityContextMenuActions } from "../EntityContextMenu/EntityContextMenu";
+import { ICollectionFilterPanelProps } from "./CollectionFilterPanel";
+import { IOrderByCondition } from "../ModelCollection/ModelQuery";
 
 export type actionFn<T> = (model: T, event: React.MouseEvent<Element, MouseEvent>) => void;
 export type bulkActionFn<T> = (models: T[], event: React.MouseEvent<Element, MouseEvent>) => void;
@@ -52,8 +39,8 @@ export interface ICollectionActionProps<T> {
 	showLabel?: boolean;
 	/** Is the action an additional action, this is displayed in the more menu */
 	isAdditional?: boolean;
-	/** 
-	 * A custom button that is displayed, instead of the one provided by the collection 
+	/**
+	 * A custom button that is displayed, instead of the one provided by the collection
 	 * Using this will override any and all presentation level options also provided
 	 */
 	customButton?: (model: T) => React.ReactNode;
@@ -102,7 +89,7 @@ export interface ICollectionListProps<T> {
 	/** Callback when the selected checkboxes change */
 	itemSelectionChanged?: (checked: boolean, changedItems: T[]) => T[];
 	/** Callback for when the select items on all pages button is pressed */
-	onCheckedAllPages?: (checked: boolean)=> T[]
+	onCheckedAllPages?: (checked: boolean) => T[];
 	/** Callback for when the deselect items on all pages button is pressed */
 	cancelAllSelection?: () => void;
 	/** A function to display the total number of selected items, will default to only showing this on this page */
@@ -115,7 +102,7 @@ export interface ICollectionListProps<T> {
 	 */
 	idColumn?: string;
 	/** The data attributs to be inserted into collection row <tr> tag */
-	dataFields?: (row: T) => {[key: string]: string};
+	dataFields?: (row: T) => { [key: string]: string };
 	/** The default order by condition */
 	orderBy?: IOrderByCondition<T> | undefined;
 }
@@ -155,12 +142,12 @@ export default class Collection<T> extends React.Component<ICollectionProps<T>, 
 	 */
 	@computed
 	private get headers(): Array<ICollectionHeaderPropsPrivate<T>> {
-		return this.props.headers.map(header => {
-			const computedHeader: ICollectionHeaderPropsPrivate<T> = {...header};
+		return this.props.headers.map((header) => {
+			const computedHeader: ICollectionHeaderPropsPrivate<T> = { ...header };
 
-			if (typeof header.displayName === 'string') {
+			if (typeof header.displayName === "string") {
 				computedHeader.headerName = header.displayName;
-			} else if (typeof header.displayName === 'function') {
+			} else if (typeof header.displayName === "function") {
 				computedHeader.headerName = header.displayName(header.name);
 			}
 
@@ -173,7 +160,10 @@ export default class Collection<T> extends React.Component<ICollectionProps<T>, 
 	 */
 	@computed
 	private get allChecked() {
-		return ((intersectionWith(this.selectedItems, this.props.collection, isEqual).length === this.props.collection.length) && (this.props.collection.length > 0));
+		return (
+			intersectionWith(this.selectedItems, this.props.collection, isEqual).length ===
+				this.props.collection.length && this.props.collection.length > 0
+		);
 	}
 
 	/**
@@ -203,12 +193,12 @@ export default class Collection<T> extends React.Component<ICollectionProps<T>, 
 	@computed
 	private get showSelectAll() {
 		return this.allChecked && this.totalItems > this.selectedItemsCount;
-	};
+	}
 
 	public render() {
 		return (
 			<section
-				className={classNames('collection-component', this.props.className)}
+				className={classNames("collection-component", this.props.className)}
 				data-selected-count={this.selectedItemsCount}
 				data-total={this.totalItems}
 				{...this.props.innerProps}>
@@ -245,36 +235,35 @@ export default class Collection<T> extends React.Component<ICollectionProps<T>, 
 
 		return (
 			<section className="collection__load">
-				<Pagination pagination={pagination} onPageChange={this.props.onPageChange}/>
+				<Pagination pagination={pagination} onPageChange={this.props.onPageChange} />
 			</section>
 		);
-	}
+	};
 
 	/**
 	 * The table list component
 	 */
 	private list = () => {
 		const collectionId = uuid.v4();
-		// % protected region % [change any classes for all collectionlists] off begin
-		const className = classNames('collection__list', `${this.props.expandList ? 'collection__list--expandable' : null}`);
-		// % protected region % [change any classes for all collectionlists] end
+		const className = classNames(
+			"collection__list",
+			`${this.props.expandList ? "collection__list--expandable" : null}`
+		);
 		const filter = this.props.filter || (() => true);
 		return (
 			<section aria-label="collection list" className={className}>
 				<table>
 					{this.header()}
-					<tbody>
-						{this.row({id: collectionId}) }
-					</tbody>
+					<tbody>{this.row({ id: collectionId })}</tbody>
 				</table>
 			</section>
 		);
-	}
+	};
 	/**
 	 * The table row component
 	 * @param props Contains the id of the row
 	 */
-	private row = (props: {id: string}) => {
+	private row = (props: { id: string }) => {
 		const filter = this.props.filter || (() => true);
 		return (
 			<>
@@ -286,7 +275,7 @@ export default class Collection<T> extends React.Component<ICollectionProps<T>, 
 							headers={this.headers}
 							actions={this.props.actions}
 							actionsMore={this.props.actionsMore}
-							checked={this.selectedItems.some(i => isEqual(i, item))}
+							checked={this.selectedItems.some((i) => isEqual(i, item))}
 							onChecked={this.onRowChecked}
 							expandAction={this.props.expandList}
 							key={this.props.idColumn ? item[this.props.idColumn] : `${idx}-${props.id}`}
@@ -298,7 +287,7 @@ export default class Collection<T> extends React.Component<ICollectionProps<T>, 
 				})}
 			</>
 		);
-	}
+	};
 
 	/**
 	 * The header row component
@@ -312,10 +301,11 @@ export default class Collection<T> extends React.Component<ICollectionProps<T>, 
 					actions={this.props.actions}
 					allChecked={this.allChecked}
 					onCheckedAll={this.onCheckedAll}
-					orderBy={this.props.orderBy} />
+					orderBy={this.props.orderBy}
+				/>
 			</If>
 		);
-	}
+	};
 
 	/**
 	 * Selects or deselects items from the collection
@@ -330,10 +320,9 @@ export default class Collection<T> extends React.Component<ICollectionProps<T>, 
 			if (checked) {
 				this._selectedItems = union(this._selectedItems, items);
 			} else {
-				pullAllWith(this._selectedItems, items, isEqual)
+				pullAllWith(this._selectedItems, items, isEqual);
 			}
 		}
-
 	}
 
 	/**
@@ -343,9 +332,13 @@ export default class Collection<T> extends React.Component<ICollectionProps<T>, 
 	 * @param checkedItem The item that was checked
 	 */
 	@action
-	private onRowChecked = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean, checkedItem: T) => {
+	private onRowChecked = (
+		event: React.ChangeEvent<HTMLInputElement>,
+		checked: boolean,
+		checkedItem: T
+	) => {
 		this.selectItems(checked, [checkedItem]);
-	}
+	};
 
 	/**
 	 * Callback when the checkbox in the collection header was changed
@@ -354,7 +347,7 @@ export default class Collection<T> extends React.Component<ICollectionProps<T>, 
 	 */
 	private onCheckedAll = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
 		this.selectItems(checked, this.props.collection);
-	}
+	};
 
 	/**
 	 * Callback for when the select all pages button was pressed
@@ -363,14 +356,14 @@ export default class Collection<T> extends React.Component<ICollectionProps<T>, 
 		if (this.props.onCheckedAllPages) {
 			this.selectItems(true, this.props.onCheckedAllPages(true));
 		}
-	}
+	};
 
 	/**
 	 * Callback when the cancel selection button was pressed
 	 */
 	private cancelAllSelection() {
 		this.selectItems(false, this.props.collection);
-		if(this.props.cancelAllSelection) {
+		if (this.props.cancelAllSelection) {
 			this.props.cancelAllSelection();
 		}
 	}

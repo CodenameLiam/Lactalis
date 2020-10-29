@@ -1,19 +1,3 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
 /* --------------------------------
 Collection - List View
 -------------------------------- */
@@ -21,7 +5,6 @@ Collection - List View
 List view of the collection list.
 */
 
-// % protected region % [Change collection list view styles here] off begin
 .collection__list {
 	@include fadeIn(0.5s);
 	overflow-x: auto;
@@ -31,17 +14,16 @@ List view of the collection list.
 		display: none;
 	}
 
-
 	table {
 		width: 100%;
 		white-space: nowrap;
 		border-collapse: collapse;
 		overflow-x: auto;
 
-		//flexing select all 
+		//flexing select all
 		.collection__header {
 			.collection__list--select-all {
-				display: flex
+				display: flex;
 			}
 		}
 
@@ -88,7 +70,6 @@ List view of the collection list.
 				background-color: $white;
 			}
 		}
-
 
 		thead {
 			font-size: $base-font-size;
@@ -142,7 +123,6 @@ List view of the collection list.
 		}
 
 		tbody {
-
 			tr {
 				@include fadeIn($slow-animation-time);
 				border-bottom: convert-rem(1px) solid $grey-4;
@@ -185,7 +165,7 @@ List view of the collection list.
 					&.list__items--actions {
 						display: flex;
 						margin: 0 auto;
-						padding: .2rem;
+						padding: 0.2rem;
 
 						.collection__edit-actions {
 							width: 100%;
@@ -227,13 +207,8 @@ List view of the collection list.
 							}
 						}
 					}
-
 				}
 			}
 		}
 	}
 }
-// % protected region % [Change collection list view styles here] end
-
-// % protected region % [Add additional collection list view styles here] off begin
-// % protected region % [Add additional collection list view styles here] end

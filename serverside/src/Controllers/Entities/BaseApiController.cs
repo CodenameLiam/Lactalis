@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -24,8 +9,7 @@ using CsvHelper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Lactalis.Utility;
-// % protected region % [Add any extra imports here] off begin
-// % protected region % [Add any extra imports here] end
+ 
 
 namespace Lactalis.Controllers.Entities
 {
@@ -64,7 +48,7 @@ namespace Lactalis.Controllers.Entities
 		/// </summary>
 		/// <param name="contentType">The content type to download</param>
 		/// <param name="fileName">The name of the file to download</param>
-		protected void SetDownloadFileHeaders(string contentType, string fileName)
+		ed void SetDownloadFileHeaders(string contentType, string fileName)
 		{
 			SetFileHeaders(new FileDownloadOptions
 			{
@@ -78,7 +62,7 @@ namespace Lactalis.Controllers.Entities
 		/// Sets the headers for downloading files
 		/// </summary>
 		/// <param name="options">The file download options</param>
-		protected void SetFileHeaders(FileDownloadOptions options)
+		ed void SetFileHeaders(FileDownloadOptions options)
 		{
 			if (options.ContentType != default)
 			{
@@ -115,7 +99,7 @@ namespace Lactalis.Controllers.Entities
 		/// <param name="cancellationToken">Cancellation token to cancel the action</param>
 		/// <typeparam name="T">The type of the entity to write out</typeparam>
 		/// <returns></returns>
-		protected async Task WriteQueryableCsvAsync<T>(
+		ed async Task WriteQueryableCsvAsync<T>(
 			IQueryable<T> queryable,
 			string fileName,
 			CancellationToken cancellationToken = default)
@@ -134,7 +118,7 @@ namespace Lactalis.Controllers.Entities
 			await writer.FlushAsync();
 		}
 
-		// % protected region % [Add any extra functions here] off begin
-		// % protected region % [Add any extra functions here] end
+	 
+	
 	}
 }

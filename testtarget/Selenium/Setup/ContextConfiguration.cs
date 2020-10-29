@@ -1,19 +1,4 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
+
 
 using System;
 using System.Collections.Generic;
@@ -86,16 +71,12 @@ namespace SeleniumTests.Setup
 			var testUserSettings = new UserSettings();
 			userConfiguration.GetSection("super").Bind(superUserSettings);
 			userConfiguration.GetSection("test").Bind(testUserSettings);
-			// % protected region % [Add any additional user settings here] off begin
-			// % protected region % [Add any additional user settings here] end
 
 			TestUserConfiguration = testUserSettings;
 			SuperUserConfiguration = superUserSettings;
 			SeleniumSettings = _seleniumSettings;
 			BaseChoiceSettings = baseChoiceSettings;
 
-			// % protected region % [Set any other variables here] off begin
-			// % protected region % [Set any other variables here] end
 
 			WebDriver = InitialiseWebDriver();
 			TestOutputHelper = testOutputHelper;
@@ -111,8 +92,6 @@ namespace SeleniumTests.Setup
 		public BaseChoiceSettings BaseChoiceSettings { get; set; }
 		public IWebDriver WebDriver { get; set; }
 		public IWait<IWebDriver> WebDriverWait { get; set; }
-		// % protected region % [Add any additional public variables here] off begin
-		// % protected region % [Add any additional public variables here] end
 
 		public void WriteTestOutput(string text) => TestOutputHelper.WriteLine(text);
 
@@ -128,7 +107,6 @@ namespace SeleniumTests.Setup
 				case "chrome-edge":
 					var chromeOptions = new ChromeOptions();
 
-					// % protected region % [The default chrome driver variables are set , change to suit your needs] off begin
 					if (_seleniumSettings.Headless)
 					{
 						chromeOptions.AddArguments("--silent-launch");
@@ -150,7 +128,6 @@ namespace SeleniumTests.Setup
 						chromeOptions.AddArguments("--start-maximized");
 					}
 
-					// % protected region % [The default chrome driver variables are set , change to suit your needs] end
 
 					/*
 					* for different chromium browsers we will need to specify the binary
@@ -185,7 +162,6 @@ namespace SeleniumTests.Setup
 					var service = FirefoxDriverService.CreateDefaultService(".");
 					service.Host = "::1";
 
-					// % protected region % [The default firefox driver variables are set , change to suit your needs] off begin
 					if (_seleniumSettings.Headless)
 					{
 						firefoxOptions.AddArguments("--silent-launch");
@@ -197,11 +173,9 @@ namespace SeleniumTests.Setup
 						firefoxOptions.AddAdditionalCapability("acceptInsecureCerts", true, true);
 					}
 
-					// % protected region % [The default firefox driver variables are set , change to suit your needs] end
 
 					WebDriver = new FirefoxDriver(service, firefoxOptions);
 
-					// % protected region % [default driver operations for firefox, change to suit your needs] off begin
 					if (_seleniumSettings.OverwriteDefault|| _seleniumSettings.Headless)
 					{
 						WebDriver.Manage().Window.Size = new Size(_seleniumSettings.Width, _seleniumSettings.Height);
@@ -210,19 +184,14 @@ namespace SeleniumTests.Setup
 					{
 						WebDriver.Manage().Window.Maximize();
 					}
-					// % protected region % [default driver operations for firefox, change to suit your needs] end
 					break;
 				case "ie":
 					WebDriver = new InternetExplorerDriver();
 
-					// % protected region % [Add any internet explorer driver options here] off begin
-					// % protected region % [Add any internet explorer driver options here] end
 					break;
 				case "edge":
 					WebDriver = new EdgeDriver();
 
-					// % protected region % [Add any edge driver options here] off begin
-					// % protected region % [Add any edge driver options here] end
 					break;
 				default:
 					//default to using a chrome driver which is maximised
@@ -234,8 +203,6 @@ namespace SeleniumTests.Setup
 					break;
 			}
 
-			// % protected region % [Add any additional WebDriver configuration here] off begin
-			// % protected region % [Add any additional WebDriver configuration here] end
 
 			return WebDriver;
 		}

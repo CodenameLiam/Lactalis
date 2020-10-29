@@ -12,7 +12,7 @@
 # 
 # BOT WARNING
 # This file is bot-written.
-# Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+# Any changes out side of " ions" will be lost next time the bot makes any changes.
 ###
 @sorting @BotWritten @ignore
 # WARNING: These Tests have been flagged as unstable and have been ignored until they are updated.

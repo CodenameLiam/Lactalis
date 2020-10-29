@@ -1,37 +1,18 @@
-/*
- * @bot-written
- * 
- * WARNING AND NOTICE
- * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
- * Full Software Licence as accepted by you before being granted access to this source code and other materials,
- * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
- * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
- * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
- * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
- * access, download, storage, and/or use of this source code.
- * 
- * BOT WARNING
- * This file is bot-written.
- * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
- */
 import * as React from "react";
-import _ from 'lodash';
-import { observer } from 'mobx-react';
-import { DisplayType } from '../Models/Enums';
+import _ from "lodash";
+import { observer } from "mobx-react";
+import { DisplayType } from "../Models/Enums";
 import {
 	Dropdown,
 	DropdownItemProps,
 	DropdownProps,
 	Label,
 	StrictDropdownProps,
-} from 'semantic-ui-react';
-import InputWrapper from 'Views/Components/Inputs/InputWrapper';
-import classNames from 'classnames';
-import { action, computed, observable } from 'mobx';
-import Spinner from 'Views/Components/Spinner/Spinner';
-
-// % protected region % [Add extra imports here] off begin
-// % protected region % [Add extra imports here] end
+} from "semantic-ui-react";
+import InputWrapper from "Views/Components/Inputs/InputWrapper";
+import classNames from "classnames";
+import { action, computed, observable } from "mobx";
+import Spinner from "Views/Components/Spinner/Spinner";
 
 export interface ComboboxOption<I> {
 	/** The value to display in the combobox item dropdown */
@@ -57,7 +38,10 @@ interface InternalComboboxProps<T, I> {
 	 * @param modelProperty The model property to compare
 	 * @param option The option from the combobox
 	 */
-	optionEqualFunc?: (modelProperty: string | number | boolean | undefined, option: I | undefined) => boolean;
+	optionEqualFunc?: (
+		modelProperty: string | number | boolean | undefined,
+		option: I | undefined
+	) => boolean;
 	/** The to display around the combobox */
 	label: string;
 	/** Weather the label is visible */
@@ -135,7 +119,7 @@ export class Combobox<T, I> extends React.Component<IComboboxProps<T, I>> {
 	static defaultProps = {
 		labelVisible: true,
 		minSearchLength: 0,
-		searchable: true
+		searchable: true,
 	};
 
 	private _reFetch?: () => void = undefined;
@@ -143,17 +127,18 @@ export class Combobox<T, I> extends React.Component<IComboboxProps<T, I>> {
 		if (this._reFetch) {
 			return this._reFetch;
 		}
-		return function() {};
+		return function () {};
 	}
 
-	private getOptionValue = (option: I | undefined) => this.props.getOptionValue
-		? this.props.getOptionValue(option)
-		: option as string | number | boolean | undefined;
+	private getOptionValue = (option: I | undefined) =>
+		this.props.getOptionValue
+			? this.props.getOptionValue(option)
+			: (option as string | number | boolean | undefined);
 
 	public render() {
 		return (
 			<InputWrapper
-				className={classNames('input-group__dropdown', this.props.className)}
+				className={classNames("input-group__dropdown", this.props.className)}
 				label={this.props.label}
 				errors={this.props.errors}
 				labelVisible={this.props.labelVisible}
@@ -161,20 +146,20 @@ export class Combobox<T, I> extends React.Component<IComboboxProps<T, I>> {
 				displayType={this.props.displayType}
 				inputName={this.props.modelProperty}
 				isRequired={this.props.isRequired}>
-				{
-					typeof this.props.options === 'function'
-					? <AsyncCombobox
-							{...this.props}
-							ref={ref => this._reFetch = ref?.reFetch}
-							options={this.props.options}
-							getOptionValue={this.getOptionValue}
-						/>
-					: <SyncCombobox
-							{...this.props}
-							options={this.props.options}
-							getOptionValue={this.getOptionValue}
-						/>
-				}
+				{typeof this.props.options === "function" ? (
+					<AsyncCombobox
+						{...this.props}
+						ref={(ref) => (this._reFetch = ref?.reFetch)}
+						options={this.props.options}
+						getOptionValue={this.getOptionValue}
+					/>
+				) : (
+					<SyncCombobox
+						{...this.props}
+						options={this.props.options}
+						getOptionValue={this.getOptionValue}
+					/>
+				)}
 			</InputWrapper>
 		);
 	}
@@ -183,58 +168,58 @@ export class Combobox<T, I> extends React.Component<IComboboxProps<T, I>> {
 @observer
 class SyncCombobox<T, I> extends React.Component<InternalSyncComboboxProps<T, I>> {
 	public render() {
-		return <InnerCombobox
-			model={this.props.model}
-			modelProperty={this.props.modelProperty}
-			getOptionValue={this.props.getOptionValue}
-			optionResults={this.props.options}
-			search={this.props.searchable}
-			loading={this.props.loading}
-			placeholder={this.props.placeholder}
-			clearable={this.props.isClearable}
-			onAfterChange={this.props.onAfterChange}
-			disabled={this.props.isDisabled}
-			onChange={this.props.onChange}
-			optionEqualFunc={this.props.optionEqualFunc}
-			{...this.props.inputProps}
-		/>;
+		return (
+			<InnerCombobox
+				model={this.props.model}
+				modelProperty={this.props.modelProperty}
+				getOptionValue={this.props.getOptionValue}
+				optionResults={this.props.options}
+				search={this.props.searchable}
+				loading={this.props.loading}
+				placeholder={this.props.placeholder}
+				clearable={this.props.isClearable}
+				onAfterChange={this.props.onAfterChange}
+				disabled={this.props.isDisabled}
+				onChange={this.props.onChange}
+				optionEqualFunc={this.props.optionEqualFunc}
+				{...this.props.inputProps}
+			/>
+		);
 	}
 }
 
-type loadingState = 'loading' | 'error' | 'done';
+type loadingState = "loading" | "error" | "done";
 
 @observer
 class AsyncCombobox<T, I> extends React.Component<InternalAsyncComboboxProps<T, I>> {
 	@observable
-	private requestState: loadingState = 'done';
+	private requestState: loadingState = "done";
 
 	@observable
-	private initialRequestState: loadingState = 'loading';
+	private initialRequestState: loadingState = "loading";
 
 	@observable
 	private optionResults: ComboboxOption<I | undefined>[] = [];
 
-	private lastSearchQuery = '';
+	private lastSearchQuery = "";
 
 	public reFetch = () => this.searchOptions(this.lastSearchQuery);
 
 	@action
 	private searchOptions = (data: string): Promise<void> => {
-		this.requestState = 'loading';
+		this.requestState = "loading";
 		this.lastSearchQuery = data;
-		return this.props.options(data)
-			.then(this.onSearchSuccess)
-			.catch(this.onSearchFail);
-	}
+		return this.props.options(data).then(this.onSearchSuccess).catch(this.onSearchFail);
+	};
 
 	@action
 	private onSearchSuccess = (options: ComboboxOption<I | undefined>[], initial?: boolean) => {
 		this.optionResults.length = 0;
 		this.optionResults.push(...options);
 		if (initial) {
-			this.initialRequestState = 'done';
+			this.initialRequestState = "done";
 		} else {
-			this.requestState = 'done';
+			this.requestState = "done";
 		}
 	};
 
@@ -242,16 +227,17 @@ class AsyncCombobox<T, I> extends React.Component<InternalAsyncComboboxProps<T, 
 	private onSearchFail = (error: any, initial?: boolean) => {
 		console.error(error);
 		if (initial) {
-			this.initialRequestState = 'error';
+			this.initialRequestState = "error";
 		} else {
-			this.requestState = 'error';
+			this.requestState = "error";
 		}
 	};
 
 	constructor(props: InternalAsyncComboboxProps<T, I>, context: any) {
 		super(props, context);
 		if (this.props.initialOptions) {
-			this.props.initialOptions()
+			this.props
+				.initialOptions()
 				.then(_.partial(this.onSearchSuccess, _, true))
 				.catch(_.partial(this.onSearchFail, _, true));
 		} else {
@@ -259,33 +245,32 @@ class AsyncCombobox<T, I> extends React.Component<InternalAsyncComboboxProps<T, 
 		}
 	}
 
-	// % protected region % [Add any extra Component lifecycle methods here] off begin
-	// % protected region % [Add any extra Component lifecycle methods here] end
-
 	public render() {
 		switch (this.initialRequestState) {
-			case 'loading':
+			case "loading":
 				return <Spinner />;
-			case 'error':
+			case "error":
 				return <div>There was an error loading the combobox data</div>;
-			case 'done':
-				return <InnerCombobox
-					model={this.props.model}
-					modelProperty={this.props.modelProperty}
-					getOptionValue={this.props.getOptionValue}
-					search={options => options}
-					optionResults={this.optionResults}
-					onSearchChange={(e, data) => this.searchOptions(data.searchQuery)}
-					placeholder={this.props.placeholder}
-					loading={this.requestState === 'loading'}
-					disabled={this.props.isDisabled}
-					minCharacters={this.props.minSearchLength}
-					clearable={this.props.isClearable}
-					onAfterChange={this.props.onAfterChange}
-					onChange={this.props.onChange}
-					optionEqualFunc={this.props.optionEqualFunc}
-					{...this.props.inputProps}
-				/>;
+			case "done":
+				return (
+					<InnerCombobox
+						model={this.props.model}
+						modelProperty={this.props.modelProperty}
+						getOptionValue={this.props.getOptionValue}
+						search={(options) => options}
+						optionResults={this.optionResults}
+						onSearchChange={(e, data) => this.searchOptions(data.searchQuery)}
+						placeholder={this.props.placeholder}
+						loading={this.requestState === "loading"}
+						disabled={this.props.isDisabled}
+						minCharacters={this.props.minSearchLength}
+						clearable={this.props.isClearable}
+						onAfterChange={this.props.onAfterChange}
+						onChange={this.props.onChange}
+						optionEqualFunc={this.props.optionEqualFunc}
+						{...this.props.inputProps}
+					/>
+				);
 		}
 	}
 }
@@ -296,7 +281,10 @@ interface InnerComboboxProps<T, I> extends StrictDropdownProps {
 	optionResults: ComboboxOption<I | undefined>[];
 	getOptionValue: (option: I | undefined) => undefined | boolean | number | string;
 	onAfterChange?: (event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => void;
-	optionEqualFunc?: (modelProperty: string | number | boolean | undefined, option: I | undefined) => boolean;
+	optionEqualFunc?: (
+		modelProperty: string | number | boolean | undefined,
+		option: I | undefined
+	) => boolean;
 }
 
 @observer
@@ -308,9 +296,11 @@ class InnerCombobox<T, I> extends React.Component<InnerComboboxProps<T, I>> {
 			value: this.props.getOptionValue(option.value),
 			isFixed: option.isFixed,
 			key: this.props.getOptionValue(option.value),
-			as: (props: any) => <div {..._.omit(props, 'isFixed')} data-id={this.props.getOptionValue(option.value)}>
-				{props.children}
-			</div>
+			as: (props: any) => (
+				<div {..._.omit(props, "isFixed")} data-id={this.props.getOptionValue(option.value)}>
+					{props.children}
+				</div>
+			),
 		}));
 	}
 
@@ -321,10 +311,12 @@ class InnerCombobox<T, I> extends React.Component<InnerComboboxProps<T, I>> {
 		if (!(modelProperty === null || modelProperty === undefined)) {
 			if (this.props.multiple && Array.isArray(modelProperty)) {
 				return _.chain(this.props.optionResults)
-					.filter(option => {
-						return _.some(modelProperty, modelProp => this.optionsEqual(this.props.getOptionValue(modelProp), option));
+					.filter((option) => {
+						return _.some(modelProperty, (modelProp) =>
+							this.optionsEqual(this.props.getOptionValue(modelProp), option)
+						);
 					})
-					.flatMap(option => {
+					.flatMap((option) => {
 						const value = this.props.getOptionValue(option.value);
 						if (value !== undefined) {
 							return value;
@@ -334,7 +326,7 @@ class InnerCombobox<T, I> extends React.Component<InnerComboboxProps<T, I>> {
 					.value();
 			} else {
 				// If there is a value already selected in the model then we want that one to be selected
-				const value = this.props.optionResults.find(option => {
+				const value = this.props.optionResults.find((option) => {
 					return this.optionsEqual(this.props.getOptionValue(modelProperty), option);
 				});
 				if (value) {
@@ -346,7 +338,9 @@ class InnerCombobox<T, I> extends React.Component<InnerComboboxProps<T, I>> {
 		return undefined;
 	}
 
-	private set selectedItem(value: undefined | boolean | number | string | (boolean | number | string)[]) {
+	private set selectedItem(
+		value: undefined | boolean | number | string | (boolean | number | string)[]
+	) {
 		if (Array.isArray(value)) {
 			if (!Array.isArray(this.props.model[this.props.modelProperty])) {
 				this.props.model[this.props.modelProperty] = [];
@@ -354,13 +348,13 @@ class InnerCombobox<T, I> extends React.Component<InnerComboboxProps<T, I>> {
 
 			this.props.model[this.props.modelProperty].length = 0;
 			const selected = this.props.optionResults
-				.filter(option => {
-					return _.some(value, modelProp => this.optionsEqual(modelProp, option));
+				.filter((option) => {
+					return _.some(value, (modelProp) => this.optionsEqual(modelProp, option));
 				})
-				.map(option => option.value);
+				.map((option) => option.value);
 			this.props.model[this.props.modelProperty].push(...selected);
 		} else {
-			const selected = this.props.optionResults.find(option => {
+			const selected = this.props.optionResults.find((option) => {
 				return this.optionsEqual(value, option);
 			});
 
@@ -389,7 +383,10 @@ class InnerCombobox<T, I> extends React.Component<InnerComboboxProps<T, I>> {
 		}
 	};
 
-	private optionsEqual(modelProp: string | number | boolean | undefined, option: ComboboxOption<I | undefined>) {
+	private optionsEqual(
+		modelProp: string | number | boolean | undefined,
+		option: ComboboxOption<I | undefined>
+	) {
 		if (this.props.optionEqualFunc) {
 			return this.props.optionEqualFunc(modelProp, option.value);
 		}
@@ -397,42 +394,49 @@ class InnerCombobox<T, I> extends React.Component<InnerComboboxProps<T, I>> {
 	}
 
 	public render() {
-		return <Dropdown
-			selection={true}
-			disabled={this.props.disabled}
-			onChange={this.onChange}
-			value={this.selectedItem}
-			data-id={Array.isArray(this.selectedItem) ? this.selectedItem.join(",") : this.selectedItem}
-			options={this.options}
-			className={classNames('dropdown__container', this.props.multiple ? undefined : 'single')}
-			renderLabel={(item, index, defaultLabelProps) => {
-				return <>
-					<Label
-						{...defaultLabelProps}
-						data-id={item.value}
-						content={item.text}
-						key={typeof item.value === 'string' || typeof item.value === 'number' ? item.value : index}
-						onRemove={item.isFixed ? undefined : defaultLabelProps.onRemove} />
-				</>
-			}}
-			// % protected region % [Add any extra props to Dropdown in InnerCombobox here] off begin
-			// % protected region % [Add any extra props to Dropdown in InnerCombobox here] end
-			{..._.omit(
-				this.props,
-				'model',
-				'modelProperty',
-				'optionResults',
-				'getOptionValue',
-				'onAfterChange',
-				'optionEqualFunc',
-				'selection',
-				'onChange',
-				'value',
-				'data-id',
-				'options',
-				'className',
-				'renderLabel',
-			)}
-		/>;
+		return (
+			<Dropdown
+				selection={true}
+				disabled={this.props.disabled}
+				onChange={this.onChange}
+				value={this.selectedItem}
+				data-id={Array.isArray(this.selectedItem) ? this.selectedItem.join(",") : this.selectedItem}
+				options={this.options}
+				className={classNames("dropdown__container", this.props.multiple ? undefined : "single")}
+				renderLabel={(item, index, defaultLabelProps) => {
+					return (
+						<>
+							<Label
+								{...defaultLabelProps}
+								data-id={item.value}
+								content={item.text}
+								key={
+									typeof item.value === "string" || typeof item.value === "number"
+										? item.value
+										: index
+								}
+								onRemove={item.isFixed ? undefined : defaultLabelProps.onRemove}
+							/>
+						</>
+					);
+				}}
+				{..._.omit(
+					this.props,
+					"model",
+					"modelProperty",
+					"optionResults",
+					"getOptionValue",
+					"onAfterChange",
+					"optionEqualFunc",
+					"selection",
+					"onChange",
+					"value",
+					"data-id",
+					"options",
+					"className",
+					"renderLabel"
+				)}
+			/>
+		);
 	}
 }
